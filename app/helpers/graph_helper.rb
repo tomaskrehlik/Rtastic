@@ -56,7 +56,7 @@ module GraphHelper
     end
     json << link.join(', ')
     json << ']}'
-    json.gsub!(/{"name":"#{package}","group":1}/, "{\"name\":\"#{package}\",\"group\":2}")
+    json.gsub!(/{"name":"#{package}","group":1}/, "{\"name\":\"#{package}\",\"group\":4}")
     return json
   end
 end

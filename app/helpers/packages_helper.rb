@@ -32,14 +32,14 @@ module PackagesHelper
   end
   
   def add_base_packages()
-    Package.new(name: "R", version: "1", depends: "").save
-    Package.new(name: "stats", version: "1", depends: "").save
-    Package.new(name: "utils", version: "1", depends: "").save
-    Package.new(name: "methods", version: "1", depends: "").save
-    Package.new(name: "grid", version: "1", depends: "").save
-    Package.new(name: "graphics", version: "1", depends: "").save
-    Package.new(name: "grDevices", version: "1", depends: "").save
-    Package.new(name: "splines", version: "1", depends: "").save
+    Package.new(name: "R", version: "1", depends: "", info_harvested: TRUE).save
+    Package.new(name: "stats", version: "1", depends: "", info_harvested: TRUE).save
+    Package.new(name: "utils", version: "1", depends: "", info_harvested: TRUE).save
+    Package.new(name: "methods", version: "1", depends: "", info_harvested: TRUE).save
+    Package.new(name: "grid", version: "1", depends: "", info_harvested: TRUE).save
+    Package.new(name: "graphics", version: "1", depends: "", info_harvested: TRUE).save
+    Package.new(name: "grDevices", version: "1", depends: "", info_harvested: TRUE).save
+    Package.new(name: "splines", version: "1", depends: "", info_harvested: TRUE).save
   end
   # Printing method to html.
   def show()
@@ -64,8 +64,9 @@ module PackagesHelper
 
     uri = "http://cran.at.r-project.org/src/contrib/" + package.archive_name
     source = open(uri)
-    gz = Zlib::GzipReader.new(source) 
+    gz = Zlib::GzipReader.new(source)
     result = encoding(gz.read)
+    return result
   end
   
   # Slow method for getting descriptions. Probably wont have to ever be used. Parses the output
@@ -136,27 +137,21 @@ module PackagesHelper
     end
     hash_current = Hash[names.map.with_index{|*ki| ki}]
     
-    # Look if there is some new package in the central depository
-    if Package.all.length != current_info.length then
-      names.each do |i|
-        if !(Package.find_by_name(i)) then
-          Package.new(name: names[hash_current[i]], version: version[hash_current[i]], archive_name: current_info[hash_current[i]].to_s)
-        end
-      end
-    end
-    
     # Update the given number of packages
     names.each do |i|
-      pack = Package.find_by_name(i)
-      if !pack.info_harvested then
-        updatePackageInfo(pack, html_way)
-        pack.update_attributes(info_harvested: TRUE)
-        UPDATE_PACKAGE_LOG.info("Initial info-gathering for package " + pack.name + ". Html way: " + html_way.to_s)
-      elsif pack.version != versions[hash_current[pack.name]] 
-        updatePackageInfo(pack, html_way)
-        UPDATE_PACKAGE_LOG.info("Update of " + pack.name + " due to newer version on CRAN. Html way: " + html_way.to_s)
+      if pack = Package.find_by_name(i) then
+        if !pack.info_harvested then
+          updatePackageInfo(pack, html_way)
+          pack.update_attributes(info_harvested: TRUE)
+          UPDATE_PACKAGE_LOG.info("Initial info-gathering for package " + pack.name + ". Html way: " + html_way.to_s)
+        elsif pack.version != versions[hash_current[pack.name]]
+          updatePackageInfo(pack, html_way)
+          UPDATE_PACKAGE_LOG.info("Update of " + pack.name + " due to newer version on CRAN. Html way: " + html_way.to_s)
+        else
+          UPDATE_PACKAGE_LOG.info("No reason to update " + pack.name)
+        end
       else
-        UPDATE_PACKAGE_LOG.info("No reason to update " + pack.name)
+        Package.new(name: names[hash_current[i]], version: versions[hash_current[i]], archive_name: current_info[hash_current[i]].to_s).save
       end
     end
   end

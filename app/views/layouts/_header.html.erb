@@ -4,6 +4,10 @@
       <%= link_to "Rtastic", root_path, id: "logo" %>
       <nav>
         <ul class="nav pull-right">
+          <%= form_tag '#', method: "get", class: "navbar-form pull-right" do %>
+            <%= text_field_tag :search, "Search", class: "span2" %>
+            <%= submit_tag "Go", class: "btn" %>
+          <% end %>
           <li><%= link_to "Packages",    overview_path %></li>
           <li><%= link_to "Log",    log_path %></li>
           <li><%= link_to "Sign in", '#' %></li>
