@@ -1,0 +1,11 @@
+<h2>Information on packages updates</h2>
+<div class = log_dump>
+	<% 
+		file = File.open("/Users/tomaskrehlik/Documents/Ruby/Rtastic/log/package_update.log", "r") 
+		contents = ""
+		file.each do |line|
+			contents << line + "</br>"
+		end
+	%>	
+	<%= contents.html_safe %>
+</div>

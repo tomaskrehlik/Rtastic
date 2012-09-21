@@ -11,6 +11,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20120829140552) do
+
+  create_table "packages", :force => true do |t|
+    t.string   "name"
+    t.string   "version"
+    t.string   "archive_name"
+    t.string   "depends"
+    t.string   "authors"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.text     "description"
+    t.string   "suggests"
+    t.string   "imports"
+    t.string   "maintainers"
+    t.boolean  "info_harvested", :default => false, :null => false
+  end
+
+  create_table "packageupdateloggers", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
 end

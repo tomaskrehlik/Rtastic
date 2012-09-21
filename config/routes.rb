@@ -1,4 +1,14 @@
 Rtastic::Application.routes.draw do
+  match "/overview", to: 'packages#overview'
+
+  root to: 'packages#actions'
+
+  match "/log", to: 'packages#log'
+  
+  match "/initialize", to: 'packages#initialize'
+  
+  match "/update", to: 'packages#update'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
