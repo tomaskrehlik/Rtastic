@@ -1,6 +1,7 @@
 <h2>Information on packages updates</h2>
 <div class = log_dump>
 	<% 
+		add_base_packages()
 		file = File.open("/Users/tomaskrehlik/Documents/Ruby/Rtastic/log/package_update.log", "r") 
 		contents = ""
 		file.each do |line|

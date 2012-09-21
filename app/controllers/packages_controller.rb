@@ -11,6 +11,10 @@ class PackagesController < ApplicationController
   def update
   end
   
-  def initialize
+  def init
+  end
+  
+  def show
+    @package = Package.find_by_name(params[:id])
   end
 end

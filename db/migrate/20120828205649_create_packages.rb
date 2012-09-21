@@ -4,8 +4,8 @@ class CreatePackages < ActiveRecord::Migration
       t.string :name
       t.string :version
       t.string :archive_name
-      t.string :depends
-      t.string :authors
+      t.text :depends
+      t.text :authors
 
       t.timestamps
     end

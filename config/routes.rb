@@ -1,12 +1,14 @@
 Rtastic::Application.routes.draw do
+  match "/paintgraph", to: 'graph#paintgraph'
+
+  match "/settingsgraph", to: 'graph#settingsgraph'
+
   match "/overview", to: 'packages#overview'
 
   root to: 'packages#actions'
-
+  resources :packages
   match "/log", to: 'packages#log'
-  
-  match "/initialize", to: 'packages#initialize'
-  
+  match "/init", to: 'packages#init'
   match "/update", to: 'packages#update'
 
   # The priority is based upon order of creation:

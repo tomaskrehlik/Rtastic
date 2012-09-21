@@ -1,0 +1,23 @@
+<table class=package_description>
+	<tr>
+		<td>Name: </td>
+		<td><%= @package.name %>
+	</tr>
+	<tr>
+		<td>Version: </td>
+		<td><%= @package.version %>
+	</tr>
+	<tr>
+		<td>Author: </td>
+		<td><%= @package.authors %>
+	</tr>
+	<tr>
+		<td>Maintainer: </td>
+		<td><%= @package.maintainers %>
+	</tr>
+	<tr>
+		<td>Depends on: </td>
+		<td><%= parseRawDepends(@package.depends) %>
+	</tr>
+</table>
+

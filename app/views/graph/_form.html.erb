@@ -1,0 +1,19 @@
+  <div class="row">
+    <%= form_tag("/paintgraph", method: "get") do %>
+      <div class="span2">
+        <%= label_tag(:pack_name, "Pakage name:") %>
+      </div>
+      <div class="span1">
+        <%= text_field_tag(:pack_name, @pack.to_s) %>
+      </div>
+      <div class="span1 offset2">
+        <%= label_tag(:depth, "Depth:") %>
+      </div>
+      <div class="span1">
+        <%= text_field_tag(:depth, @depth.to_s) %>
+      </div>
+      <div class="span1 offset2">
+        <%= submit_tag("Paint graph!") %>
+      </div>
+  <% end %>
+  </div>
