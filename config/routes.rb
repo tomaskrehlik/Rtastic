@@ -1,16 +1,17 @@
 Rtastic::Application.routes.draw do
   match "/paintgraph", to: 'graph#paintgraph'
-
   match "/settingsgraph", to: 'graph#settingsgraph'
-
   match "/overview", to: 'packages#overview'
-
   root to: 'packages#actions'
-  resources :packages
+  match "/packages/:id", to: 'packages#show', :constraints => { :id => /[0-z\.]+/ }
   match "/log", to: 'packages#log'
   match "/init", to: 'packages#init'
   match "/update", to: 'packages#update'
+  match "/docs/:name", to: 'packages#documentation', :constraints => { :name => /[0-z\.]+/ }
+  match "/docs/:name/:function", to: 'packages#documentation', function: nil, :requirements => { :function => /[0-z\.]+/ }
+#  match "/docs/:name/:function", to: 'packages#documentation'
 
+  match "/search", to: 'general#search'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

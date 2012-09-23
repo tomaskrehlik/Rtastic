@@ -43,15 +43,9 @@ module PackagesHelper
   end
   # Printing method to html.
   def show()
-      output = "<table><tr><th>ID</th><th>Package name</th><th>Version</th><th>Depends on</th></tr>"
-      odd = TRUE
+      output = "<table class=\"table\"><tr><th>ID</th><th>Package name</th><th>Version</th><th>Depends on</th><th>Generate documentation</th></tr>"
       Package.all.each do |i|
-        if odd then
-          background = "odd" else
-          background = "even"
-        end
-        output << "<tr class = " + background + " center><td>" + i.id.to_s + "</td><td>" + i.name + "</td><td>" + i.version + "</td><td>" + i.depends.to_s + "</td></tr>"
-        odd = !odd
+        output << "<tr class = center><td>" + i.id.to_s + "</td><td>" + i.name + "</td><td>" + i.version + "</td><td>" + i.depends.to_s + "</td><td>" + submit_tag("Docs", class: "btn btn-mini") + "</td></tr>"
       end
       output << "</table>"
       return output
@@ -98,6 +92,8 @@ module PackagesHelper
 
     uri = "http://cran.at.r-project.org/web/packages/" + package.name + "/index.html"
     source = open(uri).read.split.join(" ")
+    source.match(/<p>(.*?)<\/p>/x)
+    desc = $1
     source.match(/summary\">(.*?)<\/table>/x)
     source = $1
     source.gsub!(/<\W?a.*?>/,"")
@@ -107,6 +103,7 @@ module PackagesHelper
     source.each do |l|
       l.strip!
     end
+    source << "Description: #{desc}"
     return source
   end  
   
@@ -163,5 +160,20 @@ module PackagesHelper
       l = l.split(" ")
     end
     return array.to_s
+  end
+
+  # Searches the packages database for matching occurances and return array of names of packages that match
+  def self.search(q)
+    names = []
+    Package.select("name").each do |i|
+      names << i.name
+    end
+    match = []
+    names.each do |i|
+      if i.match(/(#{q})/) then
+        match << i
+      end
+    end
+    return match
   end
 end

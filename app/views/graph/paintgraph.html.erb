@@ -1,3 +1,4 @@
+<% provide(:title, "Dependencies graph") %>
 <% @pack = params["pack_name"] %>
 <% @depth = params["depth"] %>
 <% require 'json' %>
@@ -10,15 +11,11 @@
   <% end %>
 <% end %>
 
-<h1 id='forcedirected_graph'>Force-Directed Graph</h1>
 <%= render "graph/form" %>
 <% if !@pack.nil? then %>
   <p>
-  Graph of depth <%= @depth %> for a package <%= @pack %>
+  <span class="label label-info"><%= "#{@pack} | #{@depth}" %></span>
   </p>
-
-  <%= get_json(@pack, @depth.to_i) if Rails.env.development?%>
-
 
   <div class='gallery center' id='chart'> </div><link href='force.css' rel='stylesheet' type='text/css' />
   <%= javascript_include_tag "force.js.erb" %>

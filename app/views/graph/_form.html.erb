@@ -1,18 +1,21 @@
-  <div class="row center">
+  <div class="row-fluid">
     <%= form_tag("/paintgraph", method: "get") do %>
       <div class="span2">
         <%= label_tag(:pack_name, "Pakage name:") %>
       </div>
-      <div class="span1">
-        <%= text_field_tag(:pack_name, @pack.to_s) %>
+      <div class="span2">
+        <%= text_field_tag(:pack_name, @pack.to_s, class: "input-small") %>
       </div>
-      <div class="span1 offset2">
+      <div class="span1">
         <%= label_tag(:depth, "Depth:") %>
       </div>
-      <div class="span1">
-        <%= text_field_tag(:depth, @depth.to_s) %>
+      <div class="span2">
+        <%= text_field_tag(:depth, @depth.to_s, class: "input-small") %>
       </div>
-      <div class="span1 offset2">
+      <div class="span2">
+        <%= submit_tag "Add to graph!", class: "btn btn-small disabled" %>
+      </div>
+      <div class="span1">
         <%= submit_tag "Paint graph!", class: "btn btn-small" %>
       </div>
   <% end %>

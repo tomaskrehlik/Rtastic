@@ -78,6 +78,19 @@ p {
   }
 }
 
+#title {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.0em;
+  color: white;
+  padding-top: 12px;
+  text-transform: uppercase;
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
+
 /* footer */
 
 footer {

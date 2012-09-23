@@ -17,4 +17,14 @@ class PackagesController < ApplicationController
   def show
     @package = Package.find_by_name(params[:id])
   end
+
+  def documentation
+    if params[:function].nil? then
+      @package = Package.find_by_name(params[:name].to_s)
+      @function = "index"
+    else
+      @package = Package.find_by_name(params[:name].to_s)
+      @function = params[:function]
+    end
+  end
 end
