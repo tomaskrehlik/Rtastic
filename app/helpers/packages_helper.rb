@@ -43,9 +43,9 @@ module PackagesHelper
   end
   # Printing method to html.
   def show()
-      output = "<table class=\"table\"><tr><th>ID</th><th>Package name</th><th>Version</th><th>Depends on</th><th>Generate documentation</th></tr>"
+      output = "<table class=\"table table-hover table-condensed\"><tr><th>ID</th><th>Package name</th><th>Version</th><th>Depends on</th><th>Generate documentation</th></tr>"
       Package.all.each do |i|
-        output << "<tr class = center><td>" + i.id.to_s + "</td><td>" + i.name + "</td><td>" + i.version + "</td><td>" + i.depends.to_s + "</td><td>" + submit_tag("Docs", class: "btn btn-mini") + "</td></tr>"
+        output << "<tr class = center><td>" + i.id.to_s + "</td><td>" + i.name + "</td><td>" + i.version + "</td><td>" + i.depends.to_s + "</td><td>" + "</td></tr>"
       end
       output << "</table>"
       return output

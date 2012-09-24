@@ -27,4 +27,9 @@ class PackagesController < ApplicationController
       @function = params[:function]
     end
   end
+
+  def build_docs
+    @name = params[:id]
+    updatePackageInfo(Package.find_by_name(@name))
+  end
 end
