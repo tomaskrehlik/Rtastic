@@ -1,0 +1,128 @@
+      <h1>dfbeta and dfbetas Index Plots</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='dfbetaPlots.html'>dfbetaPlots</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='dfbetaPlots.html'>dfbetasPlots</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='dfbetaPlots.html'>dfbetaPlots</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="argument">terms</span> <span class="argument">=</span> <span class="keyword">~</span><span class="symbol">.</span><span class="keyword">,</span> <span class="argument">intercept</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">,</span> <span class="argument">layout</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="symbol">ask</span><span class="keyword">,</span> <span class="symbol">main</span><span class="keyword">,</span> <span class="symbol">xlab</span><span class="keyword">,</span>
+  <span class="symbol">ylab</span><span class="keyword">,</span> <span class="argument">labels</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/colnames'>rownames</a></span><span class="keyword">(</span><span class="symbol">dfbeta</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">id.method</span> <span class="argument">=</span> <span class="string">"y"</span><span class="keyword">,</span> <span class="argument">id.n</span> <span class="argument">=</span> <span class="keyword">if</span> <span class="keyword">(</span><span class="symbol">id.method</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">]</span> ==
+          <span class="string">"identify"</span><span class="keyword">)</span> <span class="number">Inf</span> <span class="keyword">else</span> <span class="number">0</span><span class="keyword">,</span> <span class="argument">id.cex</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span> <span class="argument">id.col</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/palette'>palette</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">]</span><span class="keyword">,</span> <span class="argument">col</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/palette'>palette</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">]</span><span class="keyword">,</span>
+      <span class="argument">grid</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='dfbetaPlots.html'>dfbetasPlots</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="argument">terms</span> <span class="argument">=</span> <span class="keyword">~</span><span class="symbol">.</span><span class="keyword">,</span> <span class="argument">intercept</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">,</span> <span class="argument">layout</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="symbol">ask</span><span class="keyword">,</span> <span class="symbol">main</span><span class="keyword">,</span> <span class="symbol">xlab</span><span class="keyword">,</span>
+      <span class="symbol">ylab</span><span class="keyword">,</span> <span class="argument">labels</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/colnames'>rownames</a></span><span class="keyword">(</span><span class="symbol">dfbeta</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">id.method</span> <span class="argument">=</span> <span class="string">"y"</span><span class="keyword">,</span> <span class="argument">id.n</span> <span class="argument">=</span> <span class="keyword">if</span> <span class="keyword">(</span><span class="symbol">id.method</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">]</span> ==
+          <span class="string">"identify"</span><span class="keyword">)</span> <span class="number">Inf</span> <span class="keyword">else</span> <span class="number">0</span><span class="keyword">,</span> <span class="argument">id.cex</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span> <span class="argument">id.col</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/palette'>palette</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">]</span><span class="keyword">,</span> <span class="argument">col</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/palette'>palette</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">]</span><span class="keyword">,</span>
+      <span class="argument">grid</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>model</dt>
+      <dd>model object produced by <code>lm</code> or <code>glm</code>.
+</dd>
+      <dt>terms</dt>
+      <dd> A one-sided formula that specifies a subset of the terms in the model. 
+One dfbeta or dfbetas plot is drawn for each regressor.  The default
+<code>~.</code> is to plot against all terms in the model with the exception of an intercept.  For example, the
+specification <code>terms = ~.-X3</code> would plot against all terms
+except for <code>X3</code>.  If this argument is a quoted name of one of the terms, the 
+index plot is drawn for that term only.
+</dd>
+      <dt>intercept</dt>
+      <dd>Include the intercept in the plots; default is <code>FALSE</code>.</dd>
+      <dt>layout</dt>
+      <dd> 
+If set to a value like <code>c(1, 1)</code> or <code>c(4, 3)</code>, the layout
+of the graph will have this many rows and columns.  If not set, the program
+will select an appropriate layout.  If the number of graphs exceed nine, you 
+must select the layout yourself, or you will get a maximum of nine per page.
+If <code>layout=NA</code>, the function does not set the layout and the user can
+use the <code>par</code> function to control the layout, for example to have 
+plots from two models in the same graphics window.
+</dd>
+      <dt>main</dt>
+      <dd>The title of the graph; if missing, one will be supplied.
+</dd>
+      <dt>xlab</dt>
+      <dd>Horizontal axis label; defaults to <code>"Index"</code>.</dd>
+      <dt>ylab</dt>
+      <dd>Vertical axis label; defaults to coefficient name.</dd>
+      <dt>ask</dt>
+      <dd>If <code>TRUE</code>, ask the user before drawing the next plot; if <code>FALSE</code>, the default, don't ask.
+</dd>
+      <dt>...</dt>
+      <dd>optional additional arguments to be passed to <code><a href='http://www.inside-r.org/r-doc/graphics/plot'>plot</a></code>, <code><a href='http://www.inside-r.org/r-doc/graphics/points'>points</a></code>, and <code><a href='showLabels.html'>showLabels</a></code></dd>
+      <dt>id.method,labels,id.n,id.cex,id.col</dt>
+      <dd>Arguments for the labelling of
+    points.  The default is <code>id.n=0</code> for labeling no points.  See
+    <code><a href='showLabels.html'>showLabels</a></code> for details of these arguments.
+</dd>
+      <dt>col</dt>
+      <dd>color for points; defaults to the first entry in the color <code><a href='http://www.inside-r.org/r-doc/grDevices/palette'>palette</a></code>.</dd>
+      <dt>grid</dt>
+      <dd>If <code>TRUE</code>, the default, a light-gray background grid is put on the
+graph</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>These functions display index plots of dfbeta (effect on coefficients of deleting
+  each observation in turn) and dfbetas (effect on coefficients of deleting each observation
+  in turn, standardized by a deleted estimate of the coefficient standard error). In the
+  plot of dfbeta, horizontal lines are drawn at 0 and +/- one standard error; in the plot
+  of dfbetas, horizontal lines are drawn and 0 and +/- 1.</p>
+  
+    </div>
+
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p><code>NULL</code>. These functions are used for their side effect: producing
+  plots.</p>
+  
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+      
+      <p>Fox, J. (2008)
+  <em>Applied Regression Analysis and Generalized Linear Models</em>,
+  Second Edition. Sage.</p>
+  
+      <p>Fox, J. and Weisberg, S. (2011) 
+  <em>An R Companion to Applied Regression</em>, Second Edition, Sage.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='dfbetaPlots.html'>dfbetaPlots</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/lm'>lm</a></span><span class="keyword">(</span><span class="symbol">prestige</span> <span class="keyword">~</span> <span class="symbol">income</span> <span class="keyword">+</span> <span class="symbol">education</span> <span class="keyword">+</span> <span class="symbol">type</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">Duncan</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><img src='dfbetaPlots-2.png' alt='' width='400' height='400' /></p>
+<p><img src='dfbetaPlots-3.png' alt='' width='400' height='400' /></p>
+<p><img src='dfbetaPlots-4.png' alt='' width='400' height='400' /></p>
+<p><img src='dfbetaPlots-5.png' alt='' width='400' height='400' /></p>
+<div class='input'>
+<span class="functioncall"><a href='dfbetaPlots.html'>dfbetasPlots</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/glm'>glm</a></span><span class="keyword">(</span><span class="symbol">partic</span> <span class="keyword">!=</span> <span class="string">"not.work"</span> <span class="keyword">~</span> <span class="symbol">hincome</span> <span class="keyword">+</span> <span class="symbol">children</span><span class="keyword">,</span>
+  <span class="argument">data</span><span class="argument">=</span><span class="symbol">Womenlf</span><span class="keyword">,</span> <span class="argument">family</span><span class="argument">=</span><span class="symbol">binomial</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><img src='dfbetaPlots-7.png' alt='' width='400' height='400' /></p>
+<p><img src='dfbetaPlots-8.png' alt='' width='400' height='400' /></p>
+<p><img src='dfbetaPlots-9.png' alt='' width='400' height='400' /></p></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>dfbetaPlots</li><li>dfbetasPlots</li><li>dfbetaPlots.lm</li><li>dfbetasPlots.lm</li>
+    </ul>
+    <ul>
+      <li>hplot</li><li>regression</li>
+    </ul> -->
+      
+    <h2>See also</h2>
+    <code><a href='http://www.inside-r.org/r-doc/stats/influence.measures'>dfbeta</a></code> ,<code><a href='http://www.inside-r.org/r-doc/stats/influence.measures'>dfbetas</a></code>
+    
+    <h2>Author</h2>
+    John Fox <a href='mailto:jfox@mcmaster.ca'>jfox@mcmaster.ca</a>, Sanford Weisberg <a href='mailto:sandy@umn.edu'>sandy@umn.edu</a>
+    
+  </div>
+</div>

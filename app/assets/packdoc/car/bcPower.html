@@ -1,0 +1,121 @@
+      <h1>Box-Cox and Yeo-Johnson Power Transformations</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='bcPower.html'>bcPower</a></span><span class="keyword">(</span><span class="symbol">U</span><span class="keyword">,</span> <span class="symbol">lambda</span><span class="keyword">,</span> <span class="argument">jacobian.adjusted</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='bcPower.html'>yjPower</a></span><span class="keyword">(</span><span class="symbol">U</span><span class="keyword">,</span> <span class="symbol">lambda</span><span class="keyword">,</span> <span class="argument">jacobian.adjusted</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='bcPower.html'>basicPower</a></span><span class="keyword">(</span><span class="symbol">U</span><span class="keyword">,</span> <span class="symbol">lambda</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>U</dt>
+      <dd>A vector, matrix or data.frame of values to be transformed</dd>
+      <dt>lambda</dt>
+      <dd>The one-dimensional transformation parameter, usually in 
+  the range from <code class = 'eq'>-2</code> to <code class = 'eq'>2</code>, or if <code>U</code> is a matrix or data frame, a vector of length
+  <code>ncol(U)</code> of transformation parameters</dd>
+      <dt>jacobian.adjusted</dt>
+      <dd>If <code>TRUE</code>, the transformation is normalized to have
+  Jacobian equal to one.  The default is <code>FALSE</code>.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Transform the elements of a vector using, the Box-Cox,
+Yeo-Johnson, or simple power transformations.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p>The Box-Cox family of <em>scaled power transformations</em> 
+  equals <code class = 'eq'>(U^(lambda)-1)/lambda</code> 
+  for <code class = 'eq'>lambda not equal to zero</code>, and 
+  <code class = 'eq'>log(U)</code> if <code class = 'eq'>lambda = 0</code>.</p>
+  
+      <p>If <code>family="yeo.johnson"</code> then the Yeo-Johnson transformations are used.  
+  This is the Box-Cox transformation of <code class = 'eq'>U+1</code> for nonnegative values, 
+  and of <code class = 'eq'>|U|+1</code> with parameter <code class = 'eq'>2-lambda</code> for <code class = 'eq'>U</code> negative.</p>
+  
+      <p>If <code>jacobian.adjusted</code> is <code>TRUE</code>, then the scaled transformations are divided by the 
+  Jacobian, which is a function of the geometric mean of <code class = 'eq'>U</code>.</p>
+  
+      <p>The basic power transformation returns <code class = 'eq'>U^{\lambda}</code> if <code class = 'eq'>\lambda</code>
+  is not zero, and <code class = 'eq'>\log(\lambda)</code> otherwise.</p>
+  
+      <p>Missing values are permitted, and return <code>NA</code> where ever <code>U</code>is equal to <code>NA</code>.</p>
+  
+      <p></p>
+  
+    </div>
+
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>Returns a vector or matrix of transformed values.</p>
+  
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+      
+      <p>Fox, J. and Weisberg, S. (2011) 
+<em>An R Companion to Applied Regression</em>, Second Edition, Sage.</p>
+  
+      <p>Weisberg, S. (2005)  <em>Applied Linear Regression</em>, Third Edition.
+Wiley, Chapter 7.</p>
+  
+      <p>Yeo, In-Kwon and Johnson, Richard (2000) A new family of power
+transformations to improve normality or symmetry.  <em>Biometrika</em>, 87,
+954-959.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="symbol">U</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">NA</span><span class="keyword">,</span> <span class="keyword">(</span><span class="keyword">-</span><span class="number">3</span><span class="keyword">:</span><span class="number">3</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="comment">## &lt;strong&gt;Not run&lt;/strong&gt;: bcPower(U, 0)  # produces an error as U has negative values</span>
+<span class="functioncall"><a href='bcPower.html'>bcPower</a></span><span class="keyword">(</span><span class="symbol">U</span><span class="keyword">+</span><span class="number">4</span><span class="keyword">,</span><span class="number">0</span><span class="keyword">)</span></div>
+<div class='output'>[1]     NA 0.0000 0.6931 1.0986 1.3863 1.6094 1.7918 1.9459
+</div>
+<div class='input'><span class="functioncall"><a href='bcPower.html'>bcPower</a></span><span class="keyword">(</span><span class="symbol">U</span><span class="keyword">+</span><span class="number">4</span><span class="keyword">,</span> <span class="number">.5</span><span class="keyword">,</span> <span class="argument">jacobian.adjusted</span><span class="argument">=</span><span class="number">TRUE</span><span class="keyword">)</span></div>
+<div class='output'>[1]    NA 0.000 1.523 2.692 3.677 4.545 5.330 6.051
+</div>
+<div class='input'><span class="functioncall"><a href='bcPower.html'>yjPower</a></span><span class="keyword">(</span><span class="symbol">U</span><span class="keyword">,</span> <span class="number">0</span><span class="keyword">)</span></div>
+<div class='output'>[1]      NA -7.5000 -4.0000 -1.5000  0.0000  0.6931  1.0986  1.3863
+</div>
+<div class='input'><span class="functioncall"><a href='bcPower.html'>yjPower</a></span><span class="keyword">(</span><span class="symbol">U</span><span class="keyword">+</span><span class="number">3</span><span class="keyword">,</span> <span class="number">.5</span><span class="keyword">,</span> <span class="argument">jacobian.adjusted</span><span class="argument">=</span><span class="number">TRUE</span><span class="keyword">)</span></div>
+<div class='output'>[1]    NA 0.000 1.523 2.692 3.677 4.545 5.330 6.051
+</div>
+<div class='input'><span class="symbol">V</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/matrix'>matrix</a></span><span class="keyword">(</span><span class="number">1</span><span class="keyword">:</span><span class="number">10</span><span class="keyword">,</span> <span class="argument">ncol</span><span class="argument">=</span><span class="number">2</span><span class="keyword">)</span>
+<span class="functioncall"><a href='bcPower.html'>bcPower</a></span><span class="keyword">(</span><span class="symbol">V</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">0</span><span class="keyword">,</span><span class="number">1</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<div class='output'>       Z1^0 Z2^1
+[1,] 0.0000    5
+[2,] 0.6931    6
+[3,] 1.0986    7
+[4,] 1.3863    8
+[5,] 1.6094    9
+</div>
+<div class='input'>#basicPower(V, c(0,1))
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>bcPower</li><li>yjPower</li><li>basicPower</li>
+    </ul>
+    <ul>
+      <li>regression</li>
+    </ul> -->
+      
+    <h2>See also</h2>
+    <code><a href='powerTransform.html'>powerTransform</a></code> 
+    
+    <h2>Author</h2>
+     Sanford Weisberg, <sandy@stat.umn.edu> 
+    
+  </div>
+</div>

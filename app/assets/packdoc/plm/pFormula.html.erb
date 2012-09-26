@@ -1,0 +1,106 @@
+      <h1>pFormula: An extended Formula interface for panel data</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='pFormula.html'>pFormula</a></span><span class="keyword">(</span><span class="symbol">object</span><span class="keyword">)</span>
+
+<span class="functioncall">as.Formula</span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/model.frame'>model.frame</a></span><span class="keyword">(</span><span class="symbol">formula</span><span class="keyword">,</span> <span class="symbol">data</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">,</span> <span class="argument">lhs</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">rhs</span> <span class="argument">=</span> NULL<span class="keyword">)</span>
+
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/SparseM/SparseM.hb'>model.matrix</a></span><span class="keyword">(</span><span class="symbol">object</span><span class="keyword">,</span> <span class="symbol">data</span><span class="keyword">,</span> <span class="argument">model</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"pooling"</span><span class="keyword">,</span> <span class="string">"within"</span><span class="keyword">,</span> <span class="string">"Between"</span><span class="keyword">,</span> <span class="string">"between"</span><span class="keyword">,</span> <span class="string">"mean"</span><span class="keyword">,</span>
+  <span class="string">"random"</span><span class="keyword">,</span> <span class="string">"fd"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">effect</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"individual"</span><span class="keyword">,</span> <span class="string">"time"</span><span class="keyword">,</span> <span class="string">"twoways"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">rhs</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span> <span class="argument">theta</span> <span class="argument">=</span> NULL<span class="keyword">,</span>
+      <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>object, formula, x</dt>
+      <dd>an object of class <code>"pFormula"</code>,</dd>
+      <dt>data</dt>
+      <dd>a <code>data.frame</code>,</dd>
+      <dt>effect</dt>
+      <dd>the effects introduced in the model, one of
+  <code>"individual"</code>, <code>"time"</code> or <code>"twoways"</code>,</dd>
+      <dt>model</dt>
+      <dd>one of <code>"pooling"</code>, <code>"within"</code>,
+    <code>"between"</code>, <code>"random",</code> <code>"fd"</code> and <code>"ht"</code>,</dd>
+      <dt>theta</dt>
+      <dd>the parameter for the transformation if <code>model = "random"</code>,</dd>
+      <dt>lhs</dt>
+      <dd>,</dd>
+      <dt>rhs</dt>
+      <dd>,</dd>
+      <dt>...</dt>
+      <dd>further arguments.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>pFormula is a Formula object, with methods useful for panel data.</p>
+  
+    </div>
+
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>An object of class <code>c("pFormula", "Formula"</code>.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p>The <code>lhs</code> and <code>rhs</code> arguments are inherited from
+<code>Formula</code>. The <code>model.frame</code> method returns a
+<code>pdata.frame</code> object. The <code>model.matrix</code> unables the
+transformation specified by the <code>model</code> and <code>effect</code>
+arguments.</p>
+  
+    </div>
+
+    <div class="pFormula: An extended Formula interface for panel data">
+      <h2>pFormula: An extended Formula interface for panel data</h2>
+      
+    </div>
+
+    <div class="pFormula: An extended Formula interface for panel data">
+      <h2>pFormula: An extended Formula interface for panel data</h2>
+      
+    </div>
+
+    <div class="pFormula: An extended Formula interface for panel data">
+      <h2>pFormula: An extended Formula interface for panel data</h2>
+      
+    </div>
+
+    <div class="pFormula: An extended Formula interface for panel data">
+      <h2>pFormula: An extended Formula interface for panel data</h2>
+      
+    </div>
+
+    <div class="pFormula: An extended Formula interface for panel data">
+      <h2>pFormula: An extended Formula interface for panel data</h2>
+      
+    </div>
+
+    <div class="pFormula: An extended Formula interface for panel data">
+      <h2>pFormula: An extended Formula interface for panel data</h2>
+      
+    </div>
+      </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>pFormula</li><li>as.Formula.pFormula</li><li>model.frame.pFormula</li><li>model.matrix.pFormula</li>
+    </ul>
+    <ul>
+      <li>classes</li>
+    </ul> -->
+      
+    
+    <h2>Author</h2>
+    Yves Croissant
+    
+  </div>
+</div>

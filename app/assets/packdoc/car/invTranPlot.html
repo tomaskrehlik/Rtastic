@@ -1,0 +1,161 @@
+      <h1> Choose a Predictor Transformation Visually or Numerically </h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='invTranPlot.html'>invTranPlot</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='invTranPlot.html'>invTranPlot</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">data</span><span class="keyword">,</span> <span class="symbol">subset</span><span class="keyword">,</span> <span class="symbol">na.action</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='invTranPlot.html'>invTranPlot</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">y</span><span class="keyword">,</span> <span class="argument">lambda</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="keyword">-</span><span class="number">1</span><span class="keyword">,</span> <span class="number">0</span><span class="keyword">,</span> <span class="number">1</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">robust</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">,</span> <span class="argument">lty.lines</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/rep'>rep</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"solid"</span><span class="keyword">,</span>
+  <span class="string">"dashed"</span><span class="keyword">,</span> <span class="string">"dotdash"</span><span class="keyword">,</span> <span class="string">"longdash"</span><span class="keyword">,</span> <span class="string">"twodash"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">length</span> <span class="argument">=</span> <span class="number">1</span> <span class="keyword">+</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/length'>length</a></span><span class="keyword">(</span><span class="symbol">lambda</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">lwd.lines</span> <span class="argument">=</span> <span class="number">2</span><span class="keyword">,</span>
+      <span class="argument">col</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/palette'>palette</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">]</span><span class="keyword">,</span> <span class="argument">col.lines</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/palette'>palette</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">xlab</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/deparse'>deparse</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/substitute'>substitute</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">ylab</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/deparse'>deparse</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/substitute'>substitute</a></span><span class="keyword">(</span><span class="symbol">y</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span>
+      <span class="argument">family</span> <span class="argument">=</span> <span class="string">"bcPower"</span><span class="keyword">,</span> <span class="argument">optimal</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="argument">key</span> <span class="argument">=</span> <span class="string">"auto"</span><span class="keyword">,</span> <span class="argument">id.method</span> <span class="argument">=</span> <span class="string">"x"</span><span class="keyword">,</span> <span class="symbol">labels</span><span class="keyword">,</span> <span class="argument">id.n</span> <span class="argument">=</span> <span class="keyword">if</span> <span class="keyword">(</span><span class="symbol">id.method</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">]</span> ==
+          <span class="string">"identify"</span><span class="keyword">)</span> <span class="number">Inf</span> <span class="keyword">else</span> <span class="number">0</span><span class="keyword">,</span> <span class="argument">id.cex</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span> <span class="argument">id.col</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/palette'>palette</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">]</span><span class="keyword">,</span> <span class="argument">grid</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='invTranPlot.html'>invTranEstimate</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">y</span><span class="keyword">,</span> <span class="argument">family</span> <span class="argument">=</span> <span class="string">"bcPower"</span><span class="keyword">,</span> <span class="argument">confidence</span> <span class="argument">=</span> <span class="number">0.95</span><span class="keyword">,</span> <span class="argument">robust</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>x</dt>
+      <dd>The predictor variable, or a formula with a single response and
+  a single predictor </dd>
+      <dt>y</dt>
+      <dd>The response variable </dd>
+      <dt>data</dt>
+      <dd>An optional data frame to get the data for the formula</dd>
+      <dt>subset</dt>
+      <dd>Optional, as in <code>lm</code>, select a subset of the cases</dd>
+      <dt>na.action</dt>
+      <dd>Optional, as in <code>lm</code>, the action for missing data</dd>
+      <dt>lambda</dt>
+      <dd>The powers used in the plot.  The optimal power than minimizes
+  the residual sum of squares is always added unless optimal is <code>FALSE</code>. </dd>
+      <dt>robust</dt>
+      <dd>If TRUE, then the estimated transformation is computed using
+Huber M-estimation with the MAD used to estimate scale and k=1.345.  The
+default is FALSE.</dd>
+      <dt>family</dt>
+      <dd>The transformation family to use, <code>"bcPower"</code>, 
+  <code>"yjPower"</code>, or a user-defined family.</dd>
+      <dt>confidence</dt>
+      <dd>returns a profile likelihood confidence interval for the optimal 
+	transformation with this confidence level.  If <code>FALSE</code>, or if <code>robust=TRUE</code>,
+no interval is returned.</dd>
+      <dt>optimal</dt>
+      <dd>Include the optimal value of lambda?</dd>
+      <dt>lty.lines</dt>
+      <dd>line types corresponding to the powers</dd>
+      <dt>lwd.lines</dt>
+      <dd>the width of the plotted lines, defaults to 2 times the standard</dd>
+      <dt>col</dt>
+      <dd>color(s) of the points in the plot.  If you wish to distinguish points
+  according to the levels of a factor, we recommend using symbols, specified with
+  the <code>pch</code> argument, rather than colors.</dd>
+      <dt>col.lines</dt>
+      <dd>color of the fitted lines corresponding to the powers.  The
+  default is to use the colors returned by  <code><a href='http://www.inside-r.org/r-doc/grDevices/palette'>palette</a></code></dd>
+      <dt>key</dt>
+      <dd>The default is <code>"auto"</code>, in which case a legend is added to
+the plot, either above the top marign or in the bottom right or top right corner.
+Set to NULL to suppress the legend.</dd>
+      <dt>xlab</dt>
+      <dd>Label for the horizontal axis.</dd>
+      <dt>ylab</dt>
+      <dd>Label for the vertical axis.</dd>
+      <dt>id.method,labels,id.n,id.cex,id.col</dt>
+      <dd>Arguments for the labelling of
+    points.  The default is <code>id.n=0</code> for labeling no points.  See
+    <code><a href='showLabels.html'>showLabels</a></code> for details of these arguments.
+</dd>
+      <dt>...</dt>
+      <dd>Additional arguments passed to the plot method, such as <code>pch</code>.</dd>
+      <dt>grid</dt>
+      <dd>If TRUE, the default, a light-gray background grid is put on the
+graph</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p><code>invTranPlot</code>
+draws a two-dimensional scatterplot of <code class = 'eq'>Y</code> versus 
+<code class = 'eq'>X</code>, along with the OLS
+fit from the regression of <code class = 'eq'>Y</code> on 
+<code class = 'eq'>(Y^(lam)-1)/lam</code>.  <code>invTranEstimate</code>
+finds the nonlinear least squares estimate of <code class = 'eq'>lambda</code> and its
+standard error.</p>
+  
+    </div>
+
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p><code>invTranPlot</code>
+  plots a graph and returns a data frame with <code class = 'eq'>lam</code> in the 
+  first column, and the residual sum of squares from the regression
+  for that <code class = 'eq'>lam</code> in the second column.</p>
+  
+      <p><code>invTranEstimate</code> returns a list with elements <code>lambda</code> for the
+  estimate, <code>se</code> for its standard error, and <code>RSS</code>, the minimum
+  value of the residual sum of squares.</p>
+  
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+      
+      <p>Fox, J. and Weisberg, S. (2011) 
+<em>An R Companion to Applied Regression</em>, Second Edition, Sage.</p>
+  
+      <p>Pendergast, L, and Sheather, S. (in press).  On sensitivity of response plot
+estimation of a robust estimation approach.  <em>Scandinavian Journal of
+Statistics</em>.</p>
+  
+      <p>Weisberg, S. (2005)  <em>Applied Linear Regression</em>, Third Edition.
+  Wiley.</p>
+  
+    </div>
+
+    <div class=" Choose a Predictor Transformation Visually or Numerically ">
+      <h2> Choose a Predictor Transformation Visually or Numerically </h2>
+      
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/with'>with</a></span><span class="keyword">(</span><span class="symbol">UN</span><span class="keyword">,</span> <span class="functioncall"><a href='invTranPlot.html'>invTranPlot</a></span><span class="keyword">(</span><span class="symbol">gdp</span><span class="keyword">,</span> <span class="symbol">infant.mortality</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><img src='invTranPlot-2.png' alt='' width='400' height='400' /></p>
+<div class='output'>   lambda    RSS
+1 -0.1253 137892
+2 -1.0000 218540
+3  0.0000 140162
+4  1.0000 210914
+</div>
+<div class='input'><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/with'>with</a></span><span class="keyword">(</span><span class="symbol">UN</span><span class="keyword">,</span> <span class="functioncall"><a href='invTranPlot.html'>invTranEstimate</a></span><span class="keyword">(</span><span class="symbol">gdp</span><span class="keyword">,</span> <span class="symbol">infant.mortality</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<div class='output'>$lambda
+[1] -0.1253
+
+$lowerCI
+[1] -0.2198
+
+$upperCI
+[1] -0.02825
+
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>invTranPlot</li><li>invTranPlot.default</li><li>invTranPlot.formula</li><li>invTranEstimate</li>
+    </ul>
+    <ul>
+      <li> hplot </li><li>regression</li>
+    </ul> -->
+      
+    <h2>See also</h2>
+     <code><a href='invResPlot.html'>inverseResponsePlot</a></code>,<code><a href='http://www.inside-r.org/r-doc/stats/optimize'>optimize</a></code>
+    
+    <h2>Author</h2>
+    Sanford Weisberg, <a href='mailto:sandy@stat.umn.edu'>sandy@stat.umn.edu</a> 
+    
+  </div>
+</div>

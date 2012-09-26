@@ -1,0 +1,92 @@
+      <h1>Polar coordinates.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='coord_polar.html'>coord_polar</a></span><span class="keyword">(</span><span class="argument">theta</span> <span class="argument">=</span> <span class="string">"x"</span><span class="keyword">,</span> <span class="argument">start</span> <span class="argument">=</span> <span class="number">0</span><span class="keyword">,</span> <span class="argument">direction</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>theta</dt>
+      <dd>variable to map angle to (<code>x</code> or
+  <code>y</code>)</dd>
+      <dt>start</dt>
+      <dd>offset of starting point from 12 o'clock in
+  radians</dd>
+      <dt>direction</dt>
+      <dd>1, clockwise; -1, anticlockwise</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>The polar coordinate system is most commonly used for pie
+  charts, which are a stacked bar chart in polar
+  coordinates.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class="comment"># NOTE: Use these plots with caution - polar coordinates has</span>
+<span class="comment"># major perceptual problems.  The main point of these examples is</span>
+<span class="comment"># to demonstrate how these common plots can be described in the</span>
+<span class="comment"># grammar.  Use with EXTREME caution.</span>
+
+<span class="comment"># A coxcomb plot = bar chart + polar coordinates</span>
+<span class="symbol">cxc</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">mtcars</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">x</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/factor'>factor</a></span><span class="keyword">(</span><span class="symbol">cyl</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='geom_bar.html'>geom_bar</a></span><span class="keyword">(</span><span class="argument">width</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span> <span class="argument">colour</span> <span class="argument">=</span> <span class="string">"black"</span><span class="keyword">)</span>
+<span class="symbol">cxc</span> <span class="keyword">+</span> <span class="functioncall"><a href='coord_polar.html'>coord_polar</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/coord_polar.html-2.png' %></p>
+<div class='input'><span class="comment"># A new type of plot?</span>
+<span class="symbol">cxc</span> <span class="keyword">+</span> <span class="functioncall"><a href='coord_polar.html'>coord_polar</a></span><span class="keyword">(</span><span class="argument">theta</span> <span class="argument">=</span> <span class="string">"y"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/coord_polar.html-4.png' %></p>
+<div class='input'>
+<span class="comment"># A pie chart = stacked bar chart + polar coordinates</span>
+<span class="symbol">pie</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">mtcars</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">x</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/factor'>factor</a></span><span class="keyword">(</span><span class="number">1</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">fill</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/factor'>factor</a></span><span class="keyword">(</span><span class="symbol">cyl</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span>
+ <span class="functioncall"><a href='geom_bar.html'>geom_bar</a></span><span class="keyword">(</span><span class="argument">width</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">)</span>
+<span class="symbol">pie</span> <span class="keyword">+</span> <span class="functioncall"><a href='coord_polar.html'>coord_polar</a></span><span class="keyword">(</span><span class="argument">theta</span> <span class="argument">=</span> <span class="string">"y"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/coord_polar.html-6.png' %></p>
+<div class='input'>
+<span class="comment"># The bullseye chart</span>
+<span class="symbol">pie</span> <span class="keyword">+</span> <span class="functioncall"><a href='coord_polar.html'>coord_polar</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/coord_polar.html-8.png' %></p>
+<div class='input'>
+<span class="comment"># Hadley's favourite pie chart</span>
+<span class="symbol">df</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/data.frame'>data.frame</a></span><span class="keyword">(</span>
+  <span class="argument">variable</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"resembles"</span><span class="keyword">,</span> <span class="string">"does not resemble"</span><span class="keyword">)</span><span class="keyword">,</span>
+  <span class="argument">value</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">80</span><span class="keyword">,</span> <span class="number">20</span><span class="keyword">)</span>
+<span class="keyword">)</span>
+<span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">x</span> <span class="argument">=</span> <span class="string">""</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="symbol">value</span><span class="keyword">,</span> <span class="argument">fill</span> <span class="argument">=</span> <span class="symbol">variable</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='geom_bar.html'>geom_bar</a></span><span class="keyword">(</span><span class="argument">width</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='scale_manual.html'>scale_fill_manual</a></span><span class="keyword">(</span><span class="argument">values</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"red"</span><span class="keyword">,</span> <span class="string">"yellow"</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='coord_polar.html'>coord_polar</a></span><span class="keyword">(</span><span class="string">"y"</span><span class="keyword">,</span> <span class="argument">start</span><span class="argument">=</span><span class="symbol">pi</span> <span class="keyword">/</span> <span class="number">3</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='labs.html'>labs</a></span><span class="keyword">(</span><span class="argument">title</span> <span class="argument">=</span> <span class="string">"Pac man"</span><span class="keyword">)</span></div>
+<strong class='message'>Mapping a variable to y and also using stat="bin". With stat="bin", it will attempt to set the y value to the count of cases in each group. This can result in unexpected behavior and will not be allowed in a future version of ggplot2. If you want y to represent counts of cases, use stat="bin" and don't map a variable to y. If you want y to represent values in the data, use stat="identity". See ?geom_bar for examples.</strong>
+<p><%= image_tag 'ggplot2/coord_polar.html-11.png' %></p>
+<div class='input'>
+<span class="comment"># Windrose + doughnut plot</span>
+<span class="symbol">movies</span><span class="keyword">$</span><span class="symbol">rrating</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='cut_interval.html'>cut_interval</a></span><span class="keyword">(</span><span class="symbol">movies</span><span class="keyword">$</span><span class="symbol">rating</span><span class="keyword">,</span> <span class="argument">length</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">)</span>
+<span class="symbol">movies</span><span class="keyword">$</span><span class="symbol">budgetq</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='cut_number.html'>cut_number</a></span><span class="keyword">(</span><span class="symbol">movies</span><span class="keyword">$</span><span class="symbol">budget</span><span class="keyword">,</span> <span class="number">4</span><span class="keyword">)</span>
+
+<span class="symbol">doh</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">movies</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">x</span> <span class="argument">=</span> <span class="symbol">rrating</span><span class="keyword">,</span> <span class="argument">fill</span> <span class="argument">=</span> <span class="symbol">budgetq</span><span class="keyword">)</span><span class="keyword">)</span>
+
+<span class="comment"># Wind rose</span>
+<span class="symbol">doh</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_bar.html'>geom_bar</a></span><span class="keyword">(</span><span class="argument">width</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='coord_polar.html'>coord_polar</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/coord_polar.html-13.png' %></p>
+<div class='input'><span class="comment"># Race track plot</span>
+<span class="symbol">doh</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_bar.html'>geom_bar</a></span><span class="keyword">(</span><span class="argument">width</span> <span class="argument">=</span> <span class="number">0.9</span><span class="keyword">,</span> <span class="argument">position</span> <span class="argument">=</span> <span class="string">"fill"</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='coord_polar.html'>coord_polar</a></span><span class="keyword">(</span><span class="argument">theta</span> <span class="argument">=</span> <span class="string">"y"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/coord_polar.html-15.png' %></p>
+<div class='input'></div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>coord_polar</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>

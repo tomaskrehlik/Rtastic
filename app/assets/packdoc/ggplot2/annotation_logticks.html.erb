@@ -1,0 +1,121 @@
+      <h1>Annotation: log tick marks</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='annotation_logticks.html'>annotation_logticks</a></span><span class="keyword">(</span><span class="argument">base</span> <span class="argument">=</span> <span class="number">10</span><span class="keyword">,</span> <span class="argument">sides</span> <span class="argument">=</span> <span class="string">"bl"</span><span class="keyword">,</span> <span class="argument">scaled</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="argument">short</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grid/unit'>unit</a></span><span class="keyword">(</span><span class="number">0.1</span><span class="keyword">,</span> <span class="string">"cm"</span><span class="keyword">)</span><span class="keyword">,</span>
+  <span class="argument">mid</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grid/unit'>unit</a></span><span class="keyword">(</span><span class="number">0.2</span><span class="keyword">,</span> <span class="string">"cm"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">long</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grid/unit'>unit</a></span><span class="keyword">(</span><span class="number">0.3</span><span class="keyword">,</span> <span class="string">"cm"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>base</dt>
+      <dd>the base of the log (default 10)</dd>
+      <dt>sides</dt>
+      <dd>a string that controls which sides of the
+  plot the log ticks appear on.  It can be set to a string
+  containing any of <code>"trbl"</code>, for top, right, bottom,
+  and left.</dd>
+      <dt>short</dt>
+      <dd>a <code>unit</code> object specifying the length
+  of the short tick marks</dd>
+      <dt>mid</dt>
+      <dd>a <code>unit</code> object specifying the length of
+  the middle tick marks.  In base 10, these are the "5"
+  ticks.</dd>
+      <dt>long</dt>
+      <dd>a <code>unit</code> object specifying the length of
+  the long tick marks.  In base 10, these are the "1" (or
+  "10") ticks.</dd>
+      <dt>scaled</dt>
+      <dd>is the data already log-scaled? This should
+  be <code>TRUE</code> (default) when the data is already
+  transformed with <code>log10()</code> or when using
+  <code>scale_y_log10</code>. It should be <code>FALSE</code> when
+  using <code>coord_trans(y = "log10")</code>.</dd>
+      <dt>...</dt>
+      <dd>Other parameters passed on to the layer</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>This annotation adds log tick marks with diminishing
+  spacing. These tick marks probably make sense only for
+  base 10.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="comment"># Make a log-log plot (without log ticks)</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/library'>library</a></span><span class="keyword">(</span><span class="symbol">MASS</span><span class="keyword">)</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/library'>library</a></span><span class="keyword">(</span><span class="symbol">scales</span><span class="keyword">)</span>
+<span class="symbol">a</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">Animals</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">x</span> <span class="argument">=</span> <span class="symbol">body</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="symbol">brain</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_point.html'>geom_point</a></span><span class="keyword">(</span><span class="keyword">)</span> <span class="keyword">+</span>
+     <span class="functioncall"><a href='scale_continuous.html'>scale_x_log10</a></span><span class="keyword">(</span><span class="argument">breaks</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/scales/trans_breaks'>trans_breaks</a></span><span class="keyword">(</span><span class="string">"log10"</span><span class="keyword">,</span> <span class="keyword">function</span><span class="keyword">(</span><span class="formalargs">x</span><span class="keyword">)</span> <span class="number">10</span><span class="keyword">^</span><span class="symbol">x</span><span class="keyword">)</span><span class="keyword">,</span>
+                   <span class="argument">labels</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/scales/trans_format'>trans_format</a></span><span class="keyword">(</span><span class="string">"log10"</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/scales/math_format'>math_format</a></span><span class="keyword">(</span><span class="number">10</span><span class="keyword">^</span><span class="symbol">.x</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span>
+     <span class="functioncall"><a href='scale_continuous.html'>scale_y_log10</a></span><span class="keyword">(</span><span class="argument">breaks</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/scales/trans_breaks'>trans_breaks</a></span><span class="keyword">(</span><span class="string">"log10"</span><span class="keyword">,</span> <span class="keyword">function</span><span class="keyword">(</span><span class="formalargs">x</span><span class="keyword">)</span> <span class="number">10</span><span class="keyword">^</span><span class="symbol">x</span><span class="keyword">)</span><span class="keyword">,</span>
+                   <span class="argument">labels</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/scales/trans_format'>trans_format</a></span><span class="keyword">(</span><span class="string">"log10"</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/scales/math_format'>math_format</a></span><span class="keyword">(</span><span class="number">10</span><span class="keyword">^</span><span class="symbol">.x</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span>
+     <span class="functioncall"><a href='theme_bw.html'>theme_bw</a></span><span class="keyword">(</span><span class="keyword">)</span>
+
+<span class="symbol">a</span> <span class="keyword">+</span> <span class="functioncall"><a href='annotation_logticks.html'>annotation_logticks</a></span><span class="keyword">(</span><span class="keyword">)</span>                <span class="comment"># Default: log ticks on bottom and left</span></div>
+<p><%= image_tag 'ggplot2/annotation_logticks.html-2.png' %></p>
+<div class='input'><span class="symbol">a</span> <span class="keyword">+</span> <span class="functioncall"><a href='annotation_logticks.html'>annotation_logticks</a></span><span class="keyword">(</span><span class="argument">sides</span> <span class="argument">=</span> <span class="string">"lr"</span><span class="keyword">)</span>    <span class="comment"># Log ticks for y, on left and right</span></div>
+<p><%= image_tag 'ggplot2/annotation_logticks.html-4.png' %></p>
+<div class='input'><span class="symbol">a</span> <span class="keyword">+</span> <span class="functioncall"><a href='annotation_logticks.html'>annotation_logticks</a></span><span class="keyword">(</span><span class="argument">sides</span> <span class="argument">=</span> <span class="string">"trbl"</span><span class="keyword">)</span>  <span class="comment"># All four sides</span></div>
+<p><%= image_tag 'ggplot2/annotation_logticks.html-6.png' %></p>
+<div class='input'>
+<span class="comment"># Hide the minor grid lines because they don't align with the ticks</span>
+<span class="symbol">a</span> <span class="keyword">+</span> <span class="functioncall"><a href='annotation_logticks.html'>annotation_logticks</a></span><span class="keyword">(</span><span class="argument">sides</span> <span class="argument">=</span> <span class="string">"trbl"</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='theme.html'>theme</a></span><span class="keyword">(</span><span class="argument">panel.grid.minor</span> <span class="argument">=</span> <span class="functioncall"><a href='element_blank.html'>element_blank</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/annotation_logticks.html-8.png' %></p>
+<div class='input'>
+
+<span class="comment"># Another way to get the same results as 'a' above: log-transform the data before</span>
+<span class="symbol">b</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">Animals</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">x</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log10</a></span><span class="keyword">(</span><span class="symbol">body</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log10</a></span><span class="keyword">(</span><span class="symbol">brain</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_point.html'>geom_point</a></span><span class="keyword">(</span><span class="keyword">)</span> <span class="keyword">+</span>
+     <span class="functioncall"><a href='scale_continuous.html'>scale_x_continuous</a></span><span class="keyword">(</span><span class="argument">name</span> <span class="argument">=</span> <span class="string">"body"</span><span class="keyword">,</span> <span class="argument">labels</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/scales/math_format'>math_format</a></span><span class="keyword">(</span><span class="number">10</span><span class="keyword">^</span><span class="symbol">.x</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span>
+     <span class="functioncall"><a href='scale_continuous.html'>scale_y_continuous</a></span><span class="keyword">(</span><span class="argument">name</span> <span class="argument">=</span> <span class="string">"brain"</span><span class="keyword">,</span> <span class="argument">labels</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/scales/math_format'>math_format</a></span><span class="keyword">(</span><span class="number">10</span><span class="keyword">^</span><span class="symbol">.x</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span>
+     <span class="functioncall"><a href='theme_bw.html'>theme_bw</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">+</span> <span class="functioncall"><a href='theme.html'>theme</a></span><span class="keyword">(</span><span class="argument">panel.grid.minor</span> <span class="argument">=</span> <span class="functioncall"><a href='element_blank.html'>element_blank</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">)</span>
+
+<span class="symbol">b</span> <span class="keyword">+</span> <span class="functioncall"><a href='annotation_logticks.html'>annotation_logticks</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/annotation_logticks.html-10.png' %></p>
+<div class='input'>
+
+<span class="comment"># This shows log(x) on the axes</span>
+<span class="symbol">d</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">Animals</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">x</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log10</a></span><span class="keyword">(</span><span class="symbol">body</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log10</a></span><span class="keyword">(</span><span class="symbol">brain</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_point.html'>geom_point</a></span><span class="keyword">(</span><span class="keyword">)</span> <span class="keyword">+</span>
+     <span class="functioncall"><a href='theme_bw.html'>theme_bw</a></span><span class="keyword">(</span><span class="keyword">)</span>
+
+<span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='annotation_logticks.html'>annotation_logticks</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/annotation_logticks.html-12.png' %></p>
+<div class='input'>
+
+<span class="comment"># Using a coordinate transform requires scaled = FALSE</span>
+<span class="symbol">t</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">Animals</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">x</span> <span class="argument">=</span> <span class="symbol">body</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="symbol">brain</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_point.html'>geom_point</a></span><span class="keyword">(</span><span class="keyword">)</span> <span class="keyword">+</span>
+     <span class="functioncall"><a href='coord_trans.html'>coord_trans</a></span><span class="keyword">(</span><span class="argument">xtrans</span> <span class="argument">=</span> <span class="string">"log10"</span><span class="keyword">,</span> <span class="argument">ytrans</span> <span class="argument">=</span> <span class="string">"log10"</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='theme_bw.html'>theme_bw</a></span><span class="keyword">(</span><span class="keyword">)</span>
+
+<span class="symbol">t</span> <span class="keyword">+</span> <span class="functioncall"><a href='annotation_logticks.html'>annotation_logticks</a></span><span class="keyword">(</span><span class="argument">scaled</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/annotation_logticks.html-14.png' %></p>
+<div class='input'>
+
+<span class="comment"># Change the length of the ticks</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/library'>library</a></span><span class="keyword">(</span><span class="symbol">grid</span><span class="keyword">)</span>
+<span class="symbol">a</span> <span class="keyword">+</span> <span class="functioncall"><a href='annotation_logticks.html'>annotation_logticks</a></span><span class="keyword">(</span><span class="argument">short</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grid/unit'>unit</a></span><span class="keyword">(</span><span class="number">.5</span><span class="keyword">,</span><span class="string">"mm"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">mid</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grid/unit'>unit</a></span><span class="keyword">(</span><span class="number">3</span><span class="keyword">,</span><span class="string">"mm"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">long</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grid/unit'>unit</a></span><span class="keyword">(</span><span class="number">4</span><span class="keyword">,</span><span class="string">"mm"</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/annotation_logticks.html-16.png' %></p></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>annotation_logticks</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+  <code><a href='scale_continuous.html'>scale_y_continuous</a></code>,
+  <code><a href='scale_continuous.html'>scale_y_log10</a></code> for log scale
+  transformations.
+
+  <code><a href='coord_trans.html'>coord_trans</a></code> for log coordinate
+  transformations.
+
+        
+  </div>
+</div>

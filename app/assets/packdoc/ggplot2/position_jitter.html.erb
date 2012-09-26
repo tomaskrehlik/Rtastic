@@ -1,0 +1,65 @@
+      <h1>Jitter points to avoid overplotting.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='position_jitter.html'>position_jitter</a></span><span class="keyword">(</span><span class="argument">width</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">height</span> <span class="argument">=</span> NULL<span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>width</dt>
+      <dd>degree of jitter in x direction. Defaults to
+  40% of the resolution of the data.</dd>
+      <dt>height</dt>
+      <dd>degree of jitter in y direction. Defaults
+  to 40% of the resolution of the data</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Jitter points to avoid overplotting.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">am</span><span class="keyword">,</span> <span class="symbol">vs</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">mtcars</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/position_jitter.html-2.png' %></p>
+<div class='input'>
+<span class="comment"># Default amount of jittering will generally be too much for</span>
+<span class="comment"># small datasets:</span>
+<span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">am</span><span class="keyword">,</span> <span class="symbol">vs</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">mtcars</span><span class="keyword">,</span> <span class="argument">position</span> <span class="argument">=</span> <span class="string">"jitter"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/position_jitter.html-4.png' %></p>
+<div class='input'><span class="comment"># Control the amount as follows</span>
+<span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">am</span><span class="keyword">,</span> <span class="symbol">vs</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">mtcars</span><span class="keyword">,</span> <span class="argument">position</span> <span class="argument">=</span> <span class="functioncall"><a href='position_jitter.html'>position_jitter</a></span><span class="keyword">(</span><span class="argument">w</span> <span class="argument">=</span> <span class="number">0.1</span><span class="keyword">,</span> <span class="argument">h</span> <span class="argument">=</span> <span class="number">0.1</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/position_jitter.html-6.png' %></p>
+<div class='input'>
+<span class="comment"># With ggplot</span>
+<span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">mtcars</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">x</span> <span class="argument">=</span> <span class="symbol">am</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="symbol">vs</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_point.html'>geom_point</a></span><span class="keyword">(</span><span class="argument">position</span> <span class="argument">=</span> <span class="string">"jitter"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/position_jitter.html-8.png' %></p>
+<div class='input'><span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">mtcars</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">x</span> <span class="argument">=</span> <span class="symbol">am</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="symbol">vs</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_point.html'>geom_point</a></span><span class="keyword">(</span><span class="argument">position</span> <span class="argument">=</span> <span class="functioncall"><a href='position_jitter.html'>position_jitter</a></span><span class="keyword">(</span><span class="argument">w</span> <span class="argument">=</span> <span class="number">0.1</span><span class="keyword">,</span> <span class="argument">h</span> <span class="argument">=</span> <span class="number">0.1</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/position_jitter.html-10.png' %></p>
+<div class='input'>
+<span class="comment"># The default works better for large datasets, where it will</span>
+<span class="comment"># take up as much space as a boxplot or a bar</span>
+<span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">class</span><span class="keyword">,</span> <span class="symbol">hwy</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">mpg</span><span class="keyword">,</span> <span class="argument">geom</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"boxplot"</span><span class="keyword">,</span> <span class="string">"jitter"</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/position_jitter.html-12.png' %></p></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>position_jitter</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+  Other position adjustments: <code><a href='position_dodge.html'>position_dodge</a></code>,
+  <code><a href='position_fill.html'>position_fill</a></code>,
+  <code><a href='position_identity.html'>position_identity</a></code>,
+  <code><a href='position_stack.html'>position_stack</a></code>
+
+        
+  </div>
+</div>

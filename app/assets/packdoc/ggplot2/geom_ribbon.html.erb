@@ -1,0 +1,131 @@
+      <h1>Ribbons, y range with continuous x values.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='geom_ribbon.html'>geom_ribbon</a></span><span class="keyword">(</span><span class="argument">mapping</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">stat</span> <span class="argument">=</span> <span class="string">"identity"</span><span class="keyword">,</span> <span class="argument">position</span> <span class="argument">=</span> <span class="string">"identity"</span><span class="keyword">,</span>
+  <span class="argument">na.rm</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>mapping</dt>
+      <dd>The aesthetic mapping, usually constructed
+  with <code><a href='aes.html'>aes</a></code> or <code><a href='aes_string.html'>aes_string</a></code>. Only
+  needs to be set at the layer level if you are overriding
+  the plot defaults.</dd>
+      <dt>data</dt>
+      <dd>A layer specific dataset - only needed if you
+  want to override the plot defaults.</dd>
+      <dt>stat</dt>
+      <dd>The statistical transformation to use on the
+  data for this layer.</dd>
+      <dt>position</dt>
+      <dd>The position adjustment to use for
+  overlappling points on this layer</dd>
+      <dt>na.rm</dt>
+      <dd>If <code>FALSE</code> (the default), removes
+  missing values with a warning.  If <code>TRUE</code> silently
+  removes missing values.</dd>
+      <dt>...</dt>
+      <dd>other arguments passed on to
+  <code><a href='layer.html'>layer</a></code>. This can include aesthetics whose
+  values you want to set, not map. See <code><a href='layer.html'>layer</a></code>
+  for more details.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Ribbons, y range with continuous x values.</p>
+  
+    </div>
+
+    <div class="Aesthetics">
+      <h2>Aesthetics</h2>
+      
+      <p><code>geom_ribbon</code> understands the following aesthetics (required aesthetics are in bold):</p>
+  
+      <p><ul>
+<li> <code><strong>x</strong></code>
+  </li>
+<li> <code><strong>ymax</strong></code>
+  </li>
+<li> <code><strong>ymin</strong></code>
+  </li>
+<li> <code>alpha</code>
+  </li>
+<li> <code>colour</code>
+  </li>
+<li> <code>fill</code>
+  </li>
+<li> <code>linetype</code>
+  </li>
+<li> <code>size</code>
+</li>
+</ul></p>
+  
+      <p></p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class="comment"># Generate data</span>
+<span class="symbol">huron</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/data.frame'>data.frame</a></span><span class="keyword">(</span><span class="argument">year</span> <span class="argument">=</span> <span class="number">1875</span><span class="keyword">:</span><span class="number">1972</span><span class="keyword">,</span> <span class="argument">level</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/vector'>as.vector</a></span><span class="keyword">(</span><span class="symbol">LakeHuron</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/library'>library</a></span><span class="keyword">(</span><span class="symbol">plyr</span><span class="keyword">)</span> <span class="comment"># to access round_any</span>
+<span class="symbol">huron</span><span class="keyword">$</span><span class="symbol">decade</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/plyr/round_any'>round_any</a></span><span class="keyword">(</span><span class="symbol">huron</span><span class="keyword">$</span><span class="symbol">year</span><span class="keyword">,</span> <span class="number">10</span><span class="keyword">,</span> <span class="symbol">floor</span><span class="keyword">)</span>
+
+<span class="symbol">h</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">huron</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">x</span><span class="argument">=</span><span class="symbol">year</span><span class="keyword">)</span><span class="keyword">)</span>
+
+<span class="symbol">h</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_ribbon.html'>geom_ribbon</a></span><span class="keyword">(</span><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">ymin</span><span class="argument">=</span><span class="number">0</span><span class="keyword">,</span> <span class="argument">ymax</span><span class="argument">=</span><span class="symbol">level</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_ribbon.html-2.png' %></p>
+<div class='input'><span class="symbol">h</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_area.html'>geom_area</a></span><span class="keyword">(</span><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">y</span> <span class="argument">=</span> <span class="symbol">level</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_ribbon.html-4.png' %></p>
+<div class='input'>
+<span class="comment"># Add aesthetic mappings</span>
+<span class="symbol">h</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_ribbon.html'>geom_ribbon</a></span><span class="keyword">(</span><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">ymin</span><span class="argument">=</span><span class="symbol">level</span><span class="keyword">-</span><span class="number">1</span><span class="keyword">,</span> <span class="argument">ymax</span><span class="argument">=</span><span class="symbol">level</span><span class="keyword">+</span><span class="number">1</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_ribbon.html-6.png' %></p>
+<div class='input'><span class="symbol">h</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_ribbon.html'>geom_ribbon</a></span><span class="keyword">(</span><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">ymin</span><span class="argument">=</span><span class="symbol">level</span><span class="keyword">-</span><span class="number">1</span><span class="keyword">,</span> <span class="argument">ymax</span><span class="argument">=</span><span class="symbol">level</span><span class="keyword">+</span><span class="number">1</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_line.html'>geom_line</a></span><span class="keyword">(</span><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">y</span><span class="argument">=</span><span class="symbol">level</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_ribbon.html-8.png' %></p>
+<div class='input'>
+<span class="comment"># Take out some values in the middle for an example of NA handling</span>
+<span class="symbol">huron</span><span class="keyword">[</span><span class="symbol">huron</span><span class="keyword">$</span><span class="symbol">year</span> <span class="keyword">&gt;</span> <span class="number">1900</span> <span class="keyword">&amp;</span> <span class="symbol">huron</span><span class="keyword">$</span><span class="symbol">year</span> <span class="keyword">&lt;</span> <span class="number">1910</span><span class="keyword">,</span> <span class="string">"level"</span><span class="keyword">]</span> <span class="assignement">&lt;-</span> <span class="number">NA</span>
+<span class="symbol">h</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">huron</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">x</span><span class="argument">=</span><span class="symbol">year</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="symbol">h</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_ribbon.html'>geom_ribbon</a></span><span class="keyword">(</span><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">ymin</span><span class="argument">=</span><span class="symbol">level</span><span class="keyword">-</span><span class="number">1</span><span class="keyword">,</span> <span class="argument">ymax</span><span class="argument">=</span><span class="symbol">level</span><span class="keyword">+</span><span class="number">1</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_line.html'>geom_line</a></span><span class="keyword">(</span><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">y</span><span class="argument">=</span><span class="symbol">level</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_ribbon.html-10.png' %></p>
+<div class='input'>
+<span class="comment"># Another data set, with multiple y's for each x</span>
+<span class="symbol">m</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">movies</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">y</span><span class="argument">=</span><span class="symbol">votes</span><span class="keyword">,</span> <span class="argument">x</span><span class="argument">=</span><span class="symbol">year</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="keyword">(</span><span class="symbol">m</span> <span class="assignement">&lt;-</span> <span class="symbol">m</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_point.html'>geom_point</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_ribbon.html-12.png' %></p>
+<div class='input'>
+<span class="comment"># The default summary isn't that useful</span>
+<span class="symbol">m</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_summary.html'>stat_summary</a></span><span class="keyword">(</span><span class="argument">geom</span><span class="argument">=</span><span class="string">"ribbon"</span><span class="keyword">,</span> <span class="argument">fun.ymin</span><span class="argument">=</span><span class="string">"min"</span><span class="keyword">,</span> <span class="argument">fun.ymax</span><span class="argument">=</span><span class="string">"max"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_ribbon.html-14.png' %></p>
+<div class='input'><span class="symbol">m</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_summary.html'>stat_summary</a></span><span class="keyword">(</span><span class="argument">geom</span><span class="argument">=</span><span class="string">"ribbon"</span><span class="keyword">,</span> <span class="argument">fun.data</span><span class="argument">=</span><span class="string">"median_hilow"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_ribbon.html-16.png' %></p>
+<div class='input'>
+<span class="comment"># Use qplot instead</span>
+<span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">year</span><span class="keyword">,</span> <span class="symbol">level</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">huron</span><span class="keyword">,</span> <span class="argument">geom</span><span class="argument">=</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"area"</span><span class="keyword">,</span> <span class="string">"line"</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<strong class='warning'>Warning message:
+Removed 9 rows containing missing values (position_stack).</strong>
+<p><%= image_tag 'ggplot2/geom_ribbon.html-19.png' %></p>
+<div class='input'></div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>geom_ribbon</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+  <code><a href='geom_bar.html'>geom_bar</a></code> for discrete intervals (bars),
+  <code><a href='geom_linerange.html'>geom_linerange</a></code> for discrete intervals
+  (lines), <code><a href='geom_polygon.html'>geom_polygon</a></code> for general polygons"
+
+        
+  </div>
+</div>

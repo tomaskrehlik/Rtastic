@@ -1,0 +1,578 @@
+      <h1>Anova Tables for Various Statistical Models</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='Anova.html'>Anova</a></span><span class="keyword">(</span><span class="symbol">mod</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='Anova.html'>Manova</a></span><span class="keyword">(</span><span class="symbol">mod</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='Anova.html'>Anova</a></span><span class="keyword">(</span><span class="symbol">mod</span><span class="keyword">,</span> <span class="symbol">error</span><span class="keyword">,</span> <span class="argument">type</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"II"</span><span class="keyword">,</span> <span class="string">"III"</span><span class="keyword">,</span> <span class="number">2</span><span class="keyword">,</span> <span class="number">3</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">white.adjust</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">FALSE</span><span class="keyword">,</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="string">"hc3"</span><span class="keyword">,</span>
+  <span class="string">"hc0"</span><span class="keyword">,</span> <span class="string">"hc1"</span><span class="keyword">,</span> <span class="string">"hc2"</span><span class="keyword">,</span> <span class="string">"hc4"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">singular.ok</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='Anova.html'>Anova</a></span><span class="keyword">(</span><span class="symbol">mod</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='Anova.html'>Anova</a></span><span class="keyword">(</span><span class="symbol">mod</span><span class="keyword">,</span> <span class="argument">type</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"II"</span><span class="keyword">,</span> <span class="string">"III"</span><span class="keyword">,</span> <span class="number">2</span><span class="keyword">,</span> <span class="number">3</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">test.statistic</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"LR"</span><span class="keyword">,</span> <span class="string">"Wald"</span><span class="keyword">,</span> <span class="string">"F"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">error</span><span class="keyword">,</span>
+      <span class="argument">error.estimate</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"pearson"</span><span class="keyword">,</span> <span class="string">"dispersion"</span><span class="keyword">,</span> <span class="string">"deviance"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">singular.ok</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='Anova.html'>Anova</a></span><span class="keyword">(</span><span class="symbol">mod</span><span class="keyword">,</span> <span class="argument">type</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"II"</span><span class="keyword">,</span> <span class="string">"III"</span><span class="keyword">,</span> <span class="number">2</span><span class="keyword">,</span> <span class="number">3</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='Anova.html'>Anova</a></span><span class="keyword">(</span><span class="symbol">mod</span><span class="keyword">,</span> <span class="argument">type</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"II"</span><span class="keyword">,</span> <span class="string">"III"</span><span class="keyword">,</span> <span class="number">2</span><span class="keyword">,</span> <span class="number">3</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='Anova.html'>Anova</a></span><span class="keyword">(</span><span class="symbol">mod</span><span class="keyword">,</span> <span class="argument">type</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"II"</span><span class="keyword">,</span> <span class="string">"III"</span><span class="keyword">,</span> <span class="number">2</span><span class="keyword">,</span> <span class="number">3</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">SSPE</span><span class="keyword">,</span> <span class="symbol">error.df</span><span class="keyword">,</span> <span class="symbol">idata</span><span class="keyword">,</span> <span class="symbol">idesign</span><span class="keyword">,</span> <span class="argument">icontrasts</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"contr.sum"</span><span class="keyword">,</span>
+      <span class="string">"contr.poly"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">imatrix</span><span class="keyword">,</span> <span class="argument">test.statistic</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"Pillai"</span><span class="keyword">,</span> <span class="string">"Wilks"</span><span class="keyword">,</span> <span class="string">"Hotelling-Lawley"</span><span class="keyword">,</span>
+      <span class="string">"Roy"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='Anova.html'>Anova</a></span><span class="keyword">(</span><span class="symbol">mod</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='Anova.html'>Manova</a></span><span class="keyword">(</span><span class="symbol">mod</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/print'>print</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/summary'>summary</a></span><span class="keyword">(</span><span class="symbol">object</span><span class="keyword">,</span> <span class="symbol">test.statistic</span><span class="keyword">,</span> <span class="argument">multivariate</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="argument">univariate</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="argument">digits</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/options'>getOption</a></span><span class="keyword">(</span><span class="string">"digits"</span><span class="keyword">)</span><span class="keyword">,</span>
+      <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='Anova.html'>Anova</a></span><span class="keyword">(</span><span class="symbol">mod</span><span class="keyword">,</span> <span class="argument">type</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"II"</span><span class="keyword">,</span> <span class="string">"III"</span><span class="keyword">,</span> <span class="number">2</span><span class="keyword">,</span> <span class="number">3</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">test.statistic</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"LR"</span><span class="keyword">,</span> <span class="string">"Wald"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='Anova.html'>Anova</a></span><span class="keyword">(</span><span class="symbol">mod</span><span class="keyword">,</span> <span class="argument">type</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"II"</span><span class="keyword">,</span> <span class="string">"III"</span><span class="keyword">,</span> <span class="number">2</span><span class="keyword">,</span> <span class="number">3</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">vcov.</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/vcov'>vcov</a></span><span class="keyword">(</span><span class="symbol">mod</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">singular.ok</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='Anova.html'>Anova</a></span><span class="keyword">(</span><span class="symbol">mod</span><span class="keyword">,</span> <span class="argument">type</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"II"</span><span class="keyword">,</span> <span class="string">"III"</span><span class="keyword">,</span> <span class="number">2</span><span class="keyword">,</span> <span class="number">3</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">test.statistic</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"chisq"</span><span class="keyword">,</span> <span class="string">"F"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">vcov.</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/vcov'>vcov</a></span><span class="keyword">(</span><span class="symbol">mod</span><span class="keyword">)</span><span class="keyword">,</span>
+      <span class="symbol">singular.ok</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='Anova.html'>Anova</a></span><span class="keyword">(</span><span class="symbol">mod</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='Anova.html'>Anova</a></span><span class="keyword">(</span><span class="symbol">mod</span><span class="keyword">,</span> <span class="argument">type</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"II"</span><span class="keyword">,</span> <span class="string">"III"</span><span class="keyword">,</span> <span class="number">2</span><span class="keyword">,</span> <span class="number">3</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">test.statistic</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"Chisq"</span><span class="keyword">,</span> <span class="string">"F"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">vcov.</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/vcov'>vcov</a></span><span class="keyword">(</span><span class="symbol">mod</span><span class="keyword">)</span><span class="keyword">,</span>
+      <span class="symbol">singular.ok</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>mod</dt>
+      <dd><code>lm</code>, <code>aov</code>, <code>glm</code>, <code>multinom</code>, <code>polr</code>
+    <code>mlm</code>, <code>coxph</code>, <code>lme</code>, <code>mer</code>, <code>svyglm</code> or other suitable model object.</dd>
+      <dt>error</dt>
+      <dd>for a linear model, an <code>lm</code> model object from which the
+    error sum of squares and degrees of freedom are to be calculated. For 
+    F-tests for a generalized linear model, a <code>glm</code> object from which the
+    dispersion is to be estimated. If not specified, <code>mod</code> is used.</dd>
+      <dt>type</dt>
+      <dd>type of test, <code>"II"</code>, <code>"III"</code>, <code>2</code>, or <code>3</code>.</dd>
+      <dt>singular.ok</dt>
+      <dd>defaults to <code>TRUE</code> for type-II tests, and <code>FALSE</code>
+    for type-III tests (where the tests for models with aliased coefficients
+    will not be straightforwardly interpretable); 
+    if <code>FALSE</code>, a model with aliased coefficients produces an error.</dd>
+      <dt>test.statistic</dt>
+      <dd>for a generalized linear model, whether to calculate 
+    <code>"LR"</code> (likelihood-ratio), <code>"Wald"</code>, or <code>"F"</code> tests; for a Cox
+    model, whether to calculate <code>"LR"</code> (partial-likelihood ratio) or
+    <code>"Wald"</code> tests; in the default case or for linear mixed models fit by
+    <code>lmer</code>, whether to calculate Wald <code>"Chisq"</code> or
+    <code>"F"</code> tests.
+    For a multivariate linear model, the multivariate test statistic to compute --- one of
+    <code>"Pillai"</code>, <code>"Wilks"</code>, <code>"Hotelling-Lawley"</code>, or <code>"Roy"</code>, 
+    with <code>"Pillai"</code> as the default. The <code>summary</code> method for <code>Anova.mlm</code>
+    objects permits the specification of more than one multivariate
+    test statistic, and the default is to report all four.</dd>
+      <dt>error.estimate</dt>
+      <dd>for F-tests for a generalized linear model, base the
+    dispersion estimate on the Pearson residuals (<code>"pearson"</code>, the default); use the
+    dispersion estimate in the model object (<code>"dispersion"</code>), which, e.g., is
+    fixed to 1 for binomial and Poisson models; or base the dispersion estimate on
+    the residual deviance (<code>"deviance"</code>).</dd>
+      <dt>white.adjust</dt>
+      <dd>if not <code>FALSE</code>, the default, 
+  	tests use a heteroscedasticity-corrected coefficient
+    covariance matrix; the various values of the argument specify different corrections.
+    See the documentation for <code><a href='hccm.html'>hccm</a></code> for details. If <code>white.adjust=TRUE</code>
+    then the <code>"hc3"</code> correction is selected.</dd>
+      <dt>SSPE</dt>
+      <dd>The error sum-of-squares-and-products matrix; if missing, will be computed
+    from the residuals of the model.</dd>
+      <dt>error.df</dt>
+      <dd>The degrees of freedom for error; if missing, will be taken from the model.</dd>
+      <dt>idata</dt>
+      <dd>an optional data frame giving a factor or factors defining the
+    intra-subject model for multivariate repeated-measures data. See 
+    <em>Details</em> for an explanation of the intra-subject design and for
+    further explanation of the other arguments relating to intra-subject factors.</dd>
+      <dt>idesign</dt>
+      <dd>a one-sided model formula using the ``data'' in <code>idata</code> and
+    specifying the intra-subject design.</dd>
+      <dt>icontrasts</dt>
+      <dd>names of contrast-generating functions to be applied by default
+    to factors and ordered factors, respectively, in the within-subject
+    ``data''; the contrasts must produce an intra-subject model 
+    matrix in which different terms are orthogonal. The default is
+    <code>c("contr.sum", "contr.poly")</code>.</dd>
+      <dt>imatrix</dt>
+      <dd>as an alternative to specifying <code>idata</code>, <code>idesign</code>, and
+  	(optionally) <code>icontrasts</code>, the model matrix for the within-subject design
+  	can be given directly in the form of list of named elements. Each element gives
+  	the columns of the within-subject model matrix for a term to be tested, and must
+  	have as many rows as there are responses; the columns of the within-subject model
+  	matrix for different terms must be mutually orthogonal.</dd>
+      <dt>x, object</dt>
+      <dd>object of class <code>"Anova.mlm"</code> to print or summarize.</dd>
+      <dt>multivariate, univariate</dt>
+      <dd>print multivariate and univariate tests for a repeated-measures
+    ANOVA; the default is <code>TRUE</code> for both.</dd>
+      <dt>digits</dt>
+      <dd>minimum number of significant digits to print.</dd>
+      <dt>vcov.</dt>
+      <dd>an optional coefficient-covariance matrix, computed by default by applying the 
+  	generic <code>vcov</code> function to the model object.</dd>
+      <dt>...</dt>
+      <dd>do not use.</dd>
+    </dl>
+    
+    <div class="Anova Tables for Various Statistical Models">
+      <h2>Anova Tables for Various Statistical Models</h2>
+      
+    </div>
+
+    <div class="Anova Tables for Various Statistical Models">
+      <h2>Anova Tables for Various Statistical Models</h2>
+      
+    </div>
+
+    <div class="Anova Tables for Various Statistical Models">
+      <h2>Anova Tables for Various Statistical Models</h2>
+      
+    </div>
+
+    <div class="Anova Tables for Various Statistical Models">
+      <h2>Anova Tables for Various Statistical Models</h2>
+      
+    </div>
+
+    <div class="Anova Tables for Various Statistical Models">
+      <h2>Anova Tables for Various Statistical Models</h2>
+      
+    </div>
+
+    <div class="Anova Tables for Various Statistical Models">
+      <h2>Anova Tables for Various Statistical Models</h2>
+      
+    </div>
+
+    <div class="Anova Tables for Various Statistical Models">
+      <h2>Anova Tables for Various Statistical Models</h2>
+      
+    </div>
+
+    <div class="Anova Tables for Various Statistical Models">
+      <h2>Anova Tables for Various Statistical Models</h2>
+      
+    </div>
+
+    <div class="Anova Tables for Various Statistical Models">
+      <h2>Anova Tables for Various Statistical Models</h2>
+      
+    </div>
+
+    <div class="Anova Tables for Various Statistical Models">
+      <h2>Anova Tables for Various Statistical Models</h2>
+      
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Calculates type-II or type-III analysis-of-variance tables for
+  model objects produced by <code>lm</code>, <code>glm</code>, <code>multinom</code> 
+  (in the <span class = "pkg">nnet</span> package), <code>polr</code> (in the <span class = "pkg">MASS</span>
+  package), <code>coxph</code> (in the <span class = "pkg">survival</span> package), <code>lmer</code> in the <span class = "pkg">lme4</span> package,
+  <code>lme</code> in the <span class = "pkg">nlme</span> package, and for any
+  model with a linear predictor and asymptotically normal coefficients that
+  responds to the <code>vcov</code> and <code>coef</code> functions.  For linear
+  models, F-tests are calculated; for generalized linear models, 
+  likelihood-ratio chisquare, Wald chisquare, or F-tests are calculated;
+  for multinomial logit and proportional-odds logit models, likelihood-ratio
+  tests are calculated.  Various test statistics are provided for multivariate
+  linear models produced by <code>lm</code> or <code>manova</code>. Partial-likelihood-ratio tests
+  or Wald tests are provided for Cox models. Wald chi-square tests are provided for fixed effects in
+  linear and generalized linear mixed-effects models. Wald chi-square or F tests are provided 
+  in the default case.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p>The designations "type-II" and "type-III" are borrowed from SAS, but the
+  definitions used here do not correspond precisely to those employed by SAS. 
+  Type-II tests are calculated according to the principle of marginality,
+  testing each term after all others, except ignoring the term's higher-order relatives;
+  so-called type-III tests violate marginality, testing 
+  each term in the model after all of the others. This definition of Type-II tests 
+  corresponds to the tests produced by SAS for analysis-of-variance models, where all of the predictors
+  are factors, but not more generally (i.e., when there are quantitative predictors).
+  Be very careful in formulating the model for type-III tests, or the hypotheses tested
+  will not make sense.</p>
+  
+      <p>As implemented here, type-II Wald tests are a generalization of the linear hypotheses used to generate
+  these tests in linear models.</p>
+  
+      <p>For tests for linear models, multivariate linear models, and Wald tests for generalized linear models,
+  Cox models, mixed-effects models, generalized linear models fit to survey data, and in the default case,
+  <code>Anova</code> finds the test statistics without refitting the model. The <code>svyglm</code> method simply
+  calls the <code>default</code> method and therefore can take the same arguments.</p>
+  
+      <p>The standard R <code>anova</code> function calculates sequential ("type-I") tests.
+  These rarely test interesting hypotheses in unbalanced designs.</p>
+  
+      <p>A MANOVA for a multivariate linear model (i.e., an object of
+  class <code>"mlm"</code> or <code>"manova"</code>) can optionally include an 
+  intra-subject repeated-measures design.
+  If the intra-subject design is absent (the default), the multivariate 
+  tests concern all of  the response variables. 
+  To specify a repeated-measures design, a data frame is provided defining the repeated-measures factor or
+  factors 
+  via <code>idata</code>, with default contrasts given by the <code>icontrasts</code>
+  argument. An intra-subject model-matrix is generated from the formula 
+  specified by the <code>idesign</code> argument; columns of the model matrix 
+  corresponding to different terms in the intra-subject model must be orthogonal 
+  (as is insured by the default contrasts). Note that the contrasts given in
+  <code>icontrasts</code> can be overridden by assigning specific contrasts to the
+  factors in <code>idata</code>. As an alternative, the within-subjects model matrix
+  can be specified directly via the <code>imatrix</code> argument.
+  <code>Manova</code> is essentially a synonym for <code>Anova</code>
+  for multivariate linear models.</p>
+  
+    </div>
+
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>An object of class <code>"anova"</code>, or <code>"Anova.mlm"</code>, which usually is printed.
+  For objects of class <code>"Anova.mlm"</code>, there is also a <code>summary</code> method, 
+  which provides much more detail than the <code>print</code> method about the MANOVA, including
+  traditional mixed-model univariate F-tests with Greenhouse-Geisser and Huynh-Feldt
+  corrections.</p>
+  
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+      
+      <p>Fox, J. (2008)
+  <em>Applied Regression Analysis and Generalized Linear Models</em>,
+  Second Edition. Sage.</p>
+  
+      <p>Fox, J. and Weisberg, S. (2011) 
+  <em>An R Companion to Applied Regression</em>, Second Edition, Sage.</p>
+  
+      <p>Hand, D. J., and Taylor, C. C. (1987)
+  <em>Multivariate Analysis of Variance and Repeated Measures: A Practical
+  Approach for Behavioural Scientists.</em> Chapman and Hall.</p>
+  
+      <p>O'Brien, R. G., and Kaiser, M. K. (1985)
+  MANOVA method for analyzing repeated measures designs: An extensive primer.
+  <em>Psychological Bulletin</em> <b>97</b>, 316--333.</p>
+  
+    </div>
+
+    <div class="Warning">
+      <h2>Warning</h2>
+      
+      <p>Be careful of type-III tests.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class="comment">## Two-Way Anova</span>
+
+<span class="symbol">mod</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/lm'>lm</a></span><span class="keyword">(</span><span class="symbol">conformity</span> <span class="keyword">~</span> <span class="symbol">fcategory</span><span class="keyword">*</span><span class="symbol">partner.status</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">Moore</span><span class="keyword">,</span>
+  <span class="argument">contrasts</span><span class="argument">=</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/list'>list</a></span><span class="keyword">(</span><span class="argument">fcategory</span><span class="argument">=</span><span class="symbol">contr.sum</span><span class="keyword">,</span> <span class="argument">partner.status</span><span class="argument">=</span><span class="symbol">contr.sum</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="functioncall"><a href='Anova.html'>Anova</a></span><span class="keyword">(</span><span class="symbol">mod</span><span class="keyword">)</span></div>
+<div class='output'>Anova Table (Type II tests)
+
+Response: conformity
+                         Sum Sq Df F value Pr(>F)   
+fcategory                    12  2    0.28 0.7596   
+partner.status              212  1   10.12 0.0029 **
+fcategory:partner.status    175  2    4.18 0.0226 * 
+Residuals                   818 39                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+</div>
+<div class='input'>
+<span class="comment">## One-Way MANOVA</span>
+<span class="comment">## See ?Pottery for a description of the data set used in this example.</span>
+
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/summary'>summary</a></span><span class="keyword">(</span><span class="functioncall"><a href='Anova.html'>Anova</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/lm'>lm</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/cbind'>cbind</a></span><span class="keyword">(</span><span class="symbol">Al</span><span class="keyword">,</span> <span class="symbol">Fe</span><span class="keyword">,</span> <span class="symbol">Mg</span><span class="keyword">,</span> <span class="symbol">Ca</span><span class="keyword">,</span> <span class="symbol">Na</span><span class="keyword">)</span> <span class="keyword">~</span> <span class="symbol">Site</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">Pottery</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<div class='output'>
+Type II MANOVA Tests:
+
+Sum of squares and products for error:
+        Al       Fe       Mg       Ca      Na
+Al 48.2881  7.08007  0.60801  0.10647 0.58896
+Fe  7.0801 10.95085  0.52706 -0.15519 0.06676
+Mg  0.6080  0.52706 15.42961  0.43538 0.02762
+Ca  0.1065 -0.15519  0.43538  0.05149 0.01008
+Na  0.5890  0.06676  0.02762  0.01008 0.19929
+
+------------------------------------------
+ 
+Term: Site 
+
+Sum of squares and products for the hypothesis:
+         Al       Fe       Mg      Ca      Na
+Al  175.610 -149.296 -130.810 -5.8892 -5.3723
+Fe -149.296  134.222  117.745  4.8218  5.3259
+Mg -130.810  117.745  103.351  4.2092  4.7105
+Ca   -5.889    4.822    4.209  0.2047  0.1548
+Na   -5.372    5.326    4.711  0.1548  0.2582
+
+Multivariate Tests: Site
+                 Df test stat approx F num Df den Df   Pr(>F)    
+Pillai            3      1.55     4.30     15  60.00 2.41e-05 ***
+Wilks             3      0.01    13.09     15  50.09 1.84e-12 ***
+Hotelling-Lawley  3     35.44    39.38     15  50.00  < 2e-16 ***
+Roy               3     34.16   136.64      5  20.00 9.44e-15 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+</div>
+<div class='input'>
+<span class="comment">## MANOVA for a randomized block design (example courtesy of Michael Friendly:</span>
+<span class="comment">##  See ?Soils for description of the data set)</span>
+
+<span class="symbol">soils.mod</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/lm'>lm</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/cbind'>cbind</a></span><span class="keyword">(</span><span class="symbol">pH</span><span class="keyword">,</span><span class="symbol">N</span><span class="keyword">,</span><span class="symbol">Dens</span><span class="keyword">,</span><span class="symbol">P</span><span class="keyword">,</span><span class="symbol">Ca</span><span class="keyword">,</span><span class="symbol">Mg</span><span class="keyword">,</span><span class="symbol">K</span><span class="keyword">,</span><span class="symbol">Na</span><span class="keyword">,</span><span class="symbol">Conduc</span><span class="keyword">)</span> <span class="keyword">~</span> <span class="symbol">Block</span> <span class="keyword">+</span> <span class="symbol">Contour</span><span class="keyword">*</span><span class="symbol">Depth</span><span class="keyword">,</span>
+    <span class="argument">data</span><span class="argument">=</span><span class="symbol">Soils</span><span class="keyword">)</span>
+<span class="functioncall"><a href='Anova.html'>Manova</a></span><span class="keyword">(</span><span class="symbol">soils.mod</span><span class="keyword">)</span></div>
+<div class='output'>
+Type II MANOVA Tests: Pillai test statistic
+              Df test stat approx F num Df den Df  Pr(>F)    
+Block          3      1.68     3.80     27     81 1.8e-06 ***
+Contour        2      1.34     5.85     18     52 2.7e-07 ***
+Depth          3      1.79     4.47     27     81 8.8e-08 ***
+Contour:Depth  6      1.24     0.86     54    180    0.73    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+</div>
+<div class='input'>
+<span class="comment">## a multivariate linear model for repeated-measures data</span>
+<span class="comment">## See ?OBrienKaiser for a description of the data set used in this example.</span>
+
+<span class="symbol">phase</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/factor'>factor</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/rep'>rep</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"pretest"</span><span class="keyword">,</span> <span class="string">"posttest"</span><span class="keyword">,</span> <span class="string">"followup"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">5</span><span class="keyword">,</span> <span class="number">5</span><span class="keyword">,</span> <span class="number">5</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span>
+    <span class="argument">levels</span><span class="argument">=</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"pretest"</span><span class="keyword">,</span> <span class="string">"posttest"</span><span class="keyword">,</span> <span class="string">"followup"</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="symbol">hour</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/factor'>ordered</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/rep'>rep</a></span><span class="keyword">(</span><span class="number">1</span><span class="keyword">:</span><span class="number">5</span><span class="keyword">,</span> <span class="number">3</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="symbol">idata</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/data.frame'>data.frame</a></span><span class="keyword">(</span><span class="symbol">phase</span><span class="keyword">,</span> <span class="symbol">hour</span><span class="keyword">)</span>
+<span class="symbol">idata</span></div>
+<div class='output'>      phase hour
+1   pretest    1
+2   pretest    2
+3   pretest    3
+4   pretest    4
+5   pretest    5
+6  posttest    1
+7  posttest    2
+8  posttest    3
+9  posttest    4
+10 posttest    5
+11 followup    1
+12 followup    2
+13 followup    3
+14 followup    4
+15 followup    5
+</div>
+<div class='input'>
+<span class="symbol">mod.ok</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/lm'>lm</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/cbind'>cbind</a></span><span class="keyword">(</span><span class="symbol">pre.1</span><span class="keyword">,</span> <span class="symbol">pre.2</span><span class="keyword">,</span> <span class="symbol">pre.3</span><span class="keyword">,</span> <span class="symbol">pre.4</span><span class="keyword">,</span> <span class="symbol">pre.5</span><span class="keyword">,</span>
+                     <span class="symbol">post.1</span><span class="keyword">,</span> <span class="symbol">post.2</span><span class="keyword">,</span> <span class="symbol">post.3</span><span class="keyword">,</span> <span class="symbol">post.4</span><span class="keyword">,</span> <span class="symbol">post.5</span><span class="keyword">,</span>
+                     <span class="symbol">fup.1</span><span class="keyword">,</span> <span class="symbol">fup.2</span><span class="keyword">,</span> <span class="symbol">fup.3</span><span class="keyword">,</span> <span class="symbol">fup.4</span><span class="keyword">,</span> <span class="symbol">fup.5</span><span class="keyword">)</span> <span class="keyword">~</span>  <span class="symbol">treatment</span><span class="keyword">*</span><span class="symbol">gender</span><span class="keyword">,</span>
+                <span class="argument">data</span><span class="argument">=</span><span class="symbol">OBrienKaiser</span><span class="keyword">)</span>
+<span class="keyword">(</span><span class="symbol">av.ok</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='Anova.html'>Anova</a></span><span class="keyword">(</span><span class="symbol">mod.ok</span><span class="keyword">,</span> <span class="argument">idata</span><span class="argument">=</span><span class="symbol">idata</span><span class="keyword">,</span> <span class="argument">idesign</span><span class="argument">=</span><span class="keyword">~</span><span class="symbol">phase</span><span class="keyword">*</span><span class="symbol">hour</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<div class='output'>
+Type II Repeated Measures MANOVA Tests: Pillai test statistic
+                            Df test stat approx F num Df den Df  Pr(>F)    
+(Intercept)                  1     0.970      318      1     10 6.5e-09 ***
+treatment                    2     0.481        5      2     10 0.03769 *  
+gender                       1     0.204        3      1     10 0.14097    
+treatment:gender             2     0.364        3      2     10 0.10447    
+phase                        1     0.851       26      2      9 0.00019 ***
+treatment:phase              2     0.685        3      4     20 0.06674 .  
+gender:phase                 1     0.043        0      2      9 0.82000    
+treatment:gender:phase       2     0.311        1      4     20 0.47215    
+hour                         1     0.935       25      4      7 0.00030 ***
+treatment:hour               2     0.301        0      8     16 0.92952    
+gender:hour                  1     0.293        1      4      7 0.60237    
+treatment:gender:hour        2     0.570        1      8     16 0.61319    
+phase:hour                   1     0.550        0      8      3 0.83245    
+treatment:phase:hour         2     0.664        0     16      8 0.99144    
+gender:phase:hour            1     0.695        1      8      3 0.62021    
+treatment:gender:phase:hour  2     0.793        0     16      8 0.97237    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+</div>
+<div class='input'>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/summary'>summary</a></span><span class="keyword">(</span><span class="symbol">av.ok</span><span class="keyword">,</span> <span class="argument">multivariate</span><span class="argument">=</span><span class="number">FALSE</span><span class="keyword">)</span></div>
+<div class='output'>
+Univariate Type II Repeated-Measures ANOVA Assuming Sphericity
+
+                              SS num Df Error SS den Df      F  Pr(>F)    
+(Intercept)                 7260      1    228.1     10 318.34 6.5e-09 ***
+treatment                    211      2    228.1     10   4.63  0.0377 *  
+gender                        58      1    228.1     10   2.56  0.1410    
+treatment:gender             130      2    228.1     10   2.86  0.1045    
+phase                        168      2     80.3     20  20.87 1.3e-05 ***
+treatment:phase               79      4     80.3     20   4.90  0.0064 ** 
+gender:phase                   2      2     80.3     20   0.21  0.8141    
+treatment:gender:phase        10      4     80.3     20   0.64  0.6424    
+hour                         106      4     62.5     40  17.01 3.2e-08 ***
+treatment:hour                 1      8     62.5     40   0.09  0.9993    
+gender:hour                    3      4     62.5     40   0.41  0.8008    
+treatment:gender:hour          8      8     62.5     40   0.62  0.7555    
+phase:hour                    11      8     96.2     80   1.15  0.3383    
+treatment:phase:hour           6     16     96.2     80   0.33  0.9928    
+gender:phase:hour              7      8     96.2     80   0.69  0.6991    
+treatment:gender:phase:hour   14     16     96.2     80   0.74  0.7496    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+
+Mauchly Tests for Sphericity
+
+                            Test statistic p-value
+phase                                0.749   0.273
+treatment:phase                      0.749   0.273
+gender:phase                         0.749   0.273
+treatment:gender:phase               0.749   0.273
+hour                                 0.066   0.008
+treatment:hour                       0.066   0.008
+gender:hour                          0.066   0.008
+treatment:gender:hour                0.066   0.008
+phase:hour                           0.005   0.449
+treatment:phase:hour                 0.005   0.449
+gender:phase:hour                    0.005   0.449
+treatment:gender:phase:hour          0.005   0.449
+
+
+Greenhouse-Geisser and Huynh-Feldt Corrections
+ for Departure from Sphericity
+
+                            GG eps Pr(>F[GG])    
+phase                         0.80    7.3e-05 ***
+treatment:phase               0.80      0.012 *  
+gender:phase                  0.80      0.766    
+treatment:gender:phase        0.80      0.612    
+hour                          0.46    8.7e-05 ***
+treatment:hour                0.46      0.979    
+gender:hour                   0.46      0.653    
+treatment:gender:hour         0.46      0.641    
+phase:hour                    0.45      0.346    
+treatment:phase:hour          0.45      0.940    
+gender:phase:hour             0.45      0.589    
+treatment:gender:phase:hour   0.45      0.646    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+                            HF eps Pr(>F[HF])    
+phase                        0.928    2.4e-05 ***
+treatment:phase              0.928     0.0081 ** 
+gender:phase                 0.928     0.7984    
+treatment:gender:phase       0.928     0.6320    
+hour                         0.559    2.0e-05 ***
+treatment:hour               0.559     0.9888    
+gender:hour                  0.559     0.6912    
+treatment:gender:hour        0.559     0.6693    
+phase:hour                   0.733     0.3440    
+treatment:phase:hour         0.733     0.9805    
+gender:phase:hour            0.733     0.6552    
+treatment:gender:phase:hour  0.733     0.7080    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+</div>
+<div class='input'>
+<span class="comment">## A "doubly multivariate" design with two  distinct repeated-measures variables</span>
+<span class="comment">## (example courtesy of Michael Friendly)</span>
+<span class="comment">## See ?WeightLoss for a description of the dataset.</span>
+
+<span class="symbol">imatrix</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/matrix'>matrix</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span>
+        <span class="number">1</span><span class="keyword">,</span><span class="number">0</span><span class="keyword">,</span><span class="keyword">-</span><span class="number">1</span><span class="keyword">,</span> <span class="number">1</span><span class="keyword">,</span> <span class="number">0</span><span class="keyword">,</span> <span class="number">0</span><span class="keyword">,</span>
+        <span class="number">1</span><span class="keyword">,</span><span class="number">0</span><span class="keyword">,</span> <span class="number">0</span><span class="keyword">,</span><span class="keyword">-</span><span class="number">2</span><span class="keyword">,</span> <span class="number">0</span><span class="keyword">,</span> <span class="number">0</span><span class="keyword">,</span>
+        <span class="number">1</span><span class="keyword">,</span><span class="number">0</span><span class="keyword">,</span> <span class="number">1</span><span class="keyword">,</span> <span class="number">1</span><span class="keyword">,</span> <span class="number">0</span><span class="keyword">,</span> <span class="number">0</span><span class="keyword">,</span>
+        <span class="number">0</span><span class="keyword">,</span><span class="number">1</span><span class="keyword">,</span> <span class="number">0</span><span class="keyword">,</span> <span class="number">0</span><span class="keyword">,</span><span class="keyword">-</span><span class="number">1</span><span class="keyword">,</span> <span class="number">1</span><span class="keyword">,</span>
+        <span class="number">0</span><span class="keyword">,</span><span class="number">1</span><span class="keyword">,</span> <span class="number">0</span><span class="keyword">,</span> <span class="number">0</span><span class="keyword">,</span> <span class="number">0</span><span class="keyword">,</span><span class="keyword">-</span><span class="number">2</span><span class="keyword">,</span>
+        <span class="number">0</span><span class="keyword">,</span><span class="number">1</span><span class="keyword">,</span> <span class="number">0</span><span class="keyword">,</span> <span class="number">0</span><span class="keyword">,</span> <span class="number">1</span><span class="keyword">,</span> <span class="number">1</span><span class="keyword">)</span><span class="keyword">,</span> <span class="number">6</span><span class="keyword">,</span> <span class="number">6</span><span class="keyword">,</span> <span class="argument">byrow</span><span class="argument">=</span><span class="number">TRUE</span><span class="keyword">)</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/colnames'>colnames</a></span><span class="keyword">(</span><span class="symbol">imatrix</span><span class="keyword">)</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"WL"</span><span class="keyword">,</span> <span class="string">"SE"</span><span class="keyword">,</span> <span class="string">"WL.L"</span><span class="keyword">,</span> <span class="string">"WL.Q"</span><span class="keyword">,</span> <span class="string">"SE.L"</span><span class="keyword">,</span> <span class="string">"SE.Q"</span><span class="keyword">)</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/colnames'>rownames</a></span><span class="keyword">(</span><span class="symbol">imatrix</span><span class="keyword">)</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/colnames'>colnames</a></span><span class="keyword">(</span><span class="symbol">WeightLoss</span><span class="keyword">)</span><span class="keyword">[</span><span class="keyword">-</span><span class="number">1</span><span class="keyword">]</span>
+<span class="keyword">(</span><span class="symbol">imatrix</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/list'>list</a></span><span class="keyword">(</span><span class="argument">measure</span><span class="argument">=</span><span class="symbol">imatrix</span><span class="keyword">[</span><span class="keyword">,</span><span class="number">1</span><span class="keyword">:</span><span class="number">2</span><span class="keyword">]</span><span class="keyword">,</span> <span class="argument">month</span><span class="argument">=</span><span class="symbol">imatrix</span><span class="keyword">[</span><span class="keyword">,</span><span class="number">3</span><span class="keyword">:</span><span class="number">6</span><span class="keyword">]</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<div class='output'>$measure
+    WL SE
+wl1  1  0
+wl2  1  0
+wl3  1  0
+se1  0  1
+se2  0  1
+se3  0  1
+
+$month
+    WL.L WL.Q SE.L SE.Q
+wl1   -1    1    0    0
+wl2    0   -2    0    0
+wl3    1    1    0    0
+se1    0    0   -1    1
+se2    0    0    0   -2
+se3    0    0    1    1
+
+</div>
+<div class='input'><span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/contrasts'>contrasts</a></span><span class="keyword">(</span><span class="symbol">WeightLoss</span><span class="keyword">$</span><span class="symbol">group</span><span class="keyword">)</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/matrix'>matrix</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="keyword">-</span><span class="number">2</span><span class="keyword">,</span><span class="number">1</span><span class="keyword">,</span><span class="number">1</span><span class="keyword">,</span> <span class="number">0</span><span class="keyword">,</span><span class="keyword">-</span><span class="number">1</span><span class="keyword">,</span><span class="number">1</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">ncol</span><span class="argument">=</span><span class="number">2</span><span class="keyword">)</span>
+<span class="keyword">(</span><span class="symbol">wl.mod</span><span class="assignement">&lt;-</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/lm'>lm</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/cbind'>cbind</a></span><span class="keyword">(</span><span class="symbol">wl1</span><span class="keyword">,</span> <span class="symbol">wl2</span><span class="keyword">,</span> <span class="symbol">wl3</span><span class="keyword">,</span> <span class="symbol">se1</span><span class="keyword">,</span> <span class="symbol">se2</span><span class="keyword">,</span> <span class="symbol">se3</span><span class="keyword">)</span><span class="keyword">~</span><span class="symbol">group</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">WeightLoss</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<div class='output'>
+Call:
+lm(formula = cbind(wl1, wl2, wl3, se1, se2, se3) ~ group, data = WeightLoss)
+
+Coefficients:
+             wl1      wl2      wl3      se1      se2      se3    
+(Intercept)   5.3444   4.4500   2.1778  14.9278  13.7944  16.2833
+group1        0.4222   0.5583   0.0472   0.0889  -0.2694   0.6000
+group2        0.4333   1.0917  -0.0250   0.1833  -0.2250   0.7167
+
+</div>
+<div class='input'><span class="functioncall"><a href='Anova.html'>Anova</a></span><span class="keyword">(</span><span class="symbol">wl.mod</span><span class="keyword">,</span> <span class="argument">imatrix</span><span class="argument">=</span><span class="symbol">imatrix</span><span class="keyword">,</span> <span class="argument">test</span><span class="argument">=</span><span class="string">"Roy"</span><span class="keyword">)</span></div>
+<div class='output'>
+Type II Repeated Measures MANOVA Tests: Roy test statistic
+              Df test stat approx F num Df den Df  Pr(>F)    
+measure        1      86.2     1293      2     30 < 2e-16 ***
+group:measure  2       0.4        6      2     31  0.0089 ** 
+month          1       9.4       66      4     28 7.8e-14 ***
+group:month    2       1.8       13      4     29 3.9e-06 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+</div>
+<div class='input'>
+## mixed-effects models examples:
+
+## <strong>Not run</strong>: 
+# 	library(nlme)
+# 	example(lme)
+# 	Anova(fm2)
+# ## <strong>End(Not run)</strong>
+
+## <strong>Not run</strong>: 
+# 	library(lme4)
+# 	example(lmer)
+# 	Anova(gm1)
+# ## <strong>End(Not run)</strong>
+
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>Anova</li><li>Anova.lm</li><li>Anova.lme</li><li>Anova.aov</li><li>Anova.glm</li><li>Anova.multinom</li><li>Anova.polr</li><li>Anova.mer</li><li>Anova.mlm</li><li>Anova.manova</li><li>Manova</li><li>Manova.mlm</li><li>print.Anova.mlm</li><li>summary.Anova.mlm</li><li>Anova.coxph</li><li>Anova.svyglm</li><li>Anova.default</li>
+    </ul>
+    <ul>
+      <li>htest</li><li>models</li><li>regression</li>
+    </ul> -->
+      
+    <h2>See also</h2>
+     <code><a href='linearHypothesis.html'>linearHypothesis</a></code>, <code><a href='http://www.inside-r.org/r-doc/stats/anova'>anova</a></code>
+<code><a href='http://www.inside-r.org/r-doc/stats/anova.lm'>anova.lm</a></code>, <code><a href='http://www.inside-r.org/r-doc/stats/anova.glm'>anova.glm</a></code>, 
+<code><a href='http://www.inside-r.org/r-doc/stats/anova.mlm'>anova.mlm</a></code>, <code><a href='http://www.inside-r.org/r-doc/survival/anova.coxph'>anova.coxph</a></code>, <code>link[survey]{svyglm}</code>.
+    
+    <h2>Author</h2>
+    John Fox <a href='mailto:jfox@mcmaster.ca'>jfox@mcmaster.ca</a>
+    
+  </div>
+</div>

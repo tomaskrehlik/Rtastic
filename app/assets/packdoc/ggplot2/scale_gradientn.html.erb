@@ -1,0 +1,115 @@
+      <h1>Smooth colour gradient between n colours</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='scale_gradientn.html'>scale_colour_gradientn</a></span><span class="keyword">(</span><span class="symbol">...</span><span class="keyword">,</span> <span class="symbol">colours</span><span class="keyword">,</span> <span class="argument">values</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">space</span> <span class="argument">=</span> <span class="string">"Lab"</span><span class="keyword">,</span> <span class="argument">na.value</span> <span class="argument">=</span> <span class="string">"grey50"</span><span class="keyword">,</span>
+  <span class="argument">guide</span> <span class="argument">=</span> <span class="string">"colourbar"</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='scale_gradientn.html'>scale_fill_gradientn</a></span><span class="keyword">(</span><span class="symbol">...</span><span class="keyword">,</span> <span class="symbol">colours</span><span class="keyword">,</span> <span class="argument">values</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">space</span> <span class="argument">=</span> <span class="string">"Lab"</span><span class="keyword">,</span> <span class="argument">na.value</span> <span class="argument">=</span> <span class="string">"grey50"</span><span class="keyword">,</span>
+      <span class="argument">guide</span> <span class="argument">=</span> <span class="string">"colourbar"</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='scale_gradientn.html'>scale_color_gradientn</a></span><span class="keyword">(</span><span class="symbol">...</span><span class="keyword">,</span> <span class="symbol">colours</span><span class="keyword">,</span> <span class="argument">values</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">space</span> <span class="argument">=</span> <span class="string">"Lab"</span><span class="keyword">,</span> <span class="argument">na.value</span> <span class="argument">=</span> <span class="string">"grey50"</span><span class="keyword">,</span>
+      <span class="argument">guide</span> <span class="argument">=</span> <span class="string">"colourbar"</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>guide</dt>
+      <dd>Type of legend. Use <code>"colourbar"</code> for
+  continuous colour bar, or <code>"legend"</code> for discrete
+  colour legend.</dd>
+      <dt>colours</dt>
+      <dd>vector of colours</dd>
+      <dt>values</dt>
+      <dd>if colours should not be evenly positioned
+  along the gradient this vector gives the position
+  (between 0 and 1) for each colour in the <code>colours</code>
+  vector. See <code><a href='http://www.inside-r.org/r-doc/scales/rescale'>rescale</a></code> for a convience
+  function to map an arbitrary range to between 0 and 1.</dd>
+      <dt>space</dt>
+      <dd>colour space in which to calculate gradient.
+  "Lab" usually best unless gradient goes through white.</dd>
+      <dt>...</dt>
+      <dd>Other arguments passed on to
+  <code><a href='discrete_scale.html'>discrete_scale</a></code> to control name, limits,
+  breaks, labels and so forth.</dd>
+      <dt>na.value</dt>
+      <dd>Colour to use for missing values</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Smooth colour gradient between n colours</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class="comment"># scale_colour_gradient make it easy to use existing colour palettes</span>
+
+<span class="symbol">dsub</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/subset'>subset</a></span><span class="keyword">(</span><span class="symbol">diamonds</span><span class="keyword">,</span> <span class="symbol">x</span> <span class="keyword">&gt;</span> <span class="number">5</span> <span class="keyword">&amp;</span> <span class="symbol">x</span> <span class="keyword">&lt;</span> <span class="number">6</span> <span class="keyword">&amp;</span> <span class="symbol">y</span> <span class="keyword">&gt;</span> <span class="number">5</span> <span class="keyword">&amp;</span> <span class="symbol">y</span> <span class="keyword">&lt;</span> <span class="number">6</span><span class="keyword">)</span>
+<span class="symbol">dsub</span><span class="keyword">$</span><span class="symbol">diff</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/with'>with</a></span><span class="keyword">(</span><span class="symbol">dsub</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/MathFun'>sqrt</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/MathFun'>abs</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">-</span><span class="symbol">y</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">*</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/sign'>sign</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">-</span><span class="symbol">y</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="keyword">(</span><span class="symbol">d</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">y</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">dsub</span><span class="keyword">,</span> <span class="argument">colour</span><span class="argument">=</span><span class="symbol">diff</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_gradientn.html-2.png' %></p>
+<div class='input'>
+<span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_gradientn.html'>scale_colour_gradientn</a></span><span class="keyword">(</span><span class="argument">colours</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/palettes'>rainbow</a></span><span class="keyword">(</span><span class="number">7</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_gradientn.html-4.png' %></p>
+<div class='input'><span class="symbol">breaks</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="keyword">-</span><span class="number">0.5</span><span class="keyword">,</span> <span class="number">0</span><span class="keyword">,</span> <span class="number">0.5</span><span class="keyword">)</span>
+<span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_gradientn.html'>scale_colour_gradientn</a></span><span class="keyword">(</span><span class="argument">colours</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/palettes'>rainbow</a></span><span class="keyword">(</span><span class="number">7</span><span class="keyword">)</span><span class="keyword">,</span>
+  <span class="argument">breaks</span> <span class="argument">=</span> <span class="symbol">breaks</span><span class="keyword">,</span> <span class="argument">labels</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/format'>format</a></span><span class="keyword">(</span><span class="symbol">breaks</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_gradientn.html-6.png' %></p>
+<div class='input'>
+<span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_gradientn.html'>scale_colour_gradientn</a></span><span class="keyword">(</span><span class="argument">colours</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/palettes'>topo.colors</a></span><span class="keyword">(</span><span class="number">10</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_gradientn.html-8.png' %></p>
+<div class='input'><span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_gradientn.html'>scale_colour_gradientn</a></span><span class="keyword">(</span><span class="argument">colours</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/palettes'>terrain.colors</a></span><span class="keyword">(</span><span class="number">10</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_gradientn.html-10.png' %></p>
+<div class='input'>
+<span class="comment"># You can force them to be symmetric by supplying a vector of</span>
+<span class="comment"># values, and turning rescaling off</span>
+<span class="symbol">max_val</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Extremes'>max</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/MathFun'>abs</a></span><span class="keyword">(</span><span class="symbol">dsub</span><span class="keyword">$</span><span class="symbol">diff</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="symbol">values</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/seq'>seq</a></span><span class="keyword">(</span><span class="keyword">-</span><span class="symbol">max_val</span><span class="keyword">,</span> <span class="symbol">max_val</span><span class="keyword">,</span> <span class="argument">length</span> <span class="argument">=</span> <span class="number">11</span><span class="keyword">)</span>
+
+<span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_gradientn.html'>scale_colour_gradientn</a></span><span class="keyword">(</span><span class="argument">colours</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/palettes'>topo.colors</a></span><span class="keyword">(</span><span class="number">10</span><span class="keyword">)</span><span class="keyword">,</span>
+  <span class="argument">values</span> <span class="argument">=</span> <span class="symbol">values</span><span class="keyword">,</span> <span class="argument">rescaler</span> <span class="argument">=</span> <span class="keyword">function</span><span class="keyword">(</span><span class="formalargs">x</span><span class="keyword">,</span> <span class="formalargs">...</span><span class="keyword">)</span> <span class="symbol">x</span><span class="keyword">,</span> <span class="argument">oob</span> <span class="argument">=</span> <span class="symbol">identity</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_gradientn.html-12.png' %></p>
+<div class='input'><span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_gradientn.html'>scale_colour_gradientn</a></span><span class="keyword">(</span><span class="argument">colours</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/palettes'>terrain.colors</a></span><span class="keyword">(</span><span class="number">10</span><span class="keyword">)</span><span class="keyword">,</span>
+  <span class="argument">values</span> <span class="argument">=</span> <span class="symbol">values</span><span class="keyword">,</span> <span class="argument">rescaler</span> <span class="argument">=</span> <span class="keyword">function</span><span class="keyword">(</span><span class="formalargs">x</span><span class="keyword">,</span> <span class="formalargs">...</span><span class="keyword">)</span> <span class="symbol">x</span><span class="keyword">,</span> <span class="argument">oob</span> <span class="argument">=</span> <span class="symbol">identity</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_gradientn.html-14.png' %></p>
+<div class='input'></div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>scale_color_gradientn</li><li>scale_colour_gradientn</li><li>scale_fill_gradientn</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+  Other colour scales: <code><a href='scale_brewer.html'>scale_color_brewer</a></code>,
+  <code><a href='scale_gradient.html'>scale_color_continuous</a></code>,
+  <code><a href='scale_hue.html'>scale_color_discrete</a></code>,
+  <code><a href='scale_gradient.html'>scale_color_gradient</a></code>,
+  <code><a href='scale_gradient2.html'>scale_color_gradient2</a></code>,
+  <code><a href='scale_grey.html'>scale_color_grey</a></code>,
+  <code><a href='scale_hue.html'>scale_color_hue</a></code>,
+  <code><a href='scale_brewer.html'>scale_colour_brewer</a></code>,
+  <code><a href='scale_gradient.html'>scale_colour_continuous</a></code>,
+  <code><a href='scale_hue.html'>scale_colour_discrete</a></code>,
+  <code><a href='scale_gradient.html'>scale_colour_gradient</a></code>,
+  <code><a href='scale_gradient2.html'>scale_colour_gradient2</a></code>,
+  <code><a href='scale_grey.html'>scale_colour_grey</a></code>,
+  <code><a href='scale_hue.html'>scale_colour_hue</a></code>,
+  <code><a href='scale_brewer.html'>scale_fill_brewer</a></code>,
+  <code><a href='scale_gradient.html'>scale_fill_continuous</a></code>,
+  <code><a href='scale_hue.html'>scale_fill_discrete</a></code>,
+  <code><a href='scale_gradient.html'>scale_fill_gradient</a></code>,
+  <code><a href='scale_gradient2.html'>scale_fill_gradient2</a></code>,
+  <code><a href='scale_grey.html'>scale_fill_grey</a></code>,
+  <code><a href='scale_hue.html'>scale_fill_hue</a></code>
+
+        
+  </div>
+</div>

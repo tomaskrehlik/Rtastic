@@ -1,0 +1,128 @@
+      <h1>Bin data.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='stat_bin.html'>stat_bin</a></span><span class="keyword">(</span><span class="argument">mapping</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">geom</span> <span class="argument">=</span> <span class="string">"bar"</span><span class="keyword">,</span> <span class="argument">position</span> <span class="argument">=</span> <span class="string">"stack"</span><span class="keyword">,</span> <span class="argument">width</span> <span class="argument">=</span> <span class="number">0.9</span><span class="keyword">,</span>
+  <span class="argument">drop</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">,</span> <span class="argument">right</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">,</span> <span class="argument">binwidth</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">origin</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">breaks</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>binwidth</dt>
+      <dd>Bin width to use. Defaults to 1/30 of the
+  range of the data</dd>
+      <dt>breaks</dt>
+      <dd>Actual breaks to use.  Overrides bin width
+  and origin</dd>
+      <dt>origin</dt>
+      <dd>Origin of first bin</dd>
+      <dt>width</dt>
+      <dd>Width of bars when used with categorical
+  data</dd>
+      <dt>right</dt>
+      <dd>If <code>TRUE</code>, right-closed, left-open, if
+  <code>FALSE</code>,</dd>
+      <dt>drop</dt>
+      <dd>If TRUE, remove all bins with zero counts</dd>
+      <dt>mapping</dt>
+      <dd>The aesthetic mapping, usually constructed
+  with <code><a href='aes.html'>aes</a></code> or <code><a href='aes_string.html'>aes_string</a></code>. Only
+  needs to be set at the layer level if you are overriding
+  the plot defaults.</dd>
+      <dt>data</dt>
+      <dd>A layer specific dataset - only needed if you
+  want to override the plot defaults.</dd>
+      <dt>geom</dt>
+      <dd>The geometric object to use display the data</dd>
+      <dt>position</dt>
+      <dd>The position adjustment to use for
+  overlappling points on this layer</dd>
+      <dt>...</dt>
+      <dd>other arguments passed on to
+  <code><a href='layer.html'>layer</a></code>. This can include aesthetics whose
+  values you want to set, not map. See <code><a href='layer.html'>layer</a></code>
+  for more details.</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>New data frame with additional columns:
+  countnumber of points in bin
+  densitydensity of points in bin, scaled to
+  integrate to 1 ncountcount, scaled to maximum of
+  1 ndensitydensity, scaled to maximum of 1</p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Missing values are currently silently dropped.</p>
+  
+    </div>
+
+    <div class="Aesthetics">
+      <h2>Aesthetics</h2>
+      
+      <p><code>stat_bin</code> understands the following aesthetics (required aesthetics are in bold):</p>
+  
+      <p><ul>
+<li> <code><strong>x</strong></code>
+  </li>
+<li> <code>y</code>
+</li>
+</ul></p>
+  
+      <p></p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class="symbol">simple</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/data.frame'>data.frame</a></span><span class="keyword">(</span><span class="argument">x</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/rep'>rep</a></span><span class="keyword">(</span><span class="number">1</span><span class="keyword">:</span><span class="number">10</span><span class="keyword">,</span> <span class="argument">each</span> <span class="argument">=</span> <span class="number">2</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="symbol">base</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">simple</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="comment"># By default, right = TRUE, and intervals are of the form (a, b]</span>
+<span class="symbol">base</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_bin.html'>stat_bin</a></span><span class="keyword">(</span><span class="argument">binwidth</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span> <span class="argument">drop</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">,</span> <span class="argument">right</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="argument">col</span> <span class="argument">=</span> <span class="string">"black"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_bin.html-2.png' %></p>
+<div class='input'><span class="comment"># If right = FALSE intervals are of the form [a, b)</span>
+<span class="symbol">base</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_bin.html'>stat_bin</a></span><span class="keyword">(</span><span class="argument">binwidth</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span> <span class="argument">drop</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">,</span> <span class="argument">right</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">,</span> <span class="argument">col</span> <span class="argument">=</span> <span class="string">"black"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_bin.html-4.png' %></p>
+<div class='input'>
+<span class="symbol">m</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">movies</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">x</span><span class="argument">=</span><span class="symbol">rating</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="symbol">m</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_bin.html'>stat_bin</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<strong class='message'>stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.</strong>
+<p><%= image_tag 'ggplot2/stat_bin.html-7.png' %></p>
+<div class='input'><span class="symbol">m</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_bin.html'>stat_bin</a></span><span class="keyword">(</span><span class="argument">binwidth</span><span class="argument">=</span><span class="number">0.1</span><span class="keyword">)</span></div>
+<strong class='warning'>Warning message:
+position_stack requires constant width: output may be incorrect</strong>
+<p><%= image_tag 'ggplot2/stat_bin.html-10.png' %></p>
+<div class='input'><span class="symbol">m</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_bin.html'>stat_bin</a></span><span class="keyword">(</span><span class="argument">breaks</span><span class="argument">=</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/seq'>seq</a></span><span class="keyword">(</span><span class="number">4</span><span class="keyword">,</span><span class="number">6</span><span class="keyword">,</span> <span class="argument">by</span><span class="argument">=</span><span class="number">0.1</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_bin.html-12.png' %></p>
+<div class='input'><span class="comment"># See geom_histogram for more histogram examples</span>
+
+<span class="comment"># To create a unit area histogram, use aes(y = ..density..)</span>
+<span class="keyword">(</span><span class="symbol">linehist</span> <span class="assignement">&lt;-</span> <span class="symbol">m</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_bin.html'>stat_bin</a></span><span class="keyword">(</span><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">y</span> <span class="argument">=</span> <span class="symbol">..density..</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">binwidth</span><span class="argument">=</span><span class="number">0.1</span><span class="keyword">,</span>
+  <span class="argument">geom</span><span class="argument">=</span><span class="string">"line"</span><span class="keyword">,</span> <span class="argument">position</span><span class="argument">=</span><span class="string">"identity"</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_bin.html-14.png' %></p>
+<div class='input'><span class="symbol">linehist</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_density.html'>stat_density</a></span><span class="keyword">(</span><span class="argument">colour</span><span class="argument">=</span><span class="string">"blue"</span><span class="keyword">,</span> <span class="argument">fill</span><span class="argument">=</span><span class="number">NA</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_bin.html-16.png' %></p>
+<div class='input'>
+<span class="comment"># Also works with categorical variables</span>
+<span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">movies</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">x</span><span class="argument">=</span><span class="symbol">mpaa</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_bin.html'>stat_bin</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_bin.html-18.png' %></p>
+<div class='input'><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">mpaa</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">movies</span><span class="keyword">,</span> <span class="argument">stat</span><span class="argument">=</span><span class="string">"bin"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_bin.html-20.png' %></p>
+<div class='input'></div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>stat_bin</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>

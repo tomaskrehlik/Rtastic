@@ -1,0 +1,149 @@
+      <h1>Regression Leverage Plots</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='leveragePlots.html'>leveragePlots</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="argument">terms</span> <span class="argument">=</span> <span class="keyword">~</span><span class="symbol">.</span><span class="keyword">,</span> <span class="argument">layout</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="symbol">ask</span><span class="keyword">,</span> <span class="symbol">main</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='leveragePlots.html'>leveragePlot</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='leveragePlots.html'>leveragePlot</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="symbol">term.name</span><span class="keyword">,</span> <span class="argument">id.method</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/list'>list</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/MathFun'>abs</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/residuals'>residuals</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="argument">type</span> <span class="argument">=</span> <span class="string">"pearson"</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span>
+  <span class="string">"x"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">labels</span><span class="keyword">,</span> <span class="argument">id.n</span> <span class="argument">=</span> <span class="keyword">if</span> <span class="keyword">(</span><span class="symbol">id.method</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">]</span> == <span class="string">"identify"</span><span class="keyword">)</span> <span class="number">Inf</span> <span class="keyword">else</span> <span class="number">0</span><span class="keyword">,</span> <span class="argument">id.cex</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span>
+      <span class="argument">id.col</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/palette'>palette</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">]</span><span class="keyword">,</span> <span class="argument">col</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/palette'>palette</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">]</span><span class="keyword">,</span> <span class="argument">col.lines</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/palette'>palette</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">2</span><span class="keyword">]</span><span class="keyword">,</span> <span class="argument">lwd</span> <span class="argument">=</span> <span class="number">2</span><span class="keyword">,</span>
+      <span class="symbol">xlab</span><span class="keyword">,</span> <span class="symbol">ylab</span><span class="keyword">,</span> <span class="argument">main</span> <span class="argument">=</span> <span class="string">"Leverage Plot"</span><span class="keyword">,</span> <span class="argument">grid</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='leveragePlots.html'>leveragePlot</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>model</dt>
+      <dd>model object produced by <code>lm</code>
+</dd>
+      <dt>terms</dt>
+      <dd> A one-sided formula that specifies a subset of the predictors. 
+One added-variable plot is drawn for each term.  The default
+<code>~.</code> is to plot against all numeric predictors.  For example, the
+specification <code>terms = ~ . - X3</code> would plot against all predictors
+except for <code>X3</code>.  If this argument is a quoted name of one of the predictors, the 
+added-variable plot is drawn for that predictor only.
+</dd>
+      <dt>layout</dt>
+      <dd> 
+If set to a value like <code>c(1, 1)</code> or <code>c(4, 3)</code>, the layout
+of the graph will have this many rows and columns.  If not set, the program
+will select an appropriate layout.  If the number of graphs exceed nine, you 
+must select the layout yourself, or you will get a maximum of nine per page.
+If <code>layout=NA</code>, the function does not set the layout and the user can
+use the <code>par</code> function to control the layout, for example to have 
+plots from two models in the same graphics window.
+</dd>
+      <dt>ask</dt>
+      <dd>if <code>TRUE</code>, a menu is provided in the R Console for the
+user to select the term(s) to plot.
+</dd>
+      <dt>xlab, ylab</dt>
+      <dd>axis labels; if missing, labels will be supplied.
+</dd>
+      <dt>main</dt>
+      <dd>title for plot; if missing, a title will be supplied.
+</dd>
+      <dt>...</dt>
+      <dd>arguments passed down to method functions.</dd>
+      <dt>term.name</dt>
+      <dd>Quoted name of term in the model to be plotted; this argument 
+is omitted for <code>leveragePlots</code>.</dd>
+      <dt>id.method,labels,id.n,id.cex,id.col</dt>
+      <dd>Arguments for the labelling of
+    points.  The default is <code>id.n=0</code> for labeling no points.  See
+    <code><a href='showLabels.html'>showLabels</a></code> for details of these arguments.
+</dd>
+      <dt>col</dt>
+      <dd>color(s) of points</dd>
+      <dt>col.lines</dt>
+      <dd>color of the fitted line
+</dd>
+      <dt>lwd</dt>
+      <dd>line width; default is <code>2</code> (see <code><a href='http://www.inside-r.org/r-doc/graphics/par'>par</a></code>).
+</dd>
+      <dt>grid</dt>
+      <dd>If TRUE, the default, a light-gray background grid is put on the
+graph</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>These functions display a generalization, due to Sall (1990) and
+  Cook and Weisberg (1991), 
+  of added-variable plots to multiple-df terms in a linear model. 
+  When a term has just 1 df, the leverage plot is a rescaled version
+  of the usual added-variable (partial-regression) plot.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p>The function intended for direct use is <code>leveragePlots</code>.</p>
+  
+      <p>The model can contain factors and interactions. A leverage plot can be
+  drawn for each term in the model, including the constant.</p>
+  
+      <p><code>leveragePlot.glm</code> is a dummy function, which generates an error message.</p>
+  
+    </div>
+
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p><code>NULL</code>. These functions are used for their side effect: producing
+  plots.</p>
+  
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+      
+      <p>Cook, R. D. and Weisberg, S. (1991).
+Added Variable Plots in Linear
+Regression. In Stahel, W. and Weisberg, S. (eds.),
+<em>Directions in Robust Statistics and Diagnostics</em>.
+Springer, 47-60.</p>
+  
+      <p>Fox, J. (2008)
+  <em>Applied Regression Analysis and Generalized Linear Models</em>,
+  Second Edition. Sage.</p>
+  
+      <p>Fox, J. and Weisberg, S. (2011) 
+  <em>An R Companion to Applied Regression</em>, Second Edition, Sage.</p>
+  
+      <p>Sall, J. (1990)
+  Leverage plots for general linear hypotheses.
+  <em>American Statistician</em> <b>44</b>, 308--315.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='leveragePlots.html'>leveragePlots</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/lm'>lm</a></span><span class="keyword">(</span><span class="symbol">prestige</span><span class="keyword">~</span><span class="keyword">(</span><span class="symbol">income</span><span class="keyword">+</span><span class="symbol">education</span><span class="keyword">)</span><span class="keyword">*</span><span class="symbol">type</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">Duncan</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><img src='leveragePlots-2.png' alt='' width='400' height='400' /></p>
+<p><img src='leveragePlots-3.png' alt='' width='400' height='400' /></p>
+<p><img src='leveragePlots-4.png' alt='' width='400' height='400' /></p>
+<p><img src='leveragePlots-5.png' alt='' width='400' height='400' /></p>
+<p><img src='leveragePlots-6.png' alt='' width='400' height='400' /></p></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>leveragePlots</li><li>leveragePlot</li><li>leveragePlot.lm</li><li>leveragePlot.glm</li>
+    </ul>
+    <ul>
+      <li>hplot</li><li>regression</li>
+    </ul> -->
+      
+    <h2>See also</h2>
+    <code><a href='avPlots.html'>avPlots</a></code>
+    
+    <h2>Author</h2>
+    John Fox <a href='mailto:jfox@mcmaster.ca'>jfox@mcmaster.ca</a>
+    
+  </div>
+</div>

@@ -1,0 +1,102 @@
+      <h1>Extract the Fixed Effects</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='fixef.plm.html'>fixef</a></span><span class="keyword">(</span><span class="symbol">object</span><span class="keyword">,</span> <span class="argument">effect</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">type</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"level"</span><span class="keyword">,</span> <span class="string">"dfirst"</span><span class="keyword">,</span> <span class="string">"dmean"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/print'>print</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="argument">digits</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Extremes'>max</a></span><span class="keyword">(</span><span class="number">3</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/options'>getOption</a></span><span class="keyword">(</span><span class="string">"digits"</span><span class="keyword">)</span> <span class="keyword">-</span> <span class="number">2</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">width</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/options'>getOption</a></span><span class="keyword">(</span><span class="string">"width"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/summary'>summary</a></span><span class="keyword">(</span><span class="symbol">object</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/print'>print</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="argument">digits</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Extremes'>max</a></span><span class="keyword">(</span><span class="number">3</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/options'>getOption</a></span><span class="keyword">(</span><span class="string">"digits"</span><span class="keyword">)</span> <span class="keyword">-</span> <span class="number">2</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">width</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/options'>getOption</a></span><span class="keyword">(</span><span class="string">"width"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>x,object</dt>
+      <dd>an object of class <code>"plm"</code>, an object
+    of class <code>"fixef"</code> for the <code>print</code> and the <code>summary</code> method,</dd>
+      <dt>effect</dt>
+      <dd>one of <code>"individual"</code> or <code>"time"</code>, only
+    relevant in case of two--ways effects models,</dd>
+      <dt>type</dt>
+      <dd>one of <code>level</code>, <code>dmean</code> or <code>dfirst</code>.</dd>
+      <dt>digits</dt>
+      <dd>digits,</dd>
+      <dt>width</dt>
+      <dd>the maximum length of the lines in the print output,</dd>
+      <dt>...</dt>
+      <dd>further arguments.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>This function extracts the fixed effects from a <code>plm</code> object.</p>
+  
+    </div>
+
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>An object of class <code>"fixef"</code>. It is a numeric vector containing the fixed effects with two attributes: <code>se</code> which contains the standard errors and <code>intercept</code> which is the overall intercept. With the <code>type</code> argument, the fixed effects may be returned in levels, as deviations from the overall mean or as deviations from the first value of the index.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p>The summary method prints the effects in deviation from the overallintercept, the standard error and the t--values.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='http://www.inside-r.org/r-doc/utils/data'>data</a></span><span class="keyword">(</span><span class="string">"Grunfeld"</span><span class="keyword">,</span> <span class="argument">package</span> <span class="argument">=</span> <span class="string">"plm"</span><span class="keyword">)</span>
+<span class="symbol">gi</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='plm.html'>plm</a></span><span class="keyword">(</span><span class="symbol">inv</span> <span class="keyword">~</span> <span class="symbol">value</span> <span class="keyword">+</span> <span class="symbol">capital</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">Grunfeld</span><span class="keyword">,</span> <span class="argument">model</span> <span class="argument">=</span> <span class="string">"within"</span><span class="keyword">)</span>
+<span class="functioncall"><a href='fixef.plm.html'>fixef</a></span><span class="keyword">(</span><span class="symbol">gi</span><span class="keyword">)</span></div>
+<div class='output'>          1           2           3           4           5           6           7           8           9          10 
+ -70.296717  101.905814 -235.571841  -27.809295 -114.616813  -23.161295  -66.553474  -57.545657  -87.222272   -6.567844 
+</div>
+<div class='input'><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/summary'>summary</a></span><span class="keyword">(</span><span class="functioncall"><a href='fixef.plm.html'>fixef</a></span><span class="keyword">(</span><span class="symbol">gi</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<div class='output'>    Estimate Std. Error t-value  Pr(>|t|)    
+1   -70.2967    49.7080 -1.4142   0.15730    
+2   101.9058    24.9383  4.0863 4.383e-05 ***
+3  -235.5718    24.4316 -9.6421 < 2.2e-16 ***
+4   -27.8093    14.0778 -1.9754   0.04822 *  
+5  -114.6168    14.1654 -8.0913 6.661e-16 ***
+6   -23.1613    12.6687 -1.8282   0.06752 .  
+7   -66.5535    12.8430 -5.1821 2.194e-07 ***
+8   -57.5457    13.9931 -4.1124 3.915e-05 ***
+9   -87.2223    12.8919 -6.7657 1.327e-11 ***
+10   -6.5678    11.8269 -0.5553   0.57867    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+</div>
+<div class='input'><span class="comment"># extract time effects in a twoways effects model</span>
+<span class="symbol">gi</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='plm.html'>plm</a></span><span class="keyword">(</span><span class="symbol">inv</span> <span class="keyword">~</span> <span class="symbol">value</span> <span class="keyword">+</span> <span class="symbol">capital</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">Grunfeld</span><span class="keyword">,</span>
+          <span class="argument">model</span> <span class="argument">=</span> <span class="string">"within"</span><span class="keyword">,</span> <span class="argument">effect</span> <span class="argument">=</span> <span class="string">"twoways"</span><span class="keyword">)</span>
+<span class="functioncall"><a href='fixef.plm.html'>fixef</a></span><span class="keyword">(</span><span class="symbol">gi</span><span class="keyword">,</span><span class="argument">effect</span> <span class="argument">=</span> <span class="string">"time"</span><span class="keyword">)</span></div>
+<div class='output'>      1935       1936       1937       1938       1939       1940       1941       1942       1943       1944       1945 
+ -32.83632  -52.03372  -73.52633  -72.06272 -102.30660  -77.07140  -51.64078  -53.97611  -75.81394  -75.93509  -88.51936 
+      1946       1947       1948       1949       1950       1951       1952       1953       1954 
+ -64.00560  -72.22856  -76.55283 -106.33142 -108.73243  -95.31723  -97.46866 -100.55428 -126.36254 
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>fixef.plm</li><li>fixef</li><li>print.fixef</li><li>summary.fixef</li><li>print.summary.fixef</li>
+    </ul>
+    <ul>
+      <li>regression</li>
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+  <code><a href='plm.html'>plm</a></code>
+
+    
+    <h2>Author</h2>
+    Yves Croissant
+    
+  </div>
+</div>

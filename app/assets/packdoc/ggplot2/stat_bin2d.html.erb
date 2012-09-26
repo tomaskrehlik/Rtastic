@@ -1,0 +1,113 @@
+      <h1>Count number of observation in rectangular bins.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='stat_bin2d.html'>stat_bin2d</a></span><span class="keyword">(</span><span class="argument">mapping</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">geom</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">position</span> <span class="argument">=</span> <span class="string">"identity"</span><span class="keyword">,</span> <span class="argument">bins</span> <span class="argument">=</span> <span class="number">30</span><span class="keyword">,</span>
+  <span class="argument">drop</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>bins</dt>
+      <dd>numeric vector giving number of bins in both
+  vertical and horizontal directions. Set to 30 by
+  default.</dd>
+      <dt>drop</dt>
+      <dd>if <code>TRUE</code> removes all cells with 0
+  counts.</dd>
+      <dt>mapping</dt>
+      <dd>The aesthetic mapping, usually constructed
+  with <code><a href='aes.html'>aes</a></code> or <code><a href='aes_string.html'>aes_string</a></code>. Only
+  needs to be set at the layer level if you are overriding
+  the plot defaults.</dd>
+      <dt>data</dt>
+      <dd>A layer specific dataset - only needed if you
+  want to override the plot defaults.</dd>
+      <dt>geom</dt>
+      <dd>The geometric object to use display the data</dd>
+      <dt>position</dt>
+      <dd>The position adjustment to use for
+  overlappling points on this layer</dd>
+      <dt>...</dt>
+      <dd>other arguments passed on to
+  <code><a href='layer.html'>layer</a></code>. This can include aesthetics whose
+  values you want to set, not map. See <code><a href='layer.html'>layer</a></code>
+  for more details.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Count number of observation in rectangular bins.</p>
+  
+    </div>
+
+    <div class="Aesthetics">
+      <h2>Aesthetics</h2>
+      
+      <p><code>stat_bin2d</code> understands the following aesthetics (required aesthetics are in bold):</p>
+  
+      <p><ul>
+<li> <code><strong>x</strong></code>
+  </li>
+<li> <code><strong>y</strong></code>
+  </li>
+<li> <code>fill</code>
+</li>
+</ul></p>
+  
+      <p></p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class="symbol">d</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">diamonds</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="symbol">carat</span><span class="keyword">,</span> <span class="symbol">price</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_bin2d.html'>stat_bin2d</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_bin2d.html-2.png' %></p>
+<div class='input'><span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_bin2d.html'>geom_bin2d</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_bin2d.html-4.png' %></p>
+<div class='input'>
+<span class="comment"># You can control the size of the bins by specifying the number of</span>
+<span class="comment"># bins in each direction:</span>
+<span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_bin2d.html'>stat_bin2d</a></span><span class="keyword">(</span><span class="argument">bins</span> <span class="argument">=</span> <span class="number">10</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_bin2d.html-6.png' %></p>
+<div class='input'><span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_bin2d.html'>stat_bin2d</a></span><span class="keyword">(</span><span class="argument">bins</span> <span class="argument">=</span> <span class="number">30</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_bin2d.html-8.png' %></p>
+<div class='input'>
+<span class="comment"># Or by specifying the width of the bins</span>
+<span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_bin2d.html'>stat_bin2d</a></span><span class="keyword">(</span><span class="argument">binwidth</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">1</span><span class="keyword">,</span> <span class="number">1000</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_bin2d.html-10.png' %></p>
+<div class='input'><span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_bin2d.html'>stat_bin2d</a></span><span class="keyword">(</span><span class="argument">binwidth</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">.1</span><span class="keyword">,</span> <span class="number">500</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_bin2d.html-12.png' %></p>
+<div class='input'>
+<span class="comment"># Or with a list of breaks</span>
+<span class="symbol">x</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/seq'>seq</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Extremes'>min</a></span><span class="keyword">(</span><span class="symbol">diamonds</span><span class="keyword">$</span><span class="symbol">carat</span><span class="keyword">)</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Extremes'>max</a></span><span class="keyword">(</span><span class="symbol">diamonds</span><span class="keyword">$</span><span class="symbol">carat</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">by</span> <span class="argument">=</span> <span class="number">0.1</span><span class="keyword">)</span>
+<span class="symbol">y</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/seq'>seq</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Extremes'>min</a></span><span class="keyword">(</span><span class="symbol">diamonds</span><span class="keyword">$</span><span class="symbol">price</span><span class="keyword">)</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Extremes'>max</a></span><span class="keyword">(</span><span class="symbol">diamonds</span><span class="keyword">$</span><span class="symbol">price</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">length</span> <span class="argument">=</span> <span class="number">50</span><span class="keyword">)</span>
+<span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_bin2d.html'>stat_bin2d</a></span><span class="keyword">(</span><span class="argument">breaks</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/list'>list</a></span><span class="keyword">(</span><span class="argument">x</span> <span class="argument">=</span> <span class="symbol">x</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="symbol">y</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_bin2d.html-14.png' %></p>
+<div class='input'>
+<span class="comment"># With qplot</span>
+<span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">y</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">diamonds</span><span class="keyword">,</span> <span class="argument">geom</span><span class="argument">=</span><span class="string">"bin2d"</span><span class="keyword">,</span>
+  <span class="argument">xlim</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">4</span><span class="keyword">,</span> <span class="number">10</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">ylim</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">4</span><span class="keyword">,</span> <span class="number">10</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_bin2d.html-16.png' %></p>
+<div class='input'><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">y</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">diamonds</span><span class="keyword">,</span> <span class="argument">geom</span><span class="argument">=</span><span class="string">"bin2d"</span><span class="keyword">,</span> <span class="argument">binwidth</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">0.1</span><span class="keyword">,</span> <span class="number">0.1</span><span class="keyword">)</span><span class="keyword">,</span>
+  <span class="argument">xlim</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">4</span><span class="keyword">,</span> <span class="number">10</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">ylim</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">4</span><span class="keyword">,</span> <span class="number">10</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_bin2d.html-18.png' %></p>
+<div class='input'></div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>stat_bin2d</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+  <code><a href='stat_binhex.html'>stat_binhex</a></code> for hexagonal binning
+
+        
+  </div>
+</div>

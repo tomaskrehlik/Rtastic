@@ -1,0 +1,72 @@
+      <h1>Area plot.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='geom_area.html'>geom_area</a></span><span class="keyword">(</span><span class="argument">mapping</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">stat</span> <span class="argument">=</span> <span class="string">"identity"</span><span class="keyword">,</span> <span class="argument">position</span> <span class="argument">=</span> <span class="string">"stack"</span><span class="keyword">,</span> <span class="argument">na.rm</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">,</span>
+  <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>mapping</dt>
+      <dd>The aesthetic mapping, usually constructed
+  with <code><a href='aes.html'>aes</a></code> or <code><a href='aes_string.html'>aes_string</a></code>. Only
+  needs to be set at the layer level if you are overriding
+  the plot defaults.</dd>
+      <dt>data</dt>
+      <dd>A layer specific dataset - only needed if you
+  want to override the plot defaults.</dd>
+      <dt>stat</dt>
+      <dd>The statistical transformation to use on the
+  data for this layer.</dd>
+      <dt>position</dt>
+      <dd>The position adjustment to use for
+  overlappling points on this layer</dd>
+      <dt>na.rm</dt>
+      <dd>If <code>FALSE</code> (the default), removes
+  missing values with a warning.  If <code>TRUE</code> silently
+  removes missing values.</dd>
+      <dt>...</dt>
+      <dd>other arguments passed on to
+  <code><a href='layer.html'>layer</a></code>. This can include aesthetics whose
+  values you want to set, not map. See <code><a href='layer.html'>layer</a></code>
+  for more details.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>An area plot is the continuous analog of a stacked bar
+  chart (see <code><a href='geom_bar.html'>geom_bar</a></code>), and can be used to
+  show how composition of the whole varies over the range
+  of x.  Choosing the order in which different components
+  is stacked is very important, as it becomes increasing
+  hard to see the individual pattern as you move up the
+  stack.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p>An area plot is a special case of
+  <code><a href='geom_ribbon.html'>geom_ribbon</a></code>, where the minimum of the range
+  is fixed to 0, and the position adjustment defaults to
+  position_stacked.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'># see geom_ribbon</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>geom_area</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>

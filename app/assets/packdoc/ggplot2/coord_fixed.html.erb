@@ -1,0 +1,60 @@
+      <h1>Cartesian coordinates with fixed relationship between x and y scales.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='coord_fixed.html'>coord_fixed</a></span><span class="keyword">(</span><span class="argument">ratio</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span> <span class="argument">xlim</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">ylim</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">wise</span> <span class="argument">=</span> NULL<span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>ratio</dt>
+      <dd>aspect ratio, expressed as <code>y / x</code></dd>
+      <dt>xlim</dt>
+      <dd>limits for the x axis</dd>
+      <dt>ylim</dt>
+      <dd>limits for the y axis</dd>
+      <dt>wise</dt>
+      <dd>deprecated in 0.9.1</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>A fixed scale coordinate system forces a specified ratio
+  between the physical representation of data units on the
+  axes. The ratio represents the number of units on the
+  y-axis equivalent to one unit on the x-axis. The default,
+  <code>ratio = 1</code>, ensures that one unit on the x-axis is
+  the same length as one unit on the y-axis. Ratios higher
+  than one make units on the y axis longer than units on
+  the x-axis, and vice versa. This is similar to
+  <code><a href='http://www.inside-r.org/r-doc/MASS/eqscplot'>eqscplot</a></code>, but it works for all types
+  of graphics.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="comment"># ensures that the ranges of axes are equal to the specified ratio by</span>
+<span class="comment"># adjusting the plot aspect ratio</span>
+
+<span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">mpg</span><span class="keyword">,</span> <span class="symbol">wt</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">mtcars</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='coord_fixed.html'>coord_fixed</a></span><span class="keyword">(</span><span class="argument">ratio</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/coord_fixed.html-2.png' %></p>
+<div class='input'><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">mpg</span><span class="keyword">,</span> <span class="symbol">wt</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">mtcars</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='coord_fixed.html'>coord_fixed</a></span><span class="keyword">(</span><span class="argument">ratio</span> <span class="argument">=</span> <span class="number">5</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/coord_fixed.html-4.png' %></p>
+<div class='input'><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">mpg</span><span class="keyword">,</span> <span class="symbol">wt</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">mtcars</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='coord_fixed.html'>coord_fixed</a></span><span class="keyword">(</span><span class="argument">ratio</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">/</span><span class="number">5</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/coord_fixed.html-6.png' %></p>
+<div class='input'>
+# Resize the plot to see that the specified aspect ratio is maintained
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>coord_equal</li><li>coord_fixed</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>

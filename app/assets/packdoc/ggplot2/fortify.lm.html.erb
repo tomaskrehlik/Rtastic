@@ -1,0 +1,146 @@
+      <h1>Supplement the data fitted to a linear model with model fit statistics.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='fortify.html'>fortify</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">model</span><span class="keyword">$</span><span class="symbol">model</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>model</dt>
+      <dd>linear model</dd>
+      <dt>data</dt>
+      <dd>data set, defaults to data used to fit model</dd>
+      <dt>...</dt>
+      <dd>not used by this method</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>The original data with extra columns:
+  .hatDiagonal of the hat matrix
+  .sigmaEstimate of residual standard deviation
+  when corresponding observation is dropped from model
+  .cooksdCooks distance,
+  <code><a href='http://www.inside-r.org/r-doc/stats/influence.measures'>cooks.distance</a></code> .fittedFitted
+  values of model .residResiduals
+  .stdresidStandardised residuals</p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>If you have missing values in your model data, you may
+  need to refit the model with <code>na.action =
+  na.exclude</code>.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="symbol">mod</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/lm'>lm</a></span><span class="keyword">(</span><span class="symbol">mpg</span> <span class="keyword">~</span> <span class="symbol">wt</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">mtcars</span><span class="keyword">)</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/utils/head'>head</a></span><span class="keyword">(</span><span class="functioncall"><a href='fortify.html'>fortify</a></span><span class="keyword">(</span><span class="symbol">mod</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<div class='output'>                   mpg    wt       .hat   .sigma      .cooksd  .fitted     .resid   .stdresid
+Mazda RX4         21.0 2.620 0.04326896 3.067494 1.327407e-02 23.28261 -2.2826106 -0.76616765
+Mazda RX4 Wag     21.0 2.875 0.03519677 3.093068 1.723963e-03 21.91977 -0.9197704 -0.30743051
+Datsun 710        22.8 2.320 0.05837573 3.072127 1.543937e-02 24.88595 -2.0859521 -0.70575249
+Hornet 4 Drive    21.4 3.215 0.03125017 3.088268 3.020558e-03 20.10265  1.2973499  0.43275114
+Hornet Sportabout 18.7 3.440 0.03292182 3.097722 7.599578e-05 18.90014 -0.2001440 -0.06681879
+Valiant           18.1 3.460 0.03323551 3.095184 9.210650e-04 18.79325 -0.6932545 -0.23148309
+</div>
+<div class='input'><span class="functioncall"><a href='http://www.inside-r.org/r-doc/utils/head'>head</a></span><span class="keyword">(</span><span class="functioncall"><a href='fortify.html'>fortify</a></span><span class="keyword">(</span><span class="symbol">mod</span><span class="keyword">,</span> <span class="symbol">mtcars</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<div class='output'>                   mpg cyl disp  hp drat    wt  qsec vs am gear carb       .hat   .sigma      .cooksd  .fitted     .resid
+Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4 0.04326896 3.067494 1.327407e-02 23.28261 -2.2826106
+Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4 0.03519677 3.093068 1.723963e-03 21.91977 -0.9197704
+Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1 0.05837573 3.072127 1.543937e-02 24.88595 -2.0859521
+Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1 0.03125017 3.088268 3.020558e-03 20.10265  1.2973499
+Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2 0.03292182 3.097722 7.599578e-05 18.90014 -0.2001440
+Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1 0.03323551 3.095184 9.210650e-04 18.79325 -0.6932545
+                    .stdresid
+Mazda RX4         -0.76616765
+Mazda RX4 Wag     -0.30743051
+Datsun 710        -0.70575249
+Hornet 4 Drive     0.43275114
+Hornet Sportabout -0.06681879
+Valiant           -0.23148309
+</div>
+<div class='input'>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/graphics/plot'>plot</a></span><span class="keyword">(</span><span class="symbol">mod</span><span class="keyword">,</span> <span class="argument">which</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/fortify.lm.html-6.png' %></p>
+<div class='input'><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">.fitted</span><span class="keyword">,</span> <span class="symbol">.resid</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">mod</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='geom_hline.html'>geom_hline</a></span><span class="keyword">(</span><span class="argument">yintercept</span> <span class="argument">=</span> <span class="number">0</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='geom_smooth.html'>geom_smooth</a></span><span class="keyword">(</span><span class="argument">se</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">)</span></div>
+<strong class='message'>geom_smooth: method="auto" and size of largest group is <1000, so using loess. Use 'method = x' to change the smoothing method.</strong>
+<p><%= image_tag 'ggplot2/fortify.lm.html-9.png' %></p>
+<div class='input'><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">.fitted</span><span class="keyword">,</span> <span class="symbol">.stdresid</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">mod</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='geom_hline.html'>geom_hline</a></span><span class="keyword">(</span><span class="argument">yintercept</span> <span class="argument">=</span> <span class="number">0</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='geom_smooth.html'>geom_smooth</a></span><span class="keyword">(</span><span class="argument">se</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">)</span></div>
+<strong class='message'>geom_smooth: method="auto" and size of largest group is <1000, so using loess. Use 'method = x' to change the smoothing method.</strong>
+<p><%= image_tag 'ggplot2/fortify.lm.html-12.png' %></p>
+<div class='input'><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">.fitted</span><span class="keyword">,</span> <span class="symbol">.stdresid</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="functioncall"><a href='fortify.html'>fortify</a></span><span class="keyword">(</span><span class="symbol">mod</span><span class="keyword">,</span> <span class="symbol">mtcars</span><span class="keyword">)</span><span class="keyword">,</span>
+  <span class="argument">colour</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/factor'>factor</a></span><span class="keyword">(</span><span class="symbol">cyl</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/fortify.lm.html-14.png' %></p>
+<div class='input'><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">mpg</span><span class="keyword">,</span> <span class="symbol">.stdresid</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="functioncall"><a href='fortify.html'>fortify</a></span><span class="keyword">(</span><span class="symbol">mod</span><span class="keyword">,</span> <span class="symbol">mtcars</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">colour</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/factor'>factor</a></span><span class="keyword">(</span><span class="symbol">cyl</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/fortify.lm.html-16.png' %></p>
+<div class='input'>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/graphics/plot'>plot</a></span><span class="keyword">(</span><span class="symbol">mod</span><span class="keyword">,</span> <span class="argument">which</span> <span class="argument">=</span> <span class="number">2</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/fortify.lm.html-18.png' %></p>
+<div class='input'><span class="comment"># qplot(sample =.stdresid, data = mod, stat = "qq") + geom_abline()</span>
+
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/graphics/plot'>plot</a></span><span class="keyword">(</span><span class="symbol">mod</span><span class="keyword">,</span> <span class="argument">which</span> <span class="argument">=</span> <span class="number">3</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/fortify.lm.html-20.png' %></p>
+<div class='input'><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">.fitted</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/MathFun'>sqrt</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/MathFun'>abs</a></span><span class="keyword">(</span><span class="symbol">.stdresid</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">mod</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_smooth.html'>geom_smooth</a></span><span class="keyword">(</span><span class="argument">se</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">)</span></div>
+<strong class='message'>geom_smooth: method="auto" and size of largest group is <1000, so using loess. Use 'method = x' to change the smoothing method.</strong>
+<p><%= image_tag 'ggplot2/fortify.lm.html-23.png' %></p>
+<div class='input'>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/graphics/plot'>plot</a></span><span class="keyword">(</span><span class="symbol">mod</span><span class="keyword">,</span> <span class="argument">which</span> <span class="argument">=</span> <span class="number">4</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/fortify.lm.html-25.png' %></p>
+<div class='input'><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/seq'>seq_along</a></span><span class="keyword">(</span><span class="symbol">.cooksd</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">.cooksd</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">mod</span><span class="keyword">,</span> <span class="argument">geom</span> <span class="argument">=</span> <span class="string">"bar"</span><span class="keyword">,</span>
+ <span class="argument">stat</span><span class="argument">=</span><span class="string">"identity"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/fortify.lm.html-27.png' %></p>
+<div class='input'>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/graphics/plot'>plot</a></span><span class="keyword">(</span><span class="symbol">mod</span><span class="keyword">,</span> <span class="argument">which</span> <span class="argument">=</span> <span class="number">5</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/fortify.lm.html-29.png' %></p>
+<div class='input'><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">.hat</span><span class="keyword">,</span> <span class="symbol">.stdresid</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">mod</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_smooth.html'>geom_smooth</a></span><span class="keyword">(</span><span class="argument">se</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">)</span></div>
+<strong class='message'>geom_smooth: method="auto" and size of largest group is <1000, so using loess. Use 'method = x' to change the smoothing method.</strong>
+<p><%= image_tag 'ggplot2/fortify.lm.html-32.png' %></p>
+<div class='input'><span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">mod</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="symbol">.hat</span><span class="keyword">,</span> <span class="symbol">.stdresid</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='geom_vline.html'>geom_vline</a></span><span class="keyword">(</span><span class="argument">size</span> <span class="argument">=</span> <span class="number">2</span><span class="keyword">,</span> <span class="argument">colour</span> <span class="argument">=</span> <span class="string">"white"</span><span class="keyword">,</span> <span class="argument">xintercept</span> <span class="argument">=</span> <span class="number">0</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='geom_hline.html'>geom_hline</a></span><span class="keyword">(</span><span class="argument">size</span> <span class="argument">=</span> <span class="number">2</span><span class="keyword">,</span> <span class="argument">colour</span> <span class="argument">=</span> <span class="string">"white"</span><span class="keyword">,</span> <span class="argument">yintercept</span> <span class="argument">=</span> <span class="number">0</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='geom_point.html'>geom_point</a></span><span class="keyword">(</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_smooth.html'>geom_smooth</a></span><span class="keyword">(</span><span class="argument">se</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">)</span></div>
+<strong class='message'>geom_smooth: method="auto" and size of largest group is <1000, so using loess. Use 'method = x' to change the smoothing method.</strong>
+<p><%= image_tag 'ggplot2/fortify.lm.html-35.png' %></p>
+<div class='input'>
+<span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">.hat</span><span class="keyword">,</span> <span class="symbol">.stdresid</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">mod</span><span class="keyword">,</span> <span class="argument">size</span> <span class="argument">=</span> <span class="symbol">.cooksd</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='geom_smooth.html'>geom_smooth</a></span><span class="keyword">(</span><span class="argument">se</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">,</span> <span class="argument">size</span> <span class="argument">=</span> <span class="number">0.5</span><span class="keyword">)</span></div>
+<strong class='message'>geom_smooth: method="auto" and size of largest group is <1000, so using loess. Use 'method = x' to change the smoothing method.</strong>
+<p><%= image_tag 'ggplot2/fortify.lm.html-38.png' %></p>
+<div class='input'>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/graphics/plot'>plot</a></span><span class="keyword">(</span><span class="symbol">mod</span><span class="keyword">,</span> <span class="argument">which</span> <span class="argument">=</span> <span class="number">6</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/fortify.lm.html-40.png' %></p>
+<div class='input'><span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">mod</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="symbol">.hat</span><span class="keyword">,</span> <span class="symbol">.cooksd</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='geom_vline.html'>geom_vline</a></span><span class="keyword">(</span><span class="argument">xintercept</span> <span class="argument">=</span> <span class="number">0</span><span class="keyword">,</span> <span class="argument">colour</span> <span class="argument">=</span> <span class="number">NA</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='geom_abline.html'>geom_abline</a></span><span class="keyword">(</span><span class="argument">slope</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/seq'>seq</a></span><span class="keyword">(</span><span class="number">0</span><span class="keyword">,</span> <span class="number">3</span><span class="keyword">,</span> <span class="argument">by</span> <span class="argument">=</span> <span class="number">0.5</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">colour</span> <span class="argument">=</span> <span class="string">"white"</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='geom_smooth.html'>geom_smooth</a></span><span class="keyword">(</span><span class="argument">se</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='geom_point.html'>geom_point</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<strong class='message'>geom_smooth: method="auto" and size of largest group is <1000, so using loess. Use 'method = x' to change the smoothing method.</strong>
+<p><%= image_tag 'ggplot2/fortify.lm.html-43.png' %></p>
+<div class='input'><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">.hat</span><span class="keyword">,</span> <span class="symbol">.cooksd</span><span class="keyword">,</span> <span class="argument">size</span> <span class="argument">=</span> <span class="symbol">.cooksd</span> <span class="keyword">/</span> <span class="symbol">.hat</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">mod</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_area.html'>scale_area</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<strong class='message'>scale_area is deprecated and will be removed in a future version of ggplot2.
+  Use scale_size_area instead. Note that the behavior of scale_size_area is
+  slightly different: by default it makes the area proportional to the
+  numeric value.</strong>
+<p><%= image_tag 'ggplot2/fortify.lm.html-46.png' %></p></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>fortify.lm</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>

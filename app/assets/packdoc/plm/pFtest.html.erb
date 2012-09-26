@@ -1,0 +1,100 @@
+      <h1>F Test for Individual and/or Time Effects</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='pFtest.html'>pFtest</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='pFtest.html'>pFtest</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">z</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='pFtest.html'>pFtest</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">data</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>x</dt>
+      <dd>an object of class <code>"plm"</code> or of class <code>"formula"</code>,</dd>
+      <dt>z</dt>
+      <dd>an object of class <code>"plm"</code>,</dd>
+      <dt>data</dt>
+      <dd>a <code>data.frame</code>,</dd>
+      <dt>...</dt>
+      <dd>further arguments.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Test of individual and/or time effects based on the comparison of the <code>within</code> and the <code>pooling</code> model.</p>
+  
+    </div>
+
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>An object of class <code>"htest"</code>.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p>For the <code>plm</code> method, the argument of this function is two
+<code>plm</code> objects, the first being a within model, the second a
+pooling model. The effects tested are either individual, time or
+twoways, depending on the effects introduced in the model.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='http://www.inside-r.org/r-doc/utils/data'>data</a></span><span class="keyword">(</span><span class="string">"Grunfeld"</span><span class="keyword">,</span> <span class="argument">package</span><span class="argument">=</span><span class="string">"plm"</span><span class="keyword">)</span>
+<span class="symbol">gi</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='plm.html'>plm</a></span><span class="keyword">(</span><span class="symbol">inv</span> <span class="keyword">~</span> <span class="symbol">value</span> <span class="keyword">+</span> <span class="symbol">capital</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">Grunfeld</span><span class="keyword">,</span> <span class="argument">model</span> <span class="argument">=</span> <span class="string">"pooling"</span><span class="keyword">)</span>
+<span class="symbol">gt</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='plm.html'>plm</a></span><span class="keyword">(</span><span class="symbol">inv</span> <span class="keyword">~</span> <span class="symbol">value</span> <span class="keyword">+</span> <span class="symbol">capital</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">Grunfeld</span><span class="keyword">,</span>
+          <span class="argument">effect</span> <span class="argument">=</span> <span class="string">"time"</span><span class="keyword">,</span> <span class="argument">model</span> <span class="argument">=</span> <span class="string">"within"</span><span class="keyword">)</span>
+<span class="symbol">gd</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='plm.html'>plm</a></span><span class="keyword">(</span><span class="symbol">inv</span> <span class="keyword">~</span> <span class="symbol">value</span> <span class="keyword">+</span> <span class="symbol">capital</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">Grunfeld</span><span class="keyword">,</span>
+          <span class="argument">effect</span> <span class="argument">=</span> <span class="string">"twoways"</span><span class="keyword">,</span> <span class="argument">model</span> <span class="argument">=</span> <span class="string">"within"</span><span class="keyword">)</span>
+<span class="functioncall"><a href='pFtest.html'>pFtest</a></span><span class="keyword">(</span><span class="symbol">gt</span><span class="keyword">,</span> <span class="symbol">gi</span><span class="keyword">)</span></div>
+<div class='output'>
+	F test for time effects
+
+data:  inv ~ value + capital 
+F = 0.2345, df1 = 19, df2 = 178, p-value = 0.9997
+alternative hypothesis: significant effects 
+
+</div>
+<div class='input'><span class="functioncall"><a href='pFtest.html'>pFtest</a></span><span class="keyword">(</span><span class="symbol">gd</span><span class="keyword">,</span> <span class="symbol">gi</span><span class="keyword">)</span></div>
+<div class='output'>
+	F test for twoways effects
+
+data:  inv ~ value + capital 
+F = 17.4031, df1 = 28, df2 = 169, p-value < 2.2e-16
+alternative hypothesis: significant effects 
+
+</div>
+<div class='input'><span class="functioncall"><a href='pFtest.html'>pFtest</a></span><span class="keyword">(</span><span class="symbol">inv</span> <span class="keyword">~</span> <span class="symbol">value</span> <span class="keyword">+</span> <span class="symbol">capital</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">Grunfeld</span><span class="keyword">,</span> <span class="argument">effect</span> <span class="argument">=</span> <span class="string">"twoways"</span><span class="keyword">)</span></div>
+<div class='output'>
+	F test for twoways effects
+
+data:  inv ~ value + capital 
+F = 17.4031, df1 = 28, df2 = 169, p-value < 2.2e-16
+alternative hypothesis: significant effects 
+
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>pFtest</li><li>pFtest.formula</li><li>pFtest.plm</li>
+    </ul>
+    <ul>
+      <li>htest</li>
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+<code><a href='plmtest.html'>plmtest</a></code> for Lagrange multipliers tests of individuals and/or time effects.
+
+    
+    <h2>Author</h2>
+    Yves Croissant
+    
+  </div>
+</div>

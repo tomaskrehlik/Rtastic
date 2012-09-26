@@ -1,0 +1,156 @@
+      <h1>Tile plane with rectangles.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='geom_tile.html'>geom_tile</a></span><span class="keyword">(</span><span class="argument">mapping</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">stat</span> <span class="argument">=</span> <span class="string">"identity"</span><span class="keyword">,</span> <span class="argument">position</span> <span class="argument">=</span> <span class="string">"identity"</span><span class="keyword">,</span>
+  <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>mapping</dt>
+      <dd>The aesthetic mapping, usually constructed
+  with <code><a href='aes.html'>aes</a></code> or <code><a href='aes_string.html'>aes_string</a></code>. Only
+  needs to be set at the layer level if you are overriding
+  the plot defaults.</dd>
+      <dt>data</dt>
+      <dd>A layer specific dataset - only needed if you
+  want to override the plot defaults.</dd>
+      <dt>stat</dt>
+      <dd>The statistical transformation to use on the
+  data for this layer.</dd>
+      <dt>position</dt>
+      <dd>The position adjustment to use for
+  overlappling points on this layer</dd>
+      <dt>...</dt>
+      <dd>other arguments passed on to
+  <code><a href='layer.html'>layer</a></code>. This can include aesthetics whose
+  values you want to set, not map. See <code><a href='layer.html'>layer</a></code>
+  for more details.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Similar to <code><a href='http://www.inside-r.org/r-doc/lattice/levelplot'>levelplot</a></code> and
+  <code><a href='http://www.inside-r.org/r-doc/SparseM/SparseM.image'>image</a></code>.</p>
+  
+    </div>
+
+    <div class="Aesthetics">
+      <h2>Aesthetics</h2>
+      
+      <p><code>geom_tile</code> understands the following aesthetics (required aesthetics are in bold):</p>
+  
+      <p><ul>
+<li> <code><strong>x</strong></code>
+  </li>
+<li> <code><strong>y</strong></code>
+  </li>
+<li> <code>alpha</code>
+  </li>
+<li> <code>colour</code>
+  </li>
+<li> <code>fill</code>
+  </li>
+<li> <code>linetype</code>
+  </li>
+<li> <code>size</code>
+</li>
+</ul></p>
+  
+      <p></p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class="comment"># Generate data</span>
+<span class="symbol">pp</span> <span class="assignement">&lt;-</span> <span class="keyword">function</span> <span class="keyword">(</span><span class="formalargs">n</span><span class="keyword">,</span><span class="formalargs">r</span><span class="eqformalargs">=</span><span class="number">4</span><span class="keyword">)</span> <span class="keyword">{</span>
+ <span class="symbol">x</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/seq'>seq</a></span><span class="keyword">(</span><span class="keyword">-</span><span class="symbol">r</span><span class="keyword">*</span><span class="symbol">pi</span><span class="keyword">,</span> <span class="symbol">r</span><span class="keyword">*</span><span class="symbol">pi</span><span class="keyword">,</span> <span class="argument">len</span><span class="argument">=</span><span class="symbol">n</span><span class="keyword">)</span>
+ <span class="symbol">df</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/expand.grid'>expand.grid</a></span><span class="keyword">(</span><span class="argument">x</span><span class="argument">=</span><span class="symbol">x</span><span class="keyword">,</span> <span class="argument">y</span><span class="argument">=</span><span class="symbol">x</span><span class="keyword">)</span>
+ <span class="symbol">df</span><span class="keyword">$</span><span class="symbol">r</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/MathFun'>sqrt</a></span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">$</span><span class="symbol">x</span><span class="keyword">^</span><span class="number">2</span> <span class="keyword">+</span> <span class="symbol">df</span><span class="keyword">$</span><span class="symbol">y</span><span class="keyword">^</span><span class="number">2</span><span class="keyword">)</span>
+ <span class="symbol">df</span><span class="keyword">$</span><span class="symbol">z</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Trig'>cos</a></span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">$</span><span class="symbol">r</span><span class="keyword">^</span><span class="number">2</span><span class="keyword">)</span><span class="keyword">*</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>exp</a></span><span class="keyword">(</span><span class="keyword">-</span><span class="symbol">df</span><span class="keyword">$</span><span class="symbol">r</span><span class="keyword">/</span><span class="number">6</span><span class="keyword">)</span>
+ <span class="symbol">df</span>
+<span class="keyword">}</span>
+<span class="symbol">p</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="functioncall">pp</span><span class="keyword">(</span><span class="number">20</span><span class="keyword">)</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">x</span><span class="argument">=</span><span class="symbol">x</span><span class="keyword">,</span><span class="argument">y</span><span class="argument">=</span><span class="symbol">y</span><span class="keyword">)</span><span class="keyword">)</span>
+
+<span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_tile.html'>geom_tile</a></span><span class="keyword">(</span><span class="keyword">)</span> <span class="comment">#pretty useless!</span></div>
+<p><%= image_tag 'ggplot2/geom_tile.html-2.png' %></p>
+<div class='input'>
+<span class="comment"># Add aesthetic mappings</span>
+<span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_tile.html'>geom_tile</a></span><span class="keyword">(</span><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">fill</span><span class="argument">=</span><span class="symbol">z</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_tile.html-4.png' %></p>
+<div class='input'>
+<span class="comment"># Change scale</span>
+<span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_tile.html'>geom_tile</a></span><span class="keyword">(</span><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">fill</span><span class="argument">=</span><span class="symbol">z</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_gradient.html'>scale_fill_gradient</a></span><span class="keyword">(</span><span class="argument">low</span><span class="argument">=</span><span class="string">"green"</span><span class="keyword">,</span> <span class="argument">high</span><span class="argument">=</span><span class="string">"red"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_tile.html-6.png' %></p>
+<div class='input'>
+<span class="comment"># Use qplot instead</span>
+<span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">y</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="functioncall">pp</span><span class="keyword">(</span><span class="number">20</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">geom</span><span class="argument">=</span><span class="string">"tile"</span><span class="keyword">,</span> <span class="argument">fill</span><span class="argument">=</span><span class="symbol">z</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_tile.html-8.png' %></p>
+<div class='input'><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">y</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="functioncall">pp</span><span class="keyword">(</span><span class="number">100</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">geom</span><span class="argument">=</span><span class="string">"tile"</span><span class="keyword">,</span> <span class="argument">fill</span><span class="argument">=</span><span class="symbol">z</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_tile.html-10.png' %></p>
+<div class='input'>
+<span class="comment"># Missing values</span>
+<span class="symbol">p</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="functioncall">pp</span><span class="keyword">(</span><span class="number">20</span><span class="keyword">)</span><span class="keyword">[</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/sample'>sample</a></span><span class="keyword">(</span><span class="number">20</span><span class="keyword">*</span><span class="number">20</span><span class="keyword">,</span> <span class="argument">size</span><span class="argument">=</span><span class="number">200</span><span class="keyword">)</span><span class="keyword">,</span><span class="keyword">]</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">x</span><span class="argument">=</span><span class="symbol">x</span><span class="keyword">,</span><span class="argument">y</span><span class="argument">=</span><span class="symbol">y</span><span class="keyword">,</span><span class="argument">fill</span><span class="argument">=</span><span class="symbol">z</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_tile.html'>geom_tile</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_tile.html-12.png' %></p>
+<div class='input'>
+<span class="comment"># Input that works with image</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/SparseM/SparseM.image'>image</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/t'>t</a></span><span class="keyword">(</span><span class="symbol">volcano</span><span class="keyword">)</span><span class="keyword">[</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/nrow'>ncol</a></span><span class="keyword">(</span><span class="symbol">volcano</span><span class="keyword">)</span><span class="keyword">:</span><span class="number">1</span><span class="keyword">,</span><span class="keyword">]</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_tile.html-14.png' %></p>
+<div class='input'><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/library'>library</a></span><span class="keyword">(</span><span class="symbol">reshape2</span><span class="keyword">)</span> <span class="comment"># for melt</span>
+<span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/reshape2/melt'>melt</a></span><span class="keyword">(</span><span class="symbol">volcano</span><span class="keyword">)</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">x</span><span class="argument">=</span><span class="symbol">Var1</span><span class="keyword">,</span> <span class="argument">y</span><span class="argument">=</span><span class="symbol">Var2</span><span class="keyword">,</span> <span class="argument">fill</span><span class="argument">=</span><span class="symbol">value</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_tile.html'>geom_tile</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_tile.html-16.png' %></p>
+<div class='input'>
+<span class="comment"># inspired by the image-density plots of Ken Knoblauch</span>
+<span class="symbol">cars</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">mtcars</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">y</span><span class="argument">=</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/factor'>factor</a></span><span class="keyword">(</span><span class="symbol">cyl</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">x</span><span class="argument">=</span><span class="symbol">mpg</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="symbol">cars</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_point.html'>geom_point</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_tile.html-18.png' %></p>
+<div class='input'><span class="symbol">cars</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_bin.html'>stat_bin</a></span><span class="keyword">(</span><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">fill</span><span class="argument">=</span><span class="symbol">..count..</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">geom</span><span class="argument">=</span><span class="string">"tile"</span><span class="keyword">,</span> <span class="argument">binwidth</span><span class="argument">=</span><span class="number">3</span><span class="keyword">,</span> <span class="argument">position</span><span class="argument">=</span><span class="string">"identity"</span><span class="keyword">)</span></div>
+<strong class='message'>Mapping a variable to y and also using stat="bin". With stat="bin", it will attempt to set the y value to the count of cases in each group. This can result in unexpected behavior and will not be allowed in a future version of ggplot2. If you want y to represent counts of cases, use stat="bin" and don't map a variable to y. If you want y to represent values in the data, use stat="identity". See ?geom_bar for examples.</strong>
+<p><%= image_tag 'ggplot2/geom_tile.html-21.png' %></p>
+<div class='input'><span class="symbol">cars</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_bin.html'>stat_bin</a></span><span class="keyword">(</span><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">fill</span><span class="argument">=</span><span class="symbol">..density..</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">geom</span><span class="argument">=</span><span class="string">"tile"</span><span class="keyword">,</span> <span class="argument">binwidth</span><span class="argument">=</span><span class="number">3</span><span class="keyword">,</span> <span class="argument">position</span><span class="argument">=</span><span class="string">"identity"</span><span class="keyword">)</span></div>
+<strong class='message'>Mapping a variable to y and also using stat="bin". With stat="bin", it will attempt to set the y value to the count of cases in each group. This can result in unexpected behavior and will not be allowed in a future version of ggplot2. If you want y to represent counts of cases, use stat="bin" and don't map a variable to y. If you want y to represent values in the data, use stat="identity". See ?geom_bar for examples.</strong>
+<p><%= image_tag 'ggplot2/geom_tile.html-24.png' %></p>
+<div class='input'>
+<span class="symbol">cars</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_density.html'>stat_density</a></span><span class="keyword">(</span><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">fill</span><span class="argument">=</span><span class="symbol">..density..</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">geom</span><span class="argument">=</span><span class="string">"tile"</span><span class="keyword">,</span> <span class="argument">position</span><span class="argument">=</span><span class="string">"identity"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_tile.html-26.png' %></p>
+<div class='input'><span class="symbol">cars</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_density.html'>stat_density</a></span><span class="keyword">(</span><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">fill</span><span class="argument">=</span><span class="symbol">..count..</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">geom</span><span class="argument">=</span><span class="string">"tile"</span><span class="keyword">,</span> <span class="argument">position</span><span class="argument">=</span><span class="string">"identity"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_tile.html-28.png' %></p>
+<div class='input'>
+<span class="comment"># Another example with with unequal tile sizes</span>
+<span class="symbol">x.cell.boundary</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">0</span><span class="keyword">,</span> <span class="number">4</span><span class="keyword">,</span> <span class="number">6</span><span class="keyword">,</span> <span class="number">8</span><span class="keyword">,</span> <span class="number">10</span><span class="keyword">,</span> <span class="number">14</span><span class="keyword">)</span>
+<span class="symbol">example</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/data.frame'>data.frame</a></span><span class="keyword">(</span>
+  <span class="argument">x</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/rep'>rep</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">2</span><span class="keyword">,</span> <span class="number">5</span><span class="keyword">,</span> <span class="number">7</span><span class="keyword">,</span> <span class="number">9</span><span class="keyword">,</span> <span class="number">12</span><span class="keyword">)</span><span class="keyword">,</span> <span class="number">2</span><span class="keyword">)</span><span class="keyword">,</span>
+  <span class="argument">y</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/factor'>factor</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/rep'>rep</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">1</span><span class="keyword">,</span><span class="number">2</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">each</span><span class="argument">=</span><span class="number">5</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span>
+  <span class="argument">z</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/rep'>rep</a></span><span class="keyword">(</span><span class="number">1</span><span class="keyword">:</span><span class="number">5</span><span class="keyword">,</span> <span class="argument">each</span><span class="argument">=</span><span class="number">2</span><span class="keyword">)</span><span class="keyword">,</span>
+  <span class="argument">w</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/rep'>rep</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/diff'>diff</a></span><span class="keyword">(</span><span class="symbol">x.cell.boundary</span><span class="keyword">)</span><span class="keyword">,</span> <span class="number">2</span><span class="keyword">)</span>
+<span class="keyword">)</span>
+
+<span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">y</span><span class="keyword">,</span> <span class="argument">fill</span><span class="argument">=</span><span class="symbol">z</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">example</span><span class="keyword">,</span> <span class="argument">geom</span><span class="argument">=</span><span class="string">"tile"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_tile.html-30.png' %></p>
+<div class='input'><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">y</span><span class="keyword">,</span> <span class="argument">fill</span><span class="argument">=</span><span class="symbol">z</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">example</span><span class="keyword">,</span> <span class="argument">geom</span><span class="argument">=</span><span class="string">"tile"</span><span class="keyword">,</span> <span class="argument">width</span><span class="argument">=</span><span class="symbol">w</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_tile.html-32.png' %></p>
+<div class='input'><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">y</span><span class="keyword">,</span> <span class="argument">fill</span><span class="argument">=</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/factor'>factor</a></span><span class="keyword">(</span><span class="symbol">z</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">example</span><span class="keyword">,</span> <span class="argument">geom</span><span class="argument">=</span><span class="string">"tile"</span><span class="keyword">,</span> <span class="argument">width</span><span class="argument">=</span><span class="symbol">w</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_tile.html-34.png' %></p>
+<div class='input'>
+<span class="comment"># You can manually set the colour of the tiles using</span>
+<span class="comment"># scale_manual</span>
+<span class="symbol">col</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"darkblue"</span><span class="keyword">,</span> <span class="string">"blue"</span><span class="keyword">,</span> <span class="string">"green"</span><span class="keyword">,</span> <span class="string">"orange"</span><span class="keyword">,</span> <span class="string">"red"</span><span class="keyword">)</span>
+<span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">y</span><span class="keyword">,</span> <span class="argument">fill</span><span class="argument">=</span><span class="symbol">col</span><span class="keyword">[</span><span class="symbol">z</span><span class="keyword">]</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">example</span><span class="keyword">,</span> <span class="argument">geom</span><span class="argument">=</span><span class="string">"tile"</span><span class="keyword">,</span> <span class="argument">width</span><span class="argument">=</span><span class="symbol">w</span><span class="keyword">,</span> <span class="argument">group</span><span class="argument">=</span><span class="number">1</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_identity.html'>scale_fill_identity</a></span><span class="keyword">(</span><span class="argument">labels</span><span class="argument">=</span><span class="symbol">letters</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">:</span><span class="number">5</span><span class="keyword">]</span><span class="keyword">,</span> <span class="argument">breaks</span><span class="argument">=</span><span class="symbol">col</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_tile.html-36.png' %></p>
+<div class='input'></div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>geom_tile</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>

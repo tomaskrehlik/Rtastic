@@ -1,0 +1,64 @@
+      <h1>Generate aesthetic mappings from a string</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='aes_string.html'>aes_string</a></span><span class="keyword">(</span><span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>...</dt>
+      <dd>List of name value pairs</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Aesthetic mappings describe how variables in the data are
+  mapped to visual properties (aesthetics) of geoms.
+  Compared to aes this function operates on strings rather
+  than expressions.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p><code>aes_string</code> is particularly useful when writing
+  functions that create plots because you can use strings
+  to define the aesthetic mappings, rather than having to
+  mess around with expressions.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='aes_string.html'>aes_string</a></span><span class="keyword">(</span><span class="argument">x</span> <span class="argument">=</span> <span class="string">"mpg"</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="string">"wt"</span><span class="keyword">)</span></div>
+<div class='output'>List of 2
+ $ x:length 1 mpg
+  ..- attr(*, "id")= int 31
+ $ y:length 1 wt
+  ..- attr(*, "id")= int 25
+</div>
+<div class='input'><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">x</span> <span class="argument">=</span> <span class="symbol">mpg</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="symbol">wt</span><span class="keyword">)</span></div>
+<div class='output'>List of 2
+ $ x:length 1 mpg
+  ..- attr(*, "id")= int 31
+ $ y:length 1 wt
+  ..- attr(*, "id")= int 25
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>aes_string</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+  <code><a href='aes.html'>aes</a></code>
+
+        
+  </div>
+</div>

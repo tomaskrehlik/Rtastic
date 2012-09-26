@@ -1,0 +1,53 @@
+      <h1>Benchmark plot creation time.
+Broken down into construct, build, render and draw times.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='benchplot.html'>benchplot</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>x</dt>
+      <dd>code to create ggplot2 plot</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Benchmark plot creation time. Broken down into construct,
+  build, render and draw times.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='benchplot.html'>benchplot</a></span><span class="keyword">(</span><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">mpg</span><span class="keyword">,</span> <span class="symbol">wt</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">mtcars</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/benchplot.html-2.png' %></p>
+<div class='output'>       step user.self sys.self elapsed
+1 construct     0.005    0.000   0.005
+2     build     0.035    0.000   0.035
+3    render     0.056    0.000   0.056
+4      draw     0.062    0.003   0.072
+5     TOTAL     0.158    0.003   0.168
+</div>
+<div class='input'><span class="functioncall"><a href='benchplot.html'>benchplot</a></span><span class="keyword">(</span><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">mpg</span><span class="keyword">,</span> <span class="symbol">wt</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">mtcars</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='facet_grid.html'>facet_grid</a></span><span class="keyword">(</span><span class="symbol">.</span><span class="keyword">~</span> <span class="symbol">cyl</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/benchplot.html-5.png' %></p>
+<div class='output'>       step user.self sys.self elapsed
+1 construct     0.007    0.000   0.007
+2     build     0.070    0.000   0.071
+3    render     0.152    0.001   0.158
+4      draw     0.110    0.005   0.126
+5     TOTAL     0.339    0.006   0.362
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>benchplot</li>
+    </ul>
+    <ul>
+      <li>internal</li>
+    </ul> -->
+      
+        
+  </div>
+</div>

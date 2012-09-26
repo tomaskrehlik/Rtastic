@@ -1,0 +1,4 @@
+<% provide(:title, "#{@package.name}: Documentation") %>
+<% path = "#{@package.name}/#{@function}.html" %>
+<%= Rtastic::Application.assets.find_asset(path).body.html_safe %>
+

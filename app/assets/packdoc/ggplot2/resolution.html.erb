@@ -1,0 +1,61 @@
+      <h1>Compute the "resolution" of a data vector.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='resolution.html'>resolution</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="argument">zero</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>x</dt>
+      <dd>numeric vector</dd>
+      <dt>zero</dt>
+      <dd>should a zero value be automatically included
+  in the computation of resolution</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>The resolution is is the smallest non-zero distance
+  between adjacent values.  If there is only one unique
+  value, then the resolution is defined to be one.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p>If x is an integer vector, then it is assumed to
+  represent a discrete variable, and the resolution is 1.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='resolution.html'>resolution</a></span><span class="keyword">(</span><span class="number">1</span><span class="keyword">:</span><span class="number">10</span><span class="keyword">)</span></div>
+<div class='output'>[1] 1
+</div>
+<div class='input'><span class="functioncall"><a href='resolution.html'>resolution</a></span><span class="keyword">(</span><span class="keyword">(</span><span class="number">1</span><span class="keyword">:</span><span class="number">10</span><span class="keyword">)</span> <span class="keyword">-</span> <span class="number">0.5</span><span class="keyword">)</span></div>
+<div class='output'>[1] 0.5
+</div>
+<div class='input'><span class="functioncall"><a href='resolution.html'>resolution</a></span><span class="keyword">(</span><span class="keyword">(</span><span class="number">1</span><span class="keyword">:</span><span class="number">10</span><span class="keyword">)</span> <span class="keyword">-</span> <span class="number">0.5</span><span class="keyword">,</span> <span class="number">FALSE</span><span class="keyword">)</span></div>
+<div class='output'>[1] 1
+</div>
+<div class='input'><span class="functioncall"><a href='resolution.html'>resolution</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">1</span><span class="keyword">,</span><span class="number">2</span><span class="keyword">,</span> <span class="number">10</span><span class="keyword">,</span> <span class="number">20</span><span class="keyword">,</span> <span class="number">50</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<div class='output'>[1] 1
+</div>
+<div class='input'><span class="functioncall"><a href='resolution.html'>resolution</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/integer'>as.integer</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">1</span><span class="keyword">,</span> <span class="number">10</span><span class="keyword">,</span> <span class="number">20</span><span class="keyword">,</span> <span class="number">50</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span>  <span class="comment"># Returns 1</span></div>
+<div class='output'>[1] 1
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>resolution</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>

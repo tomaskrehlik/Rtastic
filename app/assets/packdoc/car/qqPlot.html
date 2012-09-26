@@ -1,0 +1,161 @@
+      <h1>Quantile-Comparison Plots</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='qqPlot.html'>qqPlot</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='qqPlot.html'>qqp</a></span><span class="keyword">(</span><span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='qqPlot.html'>qqPlot</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="argument">distribution</span> <span class="argument">=</span> <span class="string">"norm"</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">,</span> <span class="argument">ylab</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/deparse'>deparse</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/substitute'>substitute</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">xlab</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/paste'>paste</a></span><span class="keyword">(</span><span class="symbol">distribution</span><span class="keyword">,</span>
+  <span class="string">"quantiles"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">main</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">las</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/graphics/par'>par</a></span><span class="keyword">(</span><span class="string">"las"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">envelope</span> <span class="argument">=</span> <span class="number">0.95</span><span class="keyword">,</span> <span class="argument">col</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/palette'>palette</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">]</span><span class="keyword">,</span>
+      <span class="argument">col.lines</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/palette'>palette</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">2</span><span class="keyword">]</span><span class="keyword">,</span> <span class="argument">lwd</span> <span class="argument">=</span> <span class="number">2</span><span class="keyword">,</span> <span class="argument">pch</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span> <span class="argument">cex</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/graphics/par'>par</a></span><span class="keyword">(</span><span class="string">"cex"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">line</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"quartiles"</span><span class="keyword">,</span>
+          <span class="string">"robust"</span><span class="keyword">,</span> <span class="string">"none"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">labels</span> <span class="argument">=</span> <span class="keyword">if</span> <span class="keyword">(</span><span class="keyword">!</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/NULL'>is.null</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/names'>names</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/names'>names</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">)</span> <span class="keyword">else</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/seq'>seq</a></span><span class="keyword">(</span><span class="argument">along</span> <span class="argument">=</span> <span class="symbol">x</span><span class="keyword">)</span><span class="keyword">,</span>
+      <span class="argument">id.method</span> <span class="argument">=</span> <span class="string">"y"</span><span class="keyword">,</span> <span class="argument">id.n</span> <span class="argument">=</span> <span class="keyword">if</span> <span class="keyword">(</span><span class="symbol">id.method</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">]</span> == <span class="string">"identify"</span><span class="keyword">)</span> <span class="number">Inf</span> <span class="keyword">else</span> <span class="number">0</span><span class="keyword">,</span> <span class="argument">id.cex</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span>
+      <span class="argument">id.col</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/palette'>palette</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">]</span><span class="keyword">,</span> <span class="argument">grid</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='qqPlot.html'>qqPlot</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="argument">xlab</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/paste'>paste</a></span><span class="keyword">(</span><span class="symbol">distribution</span><span class="keyword">,</span> <span class="string">"Quantiles"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">ylab</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/paste'>paste</a></span><span class="keyword">(</span><span class="string">"Studentized Residuals("</span><span class="keyword">,</span>
+      <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/deparse'>deparse</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/substitute'>substitute</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span> <span class="string">")"</span><span class="keyword">,</span> <span class="argument">sep</span> <span class="argument">=</span> <span class="string">""</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">main</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">distribution</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"t"</span><span class="keyword">,</span> <span class="string">"norm"</span><span class="keyword">)</span><span class="keyword">,</span>
+      <span class="argument">line</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"robust"</span><span class="keyword">,</span> <span class="string">"quartiles"</span><span class="keyword">,</span> <span class="string">"none"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">las</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/graphics/par'>par</a></span><span class="keyword">(</span><span class="string">"las"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">simulate</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="argument">envelope</span> <span class="argument">=</span> <span class="number">0.95</span><span class="keyword">,</span>
+      <span class="argument">reps</span> <span class="argument">=</span> <span class="number">100</span><span class="keyword">,</span> <span class="argument">col</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/palette'>palette</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">]</span><span class="keyword">,</span> <span class="argument">col.lines</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/palette'>palette</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">2</span><span class="keyword">]</span><span class="keyword">,</span> <span class="argument">lwd</span> <span class="argument">=</span> <span class="number">2</span><span class="keyword">,</span> <span class="argument">pch</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span> <span class="argument">cex</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/graphics/par'>par</a></span><span class="keyword">(</span><span class="string">"cex"</span><span class="keyword">)</span><span class="keyword">,</span>
+      <span class="symbol">labels</span><span class="keyword">,</span> <span class="argument">id.method</span> <span class="argument">=</span> <span class="string">"y"</span><span class="keyword">,</span> <span class="argument">id.n</span> <span class="argument">=</span> <span class="keyword">if</span> <span class="keyword">(</span><span class="symbol">id.method</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">]</span> == <span class="string">"identify"</span><span class="keyword">)</span> <span class="number">Inf</span> <span class="keyword">else</span> <span class="number">0</span><span class="keyword">,</span> <span class="argument">id.cex</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span>
+      <span class="argument">id.col</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/palette'>palette</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">]</span><span class="keyword">,</span> <span class="argument">grid</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>x</dt>
+      <dd>vector of numeric values or <code>lm</code> object.</dd>
+      <dt>distribution</dt>
+      <dd>root name of comparison distribution -- e.g., <code>"norm"</code> for the
+    normal distribution; <code>t</code> for the t-distribution.</dd>
+      <dt>ylab</dt>
+      <dd>label for vertical (empirical quantiles) axis.</dd>
+      <dt>xlab</dt>
+      <dd>label for horizontal (comparison quantiles) axis.</dd>
+      <dt>main</dt>
+      <dd>label for plot.</dd>
+      <dt>envelope</dt>
+      <dd>confidence level for point-wise confidence envelope, or 
+    <code>FALSE</code> for no envelope.</dd>
+      <dt>las</dt>
+      <dd>if <code>0</code>, ticks labels are drawn parallel to the
+    axis; set to <code>1</code> for horizontal labels (see <code><a href='http://www.inside-r.org/r-doc/graphics/par'>par</a></code>).</dd>
+      <dt>col</dt>
+      <dd>color for points; the default is the <em>first</em> entry
+    in the current color palette (see <code><a href='http://www.inside-r.org/r-doc/grDevices/palette'>palette</a></code>
+    and <code><a href='http://www.inside-r.org/r-doc/graphics/par'>par</a></code>).</dd>
+      <dt>col.lines</dt>
+      <dd>color for lines; the default is the <em>second</em> entry
+    in the current color palette.</dd>
+      <dt>pch</dt>
+      <dd>plotting character for points; default is <code>1</code> 
+    (a circle, see <code><a href='http://www.inside-r.org/r-doc/graphics/par'>par</a></code>).</dd>
+      <dt>cex</dt>
+      <dd>factor for expanding the size of plotted symbols; the default is
+    <code>1</code>.</dd>
+      <dt>labels</dt>
+      <dd>vector of text strings to be used to identify points, defaults to
+    <code>names(x)</code> or observation numbers if <code>names(x)</code> is <code>NULL</code>.</dd>
+      <dt>id.method</dt>
+      <dd>point identification method.  The default
+<code>id.method="y"</code>
+    will identify the <code>id.n</code> points with the largest value of 
+    <code>abs(y-mean(y))</code>.  See <code><a href='showLabels.html'>showLabels</a></code> for other options.</dd>
+      <dt>id.n</dt>
+      <dd>number of points labeled.  If <code>id.n=0</code>, the default, no
+    point identification.</dd>
+      <dt>id.cex</dt>
+      <dd>set size of the text for point labels; the default is <code>cex</code> (which is typically <code>1</code>).</dd>
+      <dt>id.col</dt>
+      <dd>color for the point labels.</dd>
+      <dt>lwd</dt>
+      <dd>line width; default is <code>2</code> (see <code><a href='http://www.inside-r.org/r-doc/graphics/par'>par</a></code>).</dd>
+      <dt>line</dt>
+      <dd><code>"quartiles"</code> to pass a line through the quartile-pairs, or
+    <code>"robust"</code> for a robust-regression line; the latter uses the <code>rlm</code>
+    function in the <code>MASS</code> package. Specifying <code>line = "none"</code> suppresses the line.</dd>
+      <dt>simulate</dt>
+      <dd>if <code>TRUE</code> calculate confidence envelope by parametric bootstrap;
+    for <code>lm</code> object only. The method is due to Atkinson (1985).</dd>
+      <dt>reps</dt>
+      <dd>integer; number of bootstrap replications for confidence envelope.</dd>
+      <dt>...</dt>
+      <dd>arguments such as <code>df</code> to be passed to the appropriate quantile function.</dd>
+      <dt>grid</dt>
+      <dd>If TRUE, the default, a light-gray background grid is put on the
+graph</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Plots empirical quantiles of a variable, or of studentized residuals from
+ a linear model, against theoretical quantiles of a comparison distribution.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p>Draws theoretical quantile-comparison plots for variables and for studentized residuals
+  from a linear model. A comparison line is drawn on the plot either through the quartiles
+  of the two distributions, or by robust regression.</p>
+  
+      <p>Any distribution for which quantile and
+  density functions exist in R (with prefixes <code>q</code> and <code>d</code>, respectively) may be used. 
+  Studentized residuals from linear models are plotted against the appropriate t-distribution.</p>
+  
+      <p>The function <code>qqp</code> is an abbreviation for <code>qqPlot</code>.</p>
+  
+    </div>
+
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>These functions return the labels of identified points.</p>
+  
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+      
+      <p>Fox, J. (2008)
+  <em>Applied Regression Analysis and Generalized Linear Models</em>,
+  Second Edition. Sage.</p>
+  
+      <p>Fox, J. and Weisberg, S. (2011) 
+  <em>An R Companion to Applied Regression</em>, Second Edition, Sage.</p>
+  
+      <p>Atkinson, A. C. (1985)
+  <em>Plots, Transformations, and Regression.</em> Oxford.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="symbol">x</span><span class="assignement">&lt;-</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/Chisquare'>rchisq</a></span><span class="keyword">(</span><span class="number">100</span><span class="keyword">,</span> <span class="argument">df</span><span class="argument">=</span><span class="number">2</span><span class="keyword">)</span>
+<span class="functioncall"><a href='qqPlot.html'>qqPlot</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">)</span></div>
+<p><img src='qqPlot-2.png' alt='' width='400' height='400' /></p>
+<div class='input'><span class="functioncall"><a href='qqPlot.html'>qqPlot</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="argument">dist</span><span class="argument">=</span><span class="string">"chisq"</span><span class="keyword">,</span> <span class="argument">df</span><span class="argument">=</span><span class="number">2</span><span class="keyword">)</span></div>
+<p><img src='qqPlot-4.png' alt='' width='400' height='400' /></p>
+<div class='input'>
+<span class="functioncall"><a href='qqPlot.html'>qqPlot</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/lm'>lm</a></span><span class="keyword">(</span><span class="symbol">prestige</span> <span class="keyword">~</span> <span class="symbol">income</span> <span class="keyword">+</span> <span class="symbol">education</span> <span class="keyword">+</span> <span class="symbol">type</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">Duncan</span><span class="keyword">)</span><span class="keyword">,</span>
+        <span class="argument">envelope</span><span class="argument">=</span><span class="number">.99</span><span class="keyword">)</span></div>
+<p><img src='qqPlot-6.png' alt='' width='400' height='400' /></p></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>qqPlot</li><li>qqp</li><li>qqPlot.default</li><li>qqPlot.lm</li><li>qqPlot.glm</li>
+    </ul>
+    <ul>
+      <li>distribution</li><li>univar</li><li>regression</li>
+    </ul> -->
+      
+    <h2>See also</h2>
+    <code><a href='http://www.inside-r.org/r-doc/stats/qqnorm'>qqplot</a></code>, <code><a href='http://www.inside-r.org/r-doc/stats/qqnorm'>qqnorm</a></code>,
+ <code><a href='http://www.inside-r.org/r-doc/stats/qqnorm'>qqline</a></code>, <code><a href='showLabels.html'>showLabels</a></code>
+    
+    <h2>Author</h2>
+    John Fox <a href='mailto:jfox@mcmaster.ca'>jfox@mcmaster.ca</a>
+    
+  </div>
+</div>

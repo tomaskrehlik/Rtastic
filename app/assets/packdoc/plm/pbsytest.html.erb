@@ -1,0 +1,112 @@
+      <h1>Bera, Sosa-Escudero and Yoon Locally--Robust Lagrange Multiplier Tests for Panel Models</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='pbsytest.html'>pbsytest</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='pbsytest.html'>pbsytest</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="argument">test</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"ar"</span><span class="keyword">,</span> <span class="string">"re"</span><span class="keyword">,</span> <span class="string">"j"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='pbsytest.html'>pbsytest</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">data</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">,</span> <span class="argument">test</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"ar"</span><span class="keyword">,</span> <span class="string">"re"</span><span class="keyword">,</span> <span class="string">"j"</span><span class="keyword">)</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>x</dt>
+      <dd>an object of class <code>"formula"</code> or of class
+  <code>panelmodel</code>,</dd>
+      <dt>data</dt>
+      <dd>a <code>data.frame</code>,</dd>
+      <dt>test</dt>
+      <dd>a character string indicating which test to perform:
+  first-order serial correlation (<code>ar</code>), random effects
+  (<code>re</code>) or joint test for either of them (<code>j</code>).</dd>
+      <dt>...</dt>
+      <dd>further arguments.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Test for residual serial correlation (or individual random effects) locally robust vs. individual random effects (serial correlation) for panel models and joint test by Baltagi and Li.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p>These Lagrange multiplier tests are robust vs. local misspecification of the alternative hypothesis, i.e. they test the null of serially uncorrelated residuals against AR(1) residuals in a pooling model, allowing for local departures from the assumption of no random effects; or they test the null of no random effects allowing for local departures from the assumption of no serial correlation in residuals. They use only the residuals of the pooled OLS model and correct for local misspecification as outlined in Bera <em>et al.</em> (2001).</p>
+  
+      <p>The joint test is due to Baltagi and Li (1991) and is added for
+convenience under this same interface.</p>
+  
+    </div>
+
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>An object of class <code>"htest"</code>.</p>
+  
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+      
+      <p>Bera, A.K., Sosa-Escudero, W. and  Yoon, M. (2001), Tests for the error component model in the presence of local misspecification, <em>Journal of Econometrics</em>, <b>101</b>, pp. 1-23.</p>
+  
+      <p>Baltagi, B. and Li, Q. (1991), A joint test for serial correlation and random individual effects, <em>Statistics and Probability Letters</em>, <b>11</b>, pp. 277-280.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="comment">## Example in Bera et al.</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/utils/data'>data</a></span><span class="keyword">(</span><span class="symbol">Grunfeld</span><span class="keyword">,</span> <span class="argument">package</span> <span class="argument">=</span> <span class="string">"plm"</span><span class="keyword">)</span>
+<span class="comment">## Bera et al. use a subset of the original Grunfeld data,</span>
+<span class="comment">## so results are slightly different here</span>
+<span class="comment">## default is AR testing</span>
+<span class="functioncall"><a href='pbsytest.html'>pbsytest</a></span><span class="keyword">(</span><span class="symbol">inv</span> <span class="keyword">~</span> <span class="symbol">value</span> <span class="keyword">+</span> <span class="symbol">capital</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">Grunfeld</span><span class="keyword">,</span> <span class="argument">index</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"firm"</span><span class="keyword">,</span><span class="string">"year"</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<div class='output'>
+	Bera, Sosa-Escudero and Yoon locally robust test
+
+data:  formula 
+chisq = 10.3099, df = 1, p-value = 0.001323
+alternative hypothesis: AR(1) errors sub random effects 
+
+</div>
+<div class='input'><span class="functioncall"><a href='pbsytest.html'>pbsytest</a></span><span class="keyword">(</span><span class="symbol">inv</span> <span class="keyword">~</span> <span class="symbol">value</span> <span class="keyword">+</span> <span class="symbol">capital</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">Grunfeld</span><span class="keyword">,</span> <span class="argument">test</span><span class="argument">=</span><span class="string">"re"</span><span class="keyword">,</span> <span class="argument">index</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"firm"</span><span class="keyword">,</span><span class="string">"year"</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<div class='output'>
+	Bera, Sosa-Escudero and Yoon locally robust test
+
+data:  formula 
+z = 25.7866, p-value < 2.2e-16
+alternative hypothesis: random effects sub AR(1) errors 
+
+</div>
+<div class='input'><span class="functioncall"><a href='pbsytest.html'>pbsytest</a></span><span class="keyword">(</span><span class="symbol">inv</span> <span class="keyword">~</span> <span class="symbol">value</span> <span class="keyword">+</span> <span class="symbol">capital</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">Grunfeld</span><span class="keyword">,</span> <span class="argument">test</span><span class="argument">=</span><span class="string">"j"</span><span class="keyword">,</span> <span class="argument">index</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"firm"</span><span class="keyword">,</span><span class="string">"year"</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<div class='output'>
+	Baltagi and Li AR-RE joint test
+
+data:  formula 
+chisq = 808.4715, df = 2, p-value < 2.2e-16
+alternative hypothesis: AR(1) errors or random effects 
+
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>pbsytest</li><li>pbsytest.formula</li><li>pbsytest.panelmodel</li>
+    </ul>
+    <ul>
+      <li>htest</li>
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+  <code><a href='plmtest.html'>plmtest</a></code> for individual and/or time random effects tests based on a correctly specified model; <code><a href='pbltest.html'>pbltest</a></code>,
+  <code><a href='pbgtest.html'>pbgtest</a></code> and <code><a href='pdwtest.html'>pdwtest</a></code> for serial correlation tests in random effects models.
+
+    
+    <h2>Author</h2>
+    Giovanni Millo
+    
+  </div>
+</div>

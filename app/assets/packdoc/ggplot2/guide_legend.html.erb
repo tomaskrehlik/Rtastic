@@ -1,0 +1,215 @@
+      <h1>Legend guide.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='guide_legend.html'>guide_legend</a></span><span class="keyword">(</span><span class="argument">title</span> <span class="argument">=</span> <span class="functioncall"><a href='waiver.html'>waiver</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">title.position</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">title.theme</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">title.hjust</span> <span class="argument">=</span> NULL<span class="keyword">,</span>
+  <span class="argument">title.vjust</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">label</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="argument">label.position</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">label.theme</span> <span class="argument">=</span> NULL<span class="keyword">,</span>
+      <span class="argument">label.hjust</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">label.vjust</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">keywidth</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">keyheight</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">direction</span> <span class="argument">=</span> NULL<span class="keyword">,</span>
+      <span class="argument">default.unit</span> <span class="argument">=</span> <span class="string">"line"</span><span class="keyword">,</span> <span class="argument">override.aes</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/list'>list</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">nrow</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">ncol</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">byrow</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">,</span>
+      <span class="argument">reverse</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">,</span> <span class="argument">order</span> <span class="argument">=</span> <span class="number">0</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>title</dt>
+      <dd>A character string or expression indicating
+  a title of guide.  If <code>NULL</code>, the title is not
+  shown. By default (<code><a href='waiver.html'>waiver</a></code>), the name of the
+  scale object or tha name specified in <code><a href='labs.html'>labs</a></code>
+  is used for the title.</dd>
+      <dt>title.position</dt>
+      <dd>A character string indicating the
+  position of a title. One of "top" (default for a vertical
+  guide), "bottom", "left" (default for a horizontal
+  guide), or "right."</dd>
+      <dt>title.theme</dt>
+      <dd>A theme object for rendering the title
+  text. Usually the object of <code><a href='element_text.html'>element_text</a></code> is
+  expected. By default, the theme is specified by
+  <code>legend.title</code> in <code><a href='theme.html'>theme</a></code> or theme.</dd>
+      <dt>title.hjust</dt>
+      <dd>A number specifying horizontal
+  justification of the title text.</dd>
+      <dt>title.vjust</dt>
+      <dd>A number specifying vertical
+  justification of the title text.</dd>
+      <dt>label</dt>
+      <dd>logical. If <code>TRUE</code> then the labels are
+  drawn. If <code>FALSE</code> then the labels are invisible.</dd>
+      <dt>label.position</dt>
+      <dd>A character string indicating the
+  position of a label. One of "top", "bottom" (default for
+  horizontal guide), "left", or "right" (default for
+  vertical gudie).</dd>
+      <dt>label.theme</dt>
+      <dd>A theme object for rendering the label
+  text. Usually the object of <code><a href='element_text.html'>element_text</a></code> is
+  expected. By default, the theme is specified by
+  <code>legend.text</code> in <code><a href='theme.html'>theme</a></code> or theme.</dd>
+      <dt>label.hjust</dt>
+      <dd>A numeric specifying horizontal
+  justification of the label text.</dd>
+      <dt>label.vjust</dt>
+      <dd>A numeric specifying vertical
+  justification of the label text.</dd>
+      <dt>keywidth</dt>
+      <dd>A numeric or a unit object specifying the
+  width of the legend key. Default value is
+  <code>legend.key.width</code> or <code>legend.key.size</code> in
+  <code><a href='theme.html'>theme</a></code> or theme.</dd>
+      <dt>keyheight</dt>
+      <dd>A numeric or a unit object specifying
+  the height of the legend key. Default value is
+  <code>legend.key.height</code> or <code>legend.key.size</code> in
+  <code><a href='theme.html'>theme</a></code> or theme.</dd>
+      <dt>direction</dt>
+      <dd>A character string indicating the
+  direction of the guide.  One of "horizontal" or
+  "vertical."</dd>
+      <dt>default.unit</dt>
+      <dd>A character string indicating unit
+  for <code>keywidth</code> and <code>keyheight</code>.</dd>
+      <dt>override.aes</dt>
+      <dd>A list specifying aesthetic
+  parameters of legend key.  See details and examples.</dd>
+      <dt>nrow</dt>
+      <dd>The desired number of rows of legends.</dd>
+      <dt>ncol</dt>
+      <dd>The desired number of column of legends.</dd>
+      <dt>byrow</dt>
+      <dd>logical. If <code>FALSE</code> (the default) the
+  legend-matrix is filled by columns, otherwise the
+  legend-matrix is filled by rows.</dd>
+      <dt>reverse</dt>
+      <dd>logical. If <code>TRUE</code> the order of
+  legends is reversed.</dd>
+      <dt>order</dt>
+      <dd>positive integer less that 99 that specify
+  the order of this guide in the multiple guides. If 0
+  (default), the order is determined by a secret
+  algorithm.</dd>
+      <dt>...</dt>
+      <dd>ignored.</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>A guide object</p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Legend type guide shows key (i.e., geoms) mapped onto
+  values. Legend guides for various scales are integrated
+  if possible.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p>Guides can be specified in each scale or in
+  <code><a href='guides.html'>guides</a></code>. <code>guide="legend"</code> in scale is
+  syntactic sugar for <code>guide=guide_legend()</code>. As for
+  how to specify the guide for each scales in more detail,
+  see <code><a href='guides.html'>guides</a></code>.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/library'>library</a></span><span class="keyword">(</span><span class="symbol">reshape2</span><span class="keyword">)</span> <span class="comment"># for melt</span>
+<span class="symbol">df</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/reshape2/melt'>melt</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/outer'>outer</a></span><span class="keyword">(</span><span class="number">1</span><span class="keyword">:</span><span class="number">4</span><span class="keyword">,</span> <span class="number">1</span><span class="keyword">:</span><span class="number">4</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">varnames</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"X1"</span><span class="keyword">,</span> <span class="string">"X2"</span><span class="keyword">)</span><span class="keyword">)</span>
+
+<span class="symbol">p1</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="symbol">X1</span><span class="keyword">,</span> <span class="symbol">X2</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_tile.html'>geom_tile</a></span><span class="keyword">(</span><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">fill</span> <span class="argument">=</span> <span class="symbol">value</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="symbol">p2</span> <span class="assignement">&lt;-</span> <span class="symbol">p1</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_point.html'>geom_point</a></span><span class="keyword">(</span><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">size</span> <span class="argument">=</span> <span class="symbol">value</span><span class="keyword">)</span><span class="keyword">)</span>
+
+<span class="comment"># Basic form</span>
+<span class="symbol">p1</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_gradient.html'>scale_fill_continuous</a></span><span class="keyword">(</span><span class="argument">guide</span> <span class="argument">=</span> <span class="string">"legend"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/guide_legend.html-2.png' %></p>
+<div class='input'><span class="symbol">p1</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_gradient.html'>scale_fill_continuous</a></span><span class="keyword">(</span><span class="argument">guide</span> <span class="argument">=</span> <span class="functioncall"><a href='guide_legend.html'>guide_legend</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/guide_legend.html-4.png' %></p>
+<div class='input'>
+<span class="comment"># Guide title</span>
+
+<span class="symbol">p1</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_gradient.html'>scale_fill_continuous</a></span><span class="keyword">(</span><span class="argument">guide</span> <span class="argument">=</span> <span class="functioncall"><a href='guide_legend.html'>guide_legend</a></span><span class="keyword">(</span><span class="argument">title</span> <span class="argument">=</span> <span class="string">"V"</span><span class="keyword">)</span><span class="keyword">)</span> <span class="comment"># title text</span></div>
+<p><%= image_tag 'ggplot2/guide_legend.html-6.png' %></p>
+<div class='input'><span class="symbol">p1</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_gradient.html'>scale_fill_continuous</a></span><span class="keyword">(</span><span class="argument">name</span> <span class="argument">=</span> <span class="string">"V"</span><span class="keyword">)</span> <span class="comment"># same</span></div>
+<p><%= image_tag 'ggplot2/guide_legend.html-8.png' %></p>
+<div class='input'><span class="symbol">p1</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_gradient.html'>scale_fill_continuous</a></span><span class="keyword">(</span><span class="argument">guide</span> <span class="argument">=</span> <span class="functioncall"><a href='guide_legend.html'>guide_legend</a></span><span class="keyword">(</span><span class="argument">title</span> <span class="argument">=</span> NULL<span class="keyword">)</span><span class="keyword">)</span> <span class="comment"># no title</span></div>
+<p><%= image_tag 'ggplot2/guide_legend.html-10.png' %></p>
+<div class='input'>
+<span class="comment"># Control styles</span>
+
+<span class="comment"># key size</span>
+<span class="symbol">p1</span> <span class="keyword">+</span> <span class="functioncall"><a href='guides.html'>guides</a></span><span class="keyword">(</span><span class="argument">fill</span> <span class="argument">=</span> <span class="functioncall"><a href='guide_legend.html'>guide_legend</a></span><span class="keyword">(</span><span class="argument">keywidth</span> <span class="argument">=</span> <span class="number">3</span><span class="keyword">,</span> <span class="argument">keyheight</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/guide_legend.html-12.png' %></p>
+<div class='input'>
+<span class="comment"># title position</span>
+<span class="symbol">p1</span> <span class="keyword">+</span> <span class="functioncall"><a href='guides.html'>guides</a></span><span class="keyword">(</span><span class="argument">fill</span> <span class="argument">=</span> <span class="functioncall"><a href='guide_legend.html'>guide_legend</a></span><span class="keyword">(</span><span class="argument">title</span> <span class="argument">=</span> <span class="string">"LEFT"</span><span class="keyword">,</span> <span class="argument">title.position</span> <span class="argument">=</span> <span class="string">"left"</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/guide_legend.html-14.png' %></p>
+<div class='input'>
+<span class="comment"># title text styles via element_text</span>
+<span class="symbol">p1</span> <span class="keyword">+</span> <span class="functioncall"><a href='guides.html'>guides</a></span><span class="keyword">(</span><span class="argument">fill</span> <span class="argument">=</span> <span class="functioncall"><a href='guide_legend.html'>guide_legend</a></span><span class="keyword">(</span>
+  <span class="argument">title.theme</span> <span class="argument">=</span> <span class="functioncall"><a href='element_text.html'>element_text</a></span><span class="keyword">(</span><span class="argument">size</span><span class="argument">=</span><span class="number">15</span><span class="keyword">,</span> <span class="argument">face</span><span class="argument">=</span><span class="string">"italic"</span><span class="keyword">,</span> <span class="argument">colour</span> <span class="argument">=</span> <span class="string">"red"</span><span class="keyword">,</span> <span class="argument">angle</span> <span class="argument">=</span> <span class="number">45</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/guide_legend.html-16.png' %></p>
+<div class='input'>
+<span class="comment"># label position</span>
+<span class="symbol">p1</span> <span class="keyword">+</span> <span class="functioncall"><a href='guides.html'>guides</a></span><span class="keyword">(</span><span class="argument">fill</span> <span class="argument">=</span> <span class="functioncall"><a href='guide_legend.html'>guide_legend</a></span><span class="keyword">(</span><span class="argument">label.position</span> <span class="argument">=</span> <span class="string">"bottom"</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/guide_legend.html-18.png' %></p>
+<div class='input'>
+<span class="comment"># label styles</span>
+<span class="symbol">p1</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_gradient.html'>scale_fill_continuous</a></span><span class="keyword">(</span><span class="argument">breaks</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">5</span><span class="keyword">,</span> <span class="number">10</span><span class="keyword">,</span> <span class="number">15</span><span class="keyword">)</span><span class="keyword">,</span>
+  <span class="argument">labels</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/paste'>paste</a></span><span class="keyword">(</span><span class="string">"long"</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">5</span><span class="keyword">,</span> <span class="number">10</span><span class="keyword">,</span> <span class="number">15</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span>
+  <span class="argument">guide</span> <span class="argument">=</span> <span class="functioncall"><a href='guide_legend.html'>guide_legend</a></span><span class="keyword">(</span><span class="argument">direction</span> <span class="argument">=</span> <span class="string">"horizontal"</span><span class="keyword">,</span> <span class="argument">title.position</span> <span class="argument">=</span> <span class="string">"top"</span><span class="keyword">,</span>
+    <span class="argument">label.position</span><span class="argument">=</span><span class="string">"bottom"</span><span class="keyword">,</span> <span class="argument">label.hjust</span> <span class="argument">=</span> <span class="number">0.5</span><span class="keyword">,</span> <span class="argument">label.vjust</span> <span class="argument">=</span> <span class="number">0.5</span><span class="keyword">,</span>
+    <span class="argument">label.theme</span> <span class="argument">=</span> <span class="functioncall"><a href='element_text.html'>element_text</a></span><span class="keyword">(</span><span class="argument">angle</span> <span class="argument">=</span> <span class="number">90</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/guide_legend.html-20.png' %></p>
+<div class='input'>
+<span class="comment"># Set aesthetic of legend key</span>
+
+<span class="comment"># very low alpha value make it difficult to see legend key</span>
+<span class="symbol">p3</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">carat</span><span class="keyword">,</span> <span class="symbol">price</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">diamonds</span><span class="keyword">,</span> <span class="argument">colour</span> <span class="argument">=</span> <span class="symbol">color</span><span class="keyword">,</span>
+  <span class="argument">alpha</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/AsIs'>I</a></span><span class="keyword">(</span><span class="number">1</span><span class="keyword">/</span><span class="number">100</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="symbol">p3</span></div>
+<p><%= image_tag 'ggplot2/guide_legend.html-22.png' %></p>
+<div class='input'>
+<span class="comment"># override.aes overwrites the alpha</span>
+<span class="symbol">p3</span> <span class="keyword">+</span> <span class="functioncall"><a href='guides.html'>guides</a></span><span class="keyword">(</span><span class="argument">colour</span> <span class="argument">=</span> <span class="functioncall"><a href='guide_legend.html'>guide_legend</a></span><span class="keyword">(</span><span class="argument">override.aes</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/list'>list</a></span><span class="keyword">(</span><span class="argument">alpha</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/guide_legend.html-24.png' %></p>
+<div class='input'>
+<span class="comment"># multiple row/col legends</span>
+<span class="symbol">p</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="number">1</span><span class="keyword">:</span><span class="number">20</span><span class="keyword">,</span> <span class="number">1</span><span class="keyword">:</span><span class="number">20</span><span class="keyword">,</span> <span class="argument">colour</span> <span class="argument">=</span> <span class="symbol">letters</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">:</span><span class="number">20</span><span class="keyword">]</span><span class="keyword">)</span>
+<span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='guides.html'>guides</a></span><span class="keyword">(</span><span class="argument">col</span> <span class="argument">=</span> <span class="functioncall"><a href='guide_legend.html'>guide_legend</a></span><span class="keyword">(</span><span class="argument">nrow</span> <span class="argument">=</span> <span class="number">8</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/guide_legend.html-26.png' %></p>
+<div class='input'><span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='guides.html'>guides</a></span><span class="keyword">(</span><span class="argument">col</span> <span class="argument">=</span> <span class="functioncall"><a href='guide_legend.html'>guide_legend</a></span><span class="keyword">(</span><span class="argument">ncol</span> <span class="argument">=</span> <span class="number">8</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/guide_legend.html-28.png' %></p>
+<div class='input'><span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='guides.html'>guides</a></span><span class="keyword">(</span><span class="argument">col</span> <span class="argument">=</span> <span class="functioncall"><a href='guide_legend.html'>guide_legend</a></span><span class="keyword">(</span><span class="argument">nrow</span> <span class="argument">=</span> <span class="number">8</span><span class="keyword">,</span> <span class="argument">byrow</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/guide_legend.html-30.png' %></p>
+<div class='input'><span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='guides.html'>guides</a></span><span class="keyword">(</span><span class="argument">col</span> <span class="argument">=</span> <span class="functioncall"><a href='guide_legend.html'>guide_legend</a></span><span class="keyword">(</span><span class="argument">ncol</span> <span class="argument">=</span> <span class="number">8</span><span class="keyword">,</span> <span class="argument">byrow</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/guide_legend.html-32.png' %></p>
+<div class='input'>
+<span class="comment"># reversed order legend</span>
+<span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='guides.html'>guides</a></span><span class="keyword">(</span><span class="argument">col</span> <span class="argument">=</span> <span class="functioncall"><a href='guide_legend.html'>guide_legend</a></span><span class="keyword">(</span><span class="argument">reverse</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/guide_legend.html-34.png' %></p>
+<div class='input'></div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>guide_legend</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+  Other guides: <code><a href='guide_colourbar.html'>guide_colorbar</a></code>,
+  <code><a href='guide_colourbar.html'>guide_colourbar</a></code>, <code><a href='guides.html'>guides</a></code>
+
+        
+  </div>
+</div>

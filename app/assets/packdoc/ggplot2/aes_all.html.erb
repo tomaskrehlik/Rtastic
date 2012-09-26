@@ -1,0 +1,67 @@
+      <h1>Given a character vector, create a set of identity mappings</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='aes_all.html'>aes_all</a></span><span class="keyword">(</span><span class="symbol">vars</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>vars</dt>
+      <dd>vector of variable names</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Given a character vector, create a set of identity
+  mappings</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='aes_all.html'>aes_all</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/names'>names</a></span><span class="keyword">(</span><span class="symbol">mtcars</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<div class='output'>List of 11
+ $ mpg :length 1 mpg
+  ..- attr(*, "id")= int 11
+ $ cyl :length 1 cyl
+  ..- attr(*, "id")= int 31
+ $ disp:length 1 disp
+  ..- attr(*, "id")= int 20
+ $ hp  :length 1 hp
+  ..- attr(*, "id")= int 6
+ $ drat: symbol drat
+ $ wt  :length 1 wt
+  ..- attr(*, "id")= int 27
+ $ qsec:length 1 qsec
+  ..- attr(*, "id")= int 11
+ $ vs  :length 1 vs
+  ..- attr(*, "id")= int 15
+ $ am  :length 1 am
+  ..- attr(*, "id")= int 21
+ $ gear:length 1 gear
+  ..- attr(*, "id")= int 40
+ $ carb: symbol carb
+</div>
+<div class='input'><span class="functioncall"><a href='aes_all.html'>aes_all</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"x"</span><span class="keyword">,</span> <span class="string">"y"</span><span class="keyword">,</span> <span class="string">"col"</span><span class="keyword">,</span> <span class="string">"pch"</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<div class='output'>List of 4
+ $ x     :length 1 x
+  ..- attr(*, "id")= int 6
+ $ y     :length 1 y
+  ..- attr(*, "id")= int 12
+ $ colour:length 1 col
+  ..- attr(*, "id")= int 142
+ $ shape : symbol pch
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>aes_all</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>

@@ -1,0 +1,89 @@
+      <h1>Regression Influence Plot</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='influencePlot.html'>influencePlot</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='influencePlot.html'>influencePlot</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="argument">scale</span> <span class="argument">=</span> <span class="number">10</span><span class="keyword">,</span> <span class="argument">xlab</span> <span class="argument">=</span> <span class="string">"Hat-Values"</span><span class="keyword">,</span> <span class="argument">ylab</span> <span class="argument">=</span> <span class="string">"Studentized Residuals"</span><span class="keyword">,</span>
+  <span class="symbol">labels</span><span class="keyword">,</span> <span class="argument">id.method</span> <span class="argument">=</span> <span class="string">"noteworthy"</span><span class="keyword">,</span> <span class="argument">id.n</span> <span class="argument">=</span> <span class="keyword">if</span> <span class="keyword">(</span><span class="symbol">id.method</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">]</span> == <span class="string">"identify"</span><span class="keyword">)</span> <span class="number">Inf</span> <span class="keyword">else</span> <span class="number">0</span><span class="keyword">,</span>
+      <span class="argument">id.cex</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span> <span class="argument">id.col</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/palette'>palette</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">]</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>model</dt>
+      <dd>a linear or generalized-linear model.
+  </dd>
+      <dt>scale</dt>
+      <dd>a factor to adjust the size of the circles.
+  </dd>
+      <dt>xlab, ylab</dt>
+      <dd>axis labels.
+  </dd>
+      <dt>labels, id.method, id.n, id.cex, id.col</dt>
+      <dd>settings for labelling
+points; see <code>link{showLabels}</code> for details. To omit point labelling, set
+<code>id.n=0</code>, the default.  The default <code>id.method="noteworthy"</code> is used
+only in this function and indicates setting labels for points with large
+Studentized residuals, hat-values or Cook's distances.  Set 
+<code>id.method="identify"</code> for interactive point identification.
+</dd>
+      <dt>...</dt>
+      <dd>arguments to pass to the <code>plot</code> and <code>points</code> functions.
+  </dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>This function creates a &#147;bubble&#148; plot of Studentized residuals by hat values, with the areas of the
+  circles representing the observations proportional to Cook's distances. Vertical reference lines are drawn
+  at twice and three times the average hat value, horizontal reference lines at -2, 0, and 2 on the
+  Studentized-residual scale.</p>
+  
+    </div>
+
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>If points are identified, returns a data frame with the hat values, 
+Studentized residuals and Cook's distance of the identified points.  If
+no points are identified, nothing is returned.  This function is primarily
+used for its side-effect of drawing a plot.</p>
+  
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+      
+      <p>Fox, J. (2008)
+  <em>Applied Regression Analysis and Generalized Linear Models</em>,
+  Second Edition. Sage.</p>
+  
+      <p>Fox, J. and Weisberg, S. (2011) 
+  <em>An R Companion to Applied Regression</em>, Second Edition, Sage.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='influencePlot.html'>influencePlot</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/lm'>lm</a></span><span class="keyword">(</span><span class="symbol">prestige</span> <span class="keyword">~</span> <span class="symbol">income</span> <span class="keyword">+</span> <span class="symbol">education</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">Duncan</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><img src='influencePlot-2.png' alt='' width='400' height='400' /></p></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>influencePlot</li><li>influencePlot.lm</li><li>influence.plot</li>
+    </ul>
+    <ul>
+      <li>regression</li>
+    </ul> -->
+      
+    <h2>See also</h2>
+    <code><a href='http://www.inside-r.org/r-doc/stats/influence.measures'>cooks.distance</a></code>, <code><a href='http://www.inside-r.org/r-doc/stats/influence.measures'>rstudent</a></code>, 
+<code><a href='http://www.inside-r.org/r-doc/stats/influence.measures'>hatvalues</a></code>, <code><a href='showLabels.html'>showLabels</a></code>
+    
+    <h2>Author</h2>
+    John Fox <a href='mailto:jfox@mcmaster.ca'>jfox@mcmaster.ca</a>, minor changes by S. Weisberg
+<a href='mailto:sandy@stat.umn.edu'>sandy@stat.umn.edu</a>
+    
+  </div>
+</div>

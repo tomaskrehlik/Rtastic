@@ -1,0 +1,75 @@
+      <h1>Annotation: High-performance rectangular tiling.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='annotation_raster.html'>annotation_raster</a></span><span class="keyword">(</span><span class="symbol">raster</span><span class="keyword">,</span> <span class="symbol">xmin</span><span class="keyword">,</span> <span class="symbol">xmax</span><span class="keyword">,</span> <span class="symbol">ymin</span><span class="keyword">,</span> <span class="symbol">ymax</span><span class="keyword">,</span> <span class="argument">interpolate</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>raster</dt>
+      <dd>raster object to display</dd>
+      <dt>xmin,xmax</dt>
+      <dd>x location (in data coordinates) giving
+  horizontal location of raster</dd>
+      <dt>ymin,ymax</dt>
+      <dd>y location (in data coordinates) giving
+  vertical location of raster</dd>
+      <dt>interpolate</dt>
+      <dd>If <code>TRUE</code> interpolate linearly,
+  if <code>FALSE</code> (the default) don't interpolate.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>This is a special version of <code><a href='geom_raster.html'>geom_raster</a></code>
+  optimised for static annotations that are the same in
+  every panel. These annotations will not affect scales
+  (i.e. the x and y axes will not grow to cover the range
+  of the raster, and the raster must already have its own
+  colours).</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p>Most useful for adding bitmap images.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="comment"># Generate data</span>
+<span class="symbol">rainbow</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/matrix'>matrix</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/hcl'>hcl</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/seq'>seq</a></span><span class="keyword">(</span><span class="number">0</span><span class="keyword">,</span> <span class="number">360</span><span class="keyword">,</span> <span class="argument">length</span> <span class="argument">=</span> <span class="number">50</span> <span class="keyword">*</span> <span class="number">50</span><span class="keyword">)</span><span class="keyword">,</span> <span class="number">80</span><span class="keyword">,</span> <span class="number">70</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">nrow</span> <span class="argument">=</span> <span class="number">50</span><span class="keyword">)</span>
+<span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">mpg</span><span class="keyword">,</span> <span class="symbol">wt</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">mtcars</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='annotation_raster.html'>annotation_raster</a></span><span class="keyword">(</span><span class="symbol">rainbow</span><span class="keyword">,</span> <span class="number">15</span><span class="keyword">,</span> <span class="number">20</span><span class="keyword">,</span> <span class="number">3</span><span class="keyword">,</span> <span class="number">4</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/annotation_raster.html-2.png' %></p>
+<div class='input'><span class="comment"># To fill up whole plot</span>
+<span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">mpg</span><span class="keyword">,</span> <span class="symbol">wt</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">mtcars</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='annotation_raster.html'>annotation_raster</a></span><span class="keyword">(</span><span class="symbol">rainbow</span><span class="keyword">,</span> <span class="keyword">-</span><span class="number">Inf</span><span class="keyword">,</span> <span class="number">Inf</span><span class="keyword">,</span> <span class="keyword">-</span><span class="number">Inf</span><span class="keyword">,</span> <span class="number">Inf</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='geom_point.html'>geom_point</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/annotation_raster.html-4.png' %></p>
+<div class='input'>
+<span class="symbol">rainbow2</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/matrix'>matrix</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/hcl'>hcl</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/seq'>seq</a></span><span class="keyword">(</span><span class="number">0</span><span class="keyword">,</span> <span class="number">360</span><span class="keyword">,</span> <span class="argument">length</span> <span class="argument">=</span> <span class="number">10</span><span class="keyword">)</span><span class="keyword">,</span> <span class="number">80</span><span class="keyword">,</span> <span class="number">70</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">nrow</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">)</span>
+<span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">mpg</span><span class="keyword">,</span> <span class="symbol">wt</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">mtcars</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='annotation_raster.html'>annotation_raster</a></span><span class="keyword">(</span><span class="symbol">rainbow2</span><span class="keyword">,</span> <span class="keyword">-</span><span class="number">Inf</span><span class="keyword">,</span> <span class="number">Inf</span><span class="keyword">,</span> <span class="keyword">-</span><span class="number">Inf</span><span class="keyword">,</span> <span class="number">Inf</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='geom_point.html'>geom_point</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/annotation_raster.html-6.png' %></p>
+<div class='input'><span class="symbol">rainbow2</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/matrix'>matrix</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/hcl'>hcl</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/seq'>seq</a></span><span class="keyword">(</span><span class="number">0</span><span class="keyword">,</span> <span class="number">360</span><span class="keyword">,</span> <span class="argument">length</span> <span class="argument">=</span> <span class="number">10</span><span class="keyword">)</span><span class="keyword">,</span> <span class="number">80</span><span class="keyword">,</span> <span class="number">70</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">nrow</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">)</span>
+<span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">mpg</span><span class="keyword">,</span> <span class="symbol">wt</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">mtcars</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='annotation_raster.html'>annotation_raster</a></span><span class="keyword">(</span><span class="symbol">rainbow2</span><span class="keyword">,</span> <span class="keyword">-</span><span class="number">Inf</span><span class="keyword">,</span> <span class="number">Inf</span><span class="keyword">,</span> <span class="keyword">-</span><span class="number">Inf</span><span class="keyword">,</span> <span class="number">Inf</span><span class="keyword">,</span> <span class="argument">interpolate</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='geom_point.html'>geom_point</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/annotation_raster.html-8.png' %></p></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>annotation_raster</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>

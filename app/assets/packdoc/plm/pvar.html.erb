@@ -1,0 +1,92 @@
+      <h1>Check for Cross-Sectional and Time Variation</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='pvar.html'>pvar</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='pvar.html'>pvar</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="argument">index</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='pvar.html'>pvar</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/print'>print</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>x</dt>
+      <dd>a <code>data.frame</code>,</dd>
+      <dt>index</dt>
+      <dd>see <code><a href='plm.data.html'>plm.data</a></code>,</dd>
+      <dt>...</dt>
+      <dd>further arguments.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>This function checks for each variable of a panel if it varies cross-sectionally and over time.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p><code>pvar</code> can be time consuming for ``big'' panels.</p>
+  
+    </div>
+
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>An object of class <code>pvar</code> containing the following elements:</p>
+  
+      <p>id.vara logical vector with <code>TRUE</code> values if the
+  variable has individual variation, <code>FALSE</code> otherwise,
+ time.vara logical vector with <code>TRUE</code> values if the
+  variable has time variation, <code>FALSE</code> otherwise,</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="comment">#There are 595 individuals</span>
+
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/utils/data'>data</a></span><span class="keyword">(</span><span class="string">"Wages"</span><span class="keyword">,</span><span class="argument">package</span><span class="argument">=</span><span class="string">"plm"</span><span class="keyword">)</span>
+<span class="functioncall"><a href='pvar.html'>pvar</a></span><span class="keyword">(</span><span class="symbol">Wages</span><span class="keyword">,</span> <span class="number">595</span><span class="keyword">)</span></div>
+<div class='output'>no time variation   :  sex ed black id 
+no individual variation :  time 
+</div>
+<div class='input'>
+<span class="comment"># Gasoline contains two variables which are individual and time indexes</span>
+<span class="comment"># and are the first two variables</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/utils/data'>data</a></span><span class="keyword">(</span><span class="string">"Gasoline"</span><span class="keyword">,</span> <span class="argument">package</span> <span class="argument">=</span> <span class="string">"plm"</span><span class="keyword">)</span>
+<span class="functioncall"><a href='pvar.html'>pvar</a></span><span class="keyword">(</span><span class="symbol">Gasoline</span><span class="keyword">)</span></div>
+<div class='output'>no time variation   :  country 
+no individual variation :  year 
+</div>
+<div class='input'>
+<span class="comment"># Hedonic is an unbalanced panel, townid is the individual index; # the drop.index argument is passed to pdata.frame</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/utils/data'>data</a></span><span class="keyword">(</span><span class="string">"Hedonic"</span><span class="keyword">,</span> <span class="argument">package</span> <span class="argument">=</span> <span class="string">"plm"</span><span class="keyword">)</span>
+<span class="functioncall"><a href='pvar.html'>pvar</a></span><span class="keyword">(</span><span class="symbol">Hedonic</span><span class="keyword">,</span><span class="string">"townid"</span><span class="keyword">,</span> <span class="argument">drop.index</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">)</span></div>
+<div class='output'>no time variation   :  zn indus rad tax ptratio 
+</div>
+<div class='input'>
+<span class="comment"># same using pdata.frame</span>
+<span class="symbol">Hed</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='pdata.frame.html'>pdata.frame</a></span><span class="keyword">(</span><span class="symbol">Hedonic</span><span class="keyword">,</span> <span class="string">"townid"</span><span class="keyword">,</span> <span class="argument">drop.index</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">)</span>
+<span class="functioncall"><a href='pvar.html'>pvar</a></span><span class="keyword">(</span><span class="symbol">Hed</span><span class="keyword">)</span></div>
+<div class='output'>no time variation   :  zn indus rad tax ptratio 
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>pvar</li><li>pvar.data.frame</li><li>pvar.pdata.frame</li><li>print.pvar</li>
+    </ul>
+    <ul>
+      <li>attribute</li>
+    </ul> -->
+      
+    
+    <h2>Author</h2>
+    Yves Croissant
+    
+  </div>
+</div>

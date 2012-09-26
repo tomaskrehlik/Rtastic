@@ -1,0 +1,102 @@
+      <h1>Score Test for Non-Constant Error Variance</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='ncvTest.html'>ncvTest</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='ncvTest.html'>ncvTest</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="symbol">var.formula</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='ncvTest.html'>ncvTest</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>model</dt>
+      <dd>a weighted or unweighted linear model, produced by <code>lm</code>.</dd>
+      <dt>var.formula</dt>
+      <dd>a one-sided formula for the error variance; if omitted,
+    the error variance depends on the fitted values.</dd>
+      <dt>...</dt>
+      <dd>arguments passed down to methods functions; not currently used.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Computes a score test of the hypothesis of constant error variance
+  against the alternative that the error variance changes with the
+  level of the response (fitted values), or with a linear combination
+  of predictors.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p>This test is often called the Breusch-Pagan test; it was independently
+  suggested with some extension by Cook and Weisberg (1983).</p>
+  
+      <p><code>ncvTest.glm</code> is a dummy function to generate an error when a <code>glm</code>
+  model is used.</p>
+  
+    </div>
+
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>The function returns a <code>chisqTest</code> object, which is usually just printed.</p>
+  
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+      
+      <p>Breusch, T. S. and Pagan, A. R. (1979)
+  A simple test for heteroscedasticity and random coefficient variation.
+  <em>Econometrica</em> <b>47</b>, 1287--1294.</p>
+  
+      <p>Cook, R. D. and Weisberg, S. (1983)
+  Diagnostics for heteroscedasticity in regression.
+  <em>Biometrika</em> <b>70</b>, 1--10.</p>
+  
+      <p>Fox, J. (2008)
+  <em>Applied Regression Analysis and Generalized Linear Models</em>,
+  Second Edition. Sage.</p>
+  
+      <p>Fox, J. and Weisberg, S. (2011) 
+  <em>An R Companion to Applied Regression</em>, Second Edition, Sage.</p>
+  
+      <p>Weisberg, S. (2005) <em>Applied Linear Regression</em>, Third Edition, Wiley.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='ncvTest.html'>ncvTest</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/lm'>lm</a></span><span class="keyword">(</span><span class="symbol">interlocks</span> <span class="keyword">~</span> <span class="symbol">assets</span> <span class="keyword">+</span> <span class="symbol">sector</span> <span class="keyword">+</span> <span class="symbol">nation</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">Ornstein</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<div class='output'>Non-constant Variance Score Test 
+Variance formula: ~ fitted.values 
+Chisquare = 46.99    Df = 1     p = 7.152e-12 
+</div>
+<div class='input'>
+<span class="functioncall"><a href='ncvTest.html'>ncvTest</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/lm'>lm</a></span><span class="keyword">(</span><span class="symbol">interlocks</span> <span class="keyword">~</span> <span class="symbol">assets</span> <span class="keyword">+</span> <span class="symbol">sector</span> <span class="keyword">+</span> <span class="symbol">nation</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">Ornstein</span><span class="keyword">)</span><span class="keyword">,</span>
+    <span class="keyword">~</span> <span class="symbol">assets</span> <span class="keyword">+</span> <span class="symbol">sector</span> <span class="keyword">+</span> <span class="symbol">nation</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">Ornstein</span><span class="keyword">)</span></div>
+<div class='output'>Non-constant Variance Score Test 
+Variance formula: ~ assets + sector + nation 
+Chisquare = 74.74    Df = 13     p = 1.066e-10 
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>ncvTest</li><li>ncvTest.lm</li><li>ncvTest.glm</li>
+    </ul>
+    <ul>
+      <li>htest</li><li>regression</li>
+    </ul> -->
+      
+    <h2>See also</h2>
+    <code><a href='hccm.html'>hccm</a></code>, <code>spreadLevelPlot</code> 
+    
+    <h2>Author</h2>
+    John Fox <a href='mailto:jfox@mcmaster.ca'>jfox@mcmaster.ca</a>, Sandy Weisberg <a href='mailto:sandy@umn.edu'>sandy@umn.edu</a>
+    
+  </div>
+</div>

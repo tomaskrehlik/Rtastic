@@ -1,0 +1,90 @@
+      <h1>Frequency polygon.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='geom_freqpoly.html'>geom_freqpoly</a></span><span class="keyword">(</span><span class="argument">mapping</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">stat</span> <span class="argument">=</span> <span class="string">"bin"</span><span class="keyword">,</span> <span class="argument">position</span> <span class="argument">=</span> <span class="string">"identity"</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>mapping</dt>
+      <dd>The aesthetic mapping, usually constructed
+  with <code><a href='aes.html'>aes</a></code> or <code><a href='aes_string.html'>aes_string</a></code>. Only
+  needs to be set at the layer level if you are overriding
+  the plot defaults.</dd>
+      <dt>data</dt>
+      <dd>A layer specific dataset - only needed if you
+  want to override the plot defaults.</dd>
+      <dt>stat</dt>
+      <dd>The statistical transformation to use on the
+  data for this layer.</dd>
+      <dt>position</dt>
+      <dd>The position adjustment to use for
+  overlappling points on this layer</dd>
+      <dt>...</dt>
+      <dd>other arguments passed on to
+  <code><a href='layer.html'>layer</a></code>. This can include aesthetics whose
+  values you want to set, not map. See <code><a href='layer.html'>layer</a></code>
+  for more details.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Frequency polygon.</p>
+  
+    </div>
+
+    <div class="Aesthetics">
+      <h2>Aesthetics</h2>
+      
+      <p><code>geom_freqpoly</code> understands the following aesthetics (required aesthetics are in bold):</p>
+  
+      <p><ul>
+<li> <code>alpha</code>
+  </li>
+<li> <code>colour</code>
+  </li>
+<li> <code>linetype</code>
+  </li>
+<li> <code>size</code>
+</li>
+</ul></p>
+  
+      <p></p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">carat</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">diamonds</span><span class="keyword">,</span> <span class="argument">geom</span> <span class="argument">=</span> <span class="string">"freqpoly"</span><span class="keyword">)</span></div>
+<strong class='message'>stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.</strong>
+<p><%= image_tag 'ggplot2/geom_freqpoly.html-3.png' %></p>
+<div class='input'><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">carat</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">diamonds</span><span class="keyword">,</span> <span class="argument">geom</span> <span class="argument">=</span> <span class="string">"freqpoly"</span><span class="keyword">,</span> <span class="argument">binwidth</span> <span class="argument">=</span> <span class="number">0.1</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_freqpoly.html-5.png' %></p>
+<div class='input'><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">carat</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">diamonds</span><span class="keyword">,</span> <span class="argument">geom</span> <span class="argument">=</span> <span class="string">"freqpoly"</span><span class="keyword">,</span> <span class="argument">binwidth</span> <span class="argument">=</span> <span class="number">0.01</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_freqpoly.html-7.png' %></p>
+<div class='input'>
+<span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">price</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">diamonds</span><span class="keyword">,</span> <span class="argument">geom</span> <span class="argument">=</span> <span class="string">"freqpoly"</span><span class="keyword">,</span> <span class="argument">binwidth</span> <span class="argument">=</span> <span class="number">1000</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_freqpoly.html-9.png' %></p>
+<div class='input'><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">price</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">diamonds</span><span class="keyword">,</span> <span class="argument">geom</span> <span class="argument">=</span> <span class="string">"freqpoly"</span><span class="keyword">,</span> <span class="argument">binwidth</span> <span class="argument">=</span> <span class="number">1000</span><span class="keyword">,</span>
+  <span class="argument">colour</span> <span class="argument">=</span> <span class="symbol">color</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_freqpoly.html-11.png' %></p>
+<div class='input'><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">price</span><span class="keyword">,</span> <span class="symbol">..density..</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">diamonds</span><span class="keyword">,</span> <span class="argument">geom</span> <span class="argument">=</span> <span class="string">"freqpoly"</span><span class="keyword">,</span>
+  <span class="argument">binwidth</span> <span class="argument">=</span> <span class="number">1000</span><span class="keyword">,</span> <span class="argument">colour</span> <span class="argument">=</span> <span class="symbol">color</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_freqpoly.html-13.png' %></p></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>geom_freqpoly</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+  <code><a href='geom_histogram.html'>geom_histogram</a></code>: histograms
+
+        
+  </div>
+</div>

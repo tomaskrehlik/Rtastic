@@ -1,0 +1,53 @@
+      <h1>Fortify method for map objects.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='fortify.html'>fortify</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="symbol">data</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>model</dt>
+      <dd>map object</dd>
+      <dt>data</dt>
+      <dd>not used by this method</dd>
+      <dt>...</dt>
+      <dd>not used by this method</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>This function turns a map into a data frame that can more
+  easily be plotted with ggplot2.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="keyword">if</span> <span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/library'>require</a></span><span class="keyword">(</span><span class="string">"maps"</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">{</span>
+<span class="symbol">ca</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/maps/map'>map</a></span><span class="keyword">(</span><span class="string">"county"</span><span class="keyword">,</span> <span class="string">"ca"</span><span class="keyword">,</span> <span class="argument">plot</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">,</span> <span class="argument">fill</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">)</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/utils/head'>head</a></span><span class="keyword">(</span><span class="functioncall"><a href='fortify.html'>fortify</a></span><span class="keyword">(</span><span class="symbol">ca</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">long</span><span class="keyword">,</span> <span class="symbol">lat</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">ca</span><span class="keyword">,</span> <span class="argument">geom</span> <span class="argument">=</span> <span class="string">"polygon"</span><span class="keyword">,</span> <span class="argument">group</span> <span class="argument">=</span> <span class="symbol">group</span><span class="keyword">)</span>
+
+<span class="symbol">tx</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/maps/map'>map</a></span><span class="keyword">(</span><span class="string">"county"</span><span class="keyword">,</span> <span class="string">"texas"</span><span class="keyword">,</span> <span class="argument">plot</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">,</span> <span class="argument">fill</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">)</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/utils/head'>head</a></span><span class="keyword">(</span><span class="functioncall"><a href='fortify.html'>fortify</a></span><span class="keyword">(</span><span class="symbol">tx</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">long</span><span class="keyword">,</span> <span class="symbol">lat</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">tx</span><span class="keyword">,</span> <span class="argument">geom</span> <span class="argument">=</span> <span class="string">"polygon"</span><span class="keyword">,</span> <span class="argument">group</span> <span class="argument">=</span> <span class="symbol">group</span><span class="keyword">,</span>
+ <span class="argument">colour</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/AsIs'>I</a></span><span class="keyword">(</span><span class="string">"white"</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="keyword">}</span></div>
+<p><%= image_tag 'ggplot2/fortify.map.html-2.png' %></p></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>fortify.map</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+  <code><a href='map_data.html'>map_data</a></code> and <code><a href='borders.html'>borders</a></code>
+
+        
+  </div>
+</div>

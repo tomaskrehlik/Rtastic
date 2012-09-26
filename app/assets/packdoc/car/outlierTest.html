@@ -1,0 +1,109 @@
+      <h1>Bonferroni Outlier Test</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='outlierTest.html'>outlierTest</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='outlierTest.html'>outlierTest</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="argument">cutoff</span> <span class="argument">=</span> <span class="number">0.05</span><span class="keyword">,</span> <span class="argument">n.max</span> <span class="argument">=</span> <span class="number">10</span><span class="keyword">,</span> <span class="argument">order</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="argument">labels</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/names'>names</a></span><span class="keyword">(</span><span class="symbol">rstudent</span><span class="keyword">)</span><span class="keyword">,</span>
+  <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/print'>print</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="argument">digits</span> <span class="argument">=</span> <span class="number">5</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>model</dt>
+      <dd>an <code>lm</code> or <code>glm</code> model object.</dd>
+      <dt>cutoff</dt>
+      <dd>observations with Bonferonni p-values exceeding
+  	<code>cutoff</code> are not reported, unless no observations are
+  	nominated, in which case the one with the largest Studentized
+  	residual is reported.</dd>
+      <dt>n.max</dt>
+      <dd>maximum number of observations to report (default, <code>10</code>).</dd>
+      <dt>order</dt>
+      <dd>report Studenized residuals in descending order of magnitude? 
+  	(default, <code>TRUE</code>).</dd>
+      <dt>labels</dt>
+      <dd>an optional vector of observation names.</dd>
+      <dt>...</dt>
+      <dd>arguments passed down to methods functions.</dd>
+      <dt>x</dt>
+      <dd><code>outlierTest</code> object.</dd>
+      <dt>digits</dt>
+      <dd>number of digits for reported p-values.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Reports the Bonferroni p-values for Studentized residuals in
+  linear and generalized linear models, based on a t-test for
+  linear models and normal-distribution test for generalized linear models.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p>For a linear model, p-values reported use the t distribution with degrees of
+  freedom one less than the residual df for the model. For a generalized
+  linear model, p-values are based on the standard-normal distribution. The Bonferroni
+  adjustment multiplies the usual two-sided p-value by the number of 
+  observations. The <code>lm</code> method works for <code>glm</code> objects. To show all
+  of the observations set <code>cutoff=Inf</code> and <code>n.max=Inf</code>.</p>
+  
+    </div>
+
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>an object of class <code>outlierTest</code>, which is normally just
+  printed.</p>
+  
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+      
+      <p>Cook, R. D. and Weisberg, S. (1982)
+  <em>Residuals and Influence in Regression.</em> Chapman and Hall.</p>
+  
+      <p>Fox, J. (2008)
+  <em>Applied Regression Analysis and Generalized Linear Models</em>,
+  Second Edition. Sage.</p>
+  
+      <p>Fox, J. and Weisberg, S. (2011) 
+  <em>An R Companion to Applied Regression</em>, Second Edition, Sage.</p>
+  
+      <p>Weisberg, S. (2005) <em>Applied Linear Regression</em>, Third Edition, Wiley.</p>
+  
+      <p>Williams, D. A. (1987)
+  Generalized linear model diagnostics using the deviance and single
+  case deletions. <em>Applied Statistics</em> <b>36</b>, 181--191.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='outlierTest.html'>outlierTest</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/lm'>lm</a></span><span class="keyword">(</span><span class="symbol">prestige</span> <span class="keyword">~</span> <span class="symbol">income</span> <span class="keyword">+</span> <span class="symbol">education</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">Duncan</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<div class='output'>
+No Studentized residuals with Bonferonni p < 0.05
+Largest |rstudent|:
+         rstudent unadjusted p-value Bonferonni p
+minister    3.135           0.003177        0.143
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>outlierTest</li><li>outlierTest.lm</li><li>outlierTest.glm</li><li>print.outlierTest</li>
+    </ul>
+    <ul>
+      <li>regression</li><li>htest</li>
+    </ul> -->
+      
+    
+    <h2>Author</h2>
+    John Fox <a href='mailto:jfox@mcmaster.ca'>jfox@mcmaster.ca</a> and Sanford Weisberg
+    
+  </div>
+</div>

@@ -1,0 +1,194 @@
+      <h1>Marginal Model Plotting</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='marginalModelPlot.html'>marginalModelPlots</a></span><span class="keyword">(</span><span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='marginalModelPlot.html'>mmps</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="argument">terms</span> <span class="argument">=</span> <span class="keyword">~</span><span class="symbol">.</span><span class="keyword">,</span> <span class="argument">fitted</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="argument">layout</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="symbol">ask</span><span class="keyword">,</span> <span class="symbol">main</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='marginalModelPlot.html'>marginalModelPlot</a></span><span class="keyword">(</span><span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='marginalModelPlot.html'>mmp</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="symbol">variable</span><span class="keyword">,</span> <span class="argument">sd</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">,</span> <span class="argument">xlab</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/deparse'>deparse</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/substitute'>substitute</a></span><span class="keyword">(</span><span class="symbol">variable</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">smoother</span> <span class="argument">=</span> <span class="symbol">loessLine</span><span class="keyword">,</span>
+  <span class="argument">smoother.args</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/list'>list</a></span><span class="keyword">(</span><span class="argument">degree</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span> <span class="argument">span</span> <span class="argument">=</span> <span class="number">2</span><span class="keyword">/</span><span class="number">3</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">key</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='marginalModelPlot.html'>mmp</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="symbol">variable</span><span class="keyword">,</span> <span class="argument">sd</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">,</span> <span class="argument">xlab</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/deparse'>deparse</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/substitute'>substitute</a></span><span class="keyword">(</span><span class="symbol">variable</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">smoother</span> <span class="argument">=</span> <span class="symbol">loessLine</span><span class="keyword">,</span>
+      <span class="symbol">smoother.args</span><span class="keyword">,</span> <span class="argument">key</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="argument">col.line</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/palette'>palette</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">[</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">4</span><span class="keyword">,</span> <span class="number">2</span><span class="keyword">)</span><span class="keyword">]</span><span class="keyword">,</span> <span class="argument">col</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/palette'>palette</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">]</span><span class="keyword">,</span>
+      <span class="symbol">labels</span><span class="keyword">,</span> <span class="argument">id.method</span> <span class="argument">=</span> <span class="string">"y"</span><span class="keyword">,</span> <span class="argument">id.n</span> <span class="argument">=</span> <span class="keyword">if</span> <span class="keyword">(</span><span class="symbol">id.method</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">]</span> == <span class="string">"identify"</span><span class="keyword">)</span> <span class="number">Inf</span> <span class="keyword">else</span> <span class="number">0</span><span class="keyword">,</span> <span class="argument">id.cex</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span>
+      <span class="argument">id.col</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/palette'>palette</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">]</span><span class="keyword">,</span> <span class="argument">grid</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='marginalModelPlot.html'>mmp</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="symbol">variable</span><span class="keyword">,</span> <span class="argument">sd</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">,</span> <span class="argument">xlab</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/deparse'>deparse</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/substitute'>substitute</a></span><span class="keyword">(</span><span class="symbol">variable</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">smoother</span> <span class="argument">=</span> <span class="symbol">gamLine</span><span class="keyword">,</span>
+      <span class="argument">smoother.args</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/list'>list</a></span><span class="keyword">(</span><span class="argument">k</span> <span class="argument">=</span> <span class="number">3</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">key</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="argument">col.line</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/palette'>palette</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">[</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">4</span><span class="keyword">,</span> <span class="number">2</span><span class="keyword">)</span><span class="keyword">]</span><span class="keyword">,</span> <span class="argument">col</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/palette'>palette</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">]</span><span class="keyword">,</span>
+      <span class="symbol">labels</span><span class="keyword">,</span> <span class="argument">id.method</span> <span class="argument">=</span> <span class="string">"y"</span><span class="keyword">,</span> <span class="argument">id.n</span> <span class="argument">=</span> <span class="keyword">if</span> <span class="keyword">(</span><span class="symbol">id.method</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">]</span> == <span class="string">"identify"</span><span class="keyword">)</span> <span class="number">Inf</span> <span class="keyword">else</span> <span class="number">0</span><span class="keyword">,</span> <span class="argument">id.cex</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span>
+      <span class="argument">id.col</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/palette'>palette</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">]</span><span class="keyword">,</span> <span class="argument">grid</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>model</dt>
+      <dd>A regression object, usually of class either <code>lm</code> or <code>glm</code>,
+   for which there is a <code>predict</code> method defined. </dd>
+      <dt>terms</dt>
+      <dd>A one-sided formula.  A marginal model plot will be drawn for
+  each variable on the right-side of this formula that is not a factor.  The
+  default is <code>~ .</code>, which specifies that all the terms in 
+  <code>formula(object)</code> will be used.  See examples below.</dd>
+      <dt>fitted</dt>
+      <dd>If the default <code>TRUE</code>, then a marginal model plot in the direction
+  of the fitted values or linear predictor of a generalized linear model will
+  be drawn.</dd>
+      <dt>layout</dt>
+      <dd> 
+  If set to a value like <code>c(1, 1)</code> or <code>c(4, 3)</code>, the layout
+of the graph will have this many rows and columns.  If not set, the program
+will select an appropriate layout.  If the number of graphs exceed nine, you 
+must select the layout yourself, or you will get a maximum of nine per page.
+If <code>layout=NA</code>, the function does not set the layout and the user can
+use the <code>par</code> function to control the layout, for example to have 
+plots from two models in the same graphics window.
+</dd>
+      <dt>ask</dt>
+      <dd>If <code>TRUE</code>, ask before clearing the graph window to draw more plots.</dd>
+      <dt>main</dt>
+      <dd>
+Main title for the array of plots.  Use <code>main=""</code> to suppress the title;
+if missing, a title will be supplied.
+</dd>
+      <dt>...</dt>
+      <dd>
+Additional arguments passed from <code>mmps</code> to <code>mmp</code> and
+then to <code>plot</code>.  Users should generally use <code>mmps</code>, or equivalently 
+<code>marginalModelPlots</code>.
+</dd>
+      <dt>variable</dt>
+      <dd> The quantity to be plotted on the horizontal axis.  The
+  default is the predicted values <code>predict(object)</code>.  Can be any other
+  vector of length equal to the number of observations in the object. Thus the
+  <code>mmp</code> function can be used to get a marginal model plot versus any
+  predictor or term while the <code>mmps</code> function can be used only to get
+  marginal model plots for the first-order terms in the formula.  In 
+  particular, terms defined by a spline basis are skipped by <code>mmps</code>, but
+  you can use <code>mmp</code> to get the plot for the variable used to define
+  the splines.</dd>
+      <dt>sd</dt>
+      <dd> If <code>TRUE</code>, compare sd smooths.  For a binomial regression with all
+sample sizes equal to one, this argument is ignored as the SD bounds don't
+make any sense. </dd>
+      <dt>xlab</dt>
+      <dd> label for horizontal axis </dd>
+      <dt>smoother</dt>
+      <dd>the name of the smoother to use, selected from the choices 
+descripbed at <code><a href='ScatterplotSmoothers.html'>ScatterplotSmoothers</a></code>.  For linear models and
+the default method, the default smoother is the function
+is the function <code>loessLine</code>.  For generalized linear models the default
+is <code>gamLine</code>, using the <code>gam</code> package and using splines.
+</dd>
+      <dt>smoother.args</dt>
+      <dd>arguments passed to the smoother.  For linear models the
+  defaults match the smoother used before September 2012, and may be changed
+  later.  See <code><a href='ScatterplotSmoothers.html'>ScatterplotSmoothers</a></code>.
+</dd>
+      <dt>key</dt>
+      <dd>If <code>TRUE</code>, include a key at the top of the plot, if <code>FALSE</code> omit the
+key</dd>
+      <dt>id.method,labels,id.n,id.cex,id.col</dt>
+      <dd>Arguments for labelling
+points.  The default <code>id.n=0</code> suppresses labelling, and setting this
+argument greater than zero will include labelling.  See
+<code><a href='showLabels.html'>showLabels</a></code> for these arguments.</dd>
+      <dt>col.line</dt>
+      <dd> colors for data and model smooth, respectively.  Using
+the default palette, these are blue and red. </dd>
+      <dt>col</dt>
+      <dd>color(s) for the plotted points.</dd>
+      <dt>grid</dt>
+      <dd>If TRUE, the default, a light-gray background grid is put on the
+graph</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>For a regression object, plots the response on the vertical axis versus
+a linear combination <code class = 'eq'>u</code> of terms in the mean function on the horizontal
+axis.  Added to the plot are a <code>loess</code> smooth for the graph, along with
+a loess smooth from the plot of the fitted values on <code class = 'eq'>u</code>.  <code>mmps</code> is an alias
+for <code>marginalModelPlots</code>, and <code>mmp</code> is an alias for <code>marginalModelPlot</code>.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p><code>mmp</code> and <code>marginalModelPlot</code> draw one marginal model plot against
+whatever is specified as the horizontal axis.  
+<code>mmps</code> and <code>marginalModelPlots</code> draws marginal model plots
+versus each of the terms in the <code>terms</code> argument and versus fitted values.  
+<code>mmps</code> skips factors and  interactions if they are specified in the 
+<code>terms</code> argument.  Terms based on polynomials or on splines (or 
+potentially any term that is represented by a matrix of predictors) will
+be used to form a marginal model plot by returning a linear combination of the 
+terms.  For example, if you specify <code>terms ~ X1 + poly(X2, 3)</code> and
+<code>poly(X2, 3)</code> was part of the original model formula, the horizontal
+axis of the marginal model plot will be the value of
+<code>predict(model, type="terms")[, "poly(X2, 3)"])</code>.  If the <code>predict</code>
+method for the model you are using doesn't support <code>type="terms"</code>, 
+then the polynomial/spline term is skipped.</p>
+  
+      <p>The smoothers used were changed in September 2012.  For linear models, the 
+default smoother is still loess with the same smoothing parameters as were
+used in the past, but these can be changed with the argument <code>smoother.args</code>.
+For generalized linear models, the default smoother uses <code>gamLine</code>, fitting
+a generalized additive model with the same family, link and weights as the fit of the
+model.  SD smooths are not computed for for generalized linear models.</p>
+  
+      <p>For generalized linear models the default number of elements in the spline basis is
+<code>k=3</code>; this is done to allow fitting for predictors with just a few support
+points.  If you have many support points you may wish to set <code>k</code> to a higher
+number, or <code>k=-1</code> for the default used by <code><a href='http://www.inside-r.org/r-doc/mgcv/gam'>gam</a></code>.</p>
+  
+    </div>
+
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>Used for its side effect of producing plots.</p>
+  
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+      
+      <p></p>
+  
+      <p>Fox, J. and Weisberg, S. (2011)
+<em>An R Companion to Applied Regression</em>, Second Edition.  Sage.</p>
+  
+      <p>Weisberg, S. (2005) <em>Applied
+Linear Regression</em>, Third Edition, Wiley, Chapter 8.</p>
+  
+    </div>
+
+    <div class="Marginal Model Plotting">
+      <h2>Marginal Model Plotting</h2>
+      
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>## <strong>Not run</strong>: # c1 <- lm(infant.mortality ~ gdp, UN)# mmps(c1)# c2 <- update(c1, ~ poly(gdp, 4), data=na.omit(UN))# # plot against predict(c2, type="terms")[, "poly(gdp, 4)"] and# # and against gdp# mmps(c2, ~ poly(gdp,4) + gdp)# # include SD lines# p1 <- lm(prestige ~ income + education, Prestige)# mmps(p1, sd=TRUE)# # logisitic regression example# # smoothers return warning messages.# # m1 <- glm(lfp ~ ., family=binomial, data=Mroz)# mmps(m1)# ## <strong>End(Not run)</strong></div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>mmps</li><li>mmp</li><li>mmp.lm</li><li>mmp.glm</li><li>mmp.default</li><li>marginalModelPlot</li><li>marginalModelPlots</li>
+    </ul>
+    <ul>
+      <li>hplot </li><li>regression</li>
+    </ul> -->
+      
+    <h2>See also</h2>
+    <code><a href='ScatterplotSmoothers.html'>ScatterplotSmoothers</a></code>, <code><a href='http://www.inside-r.org/r-doc/graphics/plot'>plot</a></code> 
+    
+    <h2>Author</h2>
+    Sanford Weisberg, <a href='mailto:sandy@stat.umn.edu'>sandy@stat.umn.edu</a>
+    
+  </div>
+</div>

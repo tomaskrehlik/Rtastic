@@ -1,0 +1,121 @@
+      <h1>Levene's Test</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='leveneTest.html'>leveneTest</a></span><span class="keyword">(</span><span class="symbol">y</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='leveneTest.html'>leveneTest</a></span><span class="keyword">(</span><span class="symbol">y</span><span class="keyword">,</span> <span class="symbol">data</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='leveneTest.html'>leveneTest</a></span><span class="keyword">(</span><span class="symbol">y</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='leveneTest.html'>leveneTest</a></span><span class="keyword">(</span><span class="symbol">y</span><span class="keyword">,</span> <span class="symbol">group</span><span class="keyword">,</span> <span class="argument">center</span> <span class="argument">=</span> <span class="symbol">median</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>y</dt>
+      <dd>response variable for the default method, or a <code>lm</code> or 
+  <code>formula</code> object. If <code>y</code> is a linear-model object or a formula,
+  the variables on the right-hand-side of the model must all be factors and
+  must be completely crossed.</dd>
+      <dt>group</dt>
+      <dd>factor defining groups.</dd>
+      <dt>center</dt>
+      <dd>The name of a function to compute the center of each group;
+  	<code>mean</code> gives the original Levene's test; the default, <code>median</code>,
+  	provides a more robust test.</dd>
+      <dt>data</dt>
+      <dd>a data frame for evaluating the <code>formula</code>.</dd>
+      <dt>...</dt>
+      <dd>arguments to be passed down, e.g., <code>data</code> for the
+  	<code>formula</code> and <code>lm</code> methods; can also be used to pass arguments to
+  	the function given by <code>center</code> (e.g., <code>center=mean</code> and
+  	<code>trim=0.1</code> specify the 10% trimmed mean).</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Computes Levene's test for homogeneity of variance across groups.</p>
+  
+    </div>
+
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>returns an object meant to be printed showing the results of the test.</p>
+  
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+      
+      <p>Fox, J. (2008)
+  <em>Applied Regression Analysis and Generalized Linear Models</em>,
+  Second Edition. Sage.</p>
+  
+      <p>Fox, J. and Weisberg, S. (2011) 
+  <em>An R Companion to Applied Regression</em>, Second Edition, Sage.</p>
+  
+    </div>
+
+    <div class="Note">
+      <h2>Note</h2>
+      
+      <p>adapted from a response posted by Brian Ripley to the r-help email list.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/with'>with</a></span><span class="keyword">(</span><span class="symbol">Moore</span><span class="keyword">,</span> <span class="functioncall"><a href='leveneTest.html'>leveneTest</a></span><span class="keyword">(</span><span class="symbol">conformity</span><span class="keyword">,</span> <span class="symbol">fcategory</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<div class='output'>Levene's Test for Homogeneity of Variance (center = median)
+      Df F value Pr(>F)
+group  2    0.05   0.96
+      42               
+</div>
+<div class='input'><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/with'>with</a></span><span class="keyword">(</span><span class="symbol">Moore</span><span class="keyword">,</span> <span class="functioncall"><a href='leveneTest.html'>leveneTest</a></span><span class="keyword">(</span><span class="symbol">conformity</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/interaction'>interaction</a></span><span class="keyword">(</span><span class="symbol">fcategory</span><span class="keyword">,</span> <span class="symbol">partner.status</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<div class='output'>Levene's Test for Homogeneity of Variance (center = median)
+      Df F value Pr(>F)
+group  5    1.47   0.22
+      39               
+</div>
+<div class='input'><span class="functioncall"><a href='leveneTest.html'>leveneTest</a></span><span class="keyword">(</span><span class="symbol">conformity</span> <span class="keyword">~</span> <span class="symbol">fcategory</span><span class="keyword">*</span><span class="symbol">partner.status</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">Moore</span><span class="keyword">)</span></div>
+<div class='output'>Levene's Test for Homogeneity of Variance (center = median)
+      Df F value Pr(>F)
+group  5    1.47   0.22
+      39               
+</div>
+<div class='input'><span class="functioncall"><a href='leveneTest.html'>leveneTest</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/lm'>lm</a></span><span class="keyword">(</span><span class="symbol">conformity</span> <span class="keyword">~</span> <span class="symbol">fcategory</span><span class="keyword">*</span><span class="symbol">partner.status</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">Moore</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<div class='output'>Levene's Test for Homogeneity of Variance (center = median)
+      Df F value Pr(>F)
+group  5    1.47   0.22
+      39               
+</div>
+<div class='input'><span class="functioncall"><a href='leveneTest.html'>leveneTest</a></span><span class="keyword">(</span><span class="symbol">conformity</span> <span class="keyword">~</span> <span class="symbol">fcategory</span><span class="keyword">*</span><span class="symbol">partner.status</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">Moore</span><span class="keyword">,</span> <span class="argument">center</span><span class="argument">=</span><span class="symbol">mean</span><span class="keyword">)</span></div>
+<div class='output'>Levene's Test for Homogeneity of Variance (center = mean)
+      Df F value Pr(>F)
+group  5    1.79   0.14
+      39               
+</div>
+<div class='input'><span class="functioncall"><a href='leveneTest.html'>leveneTest</a></span><span class="keyword">(</span><span class="symbol">conformity</span> <span class="keyword">~</span> <span class="symbol">fcategory</span><span class="keyword">*</span><span class="symbol">partner.status</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">Moore</span><span class="keyword">,</span> <span class="argument">center</span><span class="argument">=</span><span class="symbol">mean</span><span class="keyword">,</span> <span class="argument">trim</span><span class="argument">=</span><span class="number">0.1</span><span class="keyword">)</span></div>
+<div class='output'>Levene's Test for Homogeneity of Variance (center = mean: 0.1)
+      Df F value Pr(>F)
+group  5     1.8   0.14
+      39               
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>leveneTest</li><li>leveneTest.formula</li><li>leveneTest.lm</li><li>leveneTest.default</li>
+    </ul>
+    <ul>
+      <li>htest</li>
+    </ul> -->
+      
+    
+    <h2>Author</h2>
+    John Fox <a href='mailto:jfox@mcmaster.ca'>jfox@mcmaster.ca</a>; original generic version 
+    contributed by Derek Ogle
+    
+  </div>
+</div>

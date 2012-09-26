@@ -1,0 +1,146 @@
+      <h1>Connect observations, ordered by x value.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='geom_line.html'>geom_line</a></span><span class="keyword">(</span><span class="argument">mapping</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">stat</span> <span class="argument">=</span> <span class="string">"identity"</span><span class="keyword">,</span> <span class="argument">position</span> <span class="argument">=</span> <span class="string">"identity"</span><span class="keyword">,</span>
+  <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>mapping</dt>
+      <dd>The aesthetic mapping, usually constructed
+  with <code><a href='aes.html'>aes</a></code> or <code><a href='aes_string.html'>aes_string</a></code>. Only
+  needs to be set at the layer level if you are overriding
+  the plot defaults.</dd>
+      <dt>data</dt>
+      <dd>A layer specific dataset - only needed if you
+  want to override the plot defaults.</dd>
+      <dt>stat</dt>
+      <dd>The statistical transformation to use on the
+  data for this layer.</dd>
+      <dt>position</dt>
+      <dd>The position adjustment to use for
+  overlappling points on this layer</dd>
+      <dt>...</dt>
+      <dd>other arguments passed on to
+  <code><a href='layer.html'>layer</a></code>. This can include aesthetics whose
+  values you want to set, not map. See <code><a href='layer.html'>layer</a></code>
+  for more details.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Connect observations, ordered by x value.</p>
+  
+    </div>
+
+    <div class="Aesthetics">
+      <h2>Aesthetics</h2>
+      
+      <p><code>geom_line</code> understands the following aesthetics (required aesthetics are in bold):</p>
+  
+      <p><ul>
+<li> <code><strong>x</strong></code>
+  </li>
+<li> <code><strong>y</strong></code>
+  </li>
+<li> <code>alpha</code>
+  </li>
+<li> <code>colour</code>
+  </li>
+<li> <code>linetype</code>
+  </li>
+<li> <code>size</code>
+</li>
+</ul></p>
+  
+      <p></p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="comment"># Summarise number of movie ratings by year of movie</span>
+<span class="symbol">mry</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/do.call'>do.call</a></span><span class="keyword">(</span><span class="symbol">rbind</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/by'>by</a></span><span class="keyword">(</span><span class="symbol">movies</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Round'>round</a></span><span class="keyword">(</span><span class="symbol">movies</span><span class="keyword">$</span><span class="symbol">rating</span><span class="keyword">)</span><span class="keyword">,</span> <span class="keyword">function</span><span class="keyword">(</span><span class="formalargs">df</span><span class="keyword">)</span> <span class="keyword">{</span>
+  <span class="symbol">nums</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/tapply'>tapply</a></span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">$</span><span class="symbol">length</span><span class="keyword">,</span> <span class="symbol">df</span><span class="keyword">$</span><span class="symbol">year</span><span class="keyword">,</span> <span class="symbol">length</span><span class="keyword">)</span>
+  <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/data.frame'>data.frame</a></span><span class="keyword">(</span><span class="argument">rating</span><span class="argument">=</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Round'>round</a></span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">$</span><span class="symbol">rating</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">]</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">year</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/numeric'>as.numeric</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/names'>names</a></span><span class="keyword">(</span><span class="symbol">nums</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">number</span><span class="argument">=</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/vector'>as.vector</a></span><span class="keyword">(</span><span class="symbol">nums</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="keyword">}</span><span class="keyword">)</span><span class="keyword">)</span>
+
+<span class="symbol">p</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">mry</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">x</span><span class="argument">=</span><span class="symbol">year</span><span class="keyword">,</span> <span class="argument">y</span><span class="argument">=</span><span class="symbol">number</span><span class="keyword">,</span> <span class="argument">group</span><span class="argument">=</span><span class="symbol">rating</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_line.html'>geom_line</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_line.html-2.png' %></p>
+<div class='input'>
+<span class="comment"># Add aesthetic mappings</span>
+<span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_line.html'>geom_line</a></span><span class="keyword">(</span><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">size</span> <span class="argument">=</span> <span class="symbol">rating</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_line.html-4.png' %></p>
+<div class='input'><span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_line.html'>geom_line</a></span><span class="keyword">(</span><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">colour</span> <span class="argument">=</span> <span class="symbol">rating</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_line.html-6.png' %></p>
+<div class='input'>
+<span class="comment"># Change scale</span>
+<span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_line.html'>geom_line</a></span><span class="keyword">(</span><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">colour</span> <span class="argument">=</span> <span class="symbol">rating</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_gradient.html'>scale_colour_gradient</a></span><span class="keyword">(</span><span class="argument">low</span><span class="argument">=</span><span class="string">"red"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_line.html-8.png' %></p>
+<div class='input'><span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_line.html'>geom_line</a></span><span class="keyword">(</span><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">size</span> <span class="argument">=</span> <span class="symbol">rating</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_size.html'>scale_size</a></span><span class="keyword">(</span><span class="argument">range</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">0.1</span><span class="keyword">,</span> <span class="number">3</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_line.html-10.png' %></p>
+<div class='input'>
+<span class="comment"># Set aesthetics to fixed value</span>
+<span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_line.html'>geom_line</a></span><span class="keyword">(</span><span class="argument">colour</span> <span class="argument">=</span> <span class="string">"red"</span><span class="keyword">,</span> <span class="argument">size</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_line.html-12.png' %></p>
+<div class='input'>
+<span class="comment"># Use qplot instead</span>
+<span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">year</span><span class="keyword">,</span> <span class="symbol">number</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">mry</span><span class="keyword">,</span> <span class="argument">group</span><span class="argument">=</span><span class="symbol">rating</span><span class="keyword">,</span> <span class="argument">geom</span><span class="argument">=</span><span class="string">"line"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_line.html-14.png' %></p>
+<div class='input'>
+<span class="comment"># Using a time series</span>
+<span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">date</span><span class="keyword">,</span> <span class="symbol">pop</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">economics</span><span class="keyword">,</span> <span class="argument">geom</span><span class="argument">=</span><span class="string">"line"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_line.html-16.png' %></p>
+<div class='input'><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">date</span><span class="keyword">,</span> <span class="symbol">pop</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">economics</span><span class="keyword">,</span> <span class="argument">geom</span><span class="argument">=</span><span class="string">"line"</span><span class="keyword">,</span> <span class="argument">log</span><span class="argument">=</span><span class="string">"y"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_line.html-18.png' %></p>
+<div class='input'><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">date</span><span class="keyword">,</span> <span class="symbol">pop</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/subset'>subset</a></span><span class="keyword">(</span><span class="symbol">economics</span><span class="keyword">,</span> <span class="symbol">date</span> <span class="keyword">&gt;</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/as.Date'>as.Date</a></span><span class="keyword">(</span><span class="string">"2006-1-1"</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">geom</span><span class="argument">=</span><span class="string">"line"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_line.html-20.png' %></p>
+<div class='input'><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">date</span><span class="keyword">,</span> <span class="symbol">pop</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">economics</span><span class="keyword">,</span> <span class="argument">size</span><span class="argument">=</span><span class="symbol">unemploy</span><span class="keyword">/</span><span class="symbol">pop</span><span class="keyword">,</span> <span class="argument">geom</span><span class="argument">=</span><span class="string">"line"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_line.html-22.png' %></p>
+<div class='input'>
+<span class="comment"># Use the arrow parameter to add an arrow to the line</span>
+<span class="comment"># See ?grid::arrow for more details</span>
+<span class="symbol">c</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">economics</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">x</span> <span class="argument">=</span> <span class="symbol">date</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="symbol">pop</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="comment"># Arrow defaults to "last"</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/library'>library</a></span><span class="keyword">(</span><span class="symbol">grid</span><span class="keyword">)</span>
+<span class="symbol">c</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_line.html'>geom_line</a></span><span class="keyword">(</span><span class="argument">arrow</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grid/arrow'>arrow</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_line.html-24.png' %></p>
+<div class='input'><span class="symbol">c</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_line.html'>geom_line</a></span><span class="keyword">(</span><span class="argument">arrow</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grid/arrow'>arrow</a></span><span class="keyword">(</span><span class="argument">angle</span> <span class="argument">=</span> <span class="number">15</span><span class="keyword">,</span> <span class="argument">ends</span> <span class="argument">=</span> <span class="string">"both"</span><span class="keyword">,</span> <span class="argument">type</span> <span class="argument">=</span> <span class="string">"closed"</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_line.html-26.png' %></p>
+<div class='input'>
+<span class="comment"># See scale_date for examples of plotting multiple times series on</span>
+<span class="comment"># a single graph</span>
+
+<span class="comment"># A simple pcp example</span>
+
+<span class="symbol">y2005</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/Uniform'>runif</a></span><span class="keyword">(</span><span class="number">300</span><span class="keyword">,</span> <span class="number">20</span><span class="keyword">,</span> <span class="number">120</span><span class="keyword">)</span>
+<span class="symbol">y2010</span> <span class="assignement">&lt;-</span> <span class="symbol">y2005</span> <span class="keyword">*</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/Uniform'>runif</a></span><span class="keyword">(</span><span class="number">300</span><span class="keyword">,</span> <span class="keyword">-</span><span class="number">1.05</span><span class="keyword">,</span> <span class="number">1.5</span><span class="keyword">)</span>
+<span class="symbol">group</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/rep'>rep</a></span><span class="keyword">(</span><span class="symbol">LETTERS</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">:</span><span class="number">3</span><span class="keyword">]</span><span class="keyword">,</span> <span class="argument">each</span> <span class="argument">=</span> <span class="number">100</span><span class="keyword">)</span>
+
+<span class="symbol">df</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/data.frame'>data.frame</a></span><span class="keyword">(</span><span class="argument">id</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/seq'>seq_along</a></span><span class="keyword">(</span><span class="symbol">group</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">group</span><span class="keyword">,</span> <span class="symbol">y2005</span><span class="keyword">,</span> <span class="symbol">y2010</span><span class="keyword">)</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/library'>library</a></span><span class="keyword">(</span><span class="symbol">reshape2</span><span class="keyword">)</span> <span class="comment"># for melt</span>
+<span class="symbol">dfm</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/reshape2/melt'>melt</a></span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">,</span> <span class="argument">id.var</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"id"</span><span class="keyword">,</span> <span class="string">"group"</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">dfm</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="symbol">variable</span><span class="keyword">,</span> <span class="symbol">value</span><span class="keyword">,</span> <span class="argument">group</span> <span class="argument">=</span> <span class="symbol">id</span><span class="keyword">,</span> <span class="argument">colour</span> <span class="argument">=</span> <span class="symbol">group</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='geom_path.html'>geom_path</a></span><span class="keyword">(</span><span class="argument">alpha</span> <span class="argument">=</span> <span class="number">0.5</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_line.html-28.png' %></p></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>geom_line</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+  <code><a href='geom_path.html'>geom_path</a></code>: connect observations in data
+  order, <code><a href='geom_segment.html'>geom_segment</a></code>: draw line segments,
+  <code><a href='geom_ribbon.html'>geom_ribbon</a></code>: fill between line and x-axis
+
+        
+  </div>
+</div>

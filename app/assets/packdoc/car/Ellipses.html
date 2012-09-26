@@ -1,0 +1,201 @@
+      <h1>Ellipses, Data Ellipses, and Confidence Ellipses</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='Ellipses.html'>ellipse</a></span><span class="keyword">(</span><span class="symbol">center</span><span class="keyword">,</span> <span class="symbol">shape</span><span class="keyword">,</span> <span class="symbol">radius</span><span class="keyword">,</span> <span class="argument">log</span> <span class="argument">=</span> <span class="string">""</span><span class="keyword">,</span> <span class="argument">center.pch</span> <span class="argument">=</span> <span class="number">19</span><span class="keyword">,</span> <span class="argument">center.cex</span> <span class="argument">=</span> <span class="number">1.5</span><span class="keyword">,</span> <span class="argument">segments</span> <span class="argument">=</span> <span class="number">51</span><span class="keyword">,</span>
+  <span class="argument">draw</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="argument">add</span> <span class="argument">=</span> <span class="symbol">draw</span><span class="keyword">,</span> <span class="argument">xlab</span> <span class="argument">=</span> <span class="string">""</span><span class="keyword">,</span> <span class="argument">ylab</span> <span class="argument">=</span> <span class="string">""</span><span class="keyword">,</span> <span class="argument">col</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/palette'>palette</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">2</span><span class="keyword">]</span><span class="keyword">,</span> <span class="argument">lwd</span> <span class="argument">=</span> <span class="number">2</span><span class="keyword">,</span> <span class="argument">fill</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">,</span>
+      <span class="argument">fill.alpha</span> <span class="argument">=</span> <span class="number">0.3</span><span class="keyword">,</span> <span class="argument">grid</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='Ellipses.html'>dataEllipse</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">y</span><span class="keyword">,</span> <span class="symbol">weights</span><span class="keyword">,</span> <span class="argument">log</span> <span class="argument">=</span> <span class="string">""</span><span class="keyword">,</span> <span class="argument">levels</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">0.5</span><span class="keyword">,</span> <span class="number">0.95</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">center.pch</span> <span class="argument">=</span> <span class="number">19</span><span class="keyword">,</span> <span class="argument">center.cex</span> <span class="argument">=</span> <span class="number">1.5</span><span class="keyword">,</span>
+      <span class="argument">draw</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="argument">plot.points</span> <span class="argument">=</span> <span class="symbol">draw</span><span class="keyword">,</span> <span class="argument">add</span> <span class="argument">=</span> <span class="keyword">!</span><span class="symbol">plot.points</span><span class="keyword">,</span> <span class="argument">segments</span> <span class="argument">=</span> <span class="number">51</span><span class="keyword">,</span> <span class="argument">robust</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">,</span>
+      <span class="argument">xlab</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/deparse'>deparse</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/substitute'>substitute</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">ylab</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/deparse'>deparse</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/substitute'>substitute</a></span><span class="keyword">(</span><span class="symbol">y</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">col</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/palette'>palette</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">:</span><span class="number">2</span><span class="keyword">]</span><span class="keyword">,</span>
+      <span class="argument">lwd</span> <span class="argument">=</span> <span class="number">2</span><span class="keyword">,</span> <span class="argument">fill</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">,</span> <span class="argument">fill.alpha</span> <span class="argument">=</span> <span class="number">0.3</span><span class="keyword">,</span> <span class="argument">grid</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="symbol">labels</span><span class="keyword">,</span> <span class="argument">id.method</span> <span class="argument">=</span> <span class="string">"mahal"</span><span class="keyword">,</span>
+      <span class="argument">id.n</span> <span class="argument">=</span> <span class="keyword">if</span> <span class="keyword">(</span><span class="symbol">id.method</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">]</span> == <span class="string">"identify"</span><span class="keyword">)</span> <span class="number">Inf</span> <span class="keyword">else</span> <span class="number">0</span><span class="keyword">,</span> <span class="argument">id.cex</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span> <span class="argument">id.col</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/palette'>palette</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">]</span><span class="keyword">,</span>
+      <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='Ellipses.html'>confidenceEllipse</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='Ellipses.html'>confidenceEllipse</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="symbol">which.coef</span><span class="keyword">,</span> <span class="symbol">L</span><span class="keyword">,</span> <span class="argument">levels</span> <span class="argument">=</span> <span class="number">0.95</span><span class="keyword">,</span> <span class="argument">Scheffe</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">,</span> <span class="symbol">dfn</span><span class="keyword">,</span> <span class="argument">center.pch</span> <span class="argument">=</span> <span class="number">19</span><span class="keyword">,</span>
+      <span class="argument">center.cex</span> <span class="argument">=</span> <span class="number">1.5</span><span class="keyword">,</span> <span class="argument">segments</span> <span class="argument">=</span> <span class="number">51</span><span class="keyword">,</span> <span class="symbol">xlab</span><span class="keyword">,</span> <span class="symbol">ylab</span><span class="keyword">,</span> <span class="argument">col</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/palette'>palette</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">2</span><span class="keyword">]</span><span class="keyword">,</span> <span class="argument">lwd</span> <span class="argument">=</span> <span class="number">2</span><span class="keyword">,</span> <span class="argument">fill</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">,</span>
+      <span class="argument">fill.alpha</span> <span class="argument">=</span> <span class="number">0.3</span><span class="keyword">,</span> <span class="argument">draw</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="argument">add</span> <span class="argument">=</span> <span class="keyword">!</span><span class="symbol">draw</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='Ellipses.html'>confidenceEllipse</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="symbol">chisq</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='Ellipses.html'>confidenceEllipse</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="symbol">which.coef</span><span class="keyword">,</span> <span class="symbol">L</span><span class="keyword">,</span> <span class="argument">levels</span> <span class="argument">=</span> <span class="number">0.95</span><span class="keyword">,</span> <span class="argument">Scheffe</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">,</span> <span class="symbol">dfn</span><span class="keyword">,</span> <span class="argument">center.pch</span> <span class="argument">=</span> <span class="number">19</span><span class="keyword">,</span>
+      <span class="argument">center.cex</span> <span class="argument">=</span> <span class="number">1.5</span><span class="keyword">,</span> <span class="argument">segments</span> <span class="argument">=</span> <span class="number">51</span><span class="keyword">,</span> <span class="symbol">xlab</span><span class="keyword">,</span> <span class="symbol">ylab</span><span class="keyword">,</span> <span class="argument">col</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/palette'>palette</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">2</span><span class="keyword">]</span><span class="keyword">,</span> <span class="argument">lwd</span> <span class="argument">=</span> <span class="number">2</span><span class="keyword">,</span> <span class="argument">fill</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">,</span>
+      <span class="argument">fill.alpha</span> <span class="argument">=</span> <span class="number">0.3</span><span class="keyword">,</span> <span class="argument">draw</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="argument">add</span> <span class="argument">=</span> <span class="keyword">!</span><span class="symbol">draw</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>center</dt>
+      <dd>2-element vector with coordinates of center of ellipse.</dd>
+      <dt>shape</dt>
+      <dd><code class = 'eq'>2 * 2</code> shape (or covariance) matrix.</dd>
+      <dt>radius</dt>
+      <dd>radius of circle generating the ellipse.</dd>
+      <dt>log</dt>
+      <dd>when an ellipse is to be added to an existing plot, indicates
+    whether computations were on logged values and to be plotted on logged
+    axes; <code>"x"</code> if the x-axis is logged, <code>"y"</code> if the y-axis is
+    logged, and <code>"xy"</code> or <code>"yx"</code> if both axes are logged. The
+    default is <code>""</code>, indicating that neither axis is logged.</dd>
+      <dt>center.pch</dt>
+      <dd>character for plotting ellipse center; if <code>FALSE</code> or <code>NULL</code> the center point isn't plotted.</dd>
+      <dt>center.cex</dt>
+      <dd>relative size of character for plotting ellipse center.</dd>
+      <dt>segments</dt>
+      <dd>number of line-segments used to draw ellipse.</dd>
+      <dt>draw</dt>
+      <dd>if <code>TRUE</code> produce graphical output; if <code>FALSE</code>, only invisibly return coordinates of ellipse(s).</dd>
+      <dt>add</dt>
+      <dd>if <code>TRUE</code> add ellipse(s) to current plot.</dd>
+      <dt>xlab</dt>
+      <dd>label for horizontal axis.</dd>
+      <dt>ylab</dt>
+      <dd>label for vertical axis.</dd>
+      <dt>x</dt>
+      <dd>a numeric vector, or (if <code>y</code> is missing) a 2-column numeric matrix.</dd>
+      <dt>y</dt>
+      <dd>a numeric vector, of the same length as <code>x</code>.</dd>
+      <dt>weights</dt>
+      <dd>a numeric vector of weights, of the same length as <code>x</code> and <code>y</code> to be used  by <code><a href='http://www.inside-r.org/r-doc/stats/cov.wt'>cov.wt</a></code>
+    or <code><a href='http://www.inside-r.org/r-doc/MASS/cov.trob'>cov.trob</a></code> in computing a weighted covariance matrix; if absent, weights of <code>1</code> are used.</dd>
+      <dt>plot.points</dt>
+      <dd>if <code>FALSE</code> data ellipses are drawn,
+    but points are not plotted.</dd>
+      <dt>levels</dt>
+      <dd>draw elliptical contours at these (normal) probability or confidence levels.</dd>
+      <dt>robust</dt>
+      <dd>if <code>TRUE</code> use the <code>cov.trob</code> function in the <span class = "pkg">MASS</span> package
+    to calculate the center and covariance matrix for the data ellipse.</dd>
+      <dt>model</dt>
+      <dd>a model object produced by <code>lm</code> or <code>glm</code>.</dd>
+      <dt>which.coef</dt>
+      <dd>2-element vector giving indices of coefficients to plot; 
+    if missing, the first two coefficients (disregarding the regression constant)
+    will be selected.</dd>
+      <dt>L</dt>
+      <dd>As an alternative to selecting coefficients to plot, a transformation matrix can be specified to compute two
+    linear combinations of the coefficients; if the <code>L</code> matrix is given, it takes precedence over the <code>which.coef</code>
+    argument. <code>L</code> should have two rows and as many columns as there are coefficients. It can be given directly as a
+    numeric matrix, or specified by a pair of character-valued expressions, in the same manner as for the 
+    <code>link{linearHypothesis}</code> function, but with no right-hand side.</dd>
+      <dt>Scheffe</dt>
+      <dd>if <code>TRUE</code> scale the ellipse so that its projections onto the
+    axes give Scheffe confidence intervals for the coefficients.</dd>
+      <dt>dfn</dt>
+      <dd>``numerator'' degrees of freedom (or just degrees of freedom for a GLM) for
+  	drawing the confidence ellipse. Defaults to the number of coefficients in the model (disregarding the constant) if 
+  	<code>Scheffe</code> is <code>TRUE</code>, or to <code>2</code> otherwise; selecting <code>dfn = 1</code> will 
+  	draw the ``confidence-interval generating'' ellipse, with projections on the axes
+  	corresponding to individual confidence intervals with the stated level of coverage.</dd>
+      <dt>chisq</dt>
+      <dd>if <code>TRUE</code>, the confidence ellipse for the coefficients in a generalized linear model are
+    based on the chisquare statistic, if <code>FALSE</code> on the $F$-statistic. This corresponds to using the default
+    and linear-model methods respectively.</dd>
+      <dt>col</dt>
+      <dd>color for lines and ellipse center; the default is the <em>second</em> entry
+    in the current color palette (see <code><a href='http://www.inside-r.org/r-doc/grDevices/palette'>palette</a></code>
+    and <code><a href='http://www.inside-r.org/r-doc/graphics/par'>par</a></code>). For <code>dataEllipse</code>, two colors can be given, in
+    which case the first is for plotted points and the second for lines and the ellipse center.</dd>
+      <dt>lwd</dt>
+      <dd>line width; default is <code>2</code> (see <code><a href='http://www.inside-r.org/r-doc/graphics/par'>par</a></code>).</dd>
+      <dt>fill</dt>
+      <dd>fill the ellipse with translucent color <code>col</code> (default, <code>FALSE</code>)?</dd>
+      <dt>fill.alpha</dt>
+      <dd>transparency of fill (default = <code>0.3</code>).</dd>
+      <dt>...</dt>
+      <dd>other plotting parameters to be passed to <code>plot</code> and
+    <code>line</code>.</dd>
+      <dt>labels,id.method,id.n,id.cex,id.col</dt>
+      <dd>Arguments for the labelling of
+    points.  The default is <code>id.n=0</code> for labeling no points.  See
+    <code><a href='showLabels.html'>showLabels</a></code> for details of these arguments.</dd>
+      <dt>grid</dt>
+      <dd>If TRUE, the default, a light-gray background grid is put on the
+graph</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>These functions draw ellipses, including data ellipses, and
+  confidence ellipses for linear, generalized linear, and possibly other models.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p>The ellipse is computed by suitably transforming a unit circle.</p>
+  
+      <p><code>dataEllipse</code> superimposes the normal-probability contours over a scatterplot
+  of the data.</p>
+  
+    </div>
+
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>These functions are mainly used for their side effect of producing plots.  For
+   greater flexibility (e.g., adding plot annotations), however, <code>ellipse</code> returns invisibly the (x, y) coordinates of the calculated ellipse.
+   <code>dataEllipse</code> and <code>confidenceEllipse</code> return invisibly the  coordinates of one or more ellipses, in the latter instance a list named by
+   <code>levels</code>.</p>
+  
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+      
+      <p>Fox, J. (2008)
+  <em>Applied Regression Analysis and Generalized Linear Models</em>,
+  Second Edition. Sage.</p>
+  
+      <p>Fox, J. and Weisberg, S. (2011) 
+  <em>An R Companion to Applied Regression</em>, Second Edition, Sage.</p>
+  
+      <p>Monette, G. (1990)
+  Geometry of multiple regression and 3D graphics.
+  In Fox, J. and Long, J. S. (Eds.) 
+  <em>Modern Methods of Data Analysis.</em> Sage.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='Ellipses.html'>dataEllipse</a></span><span class="keyword">(</span><span class="symbol">Duncan</span><span class="keyword">$</span><span class="symbol">income</span><span class="keyword">,</span> <span class="symbol">Duncan</span><span class="keyword">$</span><span class="symbol">education</span><span class="keyword">,</span> <span class="argument">levels</span><span class="argument">=</span><span class="number">0.1</span><span class="keyword">*</span><span class="number">1</span><span class="keyword">:</span><span class="number">9</span><span class="keyword">,</span> <span class="argument">lty</span><span class="argument">=</span><span class="number">2</span><span class="keyword">,</span>
+        <span class="argument">fill</span><span class="argument">=</span><span class="number">TRUE</span><span class="keyword">,</span> <span class="argument">fill.alpha</span><span class="argument">=</span><span class="number">0.1</span><span class="keyword">)</span></div>
+<p><img src='Ellipses-2.png' alt='' width='400' height='400' /></p>
+<div class='input'><span class="functioncall"><a href='Ellipses.html'>confidenceEllipse</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/lm'>lm</a></span><span class="keyword">(</span><span class="symbol">prestige</span><span class="keyword">~</span><span class="symbol">income</span><span class="keyword">+</span><span class="symbol">education</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">Duncan</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">Scheffe</span><span class="argument">=</span><span class="number">TRUE</span><span class="keyword">)</span></div>
+<p><img src='Ellipses-4.png' alt='' width='400' height='400' /></p>
+<div class='input'><span class="functioncall"><a href='Ellipses.html'>confidenceEllipse</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/lm'>lm</a></span><span class="keyword">(</span><span class="symbol">prestige</span><span class="keyword">~</span><span class="symbol">income</span><span class="keyword">+</span><span class="symbol">education</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">Duncan</span><span class="keyword">)</span><span class="keyword">,</span>
+        <span class="argument">L</span><span class="argument">=</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"income + education"</span><span class="keyword">,</span> <span class="string">"income - education"</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><img src='Ellipses-6.png' alt='' width='400' height='400' /></p>
+<div class='input'>
+<span class="symbol">wts</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/rep'>rep</a></span><span class="keyword">(</span><span class="number">1</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/nrow'>nrow</a></span><span class="keyword">(</span><span class="symbol">Duncan</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="symbol">wts</span><span class="keyword">[</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">6</span><span class="keyword">,</span> <span class="number">16</span><span class="keyword">)</span><span class="keyword">]</span> <span class="assignement">&lt;-</span> <span class="number">0</span> <span class="comment"># delete Minister, Conductor</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/with'>with</a></span><span class="keyword">(</span><span class="symbol">Duncan</span><span class="keyword">,</span> <span class="keyword">{</span>
+        <span class="functioncall"><a href='Ellipses.html'>dataEllipse</a></span><span class="keyword">(</span><span class="symbol">income</span><span class="keyword">,</span> <span class="symbol">prestige</span><span class="keyword">,</span> <span class="argument">levels</span><span class="argument">=</span><span class="number">0.68</span><span class="keyword">)</span>
+        <span class="functioncall"><a href='Ellipses.html'>dataEllipse</a></span><span class="keyword">(</span><span class="symbol">income</span><span class="keyword">,</span> <span class="symbol">prestige</span><span class="keyword">,</span> <span class="argument">levels</span><span class="argument">=</span><span class="number">0.68</span><span class="keyword">,</span> <span class="argument">robust</span><span class="argument">=</span><span class="number">TRUE</span><span class="keyword">,</span> <span class="argument">plot.points</span><span class="argument">=</span><span class="number">FALSE</span><span class="keyword">,</span> <span class="argument">col</span><span class="argument">=</span><span class="string">"green3"</span><span class="keyword">)</span>
+        <span class="functioncall"><a href='Ellipses.html'>dataEllipse</a></span><span class="keyword">(</span><span class="symbol">income</span><span class="keyword">,</span> <span class="symbol">prestige</span><span class="keyword">,</span> <span class="argument">weights</span><span class="argument">=</span><span class="symbol">wts</span><span class="keyword">,</span> <span class="argument">levels</span><span class="argument">=</span><span class="number">0.68</span><span class="keyword">,</span> <span class="argument">plot.points</span><span class="argument">=</span><span class="number">FALSE</span><span class="keyword">,</span> <span class="argument">col</span><span class="argument">=</span><span class="string">"brown"</span><span class="keyword">)</span>
+        <span class="functioncall"><a href='Ellipses.html'>dataEllipse</a></span><span class="keyword">(</span><span class="symbol">income</span><span class="keyword">,</span> <span class="symbol">prestige</span><span class="keyword">,</span> <span class="argument">weights</span><span class="argument">=</span><span class="symbol">wts</span><span class="keyword">,</span> <span class="argument">robust</span><span class="argument">=</span><span class="number">TRUE</span><span class="keyword">,</span> <span class="argument">levels</span><span class="argument">=</span><span class="number">0.68</span><span class="keyword">,</span>
+                <span class="argument">plot.points</span><span class="argument">=</span><span class="number">FALSE</span><span class="keyword">,</span> <span class="argument">col</span><span class="argument">=</span><span class="string">"blue"</span><span class="keyword">)</span>
+        <span class="keyword">}</span><span class="keyword">)</span></div>
+<p><img src='Ellipses-8.png' alt='' width='400' height='400' /></p></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>ellipse</li><li>dataEllipse</li><li>confidenceEllipse</li><li>confidenceEllipse.default</li><li>confidenceEllipse.lm</li><li>confidenceEllipse.glm</li>
+    </ul>
+    <ul>
+      <li>hplot</li><li>aplot</li>
+    </ul> -->
+      
+    <h2>See also</h2>
+    <code><a href='http://www.inside-r.org/r-doc/MASS/cov.trob'>cov.trob</a></code>, <code><a href='http://www.inside-r.org/r-doc/stats/cov.wt'>cov.wt</a></code>, <code><a href='linearHypothesis.html'>linearHypothesis</a></code>.
+    
+    <h2>Author</h2>
+    Georges Monette, John Fox <a href='mailto:jfox@mcmaster.ca'>jfox@mcmaster.ca</a>, and Michael Friendly.
+    
+  </div>
+</div>

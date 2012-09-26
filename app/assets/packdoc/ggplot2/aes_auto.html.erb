@@ -1,0 +1,96 @@
+      <h1>Automatic aesthetic mapping</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='aes_auto.html'>aes_auto</a></span><span class="keyword">(</span><span class="argument">data</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>data</dt>
+      <dd>data.frame or names of variables</dd>
+      <dt>...</dt>
+      <dd>aesthetics that need to be explicitly mapped.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Automatic aesthetic mapping</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="symbol">df</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/data.frame'>data.frame</a></span><span class="keyword">(</span><span class="argument">x</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span> <span class="argument">colour</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span> <span class="argument">label</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span> <span class="argument">pch</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">)</span>
+<span class="functioncall"><a href='aes_auto.html'>aes_auto</a></span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">)</span></div>
+<div class='output'>List of 5
+ $ colour:length 1 colour
+  ..- attr(*, "id")= int 87
+ $ label :length 1 label
+  ..- attr(*, "id")= int 48
+ $ shape : symbol pch
+ $ x     :length 1 x
+  ..- attr(*, "id")= int 6
+ $ y     :length 1 y
+  ..- attr(*, "id")= int 12
+</div>
+<div class='input'><span class="functioncall"><a href='aes_auto.html'>aes_auto</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/names'>names</a></span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<div class='output'>List of 5
+ $ colour:length 1 colour
+  ..- attr(*, "id")= int 87
+ $ label :length 1 label
+  ..- attr(*, "id")= int 48
+ $ shape : symbol pch
+ $ x     :length 1 x
+  ..- attr(*, "id")= int 6
+ $ y     :length 1 y
+  ..- attr(*, "id")= int 12
+</div>
+<div class='input'>
+<span class="symbol">df</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/data.frame'>data.frame</a></span><span class="keyword">(</span><span class="argument">xp</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span> <span class="argument">colour</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span> <span class="argument">txt</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span> <span class="argument">foo</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">)</span>
+<span class="functioncall"><a href='aes_auto.html'>aes_auto</a></span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">,</span> <span class="argument">x</span> <span class="argument">=</span> <span class="symbol">xp</span><span class="keyword">,</span> <span class="argument">label</span> <span class="argument">=</span> <span class="symbol">txt</span><span class="keyword">)</span></div>
+<div class='output'>List of 4
+ $ colour:length 1 colour
+  ..- attr(*, "id")= int 87
+ $ y     :length 1 y
+  ..- attr(*, "id")= int 12
+ $ x     :length 1 xp
+  ..- attr(*, "id")= int 44
+ $ label :length 1 txt
+  ..- attr(*, "id")= int 33
+</div>
+<div class='input'><span class="functioncall"><a href='aes_auto.html'>aes_auto</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/names'>names</a></span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">x</span> <span class="argument">=</span> <span class="symbol">xp</span><span class="keyword">,</span> <span class="argument">label</span> <span class="argument">=</span> <span class="symbol">txt</span><span class="keyword">)</span></div>
+<div class='output'>List of 4
+ $ colour:length 1 colour
+  ..- attr(*, "id")= int 87
+ $ y     :length 1 y
+  ..- attr(*, "id")= int 12
+ $ x     :length 1 xp
+  ..- attr(*, "id")= int 44
+ $ label :length 1 txt
+  ..- attr(*, "id")= int 33
+</div>
+<div class='input'>
+<span class="symbol">df</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/data.frame'>data.frame</a></span><span class="keyword">(</span><span class="argument">foo</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">:</span><span class="number">3</span><span class="keyword">)</span>
+<span class="functioncall"><a href='aes_auto.html'>aes_auto</a></span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">,</span> <span class="argument">x</span> <span class="argument">=</span> <span class="symbol">xp</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="symbol">yp</span><span class="keyword">)</span></div>
+<div class='output'>List of 2
+ $ x:length 1 xp
+  ..- attr(*, "id")= int 44
+ $ y:length 1 yp
+  ..- attr(*, "id")= int 54
+</div>
+<div class='input'><span class="functioncall"><a href='aes_auto.html'>aes_auto</a></span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">)</span></div>
+<div class='output'> Named list()
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>aes_auto</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>

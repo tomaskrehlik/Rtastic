@@ -1,0 +1,127 @@
+      <h1>Estimation of the error components</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='ercomp.html'>ercomp</a></span><span class="keyword">(</span><span class="symbol">object</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='ercomp.html'>ercomp</a></span><span class="keyword">(</span><span class="symbol">object</span><span class="keyword">,</span> <span class="symbol">data</span><span class="keyword">,</span> <span class="argument">effect</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"individual"</span><span class="keyword">,</span> <span class="string">"time"</span><span class="keyword">,</span> <span class="string">"twoways"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">method</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"swar"</span><span class="keyword">,</span>
+  <span class="string">"walhus"</span><span class="keyword">,</span> <span class="string">"amemiya"</span><span class="keyword">,</span> <span class="string">"nerlove"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">index</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='ercomp.html'>ercomp</a></span><span class="keyword">(</span><span class="symbol">object</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/print'>print</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="argument">digits</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Extremes'>max</a></span><span class="keyword">(</span><span class="number">3</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/options'>getOption</a></span><span class="keyword">(</span><span class="string">"digits"</span><span class="keyword">)</span> <span class="keyword">-</span> <span class="number">3</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>object</dt>
+      <dd>a <code>formula</code> or a <code>plm</code> object,</dd>
+      <dt>data</dt>
+      <dd>a <code>data.frame</code>,</dd>
+      <dt>method</dt>
+      <dd>method of estimation for the variance components,
+    see <code><a href='http://www.inside-r.org/r-doc/stats/lm'>lm</a></code> for details,</dd>
+      <dt>effect</dt>
+      <dd>the effects introduced in the model, see
+    <code><a href='http://www.inside-r.org/r-doc/stats/lm'>lm</a></code> for details,</dd>
+      <dt>index</dt>
+      <dd>the indexes,</dd>
+      <dt>x</dt>
+      <dd>a <code>ercomp</code> object,</dd>
+      <dt>digits</dt>
+      <dd>digits,</dd>
+      <dt>...</dt>
+      <dd>further arguments.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>This function enables the estimation of the variance components of a panel model.</p>
+  
+    </div>
+
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>An object of class <code>"ercomp"</code>: a list containing a list called <code>sigma2</code> which contains the estimates of the variance components, and <code>theta</code> which is the parameters used for the transformation of the variables.</p>
+  
+    </div>
+
+    <div class="Estimation of the error components">
+      <h2>Estimation of the error components</h2>
+      
+    </div>
+
+    <div class="Estimation of the error components">
+      <h2>Estimation of the error components</h2>
+      
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+      
+      <p></p>
+  
+      <p>Amemiya, T. (1971) The estimation of the variances in a
+  variance--components model, <em>International Economic Review</em>, <b>12</b>, pp.1--13.</p>
+  
+      <p>Nerlove, M. (1971) Further evidence on the estimation of dynamic economic relations from a time--series of cross--sections, <em>Econometrica</em>, <b>39</b>, pp.359--382.</p>
+  
+      <p>Swamy, P.A.V.B. and Arora, S.S. (1972) The exact finite sample
+  properties of the estimators of coefficients in the error components regression models, <em>Econometrica</em>, <b>40</b>, pp.261--275.</p>
+  
+      <p>Wallace, T.D. and Hussain, A. (1969) The use of error components
+  models in combining cross section with time series data,
+  <em>Econometrica</em>, <b>37</b>(1), pp.55--72.</p>
+  
+      <p></p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='http://www.inside-r.org/r-doc/utils/data'>data</a></span><span class="keyword">(</span><span class="string">"Produc"</span><span class="keyword">,</span> <span class="argument">package</span> <span class="argument">=</span> <span class="string">"plm"</span><span class="keyword">)</span>
+<span class="comment"># an example of the formula method</span>
+<span class="functioncall"><a href='ercomp.html'>ercomp</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log</a></span><span class="keyword">(</span><span class="symbol">gsp</span><span class="keyword">)</span><span class="keyword">~</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log</a></span><span class="keyword">(</span><span class="symbol">pcap</span><span class="keyword">)</span><span class="keyword">+</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log</a></span><span class="keyword">(</span><span class="symbol">pc</span><span class="keyword">)</span><span class="keyword">+</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log</a></span><span class="keyword">(</span><span class="symbol">emp</span><span class="keyword">)</span><span class="keyword">+</span><span class="symbol">unemp</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">Produc</span><span class="keyword">,</span> <span class="argument">method</span><span class="argument">=</span><span class="string">"walhus"</span><span class="keyword">,</span><span class="argument">effect</span><span class="argument">=</span><span class="string">"time"</span><span class="keyword">)</span></div>
+<div class='output'>                    var   std.dev share
+idiosyncratic 0.0075942 0.0871449 0.985
+time          0.0001192 0.0109175 0.015
+theta:  0.2448  
+</div>
+<div class='input'><span class="comment"># same with the plm method</span>
+<span class="symbol">z</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='plm.html'>plm</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log</a></span><span class="keyword">(</span><span class="symbol">gsp</span><span class="keyword">)</span><span class="keyword">~</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log</a></span><span class="keyword">(</span><span class="symbol">pcap</span><span class="keyword">)</span><span class="keyword">+</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log</a></span><span class="keyword">(</span><span class="symbol">pc</span><span class="keyword">)</span><span class="keyword">+</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log</a></span><span class="keyword">(</span><span class="symbol">emp</span><span class="keyword">)</span><span class="keyword">+</span><span class="symbol">unemp</span><span class="keyword">,</span>
+         <span class="argument">data</span><span class="argument">=</span><span class="symbol">Produc</span><span class="keyword">,</span> <span class="argument">random.method</span><span class="argument">=</span><span class="string">"walhus"</span><span class="keyword">,</span>
+         <span class="argument">effect</span><span class="argument">=</span><span class="string">"time"</span><span class="keyword">,</span><span class="argument">model</span><span class="argument">=</span><span class="string">"random"</span><span class="keyword">)</span>
+<span class="functioncall"><a href='ercomp.html'>ercomp</a></span><span class="keyword">(</span><span class="symbol">z</span><span class="keyword">)</span></div>
+<div class='output'>                    var   std.dev share
+idiosyncratic 0.0075942 0.0871449 0.985
+time          0.0001192 0.0109175 0.015
+theta:  0.2448  
+</div>
+<div class='input'><span class="comment"># a two-ways model</span>
+<span class="functioncall"><a href='ercomp.html'>ercomp</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log</a></span><span class="keyword">(</span><span class="symbol">gsp</span><span class="keyword">)</span><span class="keyword">~</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log</a></span><span class="keyword">(</span><span class="symbol">pcap</span><span class="keyword">)</span><span class="keyword">+</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log</a></span><span class="keyword">(</span><span class="symbol">pc</span><span class="keyword">)</span><span class="keyword">+</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log</a></span><span class="keyword">(</span><span class="symbol">emp</span><span class="keyword">)</span><span class="keyword">+</span><span class="symbol">unemp</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">Produc</span><span class="keyword">,</span> <span class="argument">method</span><span class="argument">=</span><span class="string">"amemiya"</span><span class="keyword">,</span><span class="argument">effect</span><span class="argument">=</span><span class="string">"twoways"</span><span class="keyword">)</span></div>
+<div class='output'>                    var   std.dev share
+idiosyncratic 0.0011695 0.0341975 0.045
+individual    0.0243727 0.1561175 0.929
+time          0.0006957 0.0263768 0.027
+theta  : 0.9469 (id) 0.8161 (time) 0.814 (total)
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>ercomp</li><li>ercomp.formula</li><li>ercomp.plm</li><li>print.ercomp</li>
+    </ul>
+    <ul>
+      <li>regression</li>
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+  <code><a href='plm.html'>plm</a></code> where the estimates of the variance components are used if a random effects model is estimated
+
+    
+    <h2>Author</h2>
+    Yves Croissant
+    
+  </div>
+</div>

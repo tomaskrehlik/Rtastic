@@ -1,0 +1,142 @@
+      <h1>High-performance rectangular tiling.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='geom_raster.html'>geom_raster</a></span><span class="keyword">(</span><span class="argument">mapping</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">stat</span> <span class="argument">=</span> <span class="string">"identity"</span><span class="keyword">,</span> <span class="argument">position</span> <span class="argument">=</span> <span class="string">"identity"</span><span class="keyword">,</span>
+  <span class="argument">hjust</span> <span class="argument">=</span> <span class="number">0.5</span><span class="keyword">,</span> <span class="argument">vjust</span> <span class="argument">=</span> <span class="number">0.5</span><span class="keyword">,</span> <span class="argument">interpolate</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>hjust,vjust</dt>
+      <dd>horizontal and vertical justification
+  of the grob.  Each justification value should be a number
+  between 0 and 1.  Defaults to 0.5 for both, centering
+  each pixel over its data location.</dd>
+      <dt>interpolate</dt>
+      <dd>If <code>TRUE</code> interpolate linearly,
+  if <code>FALSE</code> (the default) don't interpolate.</dd>
+      <dt>mapping</dt>
+      <dd>The aesthetic mapping, usually constructed
+  with <code><a href='aes.html'>aes</a></code> or <code><a href='aes_string.html'>aes_string</a></code>. Only
+  needs to be set at the layer level if you are overriding
+  the plot defaults.</dd>
+      <dt>data</dt>
+      <dd>A layer specific dataset - only needed if you
+  want to override the plot defaults.</dd>
+      <dt>stat</dt>
+      <dd>The statistical transformation to use on the
+  data for this layer.</dd>
+      <dt>position</dt>
+      <dd>The position adjustment to use for
+  overlappling points on this layer</dd>
+      <dt>...</dt>
+      <dd>other arguments passed on to
+  <code><a href='layer.html'>layer</a></code>. This can include aesthetics whose
+  values you want to set, not map. See <code><a href='layer.html'>layer</a></code>
+  for more details.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>This is a special case of <code><a href='geom_tile.html'>geom_tile</a></code> where
+  all tiles are the same size.  It is implemented highly
+  efficiently using the internal <code>rasterGrob</code>
+  function.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p>By default, <code>geom_raster</code> add a vertical and
+  horizontal padding. The size of padding depends on the
+  resolution of data. If you want to manually set the
+  padding (e.g. want zero-padding), you can change the
+  behavior by setting <code>hpad</code> and <code>vpad</code>.</p>
+  
+    </div>
+
+    <div class="Aesthetics">
+      <h2>Aesthetics</h2>
+      
+      <p><code>geom_raster</code> understands the following aesthetics (required aesthetics are in bold):</p>
+  
+      <p><ul>
+<li> <code><strong>x</strong></code>
+  </li>
+<li> <code><strong>y</strong></code>
+  </li>
+<li> <code>alpha</code>
+  </li>
+<li> <code>fill</code>
+</li>
+</ul></p>
+  
+      <p></p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class="comment"># Generate data</span>
+<span class="symbol">pp</span> <span class="assignement">&lt;-</span> <span class="keyword">function</span> <span class="keyword">(</span><span class="formalargs">n</span><span class="keyword">,</span><span class="formalargs">r</span><span class="eqformalargs">=</span><span class="number">4</span><span class="keyword">)</span> <span class="keyword">{</span>
+ <span class="symbol">x</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/seq'>seq</a></span><span class="keyword">(</span><span class="keyword">-</span><span class="symbol">r</span><span class="keyword">*</span><span class="symbol">pi</span><span class="keyword">,</span> <span class="symbol">r</span><span class="keyword">*</span><span class="symbol">pi</span><span class="keyword">,</span> <span class="argument">len</span><span class="argument">=</span><span class="symbol">n</span><span class="keyword">)</span>
+ <span class="symbol">df</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/expand.grid'>expand.grid</a></span><span class="keyword">(</span><span class="argument">x</span><span class="argument">=</span><span class="symbol">x</span><span class="keyword">,</span> <span class="argument">y</span><span class="argument">=</span><span class="symbol">x</span><span class="keyword">)</span>
+ <span class="symbol">df</span><span class="keyword">$</span><span class="symbol">r</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/MathFun'>sqrt</a></span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">$</span><span class="symbol">x</span><span class="keyword">^</span><span class="number">2</span> <span class="keyword">+</span> <span class="symbol">df</span><span class="keyword">$</span><span class="symbol">y</span><span class="keyword">^</span><span class="number">2</span><span class="keyword">)</span>
+ <span class="symbol">df</span><span class="keyword">$</span><span class="symbol">z</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Trig'>cos</a></span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">$</span><span class="symbol">r</span><span class="keyword">^</span><span class="number">2</span><span class="keyword">)</span><span class="keyword">*</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>exp</a></span><span class="keyword">(</span><span class="keyword">-</span><span class="symbol">df</span><span class="keyword">$</span><span class="symbol">r</span><span class="keyword">/</span><span class="number">6</span><span class="keyword">)</span>
+ <span class="symbol">df</span>
+<span class="keyword">}</span>
+<span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">y</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="functioncall">pp</span><span class="keyword">(</span><span class="number">20</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">fill</span> <span class="argument">=</span> <span class="symbol">z</span><span class="keyword">,</span> <span class="argument">geom</span> <span class="argument">=</span> <span class="string">"raster"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_raster.html-2.png' %></p>
+<div class='input'><span class="comment"># Interpolation worsens the apperance of this plot, but can help when</span>
+<span class="comment"># rendering images.</span>
+<span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">y</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="functioncall">pp</span><span class="keyword">(</span><span class="number">20</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">fill</span> <span class="argument">=</span> <span class="symbol">z</span><span class="keyword">,</span> <span class="argument">geom</span> <span class="argument">=</span> <span class="string">"raster"</span><span class="keyword">,</span> <span class="argument">interpolate</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_raster.html-4.png' %></p>
+<div class='input'>
+<span class="comment"># For the special cases where it is applicable, geom_raster is much</span>
+<span class="comment"># faster than geom_tile:</span>
+<span class="symbol">pp200</span> <span class="assignement">&lt;-</span> <span class="functioncall">pp</span><span class="keyword">(</span><span class="number">200</span><span class="keyword">)</span>
+<span class="symbol">base</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">pp200</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">y</span><span class="keyword">,</span> <span class="argument">fill</span> <span class="argument">=</span> <span class="symbol">z</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="functioncall"><a href='benchplot.html'>benchplot</a></span><span class="keyword">(</span><span class="symbol">base</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_raster.html'>geom_raster</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_raster.html-6.png' %></p>
+<div class='output'>       step user.self sys.self elapsed
+1 construct     0.005    0.000   0.005
+2     build     0.489    0.208   0.724
+3    render     0.220    0.066   0.289
+4      draw     0.119    0.003   0.126
+5     TOTAL     0.833    0.277   1.144
+</div>
+<div class='input'><span class="functioncall"><a href='benchplot.html'>benchplot</a></span><span class="keyword">(</span><span class="symbol">base</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_tile.html'>geom_tile</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_raster.html-9.png' %></p>
+<div class='output'>       step user.self sys.self elapsed
+1 construct     0.006    0.000   0.005
+2     build     0.484    0.154   0.638
+3    render     0.241    0.095   0.337
+4      draw     0.544    0.014   0.569
+5     TOTAL     1.275    0.263   1.549
+</div>
+<div class='input'>
+<span class="comment"># justification</span>
+<span class="symbol">df</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/expand.grid'>expand.grid</a></span><span class="keyword">(</span><span class="argument">x</span> <span class="argument">=</span> <span class="number">0</span><span class="keyword">:</span><span class="number">5</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="number">0</span><span class="keyword">:</span><span class="number">5</span><span class="keyword">)</span>
+<span class="symbol">df</span><span class="keyword">$</span><span class="symbol">z</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/Uniform'>runif</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/nrow'>nrow</a></span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="comment"># default is compatible with geom_tile()</span>
+<span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">y</span><span class="keyword">,</span> <span class="argument">fill</span> <span class="argument">=</span> <span class="symbol">z</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_raster.html'>geom_raster</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_raster.html-12.png' %></p>
+<div class='input'><span class="comment"># zero padding</span>
+<span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">y</span><span class="keyword">,</span> <span class="argument">fill</span> <span class="argument">=</span> <span class="symbol">z</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_raster.html'>geom_raster</a></span><span class="keyword">(</span><span class="argument">hjust</span> <span class="argument">=</span> <span class="number">0</span><span class="keyword">,</span> <span class="argument">vjust</span> <span class="argument">=</span> <span class="number">0</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/geom_raster.html-14.png' %></p>
+<div class='input'></div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>geom_raster</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>

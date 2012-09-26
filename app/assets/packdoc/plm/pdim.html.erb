@@ -1,0 +1,99 @@
+      <h1>Check for the Dimensions of the Panel</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='pdim.html'>pdim</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='pdim.html'>pdim</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="argument">index</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='pdim.html'>pdim</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='pdim.html'>pdim</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>x</dt>
+      <dd>a <code>data.frame</code>, a <code>pdata.frame</code> or a <code>panelmodel</code> object,</dd>
+      <dt>index</dt>
+      <dd>see <code>pdata.frame</code>,</dd>
+      <dt>...</dt>
+      <dd>further arguments.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>This function checks the number of individuals and time observations in the panel and whether it is balanced or not.</p>
+  
+    </div>
+
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>An object of class <code>pdim</code> containing the following elements:</p>
+  
+      <p>nTa list containing <code>n</code>, the number of individuals, <code>T</code>, the number of time observations, <code>N</code> the total number of observations,
+ TinTa list containing two vectors : <code>Ti</code> gives the
+  number of observations for each individuals and <code>nt</code> gives
+  the number of individuals observed for each period,
+ balanceda logical value : <code>TRUE</code> for a balanced panel, <code>FALSE</code> for an unbalanced panel,
+ panel.namesa list of character vectors : <code>id.names</code>
+  contains the names of each individual and <code>time.names</code>
+  contains the names of each period.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p><code>pdim</code> is called by the estimation functions.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class="comment"># There are 595 individuals</span>
+
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/utils/data'>data</a></span><span class="keyword">(</span><span class="string">"Wages"</span><span class="keyword">,</span> <span class="argument">package</span> <span class="argument">=</span> <span class="string">"plm"</span><span class="keyword">)</span>
+<span class="functioncall"><a href='pdim.html'>pdim</a></span><span class="keyword">(</span><span class="symbol">Wages</span><span class="keyword">,</span> <span class="number">595</span><span class="keyword">)</span></div>
+<div class='output'>Balanced Panel: n=595, T=7, N=4165
+</div>
+<div class='input'>
+<span class="comment"># Gasoline contains two variables which are individual and time indexes</span>
+<span class="comment"># and are the first two variables</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/utils/data'>data</a></span><span class="keyword">(</span><span class="string">"Gasoline"</span><span class="keyword">,</span> <span class="argument">package</span><span class="argument">=</span><span class="string">"plm"</span><span class="keyword">)</span>
+<span class="functioncall"><a href='pdim.html'>pdim</a></span><span class="keyword">(</span><span class="symbol">Gasoline</span><span class="keyword">)</span></div>
+<div class='output'>Balanced Panel: n=18, T=19, N=342
+</div>
+<div class='input'>
+<span class="comment"># Hedonic is an unbalanced panel, townid is the individual index</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/utils/data'>data</a></span><span class="keyword">(</span><span class="string">"Hedonic"</span><span class="keyword">,</span> <span class="argument">package</span> <span class="argument">=</span> <span class="string">"plm"</span><span class="keyword">)</span>
+<span class="functioncall"><a href='pdim.html'>pdim</a></span><span class="keyword">(</span><span class="symbol">Hedonic</span><span class="keyword">,</span> <span class="string">"townid"</span><span class="keyword">)</span></div>
+<div class='output'>Unbalanced Panel: n=92, T=1-30, N=506
+</div>
+<div class='input'>
+<span class="comment"># An example of the panelmodel method</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/utils/data'>data</a></span><span class="keyword">(</span><span class="string">"Produc"</span><span class="keyword">,</span> <span class="argument">package</span> <span class="argument">=</span> <span class="string">"plm"</span><span class="keyword">)</span>
+<span class="symbol">z</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='plm.html'>plm</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log</a></span><span class="keyword">(</span><span class="symbol">gsp</span><span class="keyword">)</span><span class="keyword">~</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log</a></span><span class="keyword">(</span><span class="symbol">pcap</span><span class="keyword">)</span><span class="keyword">+</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log</a></span><span class="keyword">(</span><span class="symbol">pc</span><span class="keyword">)</span><span class="keyword">+</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log</a></span><span class="keyword">(</span><span class="symbol">emp</span><span class="keyword">)</span><span class="keyword">+</span><span class="symbol">unemp</span><span class="keyword">,</span><span class="argument">data</span><span class="argument">=</span><span class="symbol">Produc</span><span class="keyword">,</span>
+         <span class="argument">model</span><span class="argument">=</span><span class="string">"random"</span><span class="keyword">,</span> <span class="argument">subset</span> <span class="argument">=</span> <span class="symbol">gsp</span> <span class="keyword">&gt;</span> <span class="number">5000</span><span class="keyword">)</span>
+<span class="functioncall"><a href='pdim.html'>pdim</a></span><span class="keyword">(</span><span class="symbol">z</span><span class="keyword">)</span></div>
+<div class='output'>Unbalanced Panel: n=48, T=9-17, N=808
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>pdim</li><li>pdim.data.frame</li><li>pdim.pdata.frame</li><li>pdim.panelmodel</li><li>pdim.default</li><li>print.pdim</li>
+    </ul>
+    <ul>
+      <li>attribute</li>
+    </ul> -->
+      
+    <h2>See also</h2>
+    <code><a href='pdata.frame.html'>pdata.frame</a></code>
+    
+    <h2>Author</h2>
+    Yves Croissant
+    
+  </div>
+</div>

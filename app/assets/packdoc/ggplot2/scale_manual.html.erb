@@ -1,0 +1,91 @@
+      <h1>Create your own discrete scale.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='scale_manual.html'>scale_colour_manual</a></span><span class="keyword">(</span><span class="symbol">...</span><span class="keyword">,</span> <span class="symbol">values</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='scale_manual.html'>scale_fill_manual</a></span><span class="keyword">(</span><span class="symbol">...</span><span class="keyword">,</span> <span class="symbol">values</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='scale_manual.html'>scale_size_manual</a></span><span class="keyword">(</span><span class="symbol">...</span><span class="keyword">,</span> <span class="symbol">values</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='scale_manual.html'>scale_shape_manual</a></span><span class="keyword">(</span><span class="symbol">...</span><span class="keyword">,</span> <span class="symbol">values</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='scale_manual.html'>scale_linetype_manual</a></span><span class="keyword">(</span><span class="symbol">...</span><span class="keyword">,</span> <span class="symbol">values</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='scale_manual.html'>scale_alpha_manual</a></span><span class="keyword">(</span><span class="symbol">...</span><span class="keyword">,</span> <span class="symbol">values</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='scale_manual.html'>scale_color_manual</a></span><span class="keyword">(</span><span class="symbol">...</span><span class="keyword">,</span> <span class="symbol">values</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>values</dt>
+      <dd>a set of aesthetic values to map data
+  values to.  If this is a named vector, then the values
+  will be matched based on the names.  If unnamed, values
+  will be matched in order (usually alphabetical) with the
+  limits of the scale.  Any data values that don't match
+  will be given <code>na.value</code>.</dd>
+      <dt>...</dt>
+      <dd>common discrete scale parameters: <code>name</code>,
+  <code>breaks</code>, <code>labels</code>, <code>na.value</code>,
+  <code>limits</code> and <code>guide</code>.  See
+  <code><a href='discrete_scale.html'>discrete_scale</a></code> for more details</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Create your own discrete scale.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class="symbol">p</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">mpg</span><span class="keyword">,</span> <span class="symbol">wt</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">mtcars</span><span class="keyword">,</span> <span class="argument">colour</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/factor'>factor</a></span><span class="keyword">(</span><span class="symbol">cyl</span><span class="keyword">)</span><span class="keyword">)</span>
+
+<span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_manual.html'>scale_colour_manual</a></span><span class="keyword">(</span><span class="argument">values</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"red"</span><span class="keyword">,</span><span class="string">"blue"</span><span class="keyword">,</span> <span class="string">"green"</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_manual.html-2.png' %></p>
+<div class='input'><span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_manual.html'>scale_colour_manual</a></span><span class="keyword">(</span>
+  <span class="argument">values</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"8"</span> <span class="argument">=</span> <span class="string">"red"</span><span class="keyword">,</span><span class="string">"4"</span> <span class="argument">=</span> <span class="string">"blue"</span><span class="keyword">,</span><span class="string">"6"</span> <span class="argument">=</span> <span class="string">"green"</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_manual.html-4.png' %></p>
+<div class='input'><span class="comment"># With rgb hex values</span>
+<span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_manual.html'>scale_colour_manual</a></span><span class="keyword">(</span><span class="argument">values</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"#FF0000"</span><span class="keyword">,</span> <span class="string">"#0000FF"</span><span class="keyword">,</span> <span class="string">"#00FF00"</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_manual.html-6.png' %></p>
+<div class='input'>
+<span class="comment"># As with other scales you can use breaks to control the appearance</span>
+<span class="comment"># of the legend</span>
+<span class="symbol">cols</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"8"</span> <span class="argument">=</span> <span class="string">"red"</span><span class="keyword">,</span><span class="string">"4"</span> <span class="argument">=</span> <span class="string">"blue"</span><span class="keyword">,</span><span class="string">"6"</span> <span class="argument">=</span> <span class="string">"darkgreen"</span><span class="keyword">,</span> <span class="string">"10"</span> <span class="argument">=</span> <span class="string">"orange"</span><span class="keyword">)</span>
+<span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_manual.html'>scale_colour_manual</a></span><span class="keyword">(</span><span class="argument">values</span> <span class="argument">=</span> <span class="symbol">cols</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_manual.html-8.png' %></p>
+<div class='input'><span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_manual.html'>scale_colour_manual</a></span><span class="keyword">(</span><span class="argument">values</span> <span class="argument">=</span> <span class="symbol">cols</span><span class="keyword">,</span> <span class="argument">breaks</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"4"</span><span class="keyword">,</span> <span class="string">"6"</span><span class="keyword">,</span> <span class="string">"8"</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_manual.html-10.png' %></p>
+<div class='input'><span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_manual.html'>scale_colour_manual</a></span><span class="keyword">(</span><span class="argument">values</span> <span class="argument">=</span> <span class="symbol">cols</span><span class="keyword">,</span> <span class="argument">breaks</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"8"</span><span class="keyword">,</span> <span class="string">"6"</span><span class="keyword">,</span> <span class="string">"4"</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_manual.html-12.png' %></p>
+<div class='input'><span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_manual.html'>scale_colour_manual</a></span><span class="keyword">(</span><span class="argument">values</span> <span class="argument">=</span> <span class="symbol">cols</span><span class="keyword">,</span> <span class="argument">breaks</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"4"</span><span class="keyword">,</span> <span class="string">"6"</span><span class="keyword">,</span> <span class="string">"8"</span><span class="keyword">)</span><span class="keyword">,</span>
+  <span class="argument">labels</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"four"</span><span class="keyword">,</span> <span class="string">"six"</span><span class="keyword">,</span> <span class="string">"eight"</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_manual.html-14.png' %></p>
+<div class='input'>
+<span class="comment"># And limits to control the possible values of the scale</span>
+<span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_manual.html'>scale_colour_manual</a></span><span class="keyword">(</span><span class="argument">values</span> <span class="argument">=</span> <span class="symbol">cols</span><span class="keyword">,</span> <span class="argument">limits</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"4"</span><span class="keyword">,</span> <span class="string">"8"</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_manual.html-16.png' %></p>
+<div class='input'><span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_manual.html'>scale_colour_manual</a></span><span class="keyword">(</span><span class="argument">values</span> <span class="argument">=</span> <span class="symbol">cols</span><span class="keyword">,</span> <span class="argument">limits</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"4"</span><span class="keyword">,</span> <span class="string">"6"</span><span class="keyword">,</span> <span class="string">"8"</span><span class="keyword">,</span> <span class="string">"10"</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_manual.html-18.png' %></p>
+<div class='input'>
+<span class="comment"># Notice that the values are matched with limits, and not breaks</span>
+<span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_manual.html'>scale_colour_manual</a></span><span class="keyword">(</span><span class="argument">limits</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">6</span><span class="keyword">,</span> <span class="number">8</span><span class="keyword">,</span> <span class="number">4</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">breaks</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">8</span><span class="keyword">,</span> <span class="number">4</span><span class="keyword">,</span> <span class="number">6</span><span class="keyword">)</span><span class="keyword">,</span>
+  <span class="argument">values</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"grey50"</span><span class="keyword">,</span> <span class="string">"grey80"</span><span class="keyword">,</span> <span class="string">"black"</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_manual.html-20.png' %></p>
+<div class='input'></div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>scale_alpha_manual</li><li>scale_color_manual</li><li>scale_colour_manual</li><li>scale_fill_manual</li><li>scale_linetype_manual</li><li>scale_manual</li><li>scale_shape_manual</li><li>scale_size_manual</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>

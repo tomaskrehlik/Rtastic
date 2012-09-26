@@ -1,0 +1,234 @@
+      <h1>Estimate and Standard Error of a Nonlinear Function of Estimated Regression 
+Coefficients</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='deltaMethod.html'>deltaMethod</a></span><span class="keyword">(</span><span class="symbol">object</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='deltaMethod.html'>deltaMethod</a></span><span class="keyword">(</span><span class="symbol">object</span><span class="keyword">,</span> <span class="symbol">g</span><span class="keyword">,</span> <span class="symbol">vcov.</span><span class="keyword">,</span> <span class="argument">func</span> <span class="argument">=</span> <span class="symbol">g</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='deltaMethod.html'>deltaMethod</a></span><span class="keyword">(</span><span class="symbol">object</span><span class="keyword">,</span> <span class="symbol">g</span><span class="keyword">,</span> <span class="argument">vcov.</span> <span class="argument">=</span> <span class="symbol">vcov</span><span class="keyword">,</span> <span class="argument">parameterNames</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/names'>names</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/coef'>coef</a></span><span class="keyword">(</span><span class="symbol">object</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='deltaMethod.html'>deltaMethod</a></span><span class="keyword">(</span><span class="symbol">object</span><span class="keyword">,</span> <span class="symbol">g</span><span class="keyword">,</span> <span class="argument">vcov.</span> <span class="argument">=</span> <span class="symbol">vcov</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='deltaMethod.html'>deltaMethod</a></span><span class="keyword">(</span><span class="symbol">object</span><span class="keyword">,</span> <span class="symbol">g</span><span class="keyword">,</span> <span class="argument">vcov.</span> <span class="argument">=</span> <span class="symbol">vcov</span><span class="keyword">,</span> <span class="argument">parameterNames</span> <span class="argument">=</span> <span class="keyword">if</span> <span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/matrix'>is.matrix</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/coef'>coef</a></span><span class="keyword">(</span><span class="symbol">object</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/colnames'>colnames</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/coef'>coef</a></span><span class="keyword">(</span><span class="symbol">object</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">else</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/names'>names</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/coef'>coef</a></span><span class="keyword">(</span><span class="symbol">object</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span>
+  <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='deltaMethod.html'>deltaMethod</a></span><span class="keyword">(</span><span class="symbol">object</span><span class="keyword">,</span> <span class="symbol">g</span><span class="keyword">,</span> <span class="argument">vcov.</span> <span class="argument">=</span> <span class="symbol">vcov</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='deltaMethod.html'>deltaMethod</a></span><span class="keyword">(</span><span class="symbol">object</span><span class="keyword">,</span> <span class="symbol">g</span><span class="keyword">,</span> <span class="argument">vcov.</span> <span class="argument">=</span> <span class="symbol">vcov</span><span class="keyword">,</span> <span class="argument">parameterNames</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/names'>names</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/coef'>coef</a></span><span class="keyword">(</span><span class="symbol">object</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='deltaMethod.html'>deltaMethod</a></span><span class="keyword">(</span><span class="symbol">object</span><span class="keyword">,</span> <span class="symbol">g</span><span class="keyword">,</span> <span class="argument">vcov.</span> <span class="argument">=</span> <span class="symbol">vcov</span><span class="keyword">,</span> <span class="argument">parameterNames</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/names'>names</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/coef'>coef</a></span><span class="keyword">(</span><span class="symbol">object</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='deltaMethod.html'>deltaMethod</a></span><span class="keyword">(</span><span class="symbol">object</span><span class="keyword">,</span> <span class="symbol">g</span><span class="keyword">,</span> <span class="argument">vcov.</span> <span class="argument">=</span> <span class="symbol">vcov</span><span class="keyword">,</span> <span class="argument">parameterNames</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/names'>names</a></span><span class="keyword">(</span><span class="functioncall">fixef</span><span class="keyword">(</span><span class="symbol">object</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='deltaMethod.html'>deltaMethod</a></span><span class="keyword">(</span><span class="symbol">object</span><span class="keyword">,</span> <span class="symbol">g</span><span class="keyword">,</span> <span class="argument">vcov.</span> <span class="argument">=</span> <span class="symbol">vcov</span><span class="keyword">,</span> <span class="argument">parameterNames</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/names'>names</a></span><span class="keyword">(</span><span class="functioncall">fixef</span><span class="keyword">(</span><span class="symbol">object</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='deltaMethod.html'>deltaMethod</a></span><span class="keyword">(</span><span class="symbol">object</span><span class="keyword">,</span> <span class="symbol">g</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>object</dt>
+      <dd>For the default method, <code>object</code> is either (1) a vector of <code>p</code> 
+  named elements, so <code>names(object)</code> returns a list
+  of <code>p</code> character strings that are the names of the elements of
+  <code>object</code>; or (2) a model object for which there are <code><a href='http://www.inside-r.org/r-doc/stats/coef'>coef</a></code> and <code><a href='http://www.inside-r.org/r-doc/stats/vcov'>vcov</a></code> methods,
+  and for which the named coefficient vector returned by <code>coef</code> is asymptotically normally distributed with asymptotic
+  covariance matrix returned by <code>vcov</code>.
+  For the other methods, <code>object</code> is a 
+  regression object for which <code>coef(object)</code> or <code>fixef(object)</code> returns a vector of parameter
+  estimates.</dd>
+      <dt>g</dt>
+      <dd>A quoted string that is the function of the parameter estimates to be
+  evaluated; see the details below. </dd>
+      <dt>vcov.</dt>
+      <dd>The (estimated) covariance matrix of the coefficient
+  estimates.  For the default method, this argument is required.  For all
+  other methods, this argument must either provide the estimated covariance
+  matrix or a function that when applied
+  to <code>object</code> returns a covariance matrix.  The default is 
+  to use the function <code>vcov</code>.</dd>
+      <dt>func</dt>
+      <dd>A quoted string used to annotate output.  The default of
+  <code>func = g</code> is usually appropriate.</dd>
+      <dt>parameterNames</dt>
+      <dd>A character vector of length <code>p</code> that gives the 
+  names of the parameters in the same order as they appear in the vector of
+  estimates.  This argument will be useful if some of the names in the
+  vector of estimates include special characters, like <code>I(x2^2)</code>, or 
+  <code>x1:x2</code> that will confuse the numerical differentiation function.  See
+  details below.</dd>
+      <dt>...</dt>
+      <dd>Additional arguments; not currently used.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p><code>deltaMethod</code> is a generic function that uses the delta method to get a 
+first-order approximate 
+standard error for a nonlinear function of a vector of random variables
+with known or estimated covariance matrix.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p>Suppose <code class = 'eq'>x</code> is a random vector of length <code class = 'eq'>p</code> that is at least approximately 
+normally distributed with mean <code class = 'eq'>\beta</code> and estimated covariance matrix 
+<code class = 'eq'>C</code>.   Then any function <code class = 'eq'>g(\beta)</code> of <code class = 'eq'>\beta</code>, is estimated by
+<code class = 'eq'>g(x)</code>, which is in large samples normally distributed with mean <code class = 'eq'>g(\beta)</code>
+and estimated variance <code class = 'eq'>h'Ch</code>, where <code class = 'eq'>h</code> is the first derivative of
+<code class = 'eq'>g(\beta)</code> with respect to <code class = 'eq'>\beta</code> evaluated at <code class = 'eq'>x</code>.  This function
+returns both <code class = 'eq'>g(x)</code> and its standard error, the square root of the estimated
+variance.</p>
+  
+      <p>The default method requires that you provide <code class = 'eq'>x</code> in the argument
+<code>object</code>, <code class = 'eq'>C</code> in the argument <code>vcov.</code>, and a text expression
+in argument <code>g</code> that when evaluated gives the function <code class = 'eq'>g</code>.  The
+call <code>names(object)</code> must return the names of the elements of <code>x</code>
+that are used in the expression <code>g</code>.</p>
+  
+      <p>Since
+the delta method is often applied to functions of regression parameter 
+estimates, the argument <code>object</code> may be the name of a regression
+object from which the the estimates and their estimated variance matrix can
+be extracted.  In most regression models, estimates are returned by the
+<code>coef(object)</code> and the variance matrix from <code>vcov(object)</code>.
+You can provide an alternative function for computing the sample variance
+matrix, for example to use a sandwich estimator.</p>
+  
+      <p>For mixed models using <code>lme4</code> or <code>nlme</code>, the coefficient estimates
+are returned by the <code>fixef</code> function, while for <code>multinom</code>,
+<code>lmList</code> and <code>nlsList</code> coefficient estimates are returned by 
+<code>coef</code> as a matrix.  Methods for these models are provided to get the
+correct estimates and variance matrix.</p>
+  
+      <p>The argument <code>g</code> must be a quoted character string
+that gives the function of interest.  For example, if you set 
+<code>m2 <- lm(Y ~ X1 + X2 + X1:X2)</code>, then <code>deltaMethod(m2,"X1/X2")</code> applies the
+delta method to the ratio of the coefficient estimates for <code>X1</code> and
+<code>X2</code>.  The argument <code>g</code> can consist of constants and names 
+associated with the elements of the vector of coefficient estimates.</p>
+  
+      <p>In some cases the names may include characters including such as the colon 
+<code>:</code> used in interactions, or mathematical symbols like <code>+</code> or 
+<code>-</code> signs that would confuse the 
+function that computes numerical derivatives, and for this case you can replace
+the names of the estimates with the <code>parameterNames</code> argument.  For
+example, the ratio of the
+<code>X2</code> main effect to the interaction term could be computed using
+<code>deltaMethod(m2, "b1/b3", parameterNames=c("b0", "b1", "b2", "b3"))</code>.
+The name &#147;<code>(Intercept)</code>&#148; used for the intercept in linear and generalized
+linear models is an exception, and it will be correctly interpreted by
+<code>deltaMethod</code>.</p>
+  
+      <p>For <code>multinom</code> objects, the <code>coef</code> function returns a matrix of
+coefficients, with each row giving the estimates for comparisons of one category
+to the baseline.  The <code>deltaMethod</code> function applies the delta method to
+each row of this matrix.  Similarly, for <code>lmList</code> and <code>nlsList</code>
+objects, the delta method is computed for each element of the list of
+models fit.</p>
+  
+      <p>For nonlinear regression objects of type nls, the call <code>coef(object)</code> 
+returns the estimated
+coefficient vectors with names corresponding to parameter names.  
+For example,           
+<code>m2 <- nls(y ~ theta/(1 + gamma * x), start = list(theta=2, gamma=3))</code> will
+have parameters named  <code>c("theta", "gamma")</code>.   
+In many other familiar regression methods, such as lm and glm, the names of
+the coefficient estimates are the corresponding variable names, not
+parameter names.</p>
+  
+      <p>For mixed-effects models fit with <code>lmer</code> and <code>nlmer</code> from the 
+<code>lme4</code> package or <code>lme</code> and <code>nlme</code> from the <code>nlme</code> package, 
+only fixed-effect coefficients are considered.</p>
+  
+      <p>For regression models for which methods are not provided, you can extract
+the named vector of coefficient estimates and and estimate of its covariance
+matrix and then apply the default <code>deltaMethod</code> function.</p>
+  
+      <p>Earlier versions of <code>deltaMethod</code> included an argument 
+<code>parameterPrefix</code> that implemented the same functionality as the
+<code>parameterNames</code> argument, but it caused several unintended bugs that
+were not easily fixed without the change in syntax.</p>
+  
+    </div>
+
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>A data.frame with two components
+named <code>Estimate</code> for the estimate, <code>SE</code> for its standard error.
+The value of <code>g</code> is given as a row label.</p>
+  
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+      
+      <p>Fox, J. (2008)
+  <em>Applied Regression Analysis and Generalized Linear Models</em>,
+  Second Edition. Sage.</p>
+  
+      <p>Fox, J. and Weisberg, S. (2011) 
+  <em>An R Companion to Applied Regression</em>, Second Edition, Sage.</p>
+  
+      <p>S. Weisberg (2005) <em>Applied
+  Linear Regression</em>, Third Edition, Wiley, Section 6.1.2.</p>
+  
+    </div>
+
+    <div class="Estimate and Standard Error of a Nonlinear Function of Estimated Regression 
+Coefficients">
+      <h2>Estimate and Standard Error of a Nonlinear Function of Estimated Regression 
+Coefficients</h2>
+      
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="symbol">m1</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/lm'>lm</a></span><span class="keyword">(</span><span class="symbol">time</span> <span class="keyword">~</span> <span class="symbol">t1</span> <span class="keyword">+</span> <span class="symbol">t2</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">Transact</span><span class="keyword">)</span>
+<span class="functioncall"><a href='deltaMethod.html'>deltaMethod</a></span><span class="keyword">(</span><span class="symbol">m1</span><span class="keyword">,</span> <span class="string">"b1/b2"</span><span class="keyword">,</span> <span class="argument">parameterNames</span><span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/paste'>paste</a></span><span class="keyword">(</span><span class="string">"b"</span><span class="keyword">,</span> <span class="number">0</span><span class="keyword">:</span><span class="number">2</span><span class="keyword">,</span> <span class="argument">sep</span><span class="argument">=</span><span class="string">""</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<div class='output'>      Estimate    SE
+b1/b2    2.685 0.319
+</div>
+<div class='input'><span class="functioncall"><a href='deltaMethod.html'>deltaMethod</a></span><span class="keyword">(</span><span class="symbol">m1</span><span class="keyword">,</span> <span class="string">"t1/t2"</span><span class="keyword">)</span> <span class="comment"># use names of preds. rather than coefs.</span></div>
+<div class='output'>      Estimate    SE
+t1/t2    2.685 0.319
+</div>
+<div class='input'><span class="functioncall"><a href='deltaMethod.html'>deltaMethod</a></span><span class="keyword">(</span><span class="symbol">m1</span><span class="keyword">,</span> <span class="string">"t1/t2"</span><span class="keyword">,</span> <span class="argument">vcov</span><span class="argument">=</span><span class="symbol">hccm</span><span class="keyword">)</span> <span class="comment"># use hccm function to est. vars.</span></div>
+<div class='output'>      Estimate     SE
+t1/t2    2.685 0.5584
+</div>
+<div class='input'><span class="comment"># to get the SE of 1/intercept, rename coefficients</span>
+<span class="functioncall"><a href='deltaMethod.html'>deltaMethod</a></span><span class="keyword">(</span><span class="symbol">m1</span><span class="keyword">,</span> <span class="string">"1/b0"</span><span class="keyword">,</span> <span class="argument">parameterNames</span><span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/paste'>paste</a></span><span class="keyword">(</span><span class="string">"b"</span><span class="keyword">,</span> <span class="number">0</span><span class="keyword">:</span><span class="number">2</span><span class="keyword">,</span> <span class="argument">sep</span><span class="argument">=</span><span class="string">""</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<div class='output'>     Estimate       SE
+1/b0 0.006927 0.008183
+</div>
+<div class='input'><span class="comment"># The next example calls the default method by extracting the</span>
+<span class="comment"># vector of estimates and covariance matrix explicitly</span>
+<span class="functioncall"><a href='deltaMethod.html'>deltaMethod</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/coef'>coef</a></span><span class="keyword">(</span><span class="symbol">m1</span><span class="keyword">)</span><span class="keyword">,</span> <span class="string">"t1/t2"</span><span class="keyword">,</span> <span class="argument">vcov.</span><span class="argument">=</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/vcov'>vcov</a></span><span class="keyword">(</span><span class="symbol">m1</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<div class='output'>      Estimate    SE
+t1/t2    2.685 0.319
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>deltaMethod</li><li>deltaMethod.default</li><li>deltaMethod.lm</li><li>deltaMethod.nls</li><li>deltaMethod.multinom</li><li>deltaMethod.polr</li><li>deltaMethod.survreg</li><li>deltaMethod.coxph</li><li>deltaMethod.mer</li><li>deltaMethod.lme</li><li>deltaMethod.lmList</li>
+    </ul>
+    <ul>
+      <li> models </li><li> regression </li>
+    </ul> -->
+      
+    <h2>See also</h2>
+    First derivatives of <code>g</code> are computed using symbolic differentiation
+by the function <code><a href='http://www.inside-r.org/r-doc/stats/deriv'>D</a></code>.
+    
+    <h2>Author</h2>
+    Sanford Weisberg, <a href='mailto:sandy@stat.umn.edu'>sandy@stat.umn.edu</a>,
+and John Fox <a href='mailto:jfox@mcmaster.ca'>jfox@mcmaster.ca</a>
+    
+  </div>
+</div>

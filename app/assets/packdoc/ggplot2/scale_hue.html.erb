@@ -1,0 +1,137 @@
+      <h1>Qualitative colour scale with evenly spaced hues.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='scale_hue.html'>scale_colour_hue</a></span><span class="keyword">(</span><span class="symbol">...</span><span class="keyword">,</span> <span class="argument">h</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">0</span><span class="keyword">,</span> <span class="number">360</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="number">15</span><span class="keyword">,</span> <span class="argument">c</span> <span class="argument">=</span> <span class="number">100</span><span class="keyword">,</span> <span class="argument">l</span> <span class="argument">=</span> <span class="number">65</span><span class="keyword">,</span> <span class="argument">h.start</span> <span class="argument">=</span> <span class="number">0</span><span class="keyword">,</span> <span class="argument">direction</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span>
+  <span class="argument">na.value</span> <span class="argument">=</span> <span class="string">"grey50"</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='scale_hue.html'>scale_fill_hue</a></span><span class="keyword">(</span><span class="symbol">...</span><span class="keyword">,</span> <span class="argument">h</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">0</span><span class="keyword">,</span> <span class="number">360</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="number">15</span><span class="keyword">,</span> <span class="argument">c</span> <span class="argument">=</span> <span class="number">100</span><span class="keyword">,</span> <span class="argument">l</span> <span class="argument">=</span> <span class="number">65</span><span class="keyword">,</span> <span class="argument">h.start</span> <span class="argument">=</span> <span class="number">0</span><span class="keyword">,</span> <span class="argument">direction</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span>
+      <span class="argument">na.value</span> <span class="argument">=</span> <span class="string">"grey50"</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='scale_hue.html'>scale_colour_discrete</a></span><span class="keyword">(</span><span class="symbol">...</span><span class="keyword">,</span> <span class="argument">h</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">0</span><span class="keyword">,</span> <span class="number">360</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="number">15</span><span class="keyword">,</span> <span class="argument">c</span> <span class="argument">=</span> <span class="number">100</span><span class="keyword">,</span> <span class="argument">l</span> <span class="argument">=</span> <span class="number">65</span><span class="keyword">,</span> <span class="argument">h.start</span> <span class="argument">=</span> <span class="number">0</span><span class="keyword">,</span> <span class="argument">direction</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span>
+      <span class="argument">na.value</span> <span class="argument">=</span> <span class="string">"grey50"</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='scale_hue.html'>scale_fill_discrete</a></span><span class="keyword">(</span><span class="symbol">...</span><span class="keyword">,</span> <span class="argument">h</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">0</span><span class="keyword">,</span> <span class="number">360</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="number">15</span><span class="keyword">,</span> <span class="argument">c</span> <span class="argument">=</span> <span class="number">100</span><span class="keyword">,</span> <span class="argument">l</span> <span class="argument">=</span> <span class="number">65</span><span class="keyword">,</span> <span class="argument">h.start</span> <span class="argument">=</span> <span class="number">0</span><span class="keyword">,</span> <span class="argument">direction</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span>
+      <span class="argument">na.value</span> <span class="argument">=</span> <span class="string">"grey50"</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='scale_hue.html'>scale_color_discrete</a></span><span class="keyword">(</span><span class="symbol">...</span><span class="keyword">,</span> <span class="argument">h</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">0</span><span class="keyword">,</span> <span class="number">360</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="number">15</span><span class="keyword">,</span> <span class="argument">c</span> <span class="argument">=</span> <span class="number">100</span><span class="keyword">,</span> <span class="argument">l</span> <span class="argument">=</span> <span class="number">65</span><span class="keyword">,</span> <span class="argument">h.start</span> <span class="argument">=</span> <span class="number">0</span><span class="keyword">,</span> <span class="argument">direction</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span>
+      <span class="argument">na.value</span> <span class="argument">=</span> <span class="string">"grey50"</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='scale_hue.html'>scale_color_hue</a></span><span class="keyword">(</span><span class="symbol">...</span><span class="keyword">,</span> <span class="argument">h</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">0</span><span class="keyword">,</span> <span class="number">360</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="number">15</span><span class="keyword">,</span> <span class="argument">c</span> <span class="argument">=</span> <span class="number">100</span><span class="keyword">,</span> <span class="argument">l</span> <span class="argument">=</span> <span class="number">65</span><span class="keyword">,</span> <span class="argument">h.start</span> <span class="argument">=</span> <span class="number">0</span><span class="keyword">,</span> <span class="argument">direction</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span>
+      <span class="argument">na.value</span> <span class="argument">=</span> <span class="string">"grey50"</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>na.value</dt>
+      <dd>Colour to use for missing values</dd>
+      <dt>...</dt>
+      <dd>Other arguments passed on to
+  <code><a href='discrete_scale.html'>discrete_scale</a></code> to control name, limits,
+  breaks, labels and so forth.</dd>
+      <dt>h</dt>
+      <dd>range of hues to use, in [0, 360]</dd>
+      <dt>c</dt>
+      <dd>chroma (intensity of colour), maximum value
+  varies depending on</dd>
+      <dt>l</dt>
+      <dd>luminance (lightness), in [0, 100]</dd>
+      <dt>h.start</dt>
+      <dd>hue to start at</dd>
+      <dt>direction</dt>
+      <dd>direction to travel around the colour
+  wheel, 1 = clockwise, -1 = counter-clockwise</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Qualitative colour scale with evenly spaced hues.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class="symbol">dsamp</span> <span class="assignement">&lt;-</span> <span class="symbol">diamonds</span><span class="keyword">[</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/sample'>sample</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/nrow'>nrow</a></span><span class="keyword">(</span><span class="symbol">diamonds</span><span class="keyword">)</span><span class="keyword">,</span> <span class="number">1000</span><span class="keyword">)</span><span class="keyword">,</span> <span class="keyword">]</span>
+<span class="keyword">(</span><span class="symbol">d</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">carat</span><span class="keyword">,</span> <span class="symbol">price</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">dsamp</span><span class="keyword">,</span> <span class="argument">colour</span><span class="argument">=</span><span class="symbol">clarity</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_hue.html-2.png' %></p>
+<div class='input'>
+<span class="comment"># Change scale label</span>
+<span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_hue.html'>scale_colour_hue</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_hue.html-4.png' %></p>
+<div class='input'><span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_hue.html'>scale_colour_hue</a></span><span class="keyword">(</span><span class="string">"clarity"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_hue.html-6.png' %></p>
+<div class='input'><span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_hue.html'>scale_colour_hue</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/expression'>expression</a></span><span class="keyword">(</span><span class="symbol">clarity</span><span class="keyword">[</span><span class="symbol">beta</span><span class="keyword">]</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_hue.html-8.png' %></p>
+<div class='input'>
+<span class="comment"># Adjust luminosity and chroma</span>
+<span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_hue.html'>scale_colour_hue</a></span><span class="keyword">(</span><span class="argument">l</span><span class="argument">=</span><span class="number">40</span><span class="keyword">,</span> <span class="argument">c</span><span class="argument">=</span><span class="number">30</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_hue.html-10.png' %></p>
+<div class='input'><span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_hue.html'>scale_colour_hue</a></span><span class="keyword">(</span><span class="argument">l</span><span class="argument">=</span><span class="number">70</span><span class="keyword">,</span> <span class="argument">c</span><span class="argument">=</span><span class="number">30</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_hue.html-12.png' %></p>
+<div class='input'><span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_hue.html'>scale_colour_hue</a></span><span class="keyword">(</span><span class="argument">l</span><span class="argument">=</span><span class="number">70</span><span class="keyword">,</span> <span class="argument">c</span><span class="argument">=</span><span class="number">150</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_hue.html-14.png' %></p>
+<div class='input'><span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_hue.html'>scale_colour_hue</a></span><span class="keyword">(</span><span class="argument">l</span><span class="argument">=</span><span class="number">80</span><span class="keyword">,</span> <span class="argument">c</span><span class="argument">=</span><span class="number">150</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_hue.html-16.png' %></p>
+<div class='input'>
+<span class="comment"># Change range of hues used</span>
+<span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_hue.html'>scale_colour_hue</a></span><span class="keyword">(</span><span class="argument">h</span><span class="argument">=</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">0</span><span class="keyword">,</span> <span class="number">90</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_hue.html-18.png' %></p>
+<div class='input'><span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_hue.html'>scale_colour_hue</a></span><span class="keyword">(</span><span class="argument">h</span><span class="argument">=</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">90</span><span class="keyword">,</span> <span class="number">180</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_hue.html-20.png' %></p>
+<div class='input'><span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_hue.html'>scale_colour_hue</a></span><span class="keyword">(</span><span class="argument">h</span><span class="argument">=</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">180</span><span class="keyword">,</span> <span class="number">270</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_hue.html-22.png' %></p>
+<div class='input'><span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_hue.html'>scale_colour_hue</a></span><span class="keyword">(</span><span class="argument">h</span><span class="argument">=</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">270</span><span class="keyword">,</span> <span class="number">360</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_hue.html-24.png' %></p>
+<div class='input'>
+<span class="comment"># Vary opacity</span>
+<span class="comment"># (only works with pdf, quartz and cairo devices)</span>
+<span class="symbol">d</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">dsamp</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="symbol">carat</span><span class="keyword">,</span> <span class="symbol">price</span><span class="keyword">,</span> <span class="argument">colour</span> <span class="argument">=</span> <span class="symbol">clarity</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_point.html'>geom_point</a></span><span class="keyword">(</span><span class="argument">alpha</span> <span class="argument">=</span> <span class="number">0.9</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_hue.html-26.png' %></p>
+<div class='input'><span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_point.html'>geom_point</a></span><span class="keyword">(</span><span class="argument">alpha</span> <span class="argument">=</span> <span class="number">0.5</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_hue.html-28.png' %></p>
+<div class='input'><span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_point.html'>geom_point</a></span><span class="keyword">(</span><span class="argument">alpha</span> <span class="argument">=</span> <span class="number">0.2</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_hue.html-30.png' %></p>
+<div class='input'>
+<span class="comment"># Colour of missing values is controlled with na.value:</span>
+<span class="symbol">miss</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/factor'>factor</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/sample'>sample</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">NA</span><span class="keyword">,</span> <span class="number">1</span><span class="keyword">:</span><span class="number">5</span><span class="keyword">)</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/nrow'>nrow</a></span><span class="keyword">(</span><span class="symbol">mtcars</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">rep</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">mpg</span><span class="keyword">,</span> <span class="symbol">wt</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">mtcars</span><span class="keyword">,</span> <span class="argument">colour</span> <span class="argument">=</span> <span class="symbol">miss</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_hue.html-32.png' %></p>
+<div class='input'><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">mpg</span><span class="keyword">,</span> <span class="symbol">wt</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">mtcars</span><span class="keyword">,</span> <span class="argument">colour</span> <span class="argument">=</span> <span class="symbol">miss</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='scale_hue.html'>scale_colour_hue</a></span><span class="keyword">(</span><span class="argument">na.value</span> <span class="argument">=</span> <span class="string">"black"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_hue.html-34.png' %></p>
+<div class='input'></div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>scale_color_discrete</li><li>scale_color_hue</li><li>scale_colour_discrete</li><li>scale_colour_hue</li><li>scale_fill_discrete</li><li>scale_fill_hue</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+  Other colour scales: <code><a href='scale_brewer.html'>scale_color_brewer</a></code>,
+  <code><a href='scale_gradient.html'>scale_color_continuous</a></code>,
+  <code><a href='scale_gradient.html'>scale_color_gradient</a></code>,
+  <code><a href='scale_gradient2.html'>scale_color_gradient2</a></code>,
+  <code><a href='scale_gradientn.html'>scale_color_gradientn</a></code>,
+  <code><a href='scale_grey.html'>scale_color_grey</a></code>,
+  <code><a href='scale_brewer.html'>scale_colour_brewer</a></code>,
+  <code><a href='scale_gradient.html'>scale_colour_continuous</a></code>,
+  <code><a href='scale_gradient.html'>scale_colour_gradient</a></code>,
+  <code><a href='scale_gradient2.html'>scale_colour_gradient2</a></code>,
+  <code><a href='scale_gradientn.html'>scale_colour_gradientn</a></code>,
+  <code><a href='scale_grey.html'>scale_colour_grey</a></code>,
+  <code><a href='scale_brewer.html'>scale_fill_brewer</a></code>,
+  <code><a href='scale_gradient.html'>scale_fill_continuous</a></code>,
+  <code><a href='scale_gradient.html'>scale_fill_gradient</a></code>,
+  <code><a href='scale_gradient2.html'>scale_fill_gradient2</a></code>,
+  <code><a href='scale_gradientn.html'>scale_fill_gradientn</a></code>,
+  <code><a href='scale_grey.html'>scale_fill_grey</a></code>
+
+        
+  </div>
+</div>

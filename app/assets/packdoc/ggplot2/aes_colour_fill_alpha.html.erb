@@ -1,0 +1,99 @@
+      <h1>Colour related aesthetics: colour, fill and alpha</h1>
+
+<div class="row">
+  <div class="span8">
+        
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>This page demonstrates the usage of a sub-group of
+  aesthetics; colour, fill and alpha.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>
+
+<span class="comment"># Bar chart example</span>
+<span class="symbol">c</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">mtcars</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/factor'>factor</a></span><span class="keyword">(</span><span class="symbol">cyl</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="comment"># Default plotting</span>
+<span class="symbol">c</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_bar.html'>geom_bar</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/aes_colour_fill_alpha.html-2.png' %></p>
+<div class='input'><span class="comment"># To change the interior colouring use fill aesthetic</span>
+<span class="symbol">c</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_bar.html'>geom_bar</a></span><span class="keyword">(</span><span class="argument">fill</span> <span class="argument">=</span> <span class="string">"red"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/aes_colour_fill_alpha.html-4.png' %></p>
+<div class='input'><span class="comment"># Compare with the colour aesthetic which changes just the bar outline</span>
+<span class="symbol">c</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_bar.html'>geom_bar</a></span><span class="keyword">(</span><span class="argument">colour</span> <span class="argument">=</span> <span class="string">"red"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/aes_colour_fill_alpha.html-6.png' %></p>
+<div class='input'><span class="comment"># Combining both, you can see the changes more clearly</span>
+<span class="symbol">c</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_bar.html'>geom_bar</a></span><span class="keyword">(</span><span class="argument">fill</span> <span class="argument">=</span> <span class="string">"white"</span><span class="keyword">,</span> <span class="argument">colour</span> <span class="argument">=</span> <span class="string">"red"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/aes_colour_fill_alpha.html-8.png' %></p>
+<div class='input'>
+<span class="comment"># The aesthetic fill also takes different colouring scales</span>
+<span class="comment"># setting fill equal to a factor varible uses a discrete colour scale</span>
+<span class="symbol">k</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">mtcars</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/factor'>factor</a></span><span class="keyword">(</span><span class="symbol">cyl</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">fill</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/factor'>factor</a></span><span class="keyword">(</span><span class="symbol">vs</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="symbol">k</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_bar.html'>geom_bar</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/aes_colour_fill_alpha.html-10.png' %></p>
+<div class='input'>
+<span class="comment"># Fill aesthetic can also be used with a continuous variable</span>
+<span class="symbol">m</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">movies</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">x</span> <span class="argument">=</span> <span class="symbol">rating</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="symbol">m</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_histogram.html'>geom_histogram</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<strong class='message'>stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.</strong>
+<p><%= image_tag 'ggplot2/aes_colour_fill_alpha.html-13.png' %></p>
+<div class='input'><span class="symbol">m</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_histogram.html'>geom_histogram</a></span><span class="keyword">(</span><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">fill</span> <span class="argument">=</span> <span class="symbol">..count..</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<strong class='message'>stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.</strong>
+<p><%= image_tag 'ggplot2/aes_colour_fill_alpha.html-16.png' %></p>
+<div class='input'>
+<span class="comment"># Some geoms don't use both aesthetics (i.e. geom_point or geom_line)</span>
+<span class="symbol">b</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">economics</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">x</span> <span class="argument">=</span> <span class="symbol">date</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="symbol">unemploy</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="symbol">b</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_line.html'>geom_line</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/aes_colour_fill_alpha.html-18.png' %></p>
+<div class='input'><span class="symbol">b</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_line.html'>geom_line</a></span><span class="keyword">(</span><span class="argument">colour</span> <span class="argument">=</span> <span class="string">"green"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/aes_colour_fill_alpha.html-20.png' %></p>
+<div class='input'><span class="symbol">b</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_point.html'>geom_point</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/aes_colour_fill_alpha.html-22.png' %></p>
+<div class='input'><span class="symbol">b</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_point.html'>geom_point</a></span><span class="keyword">(</span><span class="argument">colour</span> <span class="argument">=</span> <span class="string">"red"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/aes_colour_fill_alpha.html-24.png' %></p>
+<div class='input'>
+<span class="comment"># For large datasets with overplotting the alpha</span>
+<span class="comment"># aesthetic will make the points more transparent</span>
+<span class="symbol">df</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/data.frame'>data.frame</a></span><span class="keyword">(</span><span class="argument">x</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/Normal'>rnorm</a></span><span class="keyword">(</span><span class="number">5000</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/Normal'>rnorm</a></span><span class="keyword">(</span><span class="number">5000</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="symbol">h</span>  <span class="assignement">&lt;-</span> <span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span><span class="symbol">y</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="symbol">h</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_point.html'>geom_point</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/aes_colour_fill_alpha.html-26.png' %></p>
+<div class='input'><span class="symbol">h</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_point.html'>geom_point</a></span><span class="keyword">(</span><span class="argument">alpha</span> <span class="argument">=</span> <span class="number">0.5</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/aes_colour_fill_alpha.html-28.png' %></p>
+<div class='input'><span class="symbol">h</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_point.html'>geom_point</a></span><span class="keyword">(</span><span class="argument">alpha</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">/</span><span class="number">10</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/aes_colour_fill_alpha.html-30.png' %></p>
+<div class='input'>
+<span class="comment">#If a geom uses both fill and colour, alpha will only modify the fill colour</span>
+<span class="symbol">c</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_bar.html'>geom_bar</a></span><span class="keyword">(</span><span class="argument">fill</span> <span class="argument">=</span> <span class="string">"dark grey"</span><span class="keyword">,</span> <span class="argument">colour</span> <span class="argument">=</span> <span class="string">"black"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/aes_colour_fill_alpha.html-32.png' %></p>
+<div class='input'><span class="symbol">c</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_bar.html'>geom_bar</a></span><span class="keyword">(</span><span class="argument">fill</span> <span class="argument">=</span> <span class="string">"dark grey"</span><span class="keyword">,</span> <span class="argument">colour</span> <span class="argument">=</span> <span class="string">"black"</span><span class="keyword">,</span> <span class="argument">alpha</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">/</span><span class="number">3</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/aes_colour_fill_alpha.html-34.png' %></p>
+<div class='input'>
+<span class="comment"># Alpha can also be used to add shading</span>
+<span class="symbol">j</span> <span class="assignement">&lt;-</span> <span class="symbol">b</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_line.html'>geom_line</a></span><span class="keyword">(</span><span class="keyword">)</span>
+<span class="symbol">j</span></div>
+<p><%= image_tag 'ggplot2/aes_colour_fill_alpha.html-36.png' %></p>
+<div class='input'><span class="symbol">yrng</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/range'>range</a></span><span class="keyword">(</span><span class="symbol">economics</span><span class="keyword">$</span><span class="symbol">unemploy</span><span class="keyword">)</span>
+<span class="symbol">j</span> <span class="assignement">&lt;-</span> <span class="symbol">j</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_rect.html'>geom_rect</a></span><span class="keyword">(</span><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span>NULL<span class="keyword">,</span> NULL<span class="keyword">,</span> <span class="argument">xmin</span> <span class="argument">=</span> <span class="symbol">start</span><span class="keyword">,</span> <span class="argument">xmax</span> <span class="argument">=</span> <span class="symbol">end</span><span class="keyword">,</span> <span class="argument">fill</span> <span class="argument">=</span> <span class="symbol">party</span><span class="keyword">)</span><span class="keyword">,</span>
+<span class="argument">ymin</span> <span class="argument">=</span> <span class="symbol">yrng</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">]</span><span class="keyword">,</span> <span class="argument">ymax</span> <span class="argument">=</span> <span class="symbol">yrng</span><span class="keyword">[</span><span class="number">2</span><span class="keyword">]</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">presidential</span><span class="keyword">)</span>
+<span class="symbol">j</span></div>
+<p><%= image_tag 'ggplot2/aes_colour_fill_alpha.html-38.png' %></p>
+<div class='input'><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/library'>library</a></span><span class="keyword">(</span><span class="symbol">scales</span><span class="keyword">)</span> <span class="comment"># to access the alpha function</span>
+<span class="symbol">j</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_manual.html'>scale_fill_manual</a></span><span class="keyword">(</span><span class="argument">values</span> <span class="argument">=</span> <span class="functioncall"><a href='aes_colour_fill_alpha.html'>alpha</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"blue"</span><span class="keyword">,</span> <span class="string">"red"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="number">.3</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/aes_colour_fill_alpha.html-40.png' %></p>
+<div class='input'></div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>aes_colour_fill_alpha</li><li>alpha</li><li>color</li><li>colour</li><li>fill</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>

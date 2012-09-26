@@ -1,0 +1,126 @@
+      <h1>Unit root tests for panel data</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='purtest.html'>purtest</a></span><span class="keyword">(</span><span class="symbol">object</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">index</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">test</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"levinlin"</span><span class="keyword">,</span> <span class="string">"ips"</span><span class="keyword">,</span> <span class="string">"madwu"</span><span class="keyword">,</span> <span class="string">"hadri"</span><span class="keyword">)</span><span class="keyword">,</span>
+  <span class="argument">exo</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"none"</span><span class="keyword">,</span> <span class="string">"intercept"</span><span class="keyword">,</span> <span class="string">"trend"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">lags</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"SIC"</span><span class="keyword">,</span> <span class="string">"AIC"</span><span class="keyword">,</span> <span class="string">"Hall"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">pmax</span> <span class="argument">=</span> <span class="number">10</span><span class="keyword">,</span>
+      <span class="argument">Hcons</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="argument">q</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">dfcor</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">,</span> <span class="argument">fixedT</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/print'>print</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/summary'>summary</a></span><span class="keyword">(</span><span class="symbol">object</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/print'>print</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>object, x</dt>
+      <dd>Either a <code>'data.frame'</code> or a matrix containing the time series, a <code>'pseries'</code> object, a formula, or the name of a column of a <code>'data.frame'</code>, or a <code>'pdata.frame'</code> on which the test has to be computed; a<code>'purtest'</code> object for the print and summary methods,</dd>
+      <dt>data</dt>
+      <dd>a <code>'data.frame'</code> or a <code>'pdata.frame'</code> object,</dd>
+      <dt>index</dt>
+      <dd>the indexes,</dd>
+      <dt>test</dt>
+      <dd>the test to be computed: one of <code>levinlin</code> for Levin, Lin and Chu (2002), <code>ips</code> for Im, Pesaran and Shin (2003), <code>madwu</code> for Maddala and Wu (1999), and <code>hadri</code> for Hadri (2000),</dd>
+      <dt>exo</dt>
+      <dd>the exogenous variables to introduce in the augmented Dickey-Fuller regressions: this can be nothing (<code>'none'</code>), individual intercepts (<code>'intercept'</code>) or individual intercepts and trends (<code>'trend'</code>),</dd>
+      <dt>lags</dt>
+      <dd>the number of lags to be used for the augmented Dickey-Fuller regressions: either an integer (the number of lags for all time series), a vector of integers (one for each time series), or a character string for an automatic computation of the number of lags, based on either the AIC (<code>'AIC'</code>), the SIC (<code>'SIC'</code>) or on Hall's method (<code>'Hall'</code>),</dd>
+      <dt>pmax</dt>
+      <dd>maximum number of lags,</dd>
+      <dt>Hcons</dt>
+      <dd>a boolean indicating whether the heteroscedasticity-consistent test of Hadri should be computed,</dd>
+      <dt>q</dt>
+      <dd>the bandwidth for the estimation of the long-run variance,</dd>
+      <dt>dfcor</dt>
+      <dd>should the standard deviation of the regressions be computed using a degrees-of-freedom correction?</dd>
+      <dt>fixedT</dt>
+      <dd>should the different ADF regressions be computed using the same number of observations?,</dd>
+      <dt>...</dt>
+      <dd>further arguments.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p><code>purtest</code> implements several testing procedures that have been proposed to test unit root hypotheses with panel data.</p>
+  
+    </div>
+
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>An object of class <code>'purtest'</code>: a list with the elements <code>'statistic'</code> (a <code>'htest'</code> object), <code>'call'</code>, <code>'args'</code>, <code>'idres'</code> (containing results from the individual regressions), and <code>'adjval'</code> (containing the simulated means and variances needed to compute the statistics).</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p>All these tests except <code>'hadri'</code> are based on the estimation of augmented Dickey-Fuller regressions for each time series. A statistic is then computed using the t-statistic associated with  the lagged variable.</p>
+  
+      <p>The kind of test to be computed can be specified in several ways:</p>
+  
+      <p>A <code>formula</code>/<code>data</code> interface (if <code>data</code> is a
+<code>data.frame</code>, an additional <code>index</code> argument should be
+specified); the formula should be of the form: <code>y~0</code>, <code>y~1</code>,  or <code>y~trend</code> for a test with no exogenous variables, with an intercept, or with a time trend, respectively.</p>
+  
+      <p>A <code>data.frame</code>, a <code>matrix</code>, a <code>pseries</code>: in this case, the exogenous variables are specified using the <code>exo</code> argument.</p>
+  
+      <p>The Hadri statistic is the cross-sectional average of the individual KPSS statistics, standardized by their asymptotic mean and standard deviation.</p>
+  
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+      
+      <p>Hadri K. (2000). ``Testing for Unit Roots in Heterogeneous Panel Data'', <em>The Econometrics Journal</em>, 3, pp. 148--161.</p>
+  
+      <p>Im K.S., Pesaran M.H. and Shin Y. (2003). ``Testing for Unit Roots in Heterogeneous Panels'', <em>Journal of Econometrics</em>, 115(1), pp. 53--74.</p>
+  
+      <p>Levin A., Lin C.F. and Chu C.S.J. (2002). ``Unit Root Test in Panel Data: Asymptotic and Finite Sample Properties'', <em>Journal of Econometrics</em>, 108, pp. 1--24.</p>
+  
+      <p>Maddala G.S. and Wu S. (1999). ``A Comparative Study of Unit Root Tests with Panel Data and a New Simple Test'', <em>Oxford Bulletin of Economics and Statistics</em>, 61, Supplement 1, pp. 631--652.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='http://www.inside-r.org/r-doc/utils/data'>data</a></span><span class="keyword">(</span><span class="string">"Grunfeld"</span><span class="keyword">,</span> <span class="argument">package</span> <span class="argument">=</span> <span class="string">"plm"</span><span class="keyword">)</span>
+<span class="symbol">y</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/data.frame'>data.frame</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/split'>split</a></span><span class="keyword">(</span><span class="symbol">Grunfeld</span><span class="keyword">$</span><span class="symbol">inv</span><span class="keyword">,</span> <span class="symbol">Grunfeld</span><span class="keyword">$</span><span class="symbol">firm</span><span class="keyword">)</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='purtest.html'>purtest</a></span><span class="keyword">(</span><span class="symbol">y</span><span class="keyword">,</span> <span class="argument">pmax</span> <span class="argument">=</span> <span class="number">4</span><span class="keyword">,</span> <span class="argument">exo</span> <span class="argument">=</span> <span class="string">"intercept"</span><span class="keyword">,</span> <span class="argument">test</span> <span class="argument">=</span> <span class="string">"madwu"</span><span class="keyword">)</span></div>
+<div class='output'>
+	Maddala-Wu Unit-Root Test (ex. var. : Individual Intercepts )
+
+data:  y 
+chisq = 47.5818, df = 20, p-value = 0.0004868
+alternative hypothesis: stationarity 
+
+</div>
+<div class='input'>
+<span class="comment">## same via formula interface</span>
+<span class="functioncall"><a href='purtest.html'>purtest</a></span><span class="keyword">(</span><span class="symbol">inv</span> <span class="keyword">~</span> <span class="number">1</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">Grunfeld</span><span class="keyword">,</span> <span class="argument">index</span> <span class="argument">=</span> <span class="string">"firm"</span><span class="keyword">,</span> <span class="argument">pmax</span> <span class="argument">=</span> <span class="number">4</span><span class="keyword">,</span> <span class="argument">test</span> <span class="argument">=</span> <span class="string">"madwu"</span><span class="keyword">)</span></div>
+<div class='output'>
+	Maddala-Wu Unit-Root Test (ex. var. : Individual Intercepts )
+
+data:  inv ~ 1 
+chisq = 47.5818, df = 20, p-value = 0.0004868
+alternative hypothesis: stationarity 
+
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>purtest</li><li>print.purtest</li><li>summary.purtest</li><li>print.summary.purtest</li>
+    </ul>
+    <ul>
+      <li>htest</li>
+    </ul> -->
+      
+    
+    <h2>Author</h2>
+    Yves Croissant
+    
+  </div>
+</div>

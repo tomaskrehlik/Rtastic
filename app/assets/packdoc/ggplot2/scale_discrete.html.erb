@@ -1,0 +1,116 @@
+      <h1>Discrete position.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='scale_discrete.html'>scale_x_discrete</a></span><span class="keyword">(</span><span class="symbol">...</span><span class="keyword">,</span> <span class="argument">expand</span> <span class="argument">=</span> <span class="functioncall"><a href='waiver.html'>waiver</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='scale_discrete.html'>scale_y_discrete</a></span><span class="keyword">(</span><span class="symbol">...</span><span class="keyword">,</span> <span class="argument">expand</span> <span class="argument">=</span> <span class="functioncall"><a href='waiver.html'>waiver</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>...</dt>
+      <dd>common discrete scale parameters: <code>name</code>,
+  <code>breaks</code>, <code>labels</code>, <code>na.value</code>,
+  <code>limits</code> and <code>guide</code>.  See
+  <code><a href='discrete_scale.html'>discrete_scale</a></code> for more details</dd>
+      <dt>expand</dt>
+      <dd>a numeric vector of length two giving
+  multiplicative and additive expansion constants. These
+  constants ensure that the data is placed some distance
+  away from the axes.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>You can use continuous positions even with a discrete
+  position scale - this allows you (e.g.) to place labels
+  between bars in a bar chart. Continuous positions are
+  numeric values starting at one for the first level, and
+  increasing by one for each level (i.e. the labels are
+  placed at integer positions).  This is what allows
+  jittering to work.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">cut</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">diamonds</span><span class="keyword">,</span> <span class="argument">stat</span><span class="argument">=</span><span class="string">"bin"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_discrete.html-2.png' %></p>
+<div class='input'><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">cut</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">diamonds</span><span class="keyword">,</span> <span class="argument">geom</span><span class="argument">=</span><span class="string">"bar"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_discrete.html-4.png' %></p>
+<div class='input'>
+<span class="comment"># The discrete position scale is added automatically whenever you</span>
+<span class="comment"># have a discrete position.</span>
+
+<span class="keyword">(</span><span class="symbol">d</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">cut</span><span class="keyword">,</span> <span class="symbol">clarity</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/subset'>subset</a></span><span class="keyword">(</span><span class="symbol">diamonds</span><span class="keyword">,</span> <span class="symbol">carat</span> <span class="keyword">&gt;</span> <span class="number">1</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">geom</span><span class="argument">=</span><span class="string">"jitter"</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_discrete.html-6.png' %></p>
+<div class='input'>
+<span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_discrete.html'>scale_x_discrete</a></span><span class="keyword">(</span><span class="string">"Cut"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_discrete.html-8.png' %></p>
+<div class='input'><span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_discrete.html'>scale_x_discrete</a></span><span class="keyword">(</span><span class="string">"Cut"</span><span class="keyword">,</span> <span class="argument">labels</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"Fair"</span> <span class="argument">=</span> <span class="string">"F"</span><span class="keyword">,</span><span class="string">"Good"</span> <span class="argument">=</span> <span class="string">"G"</span><span class="keyword">,</span>
+  <span class="string">"Very Good"</span> <span class="argument">=</span> <span class="string">"VG"</span><span class="keyword">,</span><span class="string">"Perfect"</span> <span class="argument">=</span> <span class="string">"P"</span><span class="keyword">,</span><span class="string">"Ideal"</span> <span class="argument">=</span> <span class="string">"I"</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_discrete.html-10.png' %></p>
+<div class='input'>
+<span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_discrete.html'>scale_y_discrete</a></span><span class="keyword">(</span><span class="string">"Clarity"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_discrete.html-12.png' %></p>
+<div class='input'><span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_discrete.html'>scale_x_discrete</a></span><span class="keyword">(</span><span class="string">"Cut"</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_discrete.html'>scale_y_discrete</a></span><span class="keyword">(</span><span class="string">"Clarity"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_discrete.html-14.png' %></p>
+<div class='input'>
+<span class="comment"># Use limits to adjust the which levels (and in what order)</span>
+<span class="comment"># are displayed</span>
+<span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_discrete.html'>scale_x_discrete</a></span><span class="keyword">(</span><span class="argument">limits</span><span class="argument">=</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"Fair"</span><span class="keyword">,</span><span class="string">"Ideal"</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<strong class='warning'>Warning message:
+Removed 11189 rows containing missing values (geom_point).</strong>
+<p><%= image_tag 'ggplot2/scale_discrete.html-17.png' %></p>
+<div class='input'>
+<span class="comment"># you can also use the short hand functions xlim and ylim</span>
+<span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='xylim.html'>xlim</a></span><span class="keyword">(</span><span class="string">"Fair"</span><span class="keyword">,</span><span class="string">"Ideal"</span><span class="keyword">,</span> <span class="string">"Good"</span><span class="keyword">)</span></div>
+<strong class='warning'>Warning message:
+Removed 9610 rows containing missing values (geom_point).</strong>
+<p><%= image_tag 'ggplot2/scale_discrete.html-20.png' %></p>
+<div class='input'><span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='xylim.html'>ylim</a></span><span class="keyword">(</span><span class="string">"I1"</span><span class="keyword">,</span> <span class="string">"IF"</span><span class="keyword">)</span></div>
+<strong class='warning'>Warning message:
+Removed 16770 rows containing missing values (geom_point).</strong>
+<p><%= image_tag 'ggplot2/scale_discrete.html-23.png' %></p>
+<div class='input'>
+<span class="comment"># See ?reorder to reorder based on the values of another variable</span>
+<span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">manufacturer</span><span class="keyword">,</span> <span class="symbol">cty</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">mpg</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_discrete.html-25.png' %></p>
+<div class='input'><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/reorder.factor'>reorder</a></span><span class="keyword">(</span><span class="symbol">manufacturer</span><span class="keyword">,</span> <span class="symbol">cty</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">cty</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">mpg</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_discrete.html-27.png' %></p>
+<div class='input'><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/reorder.factor'>reorder</a></span><span class="keyword">(</span><span class="symbol">manufacturer</span><span class="keyword">,</span> <span class="symbol">displ</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">cty</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">mpg</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_discrete.html-29.png' %></p>
+<div class='input'>
+<span class="comment"># Use abbreviate as a formatter to reduce long names</span>
+<span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/reorder.factor'>reorder</a></span><span class="keyword">(</span><span class="symbol">manufacturer</span><span class="keyword">,</span> <span class="symbol">cty</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">cty</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">mpg</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='scale_discrete.html'>scale_x_discrete</a></span><span class="keyword">(</span><span class="argument">labels</span> <span class="argument">=</span> <span class="symbol">abbreviate</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_discrete.html-31.png' %></p>
+<div class='input'></div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>scale_x_discrete</li><li>scale_y_discrete</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+  Other position scales: <code><a href='scale_continuous.html'>scale_x_continuous</a></code>,
+  <code><a href='scale_date.html'>scale_x_date</a></code>,
+  <code><a href='scale_datetime.html'>scale_x_datetime</a></code>,
+  <code><a href='scale_continuous.html'>scale_x_log10</a></code>,
+  <code><a href='scale_continuous.html'>scale_x_reverse</a></code>,
+  <code><a href='scale_continuous.html'>scale_x_sqrt</a></code>,
+  <code><a href='scale_continuous.html'>scale_y_continuous</a></code>,
+  <code><a href='scale_date.html'>scale_y_date</a></code>,
+  <code><a href='scale_datetime.html'>scale_y_datetime</a></code>,
+  <code><a href='scale_continuous.html'>scale_y_log10</a></code>,
+  <code><a href='scale_continuous.html'>scale_y_reverse</a></code>, <code><a href='scale_continuous.html'>scale_y_sqrt</a></code>
+
+        
+  </div>
+</div>

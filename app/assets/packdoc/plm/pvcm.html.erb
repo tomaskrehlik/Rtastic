@@ -1,0 +1,106 @@
+      <h1>Variable Coefficients Models for Panel Data</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='pvcm.html'>pvcm</a></span><span class="keyword">(</span><span class="symbol">formula</span><span class="keyword">,</span> <span class="symbol">data</span><span class="keyword">,</span> <span class="symbol">subset</span><span class="keyword">,</span> <span class="symbol">na.action</span><span class="keyword">,</span> <span class="argument">effect</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"individual"</span><span class="keyword">,</span> <span class="string">"time"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">model</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"within"</span><span class="keyword">,</span>
+  <span class="string">"random"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">index</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/summary'>summary</a></span><span class="keyword">(</span><span class="symbol">object</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/print'>print</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="argument">digits</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Extremes'>max</a></span><span class="keyword">(</span><span class="number">3</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/options'>getOption</a></span><span class="keyword">(</span><span class="string">"digits"</span><span class="keyword">)</span> <span class="keyword">-</span> <span class="number">2</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">width</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/options'>getOption</a></span><span class="keyword">(</span><span class="string">"width"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>formula</dt>
+      <dd>a symbolic description for the model to be estimated,</dd>
+      <dt>object, x</dt>
+      <dd>an object of class <code>"pvcm"</code>,</dd>
+      <dt>data</dt>
+      <dd>a <code>data.frame</code>,</dd>
+      <dt>subset</dt>
+      <dd>see <code>lm</code>,</dd>
+      <dt>na.action</dt>
+      <dd>see <code>lm</code>,</dd>
+      <dt>effect</dt>
+      <dd>the effects introduced in the model: one of
+    <code>"individual"</code>, <code>"time"</code>,</dd>
+      <dt>model</dt>
+      <dd>one of <code>"within"</code>, <code>"random"</code>,</dd>
+      <dt>index</dt>
+      <dd>the indexes, see <code><a href='plm.data.html'>plm.data</a></code>,</dd>
+      <dt>digits</dt>
+      <dd>digits,</dd>
+      <dt>width</dt>
+      <dd>the maximum length of the lines in the print output,</dd>
+      <dt>...</dt>
+      <dd>further arguments.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Estimators for random and fixed effects models with variable coefficients.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p><code>pvcm</code> estimates variable coefficients models. Time or individual effects are introduced, respectively, if   <code>effect="time"</code> or <code>effect="individual"</code> (the default value).</p>
+  
+      <p>Coefficients are assumed to be fixed if <code>model="within"</code> and
+random if <code>model="random"</code>. In the first case, a different
+model is estimated for each individual (or time period). In the second case, the Swamy (1970) model is estimated. It is a
+generalized least squares model which uses the results of the previous model.</p>
+  
+    </div>
+
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>An object of class <code>c("pvcm","panelmodel")</code>, which has the following elements :</p>
+  
+      <p>coefficientsthe vector (or the list for fixed effects) of coefficients,
+  residualsthe vector of residuals,
+  fitted.valuesthe vector of fitted.values,
+  vcovthe covariance matrix of the coefficients,
+  df.residualdegrees of freedom of the residuals,
+  modela <code>data.frame</code> containing the variables used for the estimation,
+  callthe call,
+  Deltathe estimation of the covariance matrix of the
+   coefficients (random effect models only),
+  std.errorthe standard errors for all the coefficients for each individual (within models only),
+  <code>pvcm</code> objects have <code>print</code>, <code>summary</code> and <code>print.summary</code> methods.</p>
+  
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+      
+      <p>Swamy, P.A.V.B. (1970). Efficient Inference in a Random Coefficient Regression Model, <em>Econometrica</em>, <b>38</b>(2), pp.311--323.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='http://www.inside-r.org/r-doc/utils/data'>data</a></span><span class="keyword">(</span><span class="string">"Produc"</span><span class="keyword">,</span> <span class="argument">package</span> <span class="argument">=</span> <span class="string">"plm"</span><span class="keyword">)</span>
+<span class="symbol">zw</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='pvcm.html'>pvcm</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log</a></span><span class="keyword">(</span><span class="symbol">gsp</span><span class="keyword">)</span> <span class="keyword">~</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log</a></span><span class="keyword">(</span><span class="symbol">pcap</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log</a></span><span class="keyword">(</span><span class="symbol">pc</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log</a></span><span class="keyword">(</span><span class="symbol">emp</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="symbol">unemp</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">Produc</span><span class="keyword">,</span> <span class="argument">model</span> <span class="argument">=</span> <span class="string">"within"</span><span class="keyword">)</span>
+<span class="symbol">zr</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='pvcm.html'>pvcm</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log</a></span><span class="keyword">(</span><span class="symbol">gsp</span><span class="keyword">)</span> <span class="keyword">~</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log</a></span><span class="keyword">(</span><span class="symbol">pcap</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log</a></span><span class="keyword">(</span><span class="symbol">pc</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log</a></span><span class="keyword">(</span><span class="symbol">emp</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="symbol">unemp</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">Produc</span><span class="keyword">,</span> <span class="argument">model</span> <span class="argument">=</span> <span class="string">"random"</span><span class="keyword">)</span></div>
+<div class='output'>[1]  1.102934e+00  1.750358e-01  6.255738e-02 -7.631249e-05  6.725799e-06
+attention
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>pvcm</li><li>summary.pvcm</li><li>print.summary.pvcm</li>
+    </ul>
+    <ul>
+      <li>regression</li>
+    </ul> -->
+      
+    
+    <h2>Author</h2>
+    Yves Croissant
+    
+  </div>
+</div>

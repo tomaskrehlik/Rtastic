@@ -1,0 +1,57 @@
+      <h1>Scale for line patterns.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='scale_linetype.html'>scale_linetype</a></span><span class="keyword">(</span><span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='scale_linetype.html'>scale_linetype_continuous</a></span><span class="keyword">(</span><span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='scale_linetype.html'>scale_linetype_discrete</a></span><span class="keyword">(</span><span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>...</dt>
+      <dd>common discrete scale parameters: <code>name</code>,
+  <code>breaks</code>, <code>labels</code>, <code>na.value</code>,
+  <code>limits</code> and <code>guide</code>.  See
+  <code><a href='discrete_scale.html'>discrete_scale</a></code> for more details</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Default line types based on a set supplied by Richard
+  Pearson, University of Manchester.  Line types can not be
+  mapped to continuous values.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/library'>library</a></span><span class="keyword">(</span><span class="symbol">reshape2</span><span class="keyword">)</span> <span class="comment"># for melt</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/library'>library</a></span><span class="keyword">(</span><span class="symbol">plyr</span><span class="keyword">)</span> <span class="comment"># for ddply</span>
+<span class="symbol">ecm</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/reshape2/melt'>melt</a></span><span class="keyword">(</span><span class="symbol">economics</span><span class="keyword">,</span> <span class="argument">id</span> <span class="argument">=</span> <span class="string">"date"</span><span class="keyword">)</span>
+<span class="symbol">rescale01</span> <span class="assignement">&lt;-</span> <span class="keyword">function</span><span class="keyword">(</span><span class="formalargs">x</span><span class="keyword">)</span> <span class="keyword">(</span><span class="symbol">x</span> <span class="keyword">-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Extremes'>min</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">/</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/diff'>diff</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/range'>range</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="symbol">ecm</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/plyr/ddply'>ddply</a></span><span class="keyword">(</span><span class="symbol">ecm</span><span class="keyword">,</span> <span class="string">"variable"</span><span class="keyword">,</span> <span class="symbol">transform</span><span class="keyword">,</span> <span class="argument">value</span> <span class="argument">=</span> <span class="functioncall">rescale01</span><span class="keyword">(</span><span class="symbol">value</span><span class="keyword">)</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">date</span><span class="keyword">,</span> <span class="symbol">value</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">ecm</span><span class="keyword">,</span> <span class="argument">geom</span><span class="argument">=</span><span class="string">"line"</span><span class="keyword">,</span> <span class="argument">group</span><span class="argument">=</span><span class="symbol">variable</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_linetype.html-2.png' %></p>
+<div class='input'><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">date</span><span class="keyword">,</span> <span class="symbol">value</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">ecm</span><span class="keyword">,</span> <span class="argument">geom</span><span class="argument">=</span><span class="string">"line"</span><span class="keyword">,</span> <span class="argument">linetype</span><span class="argument">=</span><span class="symbol">variable</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_linetype.html-4.png' %></p>
+<div class='input'><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">date</span><span class="keyword">,</span> <span class="symbol">value</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">ecm</span><span class="keyword">,</span> <span class="argument">geom</span><span class="argument">=</span><span class="string">"line"</span><span class="keyword">,</span> <span class="argument">colour</span><span class="argument">=</span><span class="symbol">variable</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_linetype.html-6.png' %></p>
+<div class='input'>
+# See scale_manual for more flexibility
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>scale_linetype</li><li>scale_linetype_continuous</li><li>scale_linetype_discrete</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>

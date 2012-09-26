@@ -1,0 +1,102 @@
+      <h1>Wooldridge first-difference-based test for AR(1) errors in levels or first-differenced panel models</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='pwfdtest.html'>pwfdtest</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='pwfdtest.html'>pwfdtest</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">,</span> <span class="argument">h0</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"fd"</span><span class="keyword">,</span> <span class="string">"fe"</span><span class="keyword">)</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='pwfdtest.html'>pwfdtest</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">data</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">,</span> <span class="argument">h0</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"fd"</span><span class="keyword">,</span> <span class="string">"fe"</span><span class="keyword">)</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>x</dt>
+      <dd>an object of class <code>formula</code>,</dd>
+      <dt>data</dt>
+      <dd>a <code>data.frame</code>,</dd>
+      <dt>h0</dt>
+      <dd>the null hypothesis: one of "fd","fe"</dd>
+      <dt>...</dt>
+      <dd>further arguments to be passed on to
+  <code>linearHypothesis</code> or to <code>vcovHC</code></dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>First-differencing-based test of serial correlation for (the idiosyncratic component of) the errors in either levels or first-differenced panel models.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p>As Wooldridge (2003, 10.6.3) observes, if the idiosyncratic errors in the model in levels are uncorrelated (which we label hypothesis <code>"fe"</code>), then the errors of the model in first differences (FD) must be serially correlated with <code class = 'eq'>cor(\hat{e}_{it}, \hat{e}_{is})=-0.5</code> for each <code class = 'eq'>t,s</code>.  If on the contrary the levels model's errors are a random walk, then there must be no serial correlation in the FD errors (hypothesis <code>"fd"</code>). Both the fixed effects (FE) and the first-differenced (FD) estimators remain consistent under either assumption, but the relative efficiency changes: FE is more efficient under <code>"fe"</code>, FD under <code>"fd"</code>.</p>
+  
+      <p>Wooldridge (ibid.) suggests basing a test for either hypothesis on a pooled regression of FD residuals on their first lag:
+<code class = 'eq'>\hat{e}_{i,t}=\alpha + \delta \hat{e}_{i,t-1} + \eta_{i,t}</code>. Rejecting the restriction <code class = 'eq'>\delta = -0.5</code> makes us conclude against the null of no serial correlation in errors of the levels equation (<code>"fe"</code>). The null hypothesis of no serial correlation in differenced errors (<code>"fd"</code>) is tested in a similar way, but based on the zero restriction on <code class = 'eq'>\delta</code>. Rejecting <code>"fe"</code> favours the use of the first-differences  estimator and the contrary, although it is possible that both be rejected.</p>
+  
+      <p><code>pwartest</code> estimates the <code>fd</code> model and retrieves residuals, then estimates an AR(1) <code>pooling</code> model on them. The test statistic is obtained by applying <code>linearHypothesis()</code> to the latter model to test the relevant restriction on <code class = 'eq'>\delta</code>, setting the covariance matrix to <code>vcovHC</code> with the option <code>method=''arellano''</code> to control for serial correlation.</p>
+  
+      <p>Unlike the <code>pbgtest</code> and <code>pdwtest</code>, this test does not rely on large-T asymptotics and has therefore good properties in ''short'' panels. Furthermore, it is robust to general heteroskedasticity. The <code>"fe"</code> version can be used to test for error autocorrelation regardless of whether the maintained specification has fixed or random effects (see Drukker, 2003).</p>
+  
+    </div>
+
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>An object of class <code>"htest"</code>.</p>
+  
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+      
+      <p>Drukker, D.M. (2003) Testing for serial correlation in linear
+panel-data models, The Stata Journal, 3(2), pp. 168--177.</p>
+  
+      <p>Wooldridge, J.M. (2003) Econometric analysis of cross-section and
+panel data, MIT Press, 10.6.3, page 282.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='http://www.inside-r.org/r-doc/utils/data'>data</a></span><span class="keyword">(</span><span class="symbol">EmplUK</span><span class="keyword">)</span>
+<span class="functioncall"><a href='pwfdtest.html'>pwfdtest</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log</a></span><span class="keyword">(</span><span class="symbol">emp</span><span class="keyword">)</span> <span class="keyword">~</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log</a></span><span class="keyword">(</span><span class="symbol">wage</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log</a></span><span class="keyword">(</span><span class="symbol">capital</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">EmplUK</span><span class="keyword">)</span></div>
+<div class='output'>
+	Wooldridge's first-difference test for serial correlation in panels
+
+data:  plm.model 
+chisq = 1.5251, p-value = 0.2169
+alternative hypothesis: serial correlation in differenced errors 
+
+</div>
+<div class='input'><span class="functioncall"><a href='pwfdtest.html'>pwfdtest</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log</a></span><span class="keyword">(</span><span class="symbol">emp</span><span class="keyword">)</span> <span class="keyword">~</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log</a></span><span class="keyword">(</span><span class="symbol">wage</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log</a></span><span class="keyword">(</span><span class="symbol">capital</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">EmplUK</span><span class="keyword">,</span> <span class="argument">h0</span> <span class="argument">=</span> <span class="string">"fe"</span><span class="keyword">)</span></div>
+<div class='output'>
+	Wooldridge's first-difference test for serial correlation in panels
+
+data:  plm.model 
+chisq = 131.5482, p-value < 2.2e-16
+alternative hypothesis: serial correlation in original errors 
+
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>pwfdtest</li><li>pwfdtest.formula</li><li>pwfdtest.panelmodel</li>
+    </ul>
+    <ul>
+      <li>htest</li>
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+<code>pdwtest</code>, <code>pbgtest</code>, <code>pwartest</code>
+
+    
+    <h2>Author</h2>
+    Giovanni Millo
+    
+  </div>
+</div>

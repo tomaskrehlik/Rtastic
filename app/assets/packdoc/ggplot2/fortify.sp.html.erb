@@ -1,0 +1,67 @@
+      <h1>Fortify method for classes from the sp package.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='fortify.html'>fortify</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="symbol">data</span><span class="keyword">,</span> <span class="argument">region</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='fortify.html'>fortify</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="symbol">data</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='fortify.html'>fortify</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="symbol">data</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='fortify.html'>fortify</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="symbol">data</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='fortify.html'>fortify</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="symbol">data</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='fortify.html'>fortify</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="symbol">data</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='fortify.html'>fortify</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="symbol">data</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>model</dt>
+      <dd><code>SpatialPolygonsDataFrame</code> to convert
+  into a dataframe.</dd>
+      <dt>data</dt>
+      <dd>not used by this method</dd>
+      <dt>region</dt>
+      <dd>name of variable used to split up regions</dd>
+      <dt>...</dt>
+      <dd>not used by this method</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>To figure out the correct variable name for region,
+  inspect <code>as.data.frame(model)</code>.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="keyword">if</span> <span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/library'>require</a></span><span class="keyword">(</span><span class="string">"maptools"</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">{</span>
+ <span class="symbol">sids</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/system.file'>system.file</a></span><span class="keyword">(</span><span class="string">"shapes/sids.shp"</span><span class="keyword">,</span> <span class="argument">package</span><span class="argument">=</span><span class="string">"maptools"</span><span class="keyword">)</span>
+ <span class="symbol">nc1</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/maptools/readShapePoly'>readShapePoly</a></span><span class="keyword">(</span><span class="symbol">sids</span><span class="keyword">,</span>
+   <span class="argument">proj4string</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/sp/CRS-class'>CRS</a></span><span class="keyword">(</span><span class="string">"+proj=longlat +datum=NAD27"</span><span class="keyword">)</span><span class="keyword">)</span>
+ <span class="symbol">nc1_df</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='fortify.html'>fortify</a></span><span class="keyword">(</span><span class="symbol">nc1</span><span class="keyword">)</span>
+<span class="keyword">}</span></div>
+<strong class='message'>Loading required package: maptools</strong>
+<strong class='message'>Loading required package: foreign</strong>
+<strong class='message'>Loading required package: sp</strong>
+<strong class='message'>Checking rgeos availability: FALSE
+ 	Note: when rgeos is not available, polygon geometry 	computations in maptools depend on gpclib,
+ 	which has a restricted licence. It is disabled by default;
+ 	to enable gpclib, type gpclibPermit()</strong>
+<strong class='message'>Regions defined for each Polygons</strong></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>fortify.Line</li><li>fortify.Lines</li><li>fortify.Polygon</li><li>fortify.Polygons</li><li>fortify.SpatialLinesDataFrame</li><li>fortify.SpatialPolygons</li><li>fortify.SpatialPolygonsDataFrame</li><li>fortify.sp</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>

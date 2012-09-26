@@ -1,0 +1,46 @@
+      <h1>Displays a useful description of a ggplot object</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/summary'>summary</a></span><span class="keyword">(</span><span class="symbol">object</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>object</dt>
+      <dd>ggplot2 object to summarise</dd>
+      <dt>...</dt>
+      <dd>other arguments ignored (for compatibility
+  with generic)</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Displays a useful description of a ggplot object</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/summary'>summary</a></span><span class="keyword">(</span><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">mpg</span><span class="keyword">,</span> <span class="symbol">wt</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">mtcars</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<div class='output'>data: mpg, cyl, disp, hp, drat, wt, qsec, vs, am, gear, carb [32x11]
+mapping:  x = mpg, y = wt
+faceting: facet_null() 
+-----------------------------------
+geom_point:  
+stat_identity:  
+position_identity: (width = NULL, height = NULL)
+
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>summary.ggplot</li>
+    </ul>
+    <ul>
+      <li>internal</li>
+    </ul> -->
+      
+        
+  </div>
+</div>

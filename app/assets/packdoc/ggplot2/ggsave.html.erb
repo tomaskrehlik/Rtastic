@@ -1,0 +1,104 @@
+      <h1>Save a ggplot with sensible defaults</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='ggsave.html'>ggsave</a></span><span class="keyword">(</span><span class="argument">filename</span> <span class="argument">=</span> <span class="functioncall">default_name</span><span class="keyword">(</span><span class="symbol">plot</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">plot</span> <span class="argument">=</span> <span class="functioncall"><a href='last_plot.html'>last_plot</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">device</span> <span class="argument">=</span> <span class="functioncall">default_device</span><span class="keyword">(</span><span class="symbol">filename</span><span class="keyword">)</span><span class="keyword">,</span>
+  <span class="argument">path</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">scale</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span> <span class="argument">width</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/graphics/par'>par</a></span><span class="keyword">(</span><span class="string">"din"</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">]</span><span class="keyword">,</span> <span class="argument">height</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/graphics/par'>par</a></span><span class="keyword">(</span><span class="string">"din"</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">2</span><span class="keyword">]</span><span class="keyword">,</span> <span class="argument">units</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"in"</span><span class="keyword">,</span>
+          <span class="string">"cm"</span><span class="keyword">,</span> <span class="string">"mm"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">dpi</span> <span class="argument">=</span> <span class="number">300</span><span class="keyword">,</span> <span class="argument">limitsize</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>filename</dt>
+      <dd>file name/filename of plot</dd>
+      <dt>plot</dt>
+      <dd>plot to save, defaults to last plot
+  displayed</dd>
+      <dt>device</dt>
+      <dd>device to use, automatically extract from
+  file name extension</dd>
+      <dt>path</dt>
+      <dd>path to save plot to (if you just want to set
+  path and not filename)</dd>
+      <dt>scale</dt>
+      <dd>scaling factor</dd>
+      <dt>width</dt>
+      <dd>width (defaults to the width of current
+  plotting window)</dd>
+      <dt>height</dt>
+      <dd>height (defaults to the height of current
+  plotting window)</dd>
+      <dt>units</dt>
+      <dd>units for width and height when either one
+  is explicitly specified (in, cm, or mm)</dd>
+      <dt>dpi</dt>
+      <dd>dpi to use for raster graphics</dd>
+      <dt>limitsize</dt>
+      <dd>when <code>TRUE</code> (the default),
+  <code>ggsave</code> will not save images larger than 50x50
+  inches, to prevent the common error of specifying
+  dimensions in pixels.</dd>
+      <dt>...</dt>
+      <dd>other arguments passed to graphics device</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>ggsave is a convenient function for saving a plot.  It
+  defaults to saving the last plot that you displayed, and
+  for a default size uses the size of the current graphics
+  device.  It also guesses the type of graphics device from
+  the extension.  This means the only argument you need to
+  supply is the filename.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p><code>ggsave</code> currently recognises the extensions eps/ps,
+  tex (pictex), pdf, jpeg, tiff, png, bmp, svg and wmf
+  (windows only).</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class="symbol">ratings</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">rating</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">movies</span><span class="keyword">,</span> <span class="argument">geom</span><span class="argument">=</span><span class="string">"histogram"</span><span class="keyword">)</span>
+<span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">length</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">movies</span><span class="keyword">,</span> <span class="argument">geom</span><span class="argument">=</span><span class="string">"histogram"</span><span class="keyword">)</span></div>
+<strong class='message'>stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.</strong>
+<p><%= image_tag 'ggplot2/ggsave.html-3.png' %></p>
+<div class='input'><span class="functioncall"><a href='ggsave.html'>ggsave</a></span><span class="keyword">(</span><span class="argument">file</span><span class="argument">=</span><span class="string">"length-hist.pdf"</span><span class="keyword">)</span></div>
+<strong class='message'>Saving 7.08 x 6.11 in image</strong>
+<strong class='message'>stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.</strong>
+<p><%= image_tag 'ggplot2/ggsave.html-7.png' %></p>
+<div class='input'><span class="functioncall"><a href='ggsave.html'>ggsave</a></span><span class="keyword">(</span><span class="argument">file</span><span class="argument">=</span><span class="string">"length-hist.png"</span><span class="keyword">)</span></div>
+<strong class='message'>Saving 7.08 x 6.11 in image</strong>
+<strong class='message'>stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.</strong>
+<p><%= image_tag 'ggplot2/ggsave.html-11.png' %></p>
+<div class='input'><span class="functioncall"><a href='ggsave.html'>ggsave</a></span><span class="keyword">(</span><span class="symbol">ratings</span><span class="keyword">,</span> <span class="argument">file</span><span class="argument">=</span><span class="string">"ratings.pdf"</span><span class="keyword">)</span></div>
+<strong class='message'>Saving 7.08 x 6.11 in image</strong>
+<strong class='message'>stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.</strong>
+<p><%= image_tag 'ggplot2/ggsave.html-15.png' %></p>
+<div class='input'><span class="functioncall"><a href='ggsave.html'>ggsave</a></span><span class="keyword">(</span><span class="symbol">ratings</span><span class="keyword">,</span> <span class="argument">file</span><span class="argument">=</span><span class="string">"ratings.pdf"</span><span class="keyword">,</span> <span class="argument">width</span><span class="argument">=</span><span class="number">4</span><span class="keyword">,</span> <span class="argument">height</span><span class="argument">=</span><span class="number">4</span><span class="keyword">)</span></div>
+<strong class='message'>stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.</strong>
+<p><%= image_tag 'ggplot2/ggsave.html-18.png' %></p>
+<div class='input'><span class="comment"># make twice as big as on screen</span>
+<span class="functioncall"><a href='ggsave.html'>ggsave</a></span><span class="keyword">(</span><span class="symbol">ratings</span><span class="keyword">,</span> <span class="argument">file</span><span class="argument">=</span><span class="string">"ratings.pdf"</span><span class="keyword">,</span> <span class="argument">scale</span><span class="argument">=</span><span class="number">2</span><span class="keyword">)</span></div>
+<strong class='message'>Saving 14.2 x 12.2 in image</strong>
+<strong class='message'>stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.</strong>
+<p><%= image_tag 'ggplot2/ggsave.html-22.png' %></p>
+<div class='input'></div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>ggsave</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>

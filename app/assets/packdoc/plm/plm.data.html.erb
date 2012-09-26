@@ -1,0 +1,87 @@
+      <h1>Data Frame Special Format for Panel Data</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='plm.data.html'>plm.data</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="argument">indexes</span> <span class="argument">=</span> NULL<span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>x</dt>
+      <dd>a <code>data.frame</code>,</dd>
+      <dt>indexes</dt>
+      <dd>a vector (of length one or two) indicating the
+  (individual and time) indexes.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>This function transforms a data frame in a format suitable for using with the estimation functions of <code>plm</code>.</p>
+  
+    </div>
+
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>A <code>data.frame</code>.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p><code>indexes</code> can be:</p>
+  
+      <p><ul>
+<li> a character string which is the name of the individual index variable, in this case a new variable called ``time'' containing the time index is added,
+ </li>
+<li> an integer, the number of individuals in the case of
+  balanced panel, in this case two new variables ``time'' and ``id'' containing the individual and the time indexes are added, 
+ </li>
+<li> a vector of two character strings which contains the names of the individual and of the time indexes.
+</li>
+</ul></p>
+  
+      <p></p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="comment"># There are 595 individuals</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/utils/data'>data</a></span><span class="keyword">(</span><span class="string">"Wages"</span><span class="keyword">,</span> <span class="argument">package</span> <span class="argument">=</span> <span class="string">"plm"</span><span class="keyword">)</span>
+<span class="symbol">Wages</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='plm.data.html'>plm.data</a></span><span class="keyword">(</span><span class="symbol">Wages</span><span class="keyword">,</span> <span class="number">595</span><span class="keyword">)</span>
+
+<span class="comment"># Gasoline contains two variables which are individual and time indexes</span>
+<span class="comment"># The pdata.frame is called gas</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/utils/data'>data</a></span><span class="keyword">(</span><span class="string">"Gasoline"</span><span class="keyword">,</span> <span class="argument">package</span> <span class="argument">=</span> <span class="string">"plm"</span><span class="keyword">)</span>
+<span class="symbol">Gasoline</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='plm.data.html'>plm.data</a></span><span class="keyword">(</span><span class="symbol">Gasoline</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"country"</span><span class="keyword">,</span><span class="string">"year"</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/summary'>summary</a></span><span class="keyword">(</span><span class="symbol">Gasoline</span><span class="keyword">)</span></div>
+<div class='output'>    country         year        lgaspcar        lincomep          lrpmg            lcarpcap      
+ AUSTRIA: 19   1960   : 18   Min.   :3.380   Min.   :-8.073   Min.   :-2.8965   Min.   :-13.475  
+ BELGIUM: 19   1961   : 18   1st Qu.:3.944   1st Qu.:-6.320   1st Qu.:-0.6523   1st Qu.: -9.307  
+ CANADA : 19   1962   : 18   Median :4.088   Median :-5.985   Median :-0.3795   Median : -8.658  
+ DENMARK: 19   1963   : 18   Mean   :4.296   Mean   :-6.139   Mean   :-0.5231   Mean   : -9.042  
+ FRANCE : 19   1964   : 18   3rd Qu.:4.556   3rd Qu.:-5.720   3rd Qu.:-0.2234   3rd Qu.: -8.262  
+ GERMANY: 19   1965   : 18   Max.   :6.157   Max.   :-5.221   Max.   : 1.1253   Max.   : -7.536  
+ (Other):228   (Other):234                                                                       
+</div>
+<div class='input'>
+<span class="comment"># Hedonic is an unbalanced panel, townid is the individual index</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/utils/data'>data</a></span><span class="keyword">(</span><span class="string">"Hedonic"</span><span class="keyword">,</span> <span class="argument">package</span> <span class="argument">=</span> <span class="string">"plm"</span><span class="keyword">)</span>
+<span class="symbol">Hedonic</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='plm.data.html'>plm.data</a></span><span class="keyword">(</span><span class="symbol">Hedonic</span><span class="keyword">,</span> <span class="string">"townid"</span><span class="keyword">)</span></div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>plm.data</li>
+    </ul>
+    <ul>
+      <li>attribute</li>
+    </ul> -->
+      
+    
+    <h2>Author</h2>
+    Yves Croissant
+    
+  </div>
+</div>

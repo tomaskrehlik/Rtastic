@@ -1,0 +1,273 @@
+      <h1>Residual Plots and Curvature Tests for Linear Model Fits</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='residualPlots.html'>residualPlots</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='residualPlots.html'>residualPlots</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="argument">terms</span> <span class="argument">=</span> <span class="keyword">~</span><span class="symbol">.</span><span class="keyword">,</span> <span class="argument">layout</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="symbol">ask</span><span class="keyword">,</span> <span class="argument">main</span> <span class="argument">=</span> <span class="string">""</span><span class="keyword">,</span> <span class="argument">fitted</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="argument">AsIs</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span>
+  <span class="argument">plot</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="argument">tests</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='residualPlots.html'>residualPlots</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='residualPlots.html'>residualPlots</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='residualPlots.html'>residualPlot</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='residualPlots.html'>residualPlot</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="argument">variable</span> <span class="argument">=</span> <span class="string">"fitted"</span><span class="keyword">,</span> <span class="argument">type</span> <span class="argument">=</span> <span class="string">"pearson"</span><span class="keyword">,</span> <span class="argument">plot</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="argument">quadratic</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span>
+      <span class="argument">smoother</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">smoother.args</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/list'>list</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">col.smooth</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/palette'>palette</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">3</span><span class="keyword">]</span><span class="keyword">,</span> <span class="symbol">labels</span><span class="keyword">,</span> <span class="argument">id.method</span> <span class="argument">=</span> <span class="string">"y"</span><span class="keyword">,</span>
+      <span class="argument">id.n</span> <span class="argument">=</span> <span class="keyword">if</span> <span class="keyword">(</span><span class="symbol">id.method</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">]</span> == <span class="string">"identify"</span><span class="keyword">)</span> <span class="number">Inf</span> <span class="keyword">else</span> <span class="number">0</span><span class="keyword">,</span> <span class="argument">id.cex</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span> <span class="argument">id.col</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/palette'>palette</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">]</span><span class="keyword">,</span>
+      <span class="argument">col</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/palette'>palette</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">]</span><span class="keyword">,</span> <span class="argument">col.quad</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/palette'>palette</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">2</span><span class="keyword">]</span><span class="keyword">,</span> <span class="symbol">xlab</span><span class="keyword">,</span> <span class="symbol">ylab</span><span class="keyword">,</span> <span class="argument">lwd</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span> <span class="argument">lty</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span> <span class="argument">grid</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span>
+      <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='residualPlots.html'>residualPlot</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='residualPlots.html'>residualPlot</a></span><span class="keyword">(</span><span class="symbol">model</span><span class="keyword">,</span> <span class="argument">variable</span> <span class="argument">=</span> <span class="string">"fitted"</span><span class="keyword">,</span> <span class="argument">type</span> <span class="argument">=</span> <span class="string">"pearson"</span><span class="keyword">,</span> <span class="argument">plot</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="argument">quadratic</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">,</span>
+      <span class="argument">smoother</span> <span class="argument">=</span> <span class="symbol">loessLine</span><span class="keyword">,</span> <span class="argument">smoother.args</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/list'>list</a></span><span class="keyword">(</span><span class="argument">k</span> <span class="argument">=</span> <span class="number">3</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>model</dt>
+      <dd> 
+A regression object.
+</dd>
+      <dt>terms</dt>
+      <dd>
+A one-sided formula that specifies a subset of the predictors. One
+residual plot is drawn for each specified.  The default
+<code>~ .</code> is to plot against all predictors.  For example, the
+specification <code>terms = ~ . - X3</code> would plot against all predictors
+except for <code>X3</code>.  To get a plot against fitted values only, use the
+arguments <code>terms = ~ 1, fitted=TRUE</code>,  Interactions are skipped.  
+For polynomial terms, the
+plot is against the first-order variable (which may be centered and scaled
+depending on how the <code>poly</code> function is used).  Plots against factors
+are boxplots.  Plots against other matrix terms, like splines, use the
+result of <code>predict(model), type="terms")[, variable])</code> as the
+horizontal axis; if the <code>predict</code> method doesn't permit this type, 
+then matrix terms are skipped.
+</dd>
+      <dt>layout</dt>
+      <dd> 
+If set to a value like <code>c(1, 1)</code> or <code>c(4, 3)</code>, the layout
+of the graph will have this many rows and columns.  If not set, the program
+will select an appropriate layout.  If the number of graphs exceed nine, you 
+must select the layout yourself, or you will get a maximum of nine per page.
+If <code>layout=NA</code>, the function does not set the layout and the user can
+use the <code>par</code> function to control the layout, for example to have 
+plots from two models in the same graphics window.
+</dd>
+      <dt>ask</dt>
+      <dd>
+If <code>TRUE</code>, ask the user before drawing the next plot; if <code>FALSE</code>, don't
+ask.
+</dd>
+      <dt>main</dt>
+      <dd>
+Main title for the graphs.  The default is <code>main=""</code> for no title.
+</dd>
+      <dt>fitted</dt>
+      <dd>
+If <code>TRUE</code>, the default, include the plot against fitted values.
+</dd>
+      <dt>AsIs</dt>
+      <dd>
+If <code>FALSE</code>, terms that use the &#147;as-is&#148; function <code>I</code>
+are skipped; if <code>TRUE</code>, the default, they are included.
+</dd>
+      <dt>plot</dt>
+      <dd>
+If <code>TRUE</code>, draw the plot(s).
+</dd>
+      <dt>tests</dt>
+      <dd>
+If <code>TRUE</code>, display the curvature tests.
+</dd>
+      <dt>...</dt>
+      <dd>
+Additional arguments passed to <code>residualPlot</code> and then to
+<code>plot</code>.
+</dd>
+      <dt>variable</dt>
+      <dd>
+Quoted variable name for the horizontal axis, or 
+<code>"fitted"</code> to plot versus fitted values.
+</dd>
+      <dt>type</dt>
+      <dd>
+Type of residuals to be used.  Pearson residuals are 
+appropriate for <code>lm</code> objects since these are equivalent to ordinary residuals
+with ols and correctly weighted residuals with wls.  Any quoted string that
+is an appropriate value of the <code>type</code> argument to
+<code><a href='http://www.inside-r.org/r-doc/stats/lm.summaries'>residuals.lm</a></code> or <code>"rstudent"</code> or <code>"rstandard"</code> for 
+Studentized or standardized residuals.
+</dd>
+      <dt>quadratic</dt>
+      <dd>
+if <code>TRUE</code>, fits the quadratic regression of the
+vertical axis on the horizontal axis and displays a lack of fit test.  Default
+is <code>TRUE</code> for <code>lm</code> and <code></code>FALSE for <code>glm</code>.  
+</dd>
+      <dt>smoother</dt>
+      <dd>the name of the smoother to use, selected from the choices 
+descripbed at <code><a href='ScatterplotSmoothers.html'>ScatterplotSmoothers</a></code>  For <code>lm</code> objects the 
+default is <code>NULL</code>.  For <code>glm</code> object the default is <code>loessLine</code>.  
+</dd>
+      <dt>smoother.args</dt>
+      <dd>arguments passed to the smoother.  
+See <code><a href='ScatterplotSmoothers.html'>ScatterplotSmoothers</a></code>.  For generalized linear models the  
+number of elements in the spline basis is set to
+<code>k=3</code>; this is done to allow fitting for predictors with just a few support
+points.  If you have many support points you may wish to set <code>k</code> to a higher
+number, or <code>k=-1</code> for the default used by <code><a href='http://www.inside-r.org/r-doc/mgcv/gam'>gam</a></code>.
+</dd>
+      <dt>col.smooth</dt>
+      <dd>color for the smoother
+</dd>
+      <dt>id.method,labels,id.n,id.cex,id.col</dt>
+      <dd>Arguments for the labelling of
+    points.  The default is <code>id.n=0</code> for labeling no points.  See
+    <code><a href='showLabels.html'>showLabels</a></code> for details of these arguments.
+</dd>
+      <dt>col</dt>
+      <dd>
+default color for points
+</dd>
+      <dt>col.quad</dt>
+      <dd>
+default color for quadratic fit
+</dd>
+      <dt>xlab</dt>
+      <dd>
+X-axis label.  If not specified, a useful label is constructed by
+the function.
+</dd>
+      <dt>ylab</dt>
+      <dd>
+Y-axis label.  If not specified, a useful label is constructed by
+the function.
+</dd>
+      <dt>lwd</dt>
+      <dd>
+line width for lines.
+</dd>
+      <dt>lty</dt>
+      <dd>
+line type for quadratic.
+</dd>
+      <dt>grid</dt>
+      <dd>If TRUE, the default, a light-gray background grid is put on the
+graph</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Plots the residuals versus each term in a mean function and versus
+fitted values.  Also computes a curvature test for each of the plots
+by adding a quadratic term and testing the quadratic to be zero.  This
+is Tukey's test for nonadditivity when plotting against fitted values.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p><code>residualPlots</code> draws one or more residuals plots depending on the
+value of the <code>terms</code> and <code>fitted</code> arguments.  If <code>terms = ~ .</code>,
+the default, then a plot is produced of residuals versus each first-order 
+term in the formula used to create the model.  Interaction terms, spline terms,
+and polynomial terms of more than one predictor are 
+skipped.  In addition terms that use the &#147;as-is&#148; function, e.g., <code>I(X^2)</code>,
+will also be skipped unless you set the argument <code>AsIs=TRUE</code>.  A plot of 
+residuals versus fitted values is also included unless <code>fitted=FALSE</code>.</p>
+  
+      <p>In addition to plots, a table of curvature tests is displayed. For plots
+against a term in the model formula, say <code>X1</code>, the test displayed is
+the t-test for for <code>I(X^2)</code> in the fit of <code>update, model, ~. + I(X^2))</code>.
+Econometricians call this a specification test.  For factors, the displayed
+plot is a boxplot, and no curvature test is computed.
+For fitted values, the test is Tukey's one-degree-of-freedom test for 
+nonadditivity.  You can suppress the tests with the argument <code>tests=FALSE</code>.</p>
+  
+      <p><code>residualPlot</code>, which is called by <code>residualPlots</code>,
+should be viewed as an internal function, and is included here to display its
+arguments, which can be used with <code>residualPlots</code> as well.  The
+<code>residualPlot</code> function returns the curvature test as an invisible result.</p>
+  
+      <p><code>residCurvTest</code> computes the curvature test only.  For any factors a
+boxplot will be drawn.  For any polynomials, plots are against the linear term.
+Other non-standard predictors like B-splines are skipped.</p>
+  
+    </div>
+
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>For <code>lm</code> objects,
+returns a data.frame with one row for each plot drawn, one column for 
+the curvature test statistic, and a second column for the corresponding
+p-value.  This function is used primarily for its side effect of drawing
+residual plots.</p>
+  
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+      
+      <p></p>
+  
+      <p>Fox, J. and Weisberg, S. (2011)
+<em>An R Companion to Applied Regression</em>, Second Edition.  Sage.</p>
+  
+      <p>Weisberg, S. (2005) <em>Applied
+Linear Regression</em>, Third Edition, Wiley, Chapter 8</p>
+  
+    </div>
+
+    <div class="Residual Plots and Curvature Tests for Linear Model Fits">
+      <h2>Residual Plots and Curvature Tests for Linear Model Fits</h2>
+      
+    </div>
+
+    <div class="Residual Plots and Curvature Tests for Linear Model Fits">
+      <h2>Residual Plots and Curvature Tests for Linear Model Fits</h2>
+      
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='residualPlots.html'>residualPlots</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/lm'>lm</a></span><span class="keyword">(</span><span class="symbol">longley</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><img src='residualPlots-2.png' alt='' width='400' height='400' /></p>
+<p><img src='residualPlots-3.png' alt='' width='400' height='400' /></p>
+<p><img src='residualPlots-4.png' alt='' width='400' height='400' /></p>
+<p><img src='residualPlots-5.png' alt='' width='400' height='400' /></p>
+<p><img src='residualPlots-6.png' alt='' width='400' height='400' /></p>
+<p><img src='residualPlots-7.png' alt='' width='400' height='400' /></p>
+<p><img src='residualPlots-8.png' alt='' width='400' height='400' /></p>
+<div class='output'>             Test stat Pr(>|t|)
+GNP             -0.895    0.397
+Unemployed       1.893    0.095
+Armed.Forces     1.722    0.123
+Population      -1.108    0.300
+Year             0.124    0.904
+Employed        -0.793    0.451
+Tukey test      -0.093    0.926
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>residualPlots</li><li>residualPlots.default</li><li>residualPlots.lm</li><li>residualPlots.glm</li><li>residualPlot</li><li>residualPlot.default</li><li>residualPlot.lm</li><li>residualPlot.glm</li><li>residCurvTest</li><li>residCurvTest.lm</li><li>residCurvTest.glm</li><li>tukeyNonaddTest</li>
+    </ul>
+    <ul>
+      <li> hplot </li><li> regression </li>
+    </ul> -->
+      
+    <h2>See also</h2>
+    See Also <code><a href='http://www.inside-r.org/r-doc/stats/lm'>lm</a></code>, <code><a href='http://www.inside-r.org/r-doc/graphics/identify'>identify</a></code>,
+<code><a href='showLabels.html'>showLabels</a></code> 
+    
+    <h2>Author</h2>
+    Sanford Weisberg, <a href='mailto:sandy@stat.umn.edu'>sandy@stat.umn.edu</a>
+    
+  </div>
+</div>

@@ -1,0 +1,86 @@
+      <h1>Sequential grey colour scale.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='scale_grey.html'>scale_colour_grey</a></span><span class="keyword">(</span><span class="symbol">...</span><span class="keyword">,</span> <span class="argument">start</span> <span class="argument">=</span> <span class="number">0.2</span><span class="keyword">,</span> <span class="argument">end</span> <span class="argument">=</span> <span class="number">0.8</span><span class="keyword">,</span> <span class="argument">na.value</span> <span class="argument">=</span> <span class="string">"red"</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='scale_grey.html'>scale_fill_grey</a></span><span class="keyword">(</span><span class="symbol">...</span><span class="keyword">,</span> <span class="argument">start</span> <span class="argument">=</span> <span class="number">0.2</span><span class="keyword">,</span> <span class="argument">end</span> <span class="argument">=</span> <span class="number">0.8</span><span class="keyword">,</span> <span class="argument">na.value</span> <span class="argument">=</span> <span class="string">"grey50"</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='scale_grey.html'>scale_color_grey</a></span><span class="keyword">(</span><span class="symbol">...</span><span class="keyword">,</span> <span class="argument">start</span> <span class="argument">=</span> <span class="number">0.2</span><span class="keyword">,</span> <span class="argument">end</span> <span class="argument">=</span> <span class="number">0.8</span><span class="keyword">,</span> <span class="argument">na.value</span> <span class="argument">=</span> <span class="string">"red"</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>start</dt>
+      <dd>gray value at low end of palette</dd>
+      <dt>end</dt>
+      <dd>gray value at high end of palette</dd>
+      <dt>...</dt>
+      <dd>Other arguments passed on to
+  <code><a href='discrete_scale.html'>discrete_scale</a></code> to control name, limits,
+  breaks, labels and so forth.</dd>
+      <dt>na.value</dt>
+      <dd>Colour to use for missing values</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Based on <code><a href='http://www.inside-r.org/r-doc/grDevices/gray.colors'>gray.colors</a></code></p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="symbol">p</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">mpg</span><span class="keyword">,</span> <span class="symbol">wt</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">mtcars</span><span class="keyword">,</span> <span class="argument">colour</span><span class="argument">=</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/factor'>factor</a></span><span class="keyword">(</span><span class="symbol">cyl</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_grey.html'>scale_colour_grey</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_grey.html-2.png' %></p>
+<div class='input'><span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_grey.html'>scale_colour_grey</a></span><span class="keyword">(</span><span class="argument">end</span> <span class="argument">=</span> <span class="number">0</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_grey.html-4.png' %></p>
+<div class='input'>
+<span class="comment"># You may want to turn off the pale grey background with this scale</span>
+<span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_grey.html'>scale_colour_grey</a></span><span class="keyword">(</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='theme_bw.html'>theme_bw</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_grey.html-6.png' %></p>
+<div class='input'>
+<span class="comment"># Colour of missing values is controlled with na.value:</span>
+<span class="symbol">miss</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/factor'>factor</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/sample'>sample</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">NA</span><span class="keyword">,</span> <span class="number">1</span><span class="keyword">:</span><span class="number">5</span><span class="keyword">)</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/nrow'>nrow</a></span><span class="keyword">(</span><span class="symbol">mtcars</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">rep</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">mpg</span><span class="keyword">,</span> <span class="symbol">wt</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">mtcars</span><span class="keyword">,</span> <span class="argument">colour</span> <span class="argument">=</span> <span class="symbol">miss</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_grey.html'>scale_colour_grey</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_grey.html-8.png' %></p>
+<div class='input'><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">mpg</span><span class="keyword">,</span> <span class="symbol">wt</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">mtcars</span><span class="keyword">,</span> <span class="argument">colour</span> <span class="argument">=</span> <span class="symbol">miss</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='scale_grey.html'>scale_colour_grey</a></span><span class="keyword">(</span><span class="argument">na.value</span> <span class="argument">=</span> <span class="string">"green"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/scale_grey.html-10.png' %></p></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>scale_color_grey</li><li>scale_colour_grey</li><li>scale_fill_grey</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+  Other colour scales: <code><a href='scale_brewer.html'>scale_color_brewer</a></code>,
+  <code><a href='scale_gradient.html'>scale_color_continuous</a></code>,
+  <code><a href='scale_hue.html'>scale_color_discrete</a></code>,
+  <code><a href='scale_gradient.html'>scale_color_gradient</a></code>,
+  <code><a href='scale_gradient2.html'>scale_color_gradient2</a></code>,
+  <code><a href='scale_gradientn.html'>scale_color_gradientn</a></code>,
+  <code><a href='scale_hue.html'>scale_color_hue</a></code>,
+  <code><a href='scale_brewer.html'>scale_colour_brewer</a></code>,
+  <code><a href='scale_gradient.html'>scale_colour_continuous</a></code>,
+  <code><a href='scale_hue.html'>scale_colour_discrete</a></code>,
+  <code><a href='scale_gradient.html'>scale_colour_gradient</a></code>,
+  <code><a href='scale_gradient2.html'>scale_colour_gradient2</a></code>,
+  <code><a href='scale_gradientn.html'>scale_colour_gradientn</a></code>,
+  <code><a href='scale_hue.html'>scale_colour_hue</a></code>,
+  <code><a href='scale_brewer.html'>scale_fill_brewer</a></code>,
+  <code><a href='scale_gradient.html'>scale_fill_continuous</a></code>,
+  <code><a href='scale_hue.html'>scale_fill_discrete</a></code>,
+  <code><a href='scale_gradient.html'>scale_fill_gradient</a></code>,
+  <code><a href='scale_gradient2.html'>scale_fill_gradient2</a></code>,
+  <code><a href='scale_gradientn.html'>scale_fill_gradientn</a></code>,
+  <code><a href='scale_hue.html'>scale_fill_hue</a></code>
+
+        
+  </div>
+</div>

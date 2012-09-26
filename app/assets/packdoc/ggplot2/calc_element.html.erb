@@ -1,0 +1,124 @@
+      <h1>Calculate the element properties, by inheriting properties from its parents</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='calc_element.html'>calc_element</a></span><span class="keyword">(</span><span class="symbol">element</span><span class="keyword">,</span> <span class="symbol">theme</span><span class="keyword">,</span> <span class="argument">verbose</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>element</dt>
+      <dd>The name of the theme element to
+  calculate</dd>
+      <dt>theme</dt>
+      <dd>A theme object (like theme_grey())</dd>
+      <dt>verbose</dt>
+      <dd>If TRUE, print out which elements this one
+  inherits from</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Calculate the element properties, by inheriting
+  properties from its parents</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="symbol">t</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='theme_grey.html'>theme_grey</a></span><span class="keyword">(</span><span class="keyword">)</span>
+<span class="functioncall"><a href='calc_element.html'>calc_element</a></span><span class="keyword">(</span><span class="string">'text'</span><span class="keyword">,</span> <span class="symbol">t</span><span class="keyword">)</span></div>
+<div class='output'>List of 8
+ $ family    : chr ""
+ $ face      : chr "plain"
+ $ colour    : chr "black"
+ $ size      : num 12
+ $ hjust     : num 0.5
+ $ vjust     : num 0.5
+ $ angle     : num 0
+ $ lineheight: num 0.9
+ - attr(*, "class")= chr [1:2] "element" "element_text"
+</div>
+<div class='input'>
+<span class="comment"># Compare the "raw" element definition to the element with calculated inheritance</span>
+<span class="symbol">t</span><span class="keyword">$</span><span class="symbol">axis.text.x</span></div>
+<div class='output'>List of 8
+ $ family    : NULL
+ $ face      : NULL
+ $ colour    : NULL
+ $ size      : NULL
+ $ hjust     : NULL
+ $ vjust     : num 1
+ $ angle     : NULL
+ $ lineheight: NULL
+ - attr(*, "class")= chr [1:2] "element" "element_text"
+</div>
+<div class='input'><span class="functioncall"><a href='calc_element.html'>calc_element</a></span><span class="keyword">(</span><span class="string">'axis.text.x'</span><span class="keyword">,</span> <span class="symbol">t</span><span class="keyword">,</span> <span class="argument">verbose</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">)</span></div>
+<strong class='message'>axis.text.x --> </strong>
+<strong class='message'>axis.text</strong>
+<strong class='message'>axis.text --> </strong>
+<strong class='message'>text</strong>
+<strong class='message'>text --> </strong>
+<strong class='message'>nothing (top level)</strong>
+<div class='output'>List of 8
+ $ family    : chr ""
+ $ face      : chr "plain"
+ $ colour    : chr "grey50"
+ $ size      : num 9.6
+ $ hjust     : num 0.5
+ $ vjust     : num 1
+ $ angle     : num 0
+ $ lineheight: num 0.9
+ - attr(*, "class")= chr [1:2] "element" "element_text"
+</div>
+<div class='input'>
+<span class="comment"># This reports that axis.text.x inherits from axis.text,</span>
+<span class="comment"># which inherits from text. You can view each of them with:</span>
+<span class="symbol">t</span><span class="keyword">$</span><span class="symbol">axis.text.x</span></div>
+<div class='output'>List of 8
+ $ family    : NULL
+ $ face      : NULL
+ $ colour    : NULL
+ $ size      : NULL
+ $ hjust     : NULL
+ $ vjust     : num 1
+ $ angle     : NULL
+ $ lineheight: NULL
+ - attr(*, "class")= chr [1:2] "element" "element_text"
+</div>
+<div class='input'><span class="symbol">t</span><span class="keyword">$</span><span class="symbol">axis.text</span></div>
+<div class='output'>List of 8
+ $ family    : NULL
+ $ face      : NULL
+ $ colour    : chr "grey50"
+ $ size      :Class 'rel'  num 0.8
+ $ hjust     : NULL
+ $ vjust     : NULL
+ $ angle     : NULL
+ $ lineheight: NULL
+ - attr(*, "class")= chr [1:2] "element" "element_text"
+</div>
+<div class='input'><span class="symbol">t</span><span class="keyword">$</span><span class="symbol">text</span></div>
+<div class='output'>List of 8
+ $ family    : chr ""
+ $ face      : chr "plain"
+ $ colour    : chr "black"
+ $ size      : num 12
+ $ hjust     : num 0.5
+ $ vjust     : num 0.5
+ $ angle     : num 0
+ $ lineheight: num 0.9
+ - attr(*, "class")= chr [1:2] "element" "element_text"
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>calc_element</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>

@@ -1,0 +1,173 @@
+      <h1>Axes for Transformed Variables</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='TransformationAxes.html'>basicPowerAxis</a></span><span class="keyword">(</span><span class="symbol">power</span><span class="keyword">,</span> <span class="argument">base</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>exp</a></span><span class="keyword">(</span><span class="number">1</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">side</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"right"</span><span class="keyword">,</span> <span class="string">"above"</span><span class="keyword">,</span> <span class="string">"left"</span><span class="keyword">,</span> <span class="string">"below"</span><span class="keyword">)</span><span class="keyword">,</span>
+  <span class="symbol">at</span><span class="keyword">,</span> <span class="argument">start</span> <span class="argument">=</span> <span class="number">0</span><span class="keyword">,</span> <span class="argument">lead.digits</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span> <span class="symbol">n.ticks</span><span class="keyword">,</span> <span class="argument">grid</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">,</span> <span class="argument">grid.col</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/gray'>gray</a></span><span class="keyword">(</span><span class="number">0.5</span><span class="keyword">)</span><span class="keyword">,</span>
+      <span class="argument">grid.lty</span> <span class="argument">=</span> <span class="number">2</span><span class="keyword">,</span> <span class="argument">axis.title</span> <span class="argument">=</span> <span class="string">"Untransformed Data"</span><span class="keyword">,</span> <span class="argument">cex</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span> <span class="argument">las</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/graphics/par'>par</a></span><span class="keyword">(</span><span class="string">"las"</span><span class="keyword">)</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='TransformationAxes.html'>bcPowerAxis</a></span><span class="keyword">(</span><span class="symbol">power</span><span class="keyword">,</span> <span class="argument">side</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"right"</span><span class="keyword">,</span> <span class="string">"above"</span><span class="keyword">,</span> <span class="string">"left"</span><span class="keyword">,</span> <span class="string">"below"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">at</span><span class="keyword">,</span> <span class="argument">start</span> <span class="argument">=</span> <span class="number">0</span><span class="keyword">,</span> <span class="argument">lead.digits</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span>
+      <span class="symbol">n.ticks</span><span class="keyword">,</span> <span class="argument">grid</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">,</span> <span class="argument">grid.col</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/gray'>gray</a></span><span class="keyword">(</span><span class="number">0.5</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">grid.lty</span> <span class="argument">=</span> <span class="number">2</span><span class="keyword">,</span> <span class="argument">axis.title</span> <span class="argument">=</span> <span class="string">"Untransformed Data"</span><span class="keyword">,</span>
+      <span class="argument">cex</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span> <span class="argument">las</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/graphics/par'>par</a></span><span class="keyword">(</span><span class="string">"las"</span><span class="keyword">)</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='TransformationAxes.html'>yjPowerAxis</a></span><span class="keyword">(</span><span class="symbol">power</span><span class="keyword">,</span> <span class="argument">side</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"right"</span><span class="keyword">,</span> <span class="string">"above"</span><span class="keyword">,</span> <span class="string">"left"</span><span class="keyword">,</span> <span class="string">"below"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">at</span><span class="keyword">,</span> <span class="argument">lead.digits</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span>
+      <span class="symbol">n.ticks</span><span class="keyword">,</span> <span class="argument">grid</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">,</span> <span class="argument">grid.col</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/gray'>gray</a></span><span class="keyword">(</span><span class="number">0.5</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">grid.lty</span> <span class="argument">=</span> <span class="number">2</span><span class="keyword">,</span> <span class="argument">axis.title</span> <span class="argument">=</span> <span class="string">"Untransformed Data"</span><span class="keyword">,</span>
+      <span class="argument">cex</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span> <span class="argument">las</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/graphics/par'>par</a></span><span class="keyword">(</span><span class="string">"las"</span><span class="keyword">)</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='TransformationAxes.html'>probabilityAxis</a></span><span class="keyword">(</span><span class="argument">scale</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"logit"</span><span class="keyword">,</span> <span class="string">"probit"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">side</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"right"</span><span class="keyword">,</span> <span class="string">"above"</span><span class="keyword">,</span> <span class="string">"left"</span><span class="keyword">,</span>
+      <span class="string">"below"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">at</span><span class="keyword">,</span> <span class="argument">lead.digits</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span> <span class="argument">grid</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">,</span> <span class="argument">grid.lty</span> <span class="argument">=</span> <span class="number">2</span><span class="keyword">,</span> <span class="argument">grid.col</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/gray'>gray</a></span><span class="keyword">(</span><span class="number">0.5</span><span class="keyword">)</span><span class="keyword">,</span>
+      <span class="argument">axis.title</span> <span class="argument">=</span> <span class="string">"Probability"</span><span class="keyword">,</span> <span class="argument">interval</span> <span class="argument">=</span> <span class="number">0.1</span><span class="keyword">,</span> <span class="argument">cex</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span> <span class="argument">las</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/graphics/par'>par</a></span><span class="keyword">(</span><span class="string">"las"</span><span class="keyword">)</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>power</dt>
+      <dd>power for Box-Cox, Yeo-Johnson, or simple power transformation.</dd>
+      <dt>scale</dt>
+      <dd>transformation used for probabilities, <code>"logit"</code>
+    (the default) or <code>"probit"</code>.</dd>
+      <dt>side</dt>
+      <dd>side at which the axis is to be drawn; numeric
+   codes are also permitted: <code>side = 1</code> for the bottom of the plot,
+   <code>side=2</code> for the left side, 
+   <code>side = 3</code> for the top, <code>side = 4</code> for the right side.</dd>
+      <dt>at</dt>
+      <dd>numeric vector giving location of tick marks on
+    original scale; if missing, the function will try to pick
+    nice locations for the ticks.</dd>
+      <dt>start</dt>
+      <dd>if a <em>start</em> was added to a variable (e.g., to make all
+  	data values positive), it can now be subtracted from the tick labels.</dd>
+      <dt>lead.digits</dt>
+      <dd>number of leading digits for determining `nice' numbers 
+	for tick labels (default is <code>1</code>.</dd>
+      <dt>n.ticks</dt>
+      <dd>number of tick marks; if missing, same as corresponding
+  	transformed axis.</dd>
+      <dt>grid</dt>
+      <dd>if <code>TRUE</code> grid lines for the axis will be drawn.</dd>
+      <dt>grid.col</dt>
+      <dd>color of grid lines.</dd>
+      <dt>grid.lty</dt>
+      <dd>line type for grid lines.</dd>
+      <dt>axis.title</dt>
+      <dd>title for axis.</dd>
+      <dt>cex</dt>
+      <dd>relative character expansion for axis label.</dd>
+      <dt>las</dt>
+      <dd>if <code>0</code>, ticks labels are drawn parallel to the
+    axis; set to <code>1</code> for horizontal labels (see <code><a href='http://www.inside-r.org/r-doc/graphics/par'>par</a></code>).</dd>
+      <dt>base</dt>
+      <dd>base of log transformation for <code>power.axis</code>
+    when <code>power = 0</code>.</dd>
+      <dt>interval</dt>
+      <dd>desired interval between tick marks on the probability
+    scale.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>These functions produce axes for the original scale of 
+  transformed variables. Typically these would appear as additional
+  axes to the right or
+  at the top of the plot, but if the plot is produced with 
+  <code>axes=FALSE</code>, then these functions could be used for axes below or to
+  the left of the plot as well.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p>The transformations corresponding to the three functions are as follows:
+  <span class='describe'>
+    <code>basicPowerAxis</code>:Simple power transformation, 
+      <code class = 'eq'>x' = x^p</code> for <code class = 'eq'>p != 0</code>
+      and <code class = 'eq'>x' = log x</code> for <code class = 'eq'>p = 0</code>.
+    <code>bcPowerAxis</code>:Box-Cox power transformation,
+      <code class = 'eq'>x' = (x^p - 1)/p</code> 
+      for <code class = 'eq'>x != 0</code> and <code class = 'eq'>x' = log(x)</code> 
+      for <code class = 'eq'>p = 0</code>.
+    <code>yjPowerAxis</code>:Yeo-Johnson power transformation, 
+      for non-negative <code class = 'eq'>x</code>, the Box-Cox transformation of
+      <code class = 'eq'>x + 1</code>; for negative <code class = 'eq'>x</code>, the Box-Cox transformation of
+      <code class = 'eq'>|x| + 1</code> with power <code class = 'eq'>2 - p</code>.
+    <code>probabilityAxis</code>:logit or probit transformation,
+      logit <code class = 'eq'>= log[p/(1 - p)]</code>, or 
+      probit <code class = 'eq'>= Phi^-1(p)</code>, where <code class = 'eq'>Phi^-1</code> is the
+      standard-normal quantile function.
+  </span></p>
+  
+      <p>These functions will try to place tick marks at reasonable locations, but
+  producing a good-looking graph sometimes requires some fiddling with the 
+  <code>at</code> argument.</p>
+  
+    </div>
+
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>These functions are used for their side effects: to draw axes.</p>
+  
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+      
+      <p>Fox, J. and Weisberg, S. (2011) 
+  <em>An R Companion to Applied Regression</em>, Second Edition, Sage.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="symbol">UN</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/na.fail'>na.omit</a></span><span class="keyword">(</span><span class="symbol">UN</span><span class="keyword">)</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/graphics/par'>par</a></span><span class="keyword">(</span><span class="argument">mar</span><span class="argument">=</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">5</span><span class="keyword">,</span> <span class="number">4</span><span class="keyword">,</span> <span class="number">4</span><span class="keyword">,</span> <span class="number">4</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="number">0.1</span><span class="keyword">)</span> <span class="comment"># leave space on right</span>
+
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/with'>with</a></span><span class="keyword">(</span><span class="symbol">UN</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/graphics/plot'>plot</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log</a></span><span class="keyword">(</span><span class="symbol">gdp</span><span class="keyword">,</span> <span class="number">10</span><span class="keyword">)</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log</a></span><span class="keyword">(</span><span class="symbol">infant.mortality</span><span class="keyword">,</span> <span class="number">10</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><img src='TransformationAxes-2.png' alt='' width='400' height='400' /></p>
+<div class='input'><span class="functioncall"><a href='TransformationAxes.html'>basicPowerAxis</a></span><span class="keyword">(</span><span class="number">0</span><span class="keyword">,</span> <span class="argument">base</span><span class="argument">=</span><span class="number">10</span><span class="keyword">,</span> <span class="argument">side</span><span class="argument">=</span><span class="string">"above"</span><span class="keyword">,</span>
+  <span class="argument">at</span><span class="argument">=</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">50</span><span class="keyword">,</span> <span class="number">200</span><span class="keyword">,</span> <span class="number">500</span><span class="keyword">,</span> <span class="number">2000</span><span class="keyword">,</span> <span class="number">5000</span><span class="keyword">,</span> <span class="number">20000</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">grid</span><span class="argument">=</span><span class="number">TRUE</span><span class="keyword">,</span>
+  <span class="argument">axis.title</span><span class="argument">=</span><span class="string">"GDP per capita"</span><span class="keyword">)</span></div>
+<p><img src='TransformationAxes-4.png' alt='' width='400' height='400' /></p>
+<div class='input'><span class="functioncall"><a href='TransformationAxes.html'>basicPowerAxis</a></span><span class="keyword">(</span><span class="number">0</span><span class="keyword">,</span> <span class="argument">base</span><span class="argument">=</span><span class="number">10</span><span class="keyword">,</span> <span class="argument">side</span><span class="argument">=</span><span class="string">"right"</span><span class="keyword">,</span>
+  <span class="argument">at</span><span class="argument">=</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">5</span><span class="keyword">,</span> <span class="number">10</span><span class="keyword">,</span> <span class="number">20</span><span class="keyword">,</span> <span class="number">50</span><span class="keyword">,</span> <span class="number">100</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">grid</span><span class="argument">=</span><span class="number">TRUE</span><span class="keyword">,</span>
+  <span class="argument">axis.title</span><span class="argument">=</span><span class="string">"infant mortality rate per 1000"</span><span class="keyword">)</span></div>
+<p><img src='TransformationAxes-6.png' alt='' width='400' height='400' /></p>
+<div class='input'>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/with'>with</a></span><span class="keyword">(</span><span class="symbol">UN</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/graphics/plot'>plot</a></span><span class="keyword">(</span><span class="functioncall"><a href='bcPower.html'>bcPower</a></span><span class="keyword">(</span><span class="symbol">gdp</span><span class="keyword">,</span> <span class="number">0</span><span class="keyword">)</span><span class="keyword">,</span> <span class="functioncall"><a href='bcPower.html'>bcPower</a></span><span class="keyword">(</span><span class="symbol">infant.mortality</span><span class="keyword">,</span> <span class="number">0</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><img src='TransformationAxes-8.png' alt='' width='400' height='400' /></p>
+<div class='input'><span class="functioncall"><a href='TransformationAxes.html'>bcPowerAxis</a></span><span class="keyword">(</span><span class="number">0</span><span class="keyword">,</span> <span class="argument">side</span><span class="argument">=</span><span class="string">"above"</span><span class="keyword">,</span>
+  <span class="argument">grid</span><span class="argument">=</span><span class="number">TRUE</span><span class="keyword">,</span> <span class="argument">axis.title</span><span class="argument">=</span><span class="string">"GDP per capita"</span><span class="keyword">)</span></div>
+<p><img src='TransformationAxes-10.png' alt='' width='400' height='400' /></p>
+<div class='input'><span class="functioncall"><a href='TransformationAxes.html'>bcPowerAxis</a></span><span class="keyword">(</span><span class="number">0</span><span class="keyword">,</span> <span class="argument">side</span><span class="argument">=</span><span class="string">"right"</span><span class="keyword">,</span>
+  <span class="argument">grid</span><span class="argument">=</span><span class="number">TRUE</span><span class="keyword">,</span> <span class="argument">axis.title</span><span class="argument">=</span><span class="string">"infant mortality rate per 1000"</span><span class="keyword">)</span></div>
+<p><img src='TransformationAxes-12.png' alt='' width='400' height='400' /></p>
+<div class='input'>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/with'>with</a></span><span class="keyword">(</span><span class="symbol">UN</span><span class="keyword">,</span> <span class="functioncall"><a href='qqPlot.html'>qqPlot</a></span><span class="keyword">(</span><span class="functioncall"><a href='logit.html'>logit</a></span><span class="keyword">(</span><span class="symbol">infant.mortality</span><span class="keyword">/</span><span class="number">1000</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><img src='TransformationAxes-14.png' alt='' width='400' height='400' /></p>
+<div class='input'><span class="functioncall"><a href='TransformationAxes.html'>probabilityAxis</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<p><img src='TransformationAxes-16.png' alt='' width='400' height='400' /></p>
+<div class='input'>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/with'>with</a></span><span class="keyword">(</span><span class="symbol">UN</span><span class="keyword">,</span> <span class="functioncall"><a href='qqPlot.html'>qqPlot</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/Normal'>qnorm</a></span><span class="keyword">(</span><span class="symbol">infant.mortality</span><span class="keyword">/</span><span class="number">1000</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><img src='TransformationAxes-18.png' alt='' width='400' height='400' /></p>
+<div class='input'><span class="functioncall"><a href='TransformationAxes.html'>probabilityAxis</a></span><span class="keyword">(</span><span class="argument">at</span><span class="argument">=</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">.005</span><span class="keyword">,</span> <span class="number">.01</span><span class="keyword">,</span> <span class="number">.02</span><span class="keyword">,</span> <span class="number">.04</span><span class="keyword">,</span> <span class="number">.08</span><span class="keyword">,</span> <span class="number">.16</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">scale</span><span class="argument">=</span><span class="string">"probit"</span><span class="keyword">)</span></div>
+<p><img src='TransformationAxes-20.png' alt='' width='400' height='400' /></p></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>basicPowerAxis</li><li>bcPowerAxis</li><li>yjPowerAxis</li><li>probabilityAxis</li>
+    </ul>
+    <ul>
+      <li>aplot</li>
+    </ul> -->
+      
+    <h2>See also</h2>
+    <code><a href='bcPower.html'>basicPower</a></code>, <code><a href='bcPower.html'>bcPower</a></code>, <code><a href='bcPower.html'>yjPower</a></code>, 
+	<code><a href='logit.html'>logit</a></code>.
+    
+    <h2>Author</h2>
+    John Fox <a href='mailto:jfox@mcmaster.ca'>jfox@mcmaster.ca</a>
+    
+  </div>
+</div>

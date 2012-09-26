@@ -1,0 +1,63 @@
+      <h1>Generate aesthetic mappings that describe how variables in the data are
+mapped to visual properties (aesthetics) of geoms.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">y</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>x</dt>
+      <dd>x value</dd>
+      <dt>y</dt>
+      <dd>y value</dd>
+      <dt>...</dt>
+      <dd>List of name value pairs giving aesthetics to
+  map.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p><code>aes</code> creates a list of unevaluated expressions.
+  This function also performs partial name matching,
+  converts color to colour, and old style R names to ggplot
+  names (eg. pch to shape, cex to size)</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">x</span> <span class="argument">=</span> <span class="symbol">mpg</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="symbol">wt</span><span class="keyword">)</span></div>
+<div class='output'>List of 2
+ $ x:length 1 mpg
+  ..- attr(*, "id")= int 31
+ $ y:length 1 wt
+  ..- attr(*, "id")= int 25
+</div>
+<div class='input'><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">x</span> <span class="argument">=</span> <span class="symbol">mpg</span> <span class="keyword">^</span> <span class="number">2</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="symbol">wt</span> <span class="keyword">/</span> <span class="symbol">cyl</span><span class="keyword">)</span></div>
+<div class='output'>List of 2
+ $ x: language mpg^2
+ $ y: language wt/cyl
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>aes</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+  <code><a href='aes_string.html'>aes_string</a></code> for passing quoted variable
+  names.  <code><a href='aes_colour_fill_alpha.html'>aes_colour_fill_alpha</a></code>,
+  <code><a href='aes_group_order.html'>aes_group_order</a></code>,
+  <code><a href='aes_linetype_size_shape.html'>aes_linetype_size_shape</a></code> and
+  <code><a href='aes_position.html'>aes_position</a></code> for more specific examples
+  with different aesthetics.
+
+        
+  </div>
+</div>

@@ -1,0 +1,77 @@
+      <h1>Plot Regression Line</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='regLine.html'>regLine</a></span><span class="keyword">(</span><span class="symbol">mod</span><span class="keyword">,</span> <span class="argument">col</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/grDevices/palette'>palette</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">2</span><span class="keyword">]</span><span class="keyword">,</span> <span class="argument">lwd</span> <span class="argument">=</span> <span class="number">2</span><span class="keyword">,</span> <span class="argument">lty</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>mod</dt>
+      <dd>a model, such as produced by <code>lm</code>,
+    that responds to the <code>coef</code> function
+    by returning a 2-element vector, whose elements are
+    interpreted respectively as the
+    intercept and slope of a regresison line.</dd>
+      <dt>col</dt>
+      <dd>color for points and lines; the default is the <em>second</em> entry
+    in the current color palette (see <code><a href='http://www.inside-r.org/r-doc/grDevices/palette'>palette</a></code>
+    and <code><a href='http://www.inside-r.org/r-doc/graphics/par'>par</a></code>).</dd>
+      <dt>lwd</dt>
+      <dd>line width; default is <code>2</code> (see <code><a href='http://www.inside-r.org/r-doc/graphics/par'>par</a></code>).</dd>
+      <dt>lty</dt>
+      <dd>line type; default is <code>1</code>, a solid line (see <code><a href='http://www.inside-r.org/r-doc/graphics/par'>par</a></code>).</dd>
+      <dt>...</dt>
+      <dd>optional arguments to be passed to the
+    <code>lines</code> plotting function.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Plots a regression line on a scatterplot; the line is plotted 
+  between the minimum and maximum x-values.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p>In contrast to <code>abline</code>, this function plots only over
+  the range of the observed x-values. The x-values are extracted from
+  <code>mod</code> as the second column of the model matrix.</p>
+  
+    </div>
+
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p><code>NULL</code>. This function is used for its side effect: adding
+  a line to the plot.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='http://www.inside-r.org/r-doc/graphics/plot'>plot</a></span><span class="keyword">(</span><span class="symbol">repwt</span> <span class="keyword">~</span> <span class="symbol">weight</span><span class="keyword">,</span> <span class="argument">pch</span><span class="argument">=</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">1</span><span class="keyword">,</span><span class="number">2</span><span class="keyword">)</span><span class="keyword">[</span><span class="symbol">sex</span><span class="keyword">]</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">Davis</span><span class="keyword">)</span></div>
+<p><img src='regLine-2.png' alt='' width='400' height='400' /></p>
+<div class='input'><span class="functioncall"><a href='regLine.html'>regLine</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/lm'>lm</a></span><span class="keyword">(</span><span class="symbol">repwt</span><span class="keyword">~</span><span class="symbol">weight</span><span class="keyword">,</span> <span class="argument">subset</span><span class="argument">=</span><span class="symbol">sex</span>==<span class="string">"M"</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">Davis</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><img src='regLine-4.png' alt='' width='400' height='400' /></p>
+<div class='input'><span class="functioncall"><a href='regLine.html'>regLine</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/lm'>lm</a></span><span class="keyword">(</span><span class="symbol">repwt</span><span class="keyword">~</span><span class="symbol">weight</span><span class="keyword">,</span> <span class="argument">subset</span><span class="argument">=</span><span class="symbol">sex</span>==<span class="string">"F"</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">Davis</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">lty</span><span class="argument">=</span><span class="number">2</span><span class="keyword">)</span></div>
+<p><img src='regLine-6.png' alt='' width='400' height='400' /></p></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>regLine</li>
+    </ul>
+    <ul>
+      <li>aplot</li>
+    </ul> -->
+      
+    <h2>See also</h2>
+    <code><a href='http://www.inside-r.org/r-doc/graphics/abline'>abline</a></code>, <code><a href='http://www.inside-r.org/r-doc/graphics/lines'>lines</a></code>
+    
+    <h2>Author</h2>
+    John Fox <a href='mailto:jfox@mcmaster.ca'>jfox@mcmaster.ca</a>
+    
+  </div>
+</div>

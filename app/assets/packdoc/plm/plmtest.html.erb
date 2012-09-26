@@ -1,0 +1,129 @@
+      <h1>Lagrange Multiplier Tests for Panel Models</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='plmtest.html'>plmtest</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='plmtest.html'>plmtest</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="argument">effect</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"individual"</span><span class="keyword">,</span> <span class="string">"time"</span><span class="keyword">,</span> <span class="string">"twoways"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">type</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"honda"</span><span class="keyword">,</span> <span class="string">"bp"</span><span class="keyword">,</span> <span class="string">"ghm"</span><span class="keyword">,</span>
+  <span class="string">"kw"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='plmtest.html'>plmtest</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">data</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">,</span> <span class="argument">effect</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"individual"</span><span class="keyword">,</span> <span class="string">"time"</span><span class="keyword">,</span> <span class="string">"twoways"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">type</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"honda"</span><span class="keyword">,</span>
+      <span class="string">"bp"</span><span class="keyword">,</span> <span class="string">"ghm"</span><span class="keyword">,</span> <span class="string">"kw"</span><span class="keyword">)</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>x</dt>
+      <dd>an object of class <code>"plm"</code>,</dd>
+      <dt>data</dt>
+      <dd>a <code>data.frame</code>,</dd>
+      <dt>effect</dt>
+      <dd>a character string indicating which effects are tested:individual effects (<code>"individual"</code>), time effects (<code>"time"</code>) or both (<code>"twoways"</code>),</dd>
+      <dt>type</dt>
+      <dd>a character string indicating the  test to be
+  computed : <code>"bp"</code> for Breush-Pagan (1980), <code>"ghm"</code> for Gourieroux, Holly and Monfort (1982), <code>"honda"</code> for Honda (1985) or <code>"kw"</code> for King and Wu (1997),</dd>
+      <dt>...</dt>
+      <dd>further arguments passed to <code>plm</code>.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Test of individual and/or time effects for panel models.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p>These Lagrange multiplier tests use only the residuals of the pooling model. The main argument of this function may be either a pooling model of class <code>plm</code> or an object of class <code>formula</code>.</p>
+  
+    </div>
+
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>An object of class <code>"htest"</code>.</p>
+  
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+      
+      <p>Breusch, T.S. and  Pagan, A.R. (1980) The Lagrange multiplier test and its applications to model specification in econometrics, <em>Review of Economic Studies</em>, <b>47</b>, pp.239--253.</p>
+  
+      <p>Gourieroux, C., Holly, A.  and  Monfort, A. (1982) Likelihood ratio test, Wald test, and Kuhn--Tucker test in linear models with inequality constraints on the regression parameters, <em>Econometrica</em>, <b>50</b>, pp.63--80.</p>
+  
+      <p>Honda, Y. (1985) Testing the error components model with non--normal disturbances, <em>Review of Economic Studies</em>, <b>52</b>, pp.681--690.</p>
+  
+      <p>King, M.L. and  Wu, P.X. (1997) Locally optimal one--sided tests for multiparameter hypotheses, <em>Econometric Reviews</em>, <b>33</b>, pp.523--529.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='http://www.inside-r.org/r-doc/utils/data'>data</a></span><span class="keyword">(</span><span class="string">"Grunfeld"</span><span class="keyword">,</span> <span class="argument">package</span> <span class="argument">=</span> <span class="string">"plm"</span><span class="keyword">)</span>
+<span class="symbol">g</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='plm.html'>plm</a></span><span class="keyword">(</span><span class="symbol">inv</span> <span class="keyword">~</span> <span class="symbol">value</span> <span class="keyword">+</span> <span class="symbol">capital</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">Grunfeld</span><span class="keyword">,</span> <span class="argument">model</span> <span class="argument">=</span> <span class="string">"pooling"</span><span class="keyword">)</span>
+<span class="functioncall"><a href='plmtest.html'>plmtest</a></span><span class="keyword">(</span><span class="symbol">g</span><span class="keyword">)</span></div>
+<div class='output'>
+	Lagrange Multiplier Test - (Honda)
+
+data:  inv ~ value + capital 
+normal = 28.2518, p-value < 2.2e-16
+alternative hypothesis: significant effects 
+
+</div>
+<div class='input'><span class="functioncall"><a href='plmtest.html'>plmtest</a></span><span class="keyword">(</span><span class="symbol">g</span><span class="keyword">,</span> <span class="argument">effect</span><span class="argument">=</span><span class="string">"time"</span><span class="keyword">)</span></div>
+<div class='output'>
+	Lagrange Multiplier Test - time effects (Honda)
+
+data:  inv ~ value + capital 
+normal = -2.5404, p-value = 0.01107
+alternative hypothesis: significant effects 
+
+</div>
+<div class='input'><span class="functioncall"><a href='plmtest.html'>plmtest</a></span><span class="keyword">(</span><span class="symbol">inv</span> <span class="keyword">~</span> <span class="symbol">value</span> <span class="keyword">+</span> <span class="symbol">capital</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">Grunfeld</span><span class="keyword">,</span> <span class="argument">type</span> <span class="argument">=</span> <span class="string">"honda"</span><span class="keyword">)</span></div>
+<div class='output'>
+	Lagrange Multiplier Test - (Honda)
+
+data:  inv ~ value + capital 
+normal = 28.2518, p-value < 2.2e-16
+alternative hypothesis: significant effects 
+
+</div>
+<div class='input'><span class="functioncall"><a href='plmtest.html'>plmtest</a></span><span class="keyword">(</span><span class="symbol">inv</span> <span class="keyword">~</span> <span class="symbol">value</span> <span class="keyword">+</span> <span class="symbol">capital</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">Grunfeld</span><span class="keyword">,</span> <span class="argument">type</span><span class="argument">=</span><span class="string">"ghm"</span><span class="keyword">,</span><span class="argument">effect</span><span class="argument">=</span><span class="string">"twoways"</span><span class="keyword">)</span></div>
+<div class='output'>
+	Lagrange Multiplier Test - two-ways effects (Gourieroux, Holly and Monfort)
+
+data:  inv ~ value + capital 
+chisq = 798.1615, df = 2, p-value < 2.2e-16
+alternative hypothesis: significant effects 
+
+</div>
+<div class='input'><span class="functioncall"><a href='plmtest.html'>plmtest</a></span><span class="keyword">(</span><span class="symbol">inv</span> <span class="keyword">~</span> <span class="symbol">value</span> <span class="keyword">+</span> <span class="symbol">capital</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">Grunfeld</span><span class="keyword">,</span> <span class="argument">type</span><span class="argument">=</span><span class="string">"kw"</span><span class="keyword">,</span><span class="argument">effect</span><span class="argument">=</span><span class="string">"twoways"</span><span class="keyword">)</span></div>
+<div class='output'>
+	Lagrange Multiplier Test - two-ways effects (King and Wu)
+
+data:  inv ~ value + capital 
+normal = 21.8322, df = 2, p-value < 2.2e-16
+alternative hypothesis: significant effects 
+
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>plmtest</li><li>plmtest.plm</li><li>plmtest.formula</li>
+    </ul>
+    <ul>
+      <li>htest</li>
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+<code><a href='pFtest.html'>pFtest</a></code> for individual and/or time effects tests based on the within model.
+
+    
+    <h2>Author</h2>
+    Yves Croissant
+    
+  </div>
+</div>

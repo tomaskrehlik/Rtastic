@@ -1,0 +1,55 @@
+      <h1>Annotation: maps.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='annotation_map.html'>annotation_map</a></span><span class="keyword">(</span><span class="symbol">map</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>map</dt>
+      <dd>data frame representing a map.  Most map
+  objects can be converted into the right format by using
+  <code><a href='fortify.html'>fortify</a></code></dd>
+      <dt>...</dt>
+      <dd>other arguments used to modify aesthetics</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Annotation: maps.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/library'>library</a></span><span class="keyword">(</span><span class="symbol">maps</span><span class="keyword">)</span>
+<span class="symbol">usamap</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='map_data.html'>map_data</a></span><span class="keyword">(</span><span class="string">"state"</span><span class="keyword">)</span>
+
+<span class="symbol">seal.sub</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/subset'>subset</a></span><span class="keyword">(</span><span class="symbol">seals</span><span class="keyword">,</span> <span class="symbol">long</span> <span class="keyword">&gt;</span> <span class="keyword">-</span><span class="number">130</span> <span class="keyword">&amp;</span> <span class="symbol">lat</span> <span class="keyword">&lt;</span> <span class="number">45</span> <span class="keyword">&amp;</span> <span class="symbol">lat</span> <span class="keyword">&gt;</span> <span class="number">40</span><span class="keyword">)</span>
+<span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">seal.sub</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">x</span> <span class="argument">=</span> <span class="symbol">long</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="symbol">lat</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='annotation_map.html'>annotation_map</a></span><span class="keyword">(</span><span class="symbol">usamap</span><span class="keyword">,</span> <span class="argument">fill</span> <span class="argument">=</span> <span class="string">"NA"</span><span class="keyword">,</span> <span class="argument">colour</span> <span class="argument">=</span> <span class="string">"grey50"</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='geom_segment.html'>geom_segment</a></span><span class="keyword">(</span><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">xend</span> <span class="argument">=</span> <span class="symbol">long</span> <span class="keyword">+</span> <span class="symbol">delta_long</span><span class="keyword">,</span> <span class="argument">yend</span> <span class="argument">=</span> <span class="symbol">lat</span> <span class="keyword">+</span> <span class="symbol">delta_lat</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/annotation_map.html-2.png' %></p>
+<div class='input'>
+<span class="symbol">seal2</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/transform'>transform</a></span><span class="keyword">(</span><span class="symbol">seal.sub</span><span class="keyword">,</span>
+  <span class="argument">latr</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/cut'>cut</a></span><span class="keyword">(</span><span class="symbol">lat</span><span class="keyword">,</span> <span class="number">2</span><span class="keyword">)</span><span class="keyword">,</span>
+  <span class="argument">longr</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/cut'>cut</a></span><span class="keyword">(</span><span class="symbol">long</span><span class="keyword">,</span> <span class="number">2</span><span class="keyword">)</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">seal2</span><span class="keyword">,</span>  <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">x</span> <span class="argument">=</span> <span class="symbol">long</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="symbol">lat</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='annotation_map.html'>annotation_map</a></span><span class="keyword">(</span><span class="symbol">usamap</span><span class="keyword">,</span> <span class="argument">fill</span> <span class="argument">=</span> <span class="string">"NA"</span><span class="keyword">,</span> <span class="argument">colour</span> <span class="argument">=</span> <span class="string">"grey50"</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='geom_segment.html'>geom_segment</a></span><span class="keyword">(</span><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">xend</span> <span class="argument">=</span> <span class="symbol">long</span> <span class="keyword">+</span> <span class="symbol">delta_long</span><span class="keyword">,</span> <span class="argument">yend</span> <span class="argument">=</span> <span class="symbol">lat</span> <span class="keyword">+</span> <span class="symbol">delta_lat</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='facet_grid.html'>facet_grid</a></span><span class="keyword">(</span><span class="symbol">latr</span> <span class="keyword">~</span> <span class="symbol">longr</span><span class="keyword">,</span> <span class="argument">scales</span> <span class="argument">=</span> <span class="string">"free"</span><span class="keyword">,</span> <span class="argument">space</span> <span class="argument">=</span> <span class="string">"free"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/annotation_map.html-4.png' %></p></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>annotation_map</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>

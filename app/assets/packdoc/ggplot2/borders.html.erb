@@ -1,0 +1,66 @@
+      <h1>Create a layer of map borders.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='borders.html'>borders</a></span><span class="keyword">(</span><span class="argument">database</span> <span class="argument">=</span> <span class="string">"world"</span><span class="keyword">,</span> <span class="argument">regions</span> <span class="argument">=</span> <span class="string">"."</span><span class="keyword">,</span> <span class="argument">fill</span> <span class="argument">=</span> <span class="number">NA</span><span class="keyword">,</span> <span class="argument">colour</span> <span class="argument">=</span> <span class="string">"grey50"</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>database</dt>
+      <dd>map data, see <code><a href='http://www.inside-r.org/r-doc/maps/map'>map</a></code> for
+  details</dd>
+      <dt>regions</dt>
+      <dd>map region</dd>
+      <dt>fill</dt>
+      <dd>fill colour</dd>
+      <dt>colour</dt>
+      <dd>border colour</dd>
+      <dt>...</dt>
+      <dd>other arguments passed onto
+  <code><a href='geom_polygon.html'>geom_polygon</a></code></dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Create a layer of map borders.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="keyword">if</span> <span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/library'>require</a></span><span class="keyword">(</span><span class="string">"maps"</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">{</span>
+
+<span class="symbol">ia</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='map_data.html'>map_data</a></span><span class="keyword">(</span><span class="string">"county"</span><span class="keyword">,</span> <span class="string">"iowa"</span><span class="keyword">)</span>
+<span class="symbol">mid_range</span> <span class="assignement">&lt;-</span> <span class="keyword">function</span><span class="keyword">(</span><span class="formalargs">x</span><span class="keyword">)</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/mean'>mean</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/range'>range</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/library'>library</a></span><span class="keyword">(</span><span class="symbol">plyr</span><span class="keyword">)</span>
+<span class="symbol">seats</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/plyr/ddply'>ddply</a></span><span class="keyword">(</span><span class="symbol">ia</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/plyr/quoted'>.</a></span><span class="keyword">(</span><span class="symbol">subregion</span><span class="keyword">)</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/plyr/colwise'>colwise</a></span><span class="keyword">(</span><span class="symbol">mid_range</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/plyr/quoted'>.</a></span><span class="keyword">(</span><span class="symbol">lat</span><span class="keyword">,</span> <span class="symbol">long</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">ia</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="symbol">long</span><span class="keyword">,</span> <span class="symbol">lat</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='geom_polygon.html'>geom_polygon</a></span><span class="keyword">(</span><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">group</span> <span class="argument">=</span> <span class="symbol">group</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">fill</span> <span class="argument">=</span> <span class="number">NA</span><span class="keyword">,</span> <span class="argument">colour</span> <span class="argument">=</span> <span class="string">"grey60"</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='geom_text.html'>geom_text</a></span><span class="keyword">(</span><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">label</span> <span class="argument">=</span> <span class="symbol">subregion</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">seats</span><span class="keyword">,</span> <span class="argument">size</span> <span class="argument">=</span> <span class="number">2</span><span class="keyword">,</span> <span class="argument">angle</span> <span class="argument">=</span> <span class="number">45</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/utils/data'>data</a></span><span class="keyword">(</span><span class="symbol">us.cities</span><span class="keyword">)</span>
+<span class="symbol">capitals</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/subset'>subset</a></span><span class="keyword">(</span><span class="symbol">us.cities</span><span class="keyword">,</span> <span class="symbol">capital</span> == <span class="number">2</span><span class="keyword">)</span>
+<span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">capitals</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="symbol">long</span><span class="keyword">,</span> <span class="symbol">lat</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='borders.html'>borders</a></span><span class="keyword">(</span><span class="string">"state"</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='geom_point.html'>geom_point</a></span><span class="keyword">(</span><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">size</span> <span class="argument">=</span> <span class="symbol">pop</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='scale_area.html'>scale_area</a></span><span class="keyword">(</span><span class="keyword">)</span>
+
+<span class="keyword">}</span></div>
+<strong class='message'>scale_area is deprecated and will be removed in a future version of ggplot2.
+  Use scale_size_area instead. Note that the behavior of scale_size_area is
+  slightly different: by default it makes the area proportional to the
+  numeric value.</strong>
+<p><%= image_tag 'ggplot2/borders.html-3.png' %></p></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>borders</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>

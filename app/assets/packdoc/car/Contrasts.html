@@ -1,0 +1,152 @@
+      <h1>Functions to Construct Contrasts</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='Contrasts.html'>contr.Treatment</a></span><span class="keyword">(</span><span class="symbol">n</span><span class="keyword">,</span> <span class="argument">base</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span> <span class="argument">contrasts</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='Contrasts.html'>contr.Sum</a></span><span class="keyword">(</span><span class="symbol">n</span><span class="keyword">,</span> <span class="argument">contrasts</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='Contrasts.html'>contr.Helmert</a></span><span class="keyword">(</span><span class="symbol">n</span><span class="keyword">,</span> <span class="argument">contrasts</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>n</dt>
+      <dd>a vector of levels for a factor, or the number of levels.</dd>
+      <dt>base</dt>
+      <dd>an integer specifying which level is considered the baseline level. 
+    Ignored if <code>contrasts</code> is <code>FALSE</code>.</dd>
+      <dt>contrasts</dt>
+      <dd>a logical indicating whether contrasts should be computed.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>These are substitutes for similarly named functions in the <span class = "pkg">stats</span> package 
+    (note the uppercase letter starting the second word in each function name).
+    The only difference is that the contrast functions from the <span class = "pkg">car</span> package
+    produce easier-to-read names for the contrasts when they are used in statistical models.</p>
+  
+      <p>The functions and this documentation are adapted from the <span class = "pkg">stats</span> package.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p>These functions are used for creating contrast matrices for use in fitting analysis of variance and regression models. 
+    The columns of the resulting matrices contain contrasts which can be used for coding a factor with <code>n</code> levels. 
+    The returned value contains the computed contrasts. If the argument <code>contrasts</code> is <code>FALSE</code> then a square matrix is returned.</p>
+  
+      <p>Several aspects of these contrast functions are controlled by options set via the <code>options</code> command:
+    <span class='describe'>
+        <code>decorate.contrasts</code>This option should be set to a 2-element character vector containing the prefix and suffix
+            characters to surround contrast names. If the option is not set, then <code>c("[", "]")</code> is used. For example, setting
+            <code>options(decorate.contrasts=c(".", ""))</code> produces contrast names that are separated from factor names by a period.
+            Setting <code>options( decorate.contrasts=c("", ""))</code> reproduces the behaviour of the R base contrast functions. 
+        <code>decorate.contr.Treatment</code>A character string to be appended to contrast names to signify treatment contrasts;
+            if the option is unset, then <code>"T."</code> is used.
+        <code>decorate.contr.Sum</code>Similar to the above, with default <code>"S."</code>.
+        <code>decorate.contr.Helmert</code>Similar to the above, with default <code>"H."</code>. 
+        <code>contr.Sum.show.levels</code>Logical value: if <code>TRUE</code> (the default if unset), 
+            then level names are used for contrasts; if <code>FALSE</code>, then numbers are used, as in <code>contr.sum</code>
+            in the <code>base</code> package. 
+        </span></p>
+  
+      <p>Note that there is no replacement for <code>contr.poly</code> in the <code>base</code> package (which produces 
+    orthogonal-polynomial contrasts) since this function already constructs easy-to-read contrast names.</p>
+  
+    </div>
+
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>A matrix with <code>n</code> rows and <code>k</code> columns, with <code>k = n - 1</code> if <code>contrasts</code> is <code>TRUE</code> 
+    and <code>k = n</code> if <code>contrasts</code> is <code>FALSE</code>.</p>
+  
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+      
+      <p>Fox, J. and Weisberg, S. (2011) 
+  <em>An R Companion to Applied Regression</em>, Second Edition, Sage.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="comment"># contr.Treatment vs. contr.treatment in the base package:</span>
+
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/lm'>lm</a></span><span class="keyword">(</span><span class="symbol">prestige</span> <span class="keyword">~</span> <span class="keyword">(</span><span class="symbol">income</span> <span class="keyword">+</span> <span class="symbol">education</span><span class="keyword">)</span><span class="keyword">*</span><span class="symbol">type</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">Prestige</span><span class="keyword">,</span>
+    <span class="argument">contrasts</span><span class="argument">=</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/list'>list</a></span><span class="keyword">(</span><span class="argument">type</span><span class="argument">=</span><span class="string">"contr.Treatment"</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<div class='output'>
+Call:
+lm(formula = prestige ~ (income + education) * type, data = Prestige, 
+    contrasts = list(type = "contr.Treatment"))
+
+Coefficients:
+           (Intercept)                  income               education            type[T.prof]              type[T.wc]  
+               2.27575                 0.00352                 1.71327                15.35190               -33.53665  
+   income:type[T.prof]       income:type[T.wc]  education:type[T.prof]    education:type[T.wc]  
+              -0.00290                -0.00207                 1.38781                 4.29087  
+
+</div>
+<div class='input'>
+<span class="comment">##  Call:</span>
+<span class="comment">##  lm(formula = prestige ~ (income + education) * type, data = Prestige,</span>
+<span class="comment">##      contrasts = list(type = "contr.Treatment"))</span>
+<span class="comment">##  </span>
+<span class="comment">##  Coefficients:</span>
+<span class="comment">##          (Intercept)                  income               education  </span>
+<span class="comment">##              2.275753                0.003522                1.713275  </span>
+<span class="comment">##          type[T.prof]              type[T.wc]     income:type[T.prof]  </span>
+<span class="comment">##              15.351896              -33.536652               -0.002903  </span>
+<span class="comment">##      income:type[T.wc]  education:type[T.prof]    education:type[T.wc]  </span>
+<span class="comment">##              -0.002072                1.387809                4.290875  </span>
+
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/lm'>lm</a></span><span class="keyword">(</span><span class="symbol">prestige</span> <span class="keyword">~</span> <span class="keyword">(</span><span class="symbol">income</span> <span class="keyword">+</span> <span class="symbol">education</span><span class="keyword">)</span><span class="keyword">*</span><span class="symbol">type</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">Prestige</span><span class="keyword">,</span>
+    <span class="argument">contrasts</span><span class="argument">=</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/list'>list</a></span><span class="keyword">(</span><span class="argument">type</span><span class="argument">=</span><span class="string">"contr.treatment"</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<div class='output'>
+Call:
+lm(formula = prestige ~ (income + education) * type, data = Prestige, 
+    contrasts = list(type = "contr.treatment"))
+
+Coefficients:
+       (Intercept)              income           education            typeprof              typewc     income:typeprof  
+           2.27575             0.00352             1.71327            15.35190           -33.53665            -0.00290  
+     income:typewc  education:typeprof    education:typewc  
+          -0.00207             1.38781             4.29087  
+
+</div>
+<div class='input'>
+##  Call:
+##  lm(formula = prestige ~ (income + education) * type, data = Prestige,
+##      contrasts = list(type = "contr.treatment"))
+##  
+##  Coefficients:
+##      (Intercept)              income           education  
+##          2.275753            0.003522            1.713275  
+##          typeprof              typewc     income:typeprof  
+##          15.351896          -33.536652           -0.002903  
+##      income:typewc  education:typeprof    education:typewc  
+##          -0.002072            1.387809            4.290875      
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>Contrasts</li><li>contr.Treatment</li><li>contr.Sum</li><li>contr.Helmert</li>
+    </ul>
+    <ul>
+      <li>models</li><li>regression</li>
+    </ul> -->
+      
+    <h2>See also</h2>
+    <code><a href='http://www.inside-r.org/r-doc/stats/contrast'>contr.treatment</a></code>, <code><a href='http://www.inside-r.org/r-doc/stats/contrast'>contr.sum</a></code>, 
+  <code><a href='http://www.inside-r.org/r-doc/stats/contrast'>contr.helmert</a></code>, <code><a href='http://www.inside-r.org/r-doc/stats/contrast'>contr.poly</a></code> 
+    
+    <h2>Author</h2>
+    John Fox <a href='mailto:jfox@mcmaster.ca'>jfox@mcmaster.ca</a>
+    
+  </div>
+</div>

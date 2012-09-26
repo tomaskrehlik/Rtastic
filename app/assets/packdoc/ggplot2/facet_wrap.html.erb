@@ -1,0 +1,120 @@
+      <h1>Wrap a 1d ribbon of panels into 2d.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='facet_wrap.html'>facet_wrap</a></span><span class="keyword">(</span><span class="symbol">facets</span><span class="keyword">,</span> <span class="argument">nrow</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">ncol</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">scales</span> <span class="argument">=</span> <span class="string">"fixed"</span><span class="keyword">,</span> <span class="argument">shrink</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="argument">as.table</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span>
+  <span class="argument">drop</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>nrow</dt>
+      <dd>number of rows</dd>
+      <dt>ncol</dt>
+      <dd>number of columns</dd>
+      <dt>facets</dt>
+      <dd>formula specifying variables to facet by</dd>
+      <dt>scales</dt>
+      <dd>should scales be fixed (<code>"fixed"</code>, the
+  default), free (<code>"free"</code>), or free in one dimension
+  (<code>"free_x"</code>, <code>"free_y"</code>)</dd>
+      <dt>shrink</dt>
+      <dd>If <code>TRUE</code>, will shrink scales to fit
+  output of statistics, not raw data. If <code>FALSE</code>, will
+  be range of raw data before statistical summary.</dd>
+      <dt>as.table</dt>
+      <dd>If <code>TRUE</code>, the default, the facets
+  are laid out like a table with highest values at the
+  bottom-right. If <code>FALSE</code>, the facets are laid out
+  like a plot with the highest value at the top-right.</dd>
+      <dt>drop</dt>
+      <dd>If <code>TRUE</code>, the default, all factor
+  levels not used in the data will automatically be
+  dropped. If <code>FALSE</code>, all factor levels will be
+  shown, regardless of whether or not they appear in the
+  data.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Wrap a 1d ribbon of panels into 2d.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class="symbol">d</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">diamonds</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="symbol">carat</span><span class="keyword">,</span> <span class="symbol">price</span><span class="keyword">,</span> <span class="argument">fill</span> <span class="argument">=</span> <span class="symbol">..density..</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='xylim.html'>xlim</a></span><span class="keyword">(</span><span class="number">0</span><span class="keyword">,</span> <span class="number">2</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_binhex.html'>stat_binhex</a></span><span class="keyword">(</span><span class="argument">na.rm</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='theme.html'>theme</a></span><span class="keyword">(</span><span class="argument">aspect.ratio</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">)</span>
+<span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='facet_wrap.html'>facet_wrap</a></span><span class="keyword">(</span><span class="keyword">~</span> <span class="symbol">color</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/facet_wrap.html-2.png' %></p>
+<div class='input'><span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='facet_wrap.html'>facet_wrap</a></span><span class="keyword">(</span><span class="keyword">~</span> <span class="symbol">color</span><span class="keyword">,</span> <span class="argument">ncol</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/facet_wrap.html-4.png' %></p>
+<div class='input'><span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='facet_wrap.html'>facet_wrap</a></span><span class="keyword">(</span><span class="keyword">~</span> <span class="symbol">color</span><span class="keyword">,</span> <span class="argument">ncol</span> <span class="argument">=</span> <span class="number">4</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/facet_wrap.html-6.png' %></p>
+<div class='input'><span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='facet_wrap.html'>facet_wrap</a></span><span class="keyword">(</span><span class="keyword">~</span> <span class="symbol">color</span><span class="keyword">,</span> <span class="argument">nrow</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/facet_wrap.html-8.png' %></p>
+<div class='input'><span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='facet_wrap.html'>facet_wrap</a></span><span class="keyword">(</span><span class="keyword">~</span> <span class="symbol">color</span><span class="keyword">,</span> <span class="argument">nrow</span> <span class="argument">=</span> <span class="number">3</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/facet_wrap.html-10.png' %></p>
+<div class='input'>
+<span class="comment"># Using multiple variables continues to wrap the long ribbon of</span>
+<span class="comment"># plots into 2d - the ribbon just gets longer</span>
+<span class="comment"># d + facet_wrap(~ color + cut)</span>
+
+<span class="comment"># To change plot order of facet wrap,</span>
+<span class="comment"># change the order of varible levels with factor()</span>
+<span class="symbol">diamonds</span><span class="keyword">$</span><span class="symbol">color</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/factor'>factor</a></span><span class="keyword">(</span><span class="symbol">diamonds</span><span class="keyword">$</span><span class="symbol">color</span><span class="keyword">,</span> <span class="argument">levels</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"G"</span><span class="keyword">,</span> <span class="string">"J"</span><span class="keyword">,</span> <span class="string">"D"</span><span class="keyword">,</span> <span class="string">"E"</span><span class="keyword">,</span> <span class="string">"I"</span><span class="keyword">,</span> <span class="string">"F"</span><span class="keyword">,</span> <span class="string">"H"</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="comment"># Repeat first example with new order</span>
+<span class="symbol">d</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">diamonds</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="symbol">carat</span><span class="keyword">,</span> <span class="symbol">price</span><span class="keyword">,</span> <span class="argument">fill</span> <span class="argument">=</span> <span class="symbol">..density..</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span>
+<span class="functioncall"><a href='xylim.html'>xlim</a></span><span class="keyword">(</span><span class="number">0</span><span class="keyword">,</span> <span class="number">2</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_binhex.html'>stat_binhex</a></span><span class="keyword">(</span><span class="argument">na.rm</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='theme.html'>theme</a></span><span class="keyword">(</span><span class="argument">aspect.ratio</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">)</span>
+<span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='facet_wrap.html'>facet_wrap</a></span><span class="keyword">(</span><span class="keyword">~</span> <span class="symbol">color</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/facet_wrap.html-12.png' %></p>
+<div class='input'>
+<span class="comment"># You can choose to keep the scales constant across all panels</span>
+<span class="comment"># or vary the x scale, the y scale or both:</span>
+<span class="symbol">p</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">price</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">diamonds</span><span class="keyword">,</span> <span class="argument">geom</span> <span class="argument">=</span> <span class="string">"histogram"</span><span class="keyword">,</span> <span class="argument">binwidth</span> <span class="argument">=</span> <span class="number">1000</span><span class="keyword">)</span>
+<span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='facet_wrap.html'>facet_wrap</a></span><span class="keyword">(</span><span class="keyword">~</span> <span class="symbol">color</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/facet_wrap.html-14.png' %></p>
+<div class='input'><span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='facet_wrap.html'>facet_wrap</a></span><span class="keyword">(</span><span class="keyword">~</span> <span class="symbol">color</span><span class="keyword">,</span> <span class="argument">scales</span> <span class="argument">=</span> <span class="string">"free_y"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/facet_wrap.html-16.png' %></p>
+<div class='input'>
+<span class="symbol">p</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">displ</span><span class="keyword">,</span> <span class="symbol">hwy</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">mpg</span><span class="keyword">)</span>
+<span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='facet_wrap.html'>facet_wrap</a></span><span class="keyword">(</span><span class="keyword">~</span> <span class="symbol">cyl</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/facet_wrap.html-18.png' %></p>
+<div class='input'><span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='facet_wrap.html'>facet_wrap</a></span><span class="keyword">(</span><span class="keyword">~</span> <span class="symbol">cyl</span><span class="keyword">,</span> <span class="argument">scales</span> <span class="argument">=</span> <span class="string">"free"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/facet_wrap.html-20.png' %></p>
+<div class='input'>
+<span class="comment"># Use as.table to to control direction of horizontal facets, TRUE by default</span>
+<span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='facet_wrap.html'>facet_wrap</a></span><span class="keyword">(</span><span class="keyword">~</span> <span class="symbol">cyl</span><span class="keyword">,</span> <span class="argument">as.table</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/facet_wrap.html-22.png' %></p>
+<div class='input'>
+<span class="comment"># Add data that does not contain all levels of the faceting variables</span>
+<span class="symbol">cyl6</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/subset'>subset</a></span><span class="keyword">(</span><span class="symbol">mpg</span><span class="keyword">,</span> <span class="symbol">cyl</span> == <span class="number">6</span><span class="keyword">)</span>
+<span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_point.html'>geom_point</a></span><span class="keyword">(</span><span class="argument">data</span> <span class="argument">=</span> <span class="symbol">cyl6</span><span class="keyword">,</span> <span class="argument">colour</span> <span class="argument">=</span> <span class="string">"red"</span><span class="keyword">,</span> <span class="argument">size</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='facet_wrap.html'>facet_wrap</a></span><span class="keyword">(</span><span class="keyword">~</span> <span class="symbol">cyl</span><span class="keyword">)</span></div>
+<strong class='warning'>Warning message:
+invalid factor level, NAs generated</strong>
+<p><%= image_tag 'ggplot2/facet_wrap.html-25.png' %></p>
+<div class='input'><span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_point.html'>geom_point</a></span><span class="keyword">(</span><span class="argument">data</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/transform'>transform</a></span><span class="keyword">(</span><span class="symbol">cyl6</span><span class="keyword">,</span> <span class="argument">cyl</span> <span class="argument">=</span> <span class="number">7</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">colour</span> <span class="argument">=</span> <span class="string">"red"</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='facet_wrap.html'>facet_wrap</a></span><span class="keyword">(</span><span class="keyword">~</span> <span class="symbol">cyl</span><span class="keyword">)</span></div>
+<strong class='warning'>Warning message:
+invalid factor level, NAs generated</strong>
+<strong class='warning'>Warning message:
+invalid factor level, NAs generated</strong>
+<p><%= image_tag 'ggplot2/facet_wrap.html-29.png' %></p>
+<div class='input'><span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_point.html'>geom_point</a></span><span class="keyword">(</span><span class="argument">data</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/transform'>transform</a></span><span class="keyword">(</span><span class="symbol">cyl6</span><span class="keyword">,</span> <span class="argument">cyl</span> <span class="argument">=</span> NULL<span class="keyword">)</span><span class="keyword">,</span> <span class="argument">colour</span> <span class="argument">=</span> <span class="string">"red"</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='facet_wrap.html'>facet_wrap</a></span><span class="keyword">(</span><span class="keyword">~</span> <span class="symbol">cyl</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/facet_wrap.html-31.png' %></p>
+<div class='input'></div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>facet_wrap</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>

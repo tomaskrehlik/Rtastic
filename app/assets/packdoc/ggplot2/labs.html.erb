@@ -1,0 +1,73 @@
+      <h1>Change axis labels and legend titles</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='labs.html'>labs</a></span><span class="keyword">(</span><span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='labs.html'>xlab</a></span><span class="keyword">(</span><span class="symbol">label</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='labs.html'>ylab</a></span><span class="keyword">(</span><span class="symbol">label</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='labs.html'>ggtitle</a></span><span class="keyword">(</span><span class="symbol">label</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>label</dt>
+      <dd>The text for the axis or plot title.</dd>
+      <dt>...</dt>
+      <dd>a list of new names in the form aesthetic =
+  "new name"</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Change axis labels and legend titles</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="symbol">p</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">mpg</span><span class="keyword">,</span> <span class="symbol">wt</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">mtcars</span><span class="keyword">)</span>
+<span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='labs.html'>labs</a></span><span class="keyword">(</span><span class="argument">title</span> <span class="argument">=</span> <span class="string">"New plot title"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/labs.html-2.png' %></p>
+<div class='input'><span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='labs.html'>labs</a></span><span class="keyword">(</span><span class="argument">x</span> <span class="argument">=</span> <span class="string">"New x label"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/labs.html-4.png' %></p>
+<div class='input'><span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='labs.html'>xlab</a></span><span class="keyword">(</span><span class="string">"New x label"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/labs.html-6.png' %></p>
+<div class='input'><span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='labs.html'>ylab</a></span><span class="keyword">(</span><span class="string">"New y label"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/labs.html-8.png' %></p>
+<div class='input'><span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='labs.html'>ggtitle</a></span><span class="keyword">(</span><span class="string">"New plot title"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/labs.html-10.png' %></p>
+<div class='input'>
+<span class="comment"># This should work indepdendently of other functions that modify the</span>
+<span class="comment"># the scale names</span>
+<span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='labs.html'>ylab</a></span><span class="keyword">(</span><span class="string">"New y label"</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='xylim.html'>ylim</a></span><span class="keyword">(</span><span class="number">2</span><span class="keyword">,</span> <span class="number">4</span><span class="keyword">)</span></div>
+<strong class='warning'>Warning message:
+Removed 8 rows containing missing values (geom_point).</strong>
+<p><%= image_tag 'ggplot2/labs.html-13.png' %></p>
+<div class='input'><span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='xylim.html'>ylim</a></span><span class="keyword">(</span><span class="number">2</span><span class="keyword">,</span> <span class="number">4</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='labs.html'>ylab</a></span><span class="keyword">(</span><span class="string">"New y label"</span><span class="keyword">)</span></div>
+<strong class='warning'>Warning message:
+Removed 8 rows containing missing values (geom_point).</strong>
+<p><%= image_tag 'ggplot2/labs.html-16.png' %></p>
+<div class='input'>
+<span class="comment"># The labs function also modifies legend labels</span>
+<span class="symbol">p</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">mpg</span><span class="keyword">,</span> <span class="symbol">wt</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">mtcars</span><span class="keyword">,</span> <span class="argument">colour</span> <span class="argument">=</span> <span class="symbol">cyl</span><span class="keyword">)</span>
+<span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='labs.html'>labs</a></span><span class="keyword">(</span><span class="argument">colour</span> <span class="argument">=</span> <span class="string">"Cylinders"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/labs.html-18.png' %></p>
+<div class='input'>
+<span class="comment"># Can also pass in a list, if that is more convenient</span>
+<span class="symbol">p</span> <span class="keyword">+</span> <span class="functioncall"><a href='labs.html'>labs</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/list'>list</a></span><span class="keyword">(</span><span class="argument">title</span> <span class="argument">=</span> <span class="string">"Title"</span><span class="keyword">,</span> <span class="argument">x</span> <span class="argument">=</span> <span class="string">"X"</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="string">"Y"</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/labs.html-20.png' %></p></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>ggtitle</li><li>labs</li><li>xlab</li><li>ylab</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>

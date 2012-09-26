@@ -1,0 +1,78 @@
+      <h1>Arellano--Bond test of Serial Correlation</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='mtest.html'>mtest</a></span><span class="keyword">(</span><span class="symbol">object</span><span class="keyword">,</span> <span class="argument">order</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span> <span class="argument">vcov</span> <span class="argument">=</span> NULL<span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>object</dt>
+      <dd>an object of class <code>"pgmm"</code>,</dd>
+      <dt>order</dt>
+      <dd>the order of the serial correlation (1 or 2),</dd>
+      <dt>vcov</dt>
+      <dd>a matrix of covariance for the coefficients or a function to compute it.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Test of serial correlation for models estimated by GMM</p>
+  
+    </div>
+
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>An object of class <code>"htest"</code>.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p>The Arellano--Bond test is a test of correlation based on the
+  residuals of the estimation. By default, the computation is done with the standard covariance matrix of the coefficients. A robust estimator of this covariance matrix can be supplied with the <code>vcov</code> argument.</p>
+  
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+      
+      <p>Arellano, M. and  Bond, S. (1991), Some Tests of Specification for Panel Data: Monte Carlo Evidence and an Application to Employment Equations, <em>The Review of Economic Studies</em>, vol. <b>58</b>(2), 1991, pp.227--297.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='http://www.inside-r.org/r-doc/utils/data'>data</a></span><span class="keyword">(</span><span class="string">"EmplUK"</span><span class="keyword">,</span> <span class="argument">package</span> <span class="argument">=</span> <span class="string">"plm"</span><span class="keyword">)</span>
+<span class="symbol">ar</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='pgmm.html'>pgmm</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log</a></span><span class="keyword">(</span><span class="symbol">emp</span><span class="keyword">)</span> <span class="keyword">~</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/lag'>lag</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log</a></span><span class="keyword">(</span><span class="symbol">emp</span><span class="keyword">)</span><span class="keyword">,</span> <span class="number">1</span><span class="keyword">:</span><span class="number">2</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/lag'>lag</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log</a></span><span class="keyword">(</span><span class="symbol">wage</span><span class="keyword">)</span><span class="keyword">,</span> <span class="number">0</span><span class="keyword">:</span><span class="number">1</span><span class="keyword">)</span> <span class="keyword">+</span>
+           <span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/lag'>lag</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log</a></span><span class="keyword">(</span><span class="symbol">capital</span><span class="keyword">)</span><span class="keyword">,</span> <span class="number">0</span><span class="keyword">:</span><span class="number">2</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/lag'>lag</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log</a></span><span class="keyword">(</span><span class="symbol">output</span><span class="keyword">)</span><span class="keyword">,</span> <span class="number">0</span><span class="keyword">:</span><span class="number">2</span><span class="keyword">)</span> <span class="keyword">|</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/lag'>lag</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Log'>log</a></span><span class="keyword">(</span><span class="symbol">emp</span><span class="keyword">)</span><span class="keyword">,</span> <span class="number">2</span><span class="keyword">:</span><span class="number">99</span><span class="keyword">)</span><span class="keyword">,</span>
+           <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">EmplUK</span><span class="keyword">,</span> <span class="argument">effect</span> <span class="argument">=</span> <span class="string">"twoways"</span><span class="keyword">,</span> <span class="argument">model</span> <span class="argument">=</span> <span class="string">"twosteps"</span><span class="keyword">)</span>
+<span class="functioncall"><a href='mtest.html'>mtest</a></span><span class="keyword">(</span><span class="symbol">ar</span><span class="keyword">,</span> <span class="number">1</span><span class="keyword">)</span></div>
+<div class='output'>
+	Autocorrelation test of degree 1
+
+data:  
+normal = -2.9998, p-value = 0.001351
+
+</div>
+<div class='input'><span class="functioncall"><a href='mtest.html'>mtest</a></span><span class="keyword">(</span><span class="symbol">ar</span><span class="keyword">,</span> <span class="number">2</span><span class="keyword">,</span> <span class="symbol">vcovHC</span><span class="keyword">)</span></div>
+<strong class='error'>Error in mtest(ar, 2, vcovHC): object 'vcovHC' not found</strong></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>mtest</li>
+    </ul>
+    <ul>
+      <li>htest</li>
+    </ul> -->
+      
+    <h2>See also</h2>
+    <code><a href='pgmm.html'>pgmm</a></code>
+    
+    <h2>Author</h2>
+    Yves Croissant
+    
+  </div>
+</div>

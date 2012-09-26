@@ -1,0 +1,87 @@
+      <h1>Baltagi and Li Serial Dependence Test For Random Effects Models</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='pbltest.html'>pbltest</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">data</span><span class="keyword">,</span> <span class="argument">alternative</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"twosided"</span><span class="keyword">,</span> <span class="string">"onesided"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">index</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>x</dt>
+      <dd>a model formula,</dd>
+      <dt>data</dt>
+      <dd>a <code>data.frame</code>,</dd>
+      <dt>alternative</dt>
+      <dd>one of <code>"twosided"</code>,
+  <code>"onesided"</code>. Selects either <code class = 'eq'>H_A: \rho \neq 0</code> or <code class = 'eq'>H_A: \rho 0</code>
+   (i.e., the Normal or the Chi-squared version of the test),</dd>
+      <dt>index</dt>
+      <dd>the index of the <code>data.frame</code>,</dd>
+      <dt>...</dt>
+      <dd>further arguments.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Baltagi and Li (1995)'s Lagrange multiplier test for AR(1) or MA(1) idiosyncratic errors in panel models with random effects.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p>This is a Lagrange multiplier test for the null of no serial
+correlation, against the alternative of either an AR(1) or an MA(1) process, in the idiosyncratic component of the error term in a random effects panel model (as the analytical expression of the test turns out to be the same under both alternatives, see Baltagi and Li (1995, 1998)). The <code>alternative</code> argument, defaulting to <code>twosided</code>, allows testing for positive serial correlation only, if set to <code>onesided</code>.</p>
+  
+    </div>
+
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>An object of class <code>"htest"</code>.</p>
+  
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+      
+      <p>Baltagi, B.H. and Li, Q. (1995) Testing AR(1) against MA(1)
+disturbances in an error component model, <em>Journal of Econometrics</em> <b>68</b>, p.133-151.</p>
+  
+      <p>Baltagi, B.H. and Li, Q. (1997) Monte Carlo results on pure and
+pretest estimators of an error components model with autocorrelated disturbances, <em>Annales d'economie et de statistique</em> <b>48</b>, p.69-82.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='http://www.inside-r.org/r-doc/utils/data'>data</a></span><span class="keyword">(</span><span class="string">"Grunfeld"</span><span class="keyword">,</span> <span class="argument">package</span> <span class="argument">=</span> <span class="string">"plm"</span><span class="keyword">)</span>
+<span class="functioncall"><a href='pbltest.html'>pbltest</a></span><span class="keyword">(</span><span class="symbol">inv</span> <span class="keyword">~</span> <span class="symbol">value</span> <span class="keyword">+</span> <span class="symbol">capital</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">Grunfeld</span><span class="keyword">)</span></div>
+<div class='output'>
+	Baltagi and Li two-sided LM test
+
+data:  inv ~ value + capital 
+chisq = 69.5321, df = 1, p-value < 2.2e-16
+alternative hypothesis: AR(1)/MA(1) errors in RE panel models 
+
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>pbltest</li>
+    </ul>
+    <ul>
+      <li>htest</li>
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+<code><a href='pdwtest.html'>pdwtest</a></code>, <code>bgtest</code>, 
+<code><a href='pbsytest.html'>pbsytest</a></code>, <code><a href='pwartest.html'>pwartest</a></code> and <code><a href='pwfdtest.html'>pwfdtest</a></code> for other serial correlation tests for panel models.
+
+    
+    <h2>Author</h2>
+    Giovanni Millo
+    
+  </div>
+</div>

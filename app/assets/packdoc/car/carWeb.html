@@ -1,0 +1,69 @@
+      <h1> Access to the R Companion to Applied Regression website </h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='carWeb.html'>carWeb</a></span><span class="keyword">(</span><span class="argument">page</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"webpage"</span><span class="keyword">,</span> <span class="string">"errata"</span><span class="keyword">,</span> <span class="string">"taskviews"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">script</span><span class="keyword">,</span> <span class="symbol">data</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>page</dt>
+      <dd> A character string indicating what page to open. The default 
+          <code>"webpage"</code> will open the main web page, <code>"errata"</code> displays the
+          errata sheet for the book, and <code>"taskviews"</code> fetches and displays
+          a list of available task views from CRAN.
+ </dd>
+      <dt>script</dt>
+      <dd>The quoted name of a chapter in <em>An R Companion to Applied 
+         Regression</em>, like <code>"chap-1"</code>, <code>"chap-2"</code>, up to <code>"chap-8"</code>.  All the R
+         commands used in that chapter will be displayed in your browser, where
+         you can save them as a text file.  
+  </dd>
+      <dt>data</dt>
+      <dd>The quoted name of a data file in <em>An R Companion to Applied 
+         Regression</em>, like <code>"Duncan.txt"</code> or <code>"Prestige.txt"</code>.  The file will be
+         opened in your web browser.  You do not need to specify the extension <code>.txt</code>
+  </dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>This function will access the website for <em>An R Companion to Applied Regression</em>.</p>
+  
+    </div>
+
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>Either a web page or a PDF document is displayed.  Only one of the three 
+  arguments <code>page</code>, <code>rfile</code>, or <code>data</code>, should be used.</p>
+  
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+      
+      <p>Fox, J. and Weisberg, S. (2011) 
+  <em>An R Companion to Applied Regression</em>, Second Edition, Sage.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>## <strong>Not run</strong>: carWeb()</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>carWeb</li>
+    </ul>
+    <ul>
+      <li> interface </li>
+    </ul> -->
+      
+    
+    <h2>Author</h2>
+     Sanford Weisberg, based on the function <code>UsingR</code> in the <span class = "pkg">UsingR</span>
+package by John Verzani 
+    
+  </div>
+</div>

@@ -1,0 +1,213 @@
+      <h1>Add a smoother.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='stat_smooth.html'>stat_smooth</a></span><span class="keyword">(</span><span class="argument">mapping</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">geom</span> <span class="argument">=</span> <span class="string">"smooth"</span><span class="keyword">,</span> <span class="argument">position</span> <span class="argument">=</span> <span class="string">"identity"</span><span class="keyword">,</span>
+  <span class="argument">method</span> <span class="argument">=</span> <span class="string">"auto"</span><span class="keyword">,</span> <span class="argument">formula</span> <span class="argument">=</span> <span class="symbol">y</span> <span class="keyword">~</span> <span class="symbol">x</span><span class="keyword">,</span> <span class="argument">se</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="argument">n</span> <span class="argument">=</span> <span class="number">80</span><span class="keyword">,</span> <span class="argument">fullrange</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">,</span> <span class="argument">level</span> <span class="argument">=</span> <span class="number">0.95</span><span class="keyword">,</span>
+      <span class="argument">na.rm</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>method</dt>
+      <dd>smoothing method (function) to use, eg. lm,
+  glm, gam, loess, rlm. For datasets with n < 1000 default
+  is <code><a href='http://www.inside-r.org/r-doc/stats/loess'>loess</a></code>. For datasets with 1000 or more
+  observations defaults to gam, see <code><a href='http://www.inside-r.org/r-doc/mgcv/gam'>gam</a></code>
+  for more details.</dd>
+      <dt>formula</dt>
+      <dd>formula to use in smoothing function, eg.
+  <code>y ~ x</code>, <code>y ~ poly(x, 2)</code>, <code>y ~ log(x)</code></dd>
+      <dt>se</dt>
+      <dd>display confidence interval around smooth?
+  (TRUE by default, see level to control</dd>
+      <dt>fullrange</dt>
+      <dd>should the fit span the full range of
+  the plot, or just the data</dd>
+      <dt>level</dt>
+      <dd>level of confidence interval to use (0.95 by
+  default)</dd>
+      <dt>n</dt>
+      <dd>number of points to evaluate smoother at</dd>
+      <dt>na.rm</dt>
+      <dd>If <code>FALSE</code> (the default), removes
+  missing values with a warning.  If <code>TRUE</code> silently
+  removes missing values.</dd>
+      <dt>...</dt>
+      <dd>other arguments are passed to smoothing
+  function</dd>
+      <dt>mapping</dt>
+      <dd>The aesthetic mapping, usually constructed
+  with <code><a href='aes.html'>aes</a></code> or <code><a href='aes_string.html'>aes_string</a></code>. Only
+  needs to be set at the layer level if you are overriding
+  the plot defaults.</dd>
+      <dt>data</dt>
+      <dd>A layer specific dataset - only needed if you
+  want to override the plot defaults.</dd>
+      <dt>geom</dt>
+      <dd>The geometric object to use display the data</dd>
+      <dt>position</dt>
+      <dd>The position adjustment to use for
+  overlappling points on this layer</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>a data.frame with additional columns ypredicted
+  value yminlower pointwise confidence interval
+  around the mean ymaxupper pointwise confidence
+  interval around the mean sestandard error</p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Aids the eye in seeing patterns in the presence of
+  overplotting.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p>Calculation is performed by the (currently undocumented)
+  <code>predictdf</code> generic function and its methods.  For
+  most methods the confidence bounds are computed using the
+  <code><a href='http://www.inside-r.org/r-doc/stats/predict'>predict</a></code> method - the exceptions are
+  <code>loess</code> which uses a t-based approximation, and for
+  <code>glm</code> where the normal confidence interval is
+  constructed on the link scale, and then back-transformed
+  to the response scale.</p>
+  
+    </div>
+
+    <div class="Aesthetics">
+      <h2>Aesthetics</h2>
+      
+      <p><code>stat_smooth</code> understands the following aesthetics (required aesthetics are in bold):</p>
+  
+      <p><ul>
+<li> <code><strong>x</strong></code>
+  </li>
+<li> <code><strong>y</strong></code>
+</li>
+</ul></p>
+  
+      <p></p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class="symbol">c</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">mtcars</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="symbol">qsec</span><span class="keyword">,</span> <span class="symbol">wt</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="symbol">c</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_smooth.html'>stat_smooth</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<strong class='message'>geom_smooth: method="auto" and size of largest group is <1000, so using loess. Use 'method = x' to change the smoothing method.</strong>
+<p><%= image_tag 'ggplot2/stat_smooth.html-3.png' %></p>
+<div class='input'><span class="symbol">c</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_smooth.html'>stat_smooth</a></span><span class="keyword">(</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_point.html'>geom_point</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<strong class='message'>geom_smooth: method="auto" and size of largest group is <1000, so using loess. Use 'method = x' to change the smoothing method.</strong>
+<p><%= image_tag 'ggplot2/stat_smooth.html-6.png' %></p>
+<div class='input'>
+<span class="comment"># Adjust parameters</span>
+<span class="symbol">c</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_smooth.html'>stat_smooth</a></span><span class="keyword">(</span><span class="argument">se</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_point.html'>geom_point</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<strong class='message'>geom_smooth: method="auto" and size of largest group is <1000, so using loess. Use 'method = x' to change the smoothing method.</strong>
+<p><%= image_tag 'ggplot2/stat_smooth.html-9.png' %></p>
+<div class='input'>
+<span class="symbol">c</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_smooth.html'>stat_smooth</a></span><span class="keyword">(</span><span class="argument">span</span> <span class="argument">=</span> <span class="number">0.9</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_point.html'>geom_point</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<strong class='message'>geom_smooth: method="auto" and size of largest group is <1000, so using loess. Use 'method = x' to change the smoothing method.</strong>
+<p><%= image_tag 'ggplot2/stat_smooth.html-12.png' %></p>
+<div class='input'><span class="symbol">c</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_smooth.html'>stat_smooth</a></span><span class="keyword">(</span><span class="argument">level</span> <span class="argument">=</span> <span class="number">0.99</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_point.html'>geom_point</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<strong class='message'>geom_smooth: method="auto" and size of largest group is <1000, so using loess. Use 'method = x' to change the smoothing method.</strong>
+<p><%= image_tag 'ggplot2/stat_smooth.html-15.png' %></p>
+<div class='input'><span class="symbol">c</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_smooth.html'>stat_smooth</a></span><span class="keyword">(</span><span class="argument">method</span> <span class="argument">=</span> <span class="string">"lm"</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_point.html'>geom_point</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_smooth.html-17.png' %></p>
+<div class='input'>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/library'>library</a></span><span class="keyword">(</span><span class="symbol">splines</span><span class="keyword">)</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/library'>library</a></span><span class="keyword">(</span><span class="symbol">MASS</span><span class="keyword">)</span>
+<span class="symbol">c</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_smooth.html'>stat_smooth</a></span><span class="keyword">(</span><span class="argument">method</span> <span class="argument">=</span> <span class="string">"lm"</span><span class="keyword">,</span> <span class="argument">formula</span> <span class="argument">=</span> <span class="symbol">y</span> <span class="keyword">~</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/splines/ns'>ns</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span><span class="number">3</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='geom_point.html'>geom_point</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_smooth.html-19.png' %></p>
+<div class='input'><span class="symbol">c</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_smooth.html'>stat_smooth</a></span><span class="keyword">(</span><span class="argument">method</span> <span class="argument">=</span> <span class="symbol">rlm</span><span class="keyword">,</span> <span class="argument">formula</span><span class="argument">=</span> <span class="symbol">y</span> <span class="keyword">~</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/splines/ns'>ns</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span><span class="number">3</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_point.html'>geom_point</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_smooth.html-21.png' %></p>
+<div class='input'>
+<span class="comment"># The default confidence band uses a transparent colour.</span>
+<span class="comment"># This currently only works on a limited number of graphics devices</span>
+<span class="comment"># (including Quartz, PDF, and Cairo) so you may need to set the</span>
+<span class="comment"># fill colour to a opaque colour, as shown below</span>
+<span class="symbol">c</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_smooth.html'>stat_smooth</a></span><span class="keyword">(</span><span class="argument">fill</span> <span class="argument">=</span> <span class="string">"grey50"</span><span class="keyword">,</span> <span class="argument">size</span> <span class="argument">=</span> <span class="number">2</span><span class="keyword">,</span> <span class="argument">alpha</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">)</span></div>
+<strong class='message'>geom_smooth: method="auto" and size of largest group is <1000, so using loess. Use 'method = x' to change the smoothing method.</strong>
+<p><%= image_tag 'ggplot2/stat_smooth.html-24.png' %></p>
+<div class='input'><span class="symbol">c</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_smooth.html'>stat_smooth</a></span><span class="keyword">(</span><span class="argument">fill</span> <span class="argument">=</span> <span class="string">"blue"</span><span class="keyword">,</span> <span class="argument">size</span> <span class="argument">=</span> <span class="number">2</span><span class="keyword">,</span> <span class="argument">alpha</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">)</span></div>
+<strong class='message'>geom_smooth: method="auto" and size of largest group is <1000, so using loess. Use 'method = x' to change the smoothing method.</strong>
+<p><%= image_tag 'ggplot2/stat_smooth.html-27.png' %></p>
+<div class='input'>
+<span class="comment"># The colour of the line can be controlled with the colour aesthetic</span>
+<span class="symbol">c</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_smooth.html'>stat_smooth</a></span><span class="keyword">(</span><span class="argument">fill</span><span class="argument">=</span><span class="string">"blue"</span><span class="keyword">,</span> <span class="argument">colour</span><span class="argument">=</span><span class="string">"darkblue"</span><span class="keyword">,</span> <span class="argument">size</span><span class="argument">=</span><span class="number">2</span><span class="keyword">)</span></div>
+<strong class='message'>geom_smooth: method="auto" and size of largest group is <1000, so using loess. Use 'method = x' to change the smoothing method.</strong>
+<p><%= image_tag 'ggplot2/stat_smooth.html-30.png' %></p>
+<div class='input'><span class="symbol">c</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_smooth.html'>stat_smooth</a></span><span class="keyword">(</span><span class="argument">fill</span><span class="argument">=</span><span class="string">"blue"</span><span class="keyword">,</span> <span class="argument">colour</span><span class="argument">=</span><span class="string">"darkblue"</span><span class="keyword">,</span> <span class="argument">size</span><span class="argument">=</span><span class="number">2</span><span class="keyword">,</span> <span class="argument">alpha</span> <span class="argument">=</span> <span class="number">0.2</span><span class="keyword">)</span></div>
+<strong class='message'>geom_smooth: method="auto" and size of largest group is <1000, so using loess. Use 'method = x' to change the smoothing method.</strong>
+<p><%= image_tag 'ggplot2/stat_smooth.html-33.png' %></p>
+<div class='input'><span class="symbol">c</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_point.html'>geom_point</a></span><span class="keyword">(</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='stat_smooth.html'>stat_smooth</a></span><span class="keyword">(</span><span class="argument">fill</span><span class="argument">=</span><span class="string">"blue"</span><span class="keyword">,</span> <span class="argument">colour</span><span class="argument">=</span><span class="string">"darkblue"</span><span class="keyword">,</span> <span class="argument">size</span><span class="argument">=</span><span class="number">2</span><span class="keyword">,</span> <span class="argument">alpha</span> <span class="argument">=</span> <span class="number">0.2</span><span class="keyword">)</span></div>
+<strong class='message'>geom_smooth: method="auto" and size of largest group is <1000, so using loess. Use 'method = x' to change the smoothing method.</strong>
+<p><%= image_tag 'ggplot2/stat_smooth.html-36.png' %></p>
+<div class='input'>
+<span class="comment"># Smoothers for subsets</span>
+<span class="symbol">c</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">mtcars</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">y</span><span class="argument">=</span><span class="symbol">wt</span><span class="keyword">,</span> <span class="argument">x</span><span class="argument">=</span><span class="symbol">mpg</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='facet_grid.html'>facet_grid</a></span><span class="keyword">(</span><span class="symbol">.</span> <span class="keyword">~</span> <span class="symbol">cyl</span><span class="keyword">)</span>
+<span class="symbol">c</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_smooth.html'>stat_smooth</a></span><span class="keyword">(</span><span class="argument">method</span><span class="argument">=</span><span class="symbol">lm</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_point.html'>geom_point</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_smooth.html-38.png' %></p>
+<div class='input'><span class="symbol">c</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_smooth.html'>stat_smooth</a></span><span class="keyword">(</span><span class="argument">method</span><span class="argument">=</span><span class="symbol">lm</span><span class="keyword">,</span> <span class="argument">fullrange</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_point.html'>geom_point</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_smooth.html-40.png' %></p>
+<div class='input'>
+<span class="comment"># Geoms and stats are automatically split by aesthetics that are factors</span>
+<span class="symbol">c</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">mtcars</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">y</span><span class="argument">=</span><span class="symbol">wt</span><span class="keyword">,</span> <span class="argument">x</span><span class="argument">=</span><span class="symbol">mpg</span><span class="keyword">,</span> <span class="argument">colour</span><span class="argument">=</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/factor'>factor</a></span><span class="keyword">(</span><span class="symbol">cyl</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="symbol">c</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_smooth.html'>stat_smooth</a></span><span class="keyword">(</span><span class="argument">method</span><span class="argument">=</span><span class="symbol">lm</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_point.html'>geom_point</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_smooth.html-42.png' %></p>
+<div class='input'><span class="symbol">c</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_smooth.html'>stat_smooth</a></span><span class="keyword">(</span><span class="argument">method</span><span class="argument">=</span><span class="symbol">lm</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">fill</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/factor'>factor</a></span><span class="keyword">(</span><span class="symbol">cyl</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_point.html'>geom_point</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_smooth.html-44.png' %></p>
+<div class='input'><span class="symbol">c</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_smooth.html'>stat_smooth</a></span><span class="keyword">(</span><span class="argument">method</span><span class="argument">=</span><span class="symbol">lm</span><span class="keyword">,</span> <span class="argument">fullrange</span><span class="argument">=</span><span class="number">TRUE</span><span class="keyword">,</span> <span class="argument">alpha</span> <span class="argument">=</span> <span class="number">0.1</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_point.html'>geom_point</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_smooth.html-46.png' %></p>
+<div class='input'>
+<span class="comment"># Use qplot instead</span>
+<span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">qsec</span><span class="keyword">,</span> <span class="symbol">wt</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">mtcars</span><span class="keyword">,</span> <span class="argument">geom</span><span class="argument">=</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"smooth"</span><span class="keyword">,</span> <span class="string">"point"</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<strong class='message'>geom_smooth: method="auto" and size of largest group is <1000, so using loess. Use 'method = x' to change the smoothing method.</strong>
+<p><%= image_tag 'ggplot2/stat_smooth.html-49.png' %></p>
+<div class='input'>
+<span class="comment"># Example with logistic regression</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/utils/data'>data</a></span><span class="keyword">(</span><span class="string">"kyphosis"</span><span class="keyword">,</span> <span class="argument">package</span><span class="argument">=</span><span class="string">"rpart"</span><span class="keyword">)</span>
+<span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">Age</span><span class="keyword">,</span> <span class="symbol">Kyphosis</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">kyphosis</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_smooth.html-51.png' %></p>
+<div class='input'><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">Age</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">kyphosis</span><span class="keyword">,</span> <span class="argument">facets</span> <span class="argument">=</span> <span class="symbol">.</span> <span class="keyword">~</span> <span class="symbol">Kyphosis</span><span class="keyword">,</span> <span class="argument">binwidth</span> <span class="argument">=</span> <span class="number">10</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_smooth.html-53.png' %></p>
+<div class='input'><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">Age</span><span class="keyword">,</span> <span class="symbol">Kyphosis</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">kyphosis</span><span class="keyword">,</span> <span class="argument">position</span><span class="argument">=</span><span class="string">"jitter"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_smooth.html-55.png' %></p>
+<div class='input'><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">Age</span><span class="keyword">,</span> <span class="symbol">Kyphosis</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">kyphosis</span><span class="keyword">,</span> <span class="argument">position</span><span class="argument">=</span><span class="functioncall"><a href='position_jitter.html'>position_jitter</a></span><span class="keyword">(</span><span class="argument">height</span><span class="argument">=</span><span class="number">0.1</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_smooth.html-57.png' %></p>
+<div class='input'>
+<span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">Age</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/numeric'>as.numeric</a></span><span class="keyword">(</span><span class="symbol">Kyphosis</span><span class="keyword">)</span> <span class="keyword">-</span> <span class="number">1</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">kyphosis</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='stat_smooth.html'>stat_smooth</a></span><span class="keyword">(</span><span class="argument">method</span><span class="argument">=</span><span class="string">"glm"</span><span class="keyword">,</span> <span class="argument">family</span><span class="argument">=</span><span class="string">"binomial"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_smooth.html-59.png' %></p>
+<div class='input'><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">Age</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/numeric'>as.numeric</a></span><span class="keyword">(</span><span class="symbol">Kyphosis</span><span class="keyword">)</span> <span class="keyword">-</span> <span class="number">1</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">kyphosis</span><span class="keyword">)</span> <span class="keyword">+</span>
+  <span class="functioncall"><a href='stat_smooth.html'>stat_smooth</a></span><span class="keyword">(</span><span class="argument">method</span><span class="argument">=</span><span class="string">"glm"</span><span class="keyword">,</span> <span class="argument">family</span><span class="argument">=</span><span class="string">"binomial"</span><span class="keyword">,</span> <span class="argument">formula</span> <span class="argument">=</span> <span class="symbol">y</span> <span class="keyword">~</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/splines/ns'>ns</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="number">2</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_smooth.html-61.png' %></p>
+<div class='input'></div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>stat_smooth</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+  <code><a href='http://www.inside-r.org/r-doc/stats/lm'>lm</a></code> for linear smooths, <code><a href='http://www.inside-r.org/r-doc/stats/glm'>glm</a></code>
+  for generalised linear smooths, <code><a href='http://www.inside-r.org/r-doc/stats/loess'>loess</a></code> for
+  local smooths
+
+        
+  </div>
+</div>

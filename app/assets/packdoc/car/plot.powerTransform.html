@@ -1,0 +1,157 @@
+      <h1> plot Method for powerTransform Objects
+</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='http://www.inside-r.org/r-doc/graphics/plot'>plot</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="argument">z</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">round</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="argument">plot</span> <span class="argument">=</span> <span class="symbol">pairs</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>x</dt>
+      <dd>name of the power transformation object
+</dd>
+      <dt>z</dt>
+      <dd>
+  Additional variables of the same length as those used to get the transformation
+  to be plotted, default is <code>NULL</code>.
+</dd>
+      <dt>round</dt>
+      <dd>
+  If <code>TRUE</code>, the default, use rounded transforms, if <code>FALSE</code> use the MLEs.
+</dd>
+      <dt>plot</dt>
+      <dd>
+  Plotting method.  Default is <code>pairs</code>.  Another possible choice is
+  <code>scatterplot.matrix</code> from the <code>car</code> package.
+</dd>
+      <dt>...</dt>
+      <dd>
+  Optional arguments passed to the plotting method
+</dd>
+    </dl>
+    
+    <div class=" plot Method for powerTransform Objects
+">
+      <h2> plot Method for powerTransform Objects
+</h2>
+      
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>This function provides a simple function for plotting data using power 
+transformations.</p>
+  
+      <p></p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p>The data used to estimate transformations using <code>powerTransform</code> are plotted
+in the transformed scale.</p>
+  
+    </div>
+
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>None.  Produces a graph as a side-effect.</p>
+  
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+      
+      <p>Weisberg, S. (2005) <em>Applied Linear Regression</em>, Third Edition. Wiley.</p>
+  
+      <p>Fox, J. and Weisberg, S. (2011) <em>An R Companion to Applied Linear Regression</em>,
+Second Edition, Sage.</p>
+  
+    </div>
+
+    <div class=" plot Method for powerTransform Objects
+">
+      <h2> plot Method for powerTransform Objects
+</h2>
+      
+    </div>
+
+    <div class=" plot Method for powerTransform Objects
+">
+      <h2> plot Method for powerTransform Objects
+</h2>
+      
+    </div>
+
+    <div class=" plot Method for powerTransform Objects
+">
+      <h2> plot Method for powerTransform Objects
+</h2>
+      
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/summary'>summary</a></span><span class="keyword">(</span><span class="symbol">a3</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='powerTransform.html'>powerTransform</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/cbind'>cbind</a></span><span class="keyword">(</span><span class="symbol">len</span><span class="keyword">,</span> <span class="symbol">ADT</span><span class="keyword">,</span> <span class="symbol">trks</span><span class="keyword">,</span> <span class="symbol">sigs1</span><span class="keyword">)</span> <span class="keyword">~</span> <span class="symbol">hwy</span><span class="keyword">,</span> <span class="symbol">Highway1</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<div class='output'>bcPower Transformations to Multinormality 
+
+      Est.Power Std.Err. Wald Lower Bound Wald Upper Bound
+len      0.1451   0.2135          -0.2733           0.5636
+ADT      0.2396   0.1092           0.0255           0.4536
+trks    -0.7336   0.6159          -1.9408           0.4735
+sigs1   -0.2959   0.1302          -0.5511          -0.0408
+
+Likelihood ratio tests about transformation parameters
+                                      LRT df    pval
+LR test, lambda = (0 0 0 0)        13.134  4 0.01064
+LR test, lambda = (1 1 1 1)       140.585  4 0.00000
+LR test, lambda = (0 0.33 0 -0.5)   4.794  4 0.30913
+</div>
+<div class='input'><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/with'>with</a></span><span class="keyword">(</span><span class="symbol">Highway1</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/graphics/plot'>plot</a></span><span class="keyword">(</span><span class="symbol">a3</span><span class="keyword">,</span> <span class="argument">z</span><span class="argument">=</span><span class="symbol">rate</span><span class="keyword">,</span> <span class="argument">col</span><span class="argument">=</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/numeric'>as.numeric</a></span><span class="keyword">(</span><span class="symbol">hwy</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><img src='plot.powerTransform-4.png' alt='' width='400' height='400' /></p>
+<p><img src='plot.powerTransform-5.png' alt='' width='400' height='400' /></p>
+<p><img src='plot.powerTransform-6.png' alt='' width='400' height='400' /></p>
+<p><img src='plot.powerTransform-7.png' alt='' width='400' height='400' /></p>
+<p><img src='plot.powerTransform-8.png' alt='' width='400' height='400' /></p>
+<p><img src='plot.powerTransform-9.png' alt='' width='400' height='400' /></p>
+<p><img src='plot.powerTransform-10.png' alt='' width='400' height='400' /></p>
+<p><img src='plot.powerTransform-11.png' alt='' width='400' height='400' /></p>
+<p><img src='plot.powerTransform-12.png' alt='' width='400' height='400' /></p>
+<p><img src='plot.powerTransform-13.png' alt='' width='400' height='400' /></p>
+<p><img src='plot.powerTransform-14.png' alt='' width='400' height='400' /></p>
+<p><img src='plot.powerTransform-15.png' alt='' width='400' height='400' /></p>
+<p><img src='plot.powerTransform-16.png' alt='' width='400' height='400' /></p>
+<p><img src='plot.powerTransform-17.png' alt='' width='400' height='400' /></p>
+<p><img src='plot.powerTransform-18.png' alt='' width='400' height='400' /></p>
+<p><img src='plot.powerTransform-19.png' alt='' width='400' height='400' /></p>
+<p><img src='plot.powerTransform-20.png' alt='' width='400' height='400' /></p>
+<p><img src='plot.powerTransform-21.png' alt='' width='400' height='400' /></p>
+<p><img src='plot.powerTransform-22.png' alt='' width='400' height='400' /></p>
+<p><img src='plot.powerTransform-23.png' alt='' width='400' height='400' /></p>
+<p><img src='plot.powerTransform-24.png' alt='' width='400' height='400' /></p>
+<p><img src='plot.powerTransform-25.png' alt='' width='400' height='400' /></p>
+<p><img src='plot.powerTransform-26.png' alt='' width='400' height='400' /></p>
+<p><img src='plot.powerTransform-27.png' alt='' width='400' height='400' /></p>
+<p><img src='plot.powerTransform-28.png' alt='' width='400' height='400' /></p></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>plot.powerTransform</li>
+    </ul>
+    <ul>
+      <li> hplot </li><li> regression </li>
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+<code><a href='powerTransform.html'>powerTransform</a></code>
+
+    
+    <h2>Author</h2>
+     Sanford Weisberg, <sandy@stat.umn.edu> 
+    
+  </div>
+</div>

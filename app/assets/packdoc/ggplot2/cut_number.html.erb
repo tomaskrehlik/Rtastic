@@ -1,0 +1,50 @@
+      <h1>Cut numeric vector into intervals containing equal number of points.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='cut_number.html'>cut_number</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="argument">n</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>x</dt>
+      <dd>numeric vector</dd>
+      <dt>n</dt>
+      <dd>number of intervals to create</dd>
+      <dt>...</dt>
+      <dd>other arguments passed on to
+  <code><a href='http://www.inside-r.org/r-doc/base/cut'>cut</a></code></dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Cut numeric vector into intervals containing equal number
+  of points.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/table'>table</a></span><span class="keyword">(</span><span class="functioncall"><a href='cut_number.html'>cut_number</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/Uniform'>runif</a></span><span class="keyword">(</span><span class="number">1000</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">n</span> <span class="argument">=</span> <span class="number">10</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<div class='output'>
+[0.00026,0.0971]   (0.0971,0.209]    (0.209,0.305]    (0.305,0.394]    (0.394,0.496]    (0.496,0.611]    (0.611,0.712] 
+             100              100              100              100              100              100              100 
+   (0.712,0.814]    (0.814,0.918]        (0.918,1] 
+             100              100              100 
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>cut_number</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+  <code><a href='cut_interval.html'>cut_interval</a></code>
+
+        
+  </div>
+</div>

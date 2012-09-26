@@ -1,0 +1,77 @@
+      <h1>Stack overlapping objects on top of one another.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='position_stack.html'>position_stack</a></span><span class="keyword">(</span><span class="argument">width</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">height</span> <span class="argument">=</span> NULL<span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>width</dt>
+      <dd>Manually specify width (does not affect all
+  position adjustments)</dd>
+      <dt>height</dt>
+      <dd>Manually specify height (does not affect
+  all position adjustments)</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Stack overlapping objects on top of one another.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="comment"># Stacking is the default behaviour for most area plots:</span>
+<span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">mtcars</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/factor'>factor</a></span><span class="keyword">(</span><span class="symbol">cyl</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">fill</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/factor'>factor</a></span><span class="keyword">(</span><span class="symbol">vs</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_bar.html'>geom_bar</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/position_stack.html-2.png' %></p>
+<div class='input'>
+<span class="comment"># To change stacking order, use factor() to change order of levels</span>
+<span class="symbol">mtcars</span><span class="keyword">$</span><span class="symbol">vs</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/factor'>factor</a></span><span class="keyword">(</span><span class="symbol">mtcars</span><span class="keyword">$</span><span class="symbol">vs</span><span class="keyword">,</span> <span class="argument">levels</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">1</span><span class="keyword">,</span><span class="number">0</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">mtcars</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/factor'>factor</a></span><span class="keyword">(</span><span class="symbol">cyl</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">fill</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/factor'>factor</a></span><span class="keyword">(</span><span class="symbol">vs</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_bar.html'>geom_bar</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/position_stack.html-4.png' %></p>
+<div class='input'>
+<span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">diamonds</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="symbol">price</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_histogram.html'>geom_histogram</a></span><span class="keyword">(</span><span class="argument">binwidth</span><span class="argument">=</span><span class="number">500</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/position_stack.html-6.png' %></p>
+<div class='input'><span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">diamonds</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="symbol">price</span><span class="keyword">,</span> <span class="argument">fill</span> <span class="argument">=</span> <span class="symbol">cut</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='geom_histogram.html'>geom_histogram</a></span><span class="keyword">(</span><span class="argument">binwidth</span><span class="argument">=</span><span class="number">500</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/position_stack.html-8.png' %></p>
+<div class='input'>
+<span class="comment"># Stacking is also useful for time series</span>
+<span class="symbol">data.set</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/data.frame'>data.frame</a></span><span class="keyword">(</span>
+  <span class="argument">Time</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/rep'>rep</a></span><span class="keyword">(</span><span class="number">1</span><span class="keyword">,</span> <span class="number">4</span><span class="keyword">)</span><span class="keyword">,</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/rep'>rep</a></span><span class="keyword">(</span><span class="number">2</span><span class="keyword">,</span> <span class="number">4</span><span class="keyword">)</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/rep'>rep</a></span><span class="keyword">(</span><span class="number">3</span><span class="keyword">,</span> <span class="number">4</span><span class="keyword">)</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/rep'>rep</a></span><span class="keyword">(</span><span class="number">4</span><span class="keyword">,</span> <span class="number">4</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span>
+  <span class="argument">Type</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/rep'>rep</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">'a'</span><span class="keyword">,</span> <span class="string">'b'</span><span class="keyword">,</span> <span class="string">'c'</span><span class="keyword">,</span> <span class="string">'d'</span><span class="keyword">)</span><span class="keyword">,</span> <span class="number">4</span><span class="keyword">)</span><span class="keyword">,</span>
+  <span class="argument">Value</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/Poisson'>rpois</a></span><span class="keyword">(</span><span class="number">16</span><span class="keyword">,</span> <span class="number">10</span><span class="keyword">)</span>
+<span class="keyword">)</span>
+
+<span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">Time</span><span class="keyword">,</span> <span class="symbol">Value</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">data.set</span><span class="keyword">,</span> <span class="argument">fill</span> <span class="argument">=</span> <span class="symbol">Type</span><span class="keyword">,</span> <span class="argument">geom</span> <span class="argument">=</span> <span class="string">"area"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/position_stack.html-10.png' %></p>
+<div class='input'><span class="comment"># If you want to stack lines, you need to say so:</span>
+<span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">Time</span><span class="keyword">,</span> <span class="symbol">Value</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">data.set</span><span class="keyword">,</span> <span class="argument">colour</span> <span class="argument">=</span> <span class="symbol">Type</span><span class="keyword">,</span> <span class="argument">geom</span> <span class="argument">=</span> <span class="string">"line"</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/position_stack.html-12.png' %></p>
+<div class='input'><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">Time</span><span class="keyword">,</span> <span class="symbol">Value</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">data.set</span><span class="keyword">,</span> <span class="argument">colour</span> <span class="argument">=</span> <span class="symbol">Type</span><span class="keyword">,</span> <span class="argument">geom</span> <span class="argument">=</span> <span class="string">"line"</span><span class="keyword">,</span>
+  <span class="argument">position</span> <span class="argument">=</span> <span class="string">"stack"</span><span class="keyword">)</span></div>
+<strong class='message'>ymax not defined: adjusting position using y instead</strong>
+<p><%= image_tag 'ggplot2/position_stack.html-15.png' %></p>
+<div class='input'># But realise that this makes it *much* harder to compare individual
+# trends
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>position_stack</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+  Other position adjustments: <code><a href='position_dodge.html'>position_dodge</a></code>,
+  <code><a href='position_fill.html'>position_fill</a></code>,
+  <code><a href='position_identity.html'>position_identity</a></code>,
+  <code><a href='position_jitter.html'>position_jitter</a></code>
+
+        
+  </div>
+</div>

@@ -1,0 +1,133 @@
+      <h1>Sum unique values.  Useful for overplotting on scatterplots.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='stat_sum.html'>stat_sum</a></span><span class="keyword">(</span><span class="argument">mapping</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">geom</span> <span class="argument">=</span> <span class="string">"point"</span><span class="keyword">,</span> <span class="argument">position</span> <span class="argument">=</span> <span class="string">"identity"</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>mapping</dt>
+      <dd>The aesthetic mapping, usually constructed
+  with <code><a href='aes.html'>aes</a></code> or <code><a href='aes_string.html'>aes_string</a></code>. Only
+  needs to be set at the layer level if you are overriding
+  the plot defaults.</dd>
+      <dt>data</dt>
+      <dd>A layer specific dataset - only needed if you
+  want to override the plot defaults.</dd>
+      <dt>geom</dt>
+      <dd>The geometric object to use display the data</dd>
+      <dt>position</dt>
+      <dd>The position adjustment to use for
+  overlappling points on this layer</dd>
+      <dt>...</dt>
+      <dd>other arguments passed on to
+  <code><a href='layer.html'>layer</a></code>. This can include aesthetics whose
+  values you want to set, not map. See <code><a href='layer.html'>layer</a></code>
+  for more details.</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>a data.frame with additional columns nnumber of
+  observations at position proppercent of points
+  in that panel at that position</p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Sum unique values.  Useful for overplotting on
+  scatterplots.</p>
+  
+    </div>
+
+    <div class="Aesthetics">
+      <h2>Aesthetics</h2>
+      
+      <p><code>stat_sum</code> understands the following aesthetics (required aesthetics are in bold):</p>
+  
+      <p><ul>
+<li> <code><strong>x</strong></code>
+  </li>
+<li> <code><strong>y</strong></code>
+  </li>
+<li> <code>size</code>
+</li>
+</ul></p>
+  
+      <p></p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class="symbol">d</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='ggplot.html'>ggplot</a></span><span class="keyword">(</span><span class="symbol">diamonds</span><span class="keyword">,</span> <span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">x</span> <span class="argument">=</span> <span class="symbol">cut</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="symbol">clarity</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="comment"># By default, all categorical variables in the plot form grouping</span>
+<span class="comment"># variables, and the default behavior in stat_sum is to show the</span>
+<span class="comment"># proportion. Specifying stat_sum with no group identifier leads to</span>
+<span class="comment"># a plot which is not meaningful:</span>
+<span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_sum.html'>stat_sum</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_sum.html-2.png' %></p>
+<div class='input'><span class="comment"># To correct this problem and achieve a more desirable plot, we need</span>
+<span class="comment"># to specify which group the proportion is to be calculated over.</span>
+<span class="comment"># There are several ways to do this:</span>
+
+<span class="comment"># by overall proportion</span>
+<span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_sum.html'>stat_sum</a></span><span class="keyword">(</span><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">group</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_sum.html-4.png' %></p>
+<div class='input'><span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_sum.html'>stat_sum</a></span><span class="keyword">(</span><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">group</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_size.html'>scale_size</a></span><span class="keyword">(</span><span class="argument">range</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">3</span><span class="keyword">,</span> <span class="number">10</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_sum.html-6.png' %></p>
+<div class='input'><span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_sum.html'>stat_sum</a></span><span class="keyword">(</span><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">group</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall"><a href='scale_area.html'>scale_area</a></span><span class="keyword">(</span><span class="argument">range</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="number">3</span><span class="keyword">,</span> <span class="number">10</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<strong class='message'>scale_area is deprecated and will be removed in a future version of ggplot2.
+  Use scale_size_area instead. Note that the behavior of scale_size_area is
+  slightly different: by default it makes the area proportional to the
+  numeric value.</strong>
+<p><%= image_tag 'ggplot2/stat_sum.html-9.png' %></p>
+<div class='input'>
+<span class="comment"># by cut</span>
+<span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_sum.html'>stat_sum</a></span><span class="keyword">(</span><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">group</span> <span class="argument">=</span> <span class="symbol">cut</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_sum.html-11.png' %></p>
+<div class='input'><span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_sum.html'>stat_sum</a></span><span class="keyword">(</span><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">group</span> <span class="argument">=</span> <span class="symbol">cut</span><span class="keyword">,</span> <span class="argument">colour</span> <span class="argument">=</span> <span class="symbol">cut</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_sum.html-13.png' %></p>
+<div class='input'>
+<span class="comment"># by clarity</span>
+<span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_sum.html'>stat_sum</a></span><span class="keyword">(</span><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">group</span> <span class="argument">=</span> <span class="symbol">clarity</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_sum.html-15.png' %></p>
+<div class='input'><span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_sum.html'>stat_sum</a></span><span class="keyword">(</span><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">group</span> <span class="argument">=</span> <span class="symbol">clarity</span><span class="keyword">,</span> <span class="argument">colour</span> <span class="argument">=</span> <span class="symbol">cut</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_sum.html-17.png' %></p>
+<div class='input'>
+<span class="comment"># Instead of proportions, can also use sums</span>
+<span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_sum.html'>stat_sum</a></span><span class="keyword">(</span><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">size</span> <span class="argument">=</span> <span class="symbol">..n..</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_sum.html-19.png' %></p>
+<div class='input'>
+<span class="comment"># Can also weight by another variable</span>
+<span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_sum.html'>stat_sum</a></span><span class="keyword">(</span><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">group</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span> <span class="argument">weight</span> <span class="argument">=</span> <span class="symbol">price</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_sum.html-21.png' %></p>
+<div class='input'><span class="symbol">d</span> <span class="keyword">+</span> <span class="functioncall"><a href='stat_sum.html'>stat_sum</a></span><span class="keyword">(</span><span class="functioncall"><a href='aes.html'>aes</a></span><span class="keyword">(</span><span class="argument">group</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">,</span> <span class="argument">weight</span> <span class="argument">=</span> <span class="symbol">price</span><span class="keyword">,</span> <span class="argument">size</span> <span class="argument">=</span> <span class="symbol">..n..</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_sum.html-23.png' %></p>
+<div class='input'>
+<span class="comment"># Or using qplot</span>
+<span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">cut</span><span class="keyword">,</span> <span class="symbol">clarity</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">diamonds</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_sum.html-25.png' %></p>
+<div class='input'><span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">cut</span><span class="keyword">,</span> <span class="symbol">clarity</span><span class="keyword">,</span> <span class="argument">data</span> <span class="argument">=</span> <span class="symbol">diamonds</span><span class="keyword">,</span> <span class="argument">stat</span> <span class="argument">=</span> <span class="string">"sum"</span><span class="keyword">,</span> <span class="argument">group</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">)</span></div>
+<p><%= image_tag 'ggplot2/stat_sum.html-27.png' %></p>
+<div class='input'></div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>stat_sum</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+  <code><a href='ggfluctuation.html'>ggfluctuation</a></code> for a fluctuation diagram,
+
+        
+  </div>
+</div>

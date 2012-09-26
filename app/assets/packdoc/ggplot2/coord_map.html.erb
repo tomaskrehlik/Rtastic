@@ -1,0 +1,83 @@
+      <h1>Map projections.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='coord_map.html'>coord_map</a></span><span class="keyword">(</span><span class="argument">projection</span> <span class="argument">=</span> <span class="string">"mercator"</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">,</span> <span class="argument">orientation</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">xlim</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">ylim</span> <span class="argument">=</span> NULL<span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>projection</dt>
+      <dd>projection to use, see
+  <code><a href='http://www.inside-r.org/r-doc/mapproj/mapproject'>mapproject</a></code> for list</dd>
+      <dt>...</dt>
+      <dd>other arguments passed on to
+  <code><a href='http://www.inside-r.org/r-doc/mapproj/mapproject'>mapproject</a></code></dd>
+      <dt>orientation</dt>
+      <dd>projection orientation, which defaults
+  to <code>c(90, 0, mean(range(x)))</code>.  This is not optimal
+  for many projections, so you will have to supply your
+  own.</dd>
+      <dt>xlim</dt>
+      <dd>manually specific x limits (in degrees of
+  lontitude)</dd>
+      <dt>ylim</dt>
+      <dd>manually specific y limits (in degrees of
+  latitude)</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>This coordinate system provides the full range of map
+  projections available in the mapproj package.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p>This is still experimental, and if you have any advice to
+  offer regarding a better (or more correct) way to do
+  this, please let me know</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="keyword">if</span> <span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/library'>require</a></span><span class="keyword">(</span><span class="string">"maps"</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">{</span>
+<span class="comment"># Create a lat-long dataframe from the maps package</span>
+<span class="symbol">nz</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/data.frame'>data.frame</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/maps/map'>map</a></span><span class="keyword">(</span><span class="string">"nz"</span><span class="keyword">,</span> <span class="argument">plot</span><span class="argument">=</span><span class="number">FALSE</span><span class="keyword">)</span><span class="keyword">[</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"x"</span><span class="keyword">,</span><span class="string">"y"</span><span class="keyword">)</span><span class="keyword">]</span><span class="keyword">)</span>
+<span class="keyword">(</span><span class="symbol">nzmap</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">y</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">nz</span><span class="keyword">,</span> <span class="argument">geom</span><span class="argument">=</span><span class="string">"path"</span><span class="keyword">)</span><span class="keyword">)</span>
+
+<span class="symbol">nzmap</span> <span class="keyword">+</span> <span class="functioncall"><a href='coord_map.html'>coord_map</a></span><span class="keyword">(</span><span class="keyword">)</span>
+<span class="symbol">nzmap</span> <span class="keyword">+</span> <span class="functioncall"><a href='coord_map.html'>coord_map</a></span><span class="keyword">(</span><span class="argument">project</span><span class="argument">=</span><span class="string">"cylindrical"</span><span class="keyword">)</span>
+<span class="symbol">nzmap</span> <span class="keyword">+</span> <span class="functioncall"><a href='coord_map.html'>coord_map</a></span><span class="keyword">(</span><span class="argument">project</span><span class="argument">=</span><span class="string">'azequalarea'</span><span class="keyword">,</span><span class="argument">orientation</span><span class="argument">=</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="keyword">-</span><span class="number">36.92</span><span class="keyword">,</span><span class="number">174.6</span><span class="keyword">,</span><span class="number">0</span><span class="keyword">)</span><span class="keyword">)</span>
+
+<span class="symbol">states</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/data.frame'>data.frame</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/maps/map'>map</a></span><span class="keyword">(</span><span class="string">"state"</span><span class="keyword">,</span> <span class="argument">plot</span><span class="argument">=</span><span class="number">FALSE</span><span class="keyword">)</span><span class="keyword">[</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"x"</span><span class="keyword">,</span><span class="string">"y"</span><span class="keyword">)</span><span class="keyword">]</span><span class="keyword">)</span>
+<span class="keyword">(</span><span class="symbol">usamap</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='qplot.html'>qplot</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">y</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">states</span><span class="keyword">,</span> <span class="argument">geom</span><span class="argument">=</span><span class="string">"path"</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="symbol">usamap</span> <span class="keyword">+</span> <span class="functioncall"><a href='coord_map.html'>coord_map</a></span><span class="keyword">(</span><span class="keyword">)</span>
+<span class="comment"># See ?mapproject for coordinate systems and their parameters</span>
+<span class="symbol">usamap</span> <span class="keyword">+</span> <span class="functioncall"><a href='coord_map.html'>coord_map</a></span><span class="keyword">(</span><span class="argument">project</span><span class="argument">=</span><span class="string">"gilbert"</span><span class="keyword">)</span>
+<span class="symbol">usamap</span> <span class="keyword">+</span> <span class="functioncall"><a href='coord_map.html'>coord_map</a></span><span class="keyword">(</span><span class="argument">project</span><span class="argument">=</span><span class="string">"lagrange"</span><span class="keyword">)</span>
+
+<span class="comment"># For most projections, you'll need to set the orientation yourself</span>
+<span class="comment"># as the automatic selection done by mapproject is not available to</span>
+<span class="comment"># ggplot</span>
+<span class="symbol">usamap</span> <span class="keyword">+</span> <span class="functioncall"><a href='coord_map.html'>coord_map</a></span><span class="keyword">(</span><span class="argument">project</span><span class="argument">=</span><span class="string">"orthographic"</span><span class="keyword">)</span>
+<span class="symbol">usamap</span> <span class="keyword">+</span> <span class="functioncall"><a href='coord_map.html'>coord_map</a></span><span class="keyword">(</span><span class="argument">project</span><span class="argument">=</span><span class="string">"stereographic"</span><span class="keyword">)</span>
+<span class="symbol">usamap</span> <span class="keyword">+</span> <span class="functioncall"><a href='coord_map.html'>coord_map</a></span><span class="keyword">(</span><span class="argument">project</span><span class="argument">=</span><span class="string">"conic"</span><span class="keyword">,</span> <span class="argument">lat0</span> <span class="argument">=</span> <span class="number">30</span><span class="keyword">)</span>
+<span class="symbol">usamap</span> <span class="keyword">+</span> <span class="functioncall"><a href='coord_map.html'>coord_map</a></span><span class="keyword">(</span><span class="argument">project</span><span class="argument">=</span><span class="string">"bonne"</span><span class="keyword">,</span> <span class="argument">lat0</span> <span class="argument">=</span> <span class="number">50</span><span class="keyword">)</span>
+<span class="keyword">}</span></div>
+<p><%= image_tag 'ggplot2/coord_map.html-2.png' %></p></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>coord_map</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>
