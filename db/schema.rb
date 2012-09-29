@@ -11,7 +11,35 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120928235631) do
+ActiveRecord::Schema.define(:version => 20120929153624) do
+
+  create_table "documentations", :force => true do |t|
+    t.string   "package"
+    t.string   "name"
+    t.text     "arguments"
+    t.text     "author"
+    t.text     "concept"
+    t.text     "description"
+    t.text     "details"
+    t.text     "docType"
+    t.string   "encoding"
+    t.string   "format"
+    t.text     "keyword"
+    t.text     "note"
+    t.text     "references"
+    t.text     "section"
+    t.text     "seealso"
+    t.text     "source"
+    t.text     "title"
+    t.text     "value"
+    t.text     "examples"
+    t.text     "usage"
+    t.string   "alias"
+    t.string   "Rdversion"
+    t.text     "synopsis"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "packages", :force => true do |t|
     t.string   "name"
@@ -32,15 +60,5 @@ ActiveRecord::Schema.define(:version => 20120928235631) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-
-  create_table "users", :force => true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-    t.string   "password_digest"
-  end
-
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
 
 end

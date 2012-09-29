@@ -25,11 +25,12 @@ class PackagesController < ApplicationController
     else
       @package = Package.find_by_name(params[:name].to_s)
       @function = params[:function]
+      @documentation = Documentation.find_by_package_and_name(params[:name].to_s, params[:function].to_s)
     end
   end
 
-  def build_docs
-    @name = params[:id]
-    updatePackageInfo(Package.find_by_name(@name))
+  def builddocs
+    layout false
+    redirect_to action: "overview"
   end
 end

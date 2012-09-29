@@ -45,7 +45,7 @@ module PackagesHelper
   def show()
       output = "<table class=\"table table-hover table-condensed\"><tr><th>ID</th><th>Package name</th><th>Version</th><th>Depends on</th><th>Generate documentation</th></tr>"
       Package.all.each do |i|
-        output << "<tr class = center><td>" + i.id.to_s + "</td><td>" + i.name + "</td><td>" + i.version + "</td><td>" + i.depends.to_s + "</td><td>" + "</td></tr>"
+        output << "<tr class = center><td>" + i.id.to_s + "</td><td>" + i.name + "</td><td>" + i.version + "</td><td>" + i.depends.to_s + "</td><td>" + button_to("Generate docs", action: "builddocs") + "</td></tr>"
       end
       output << "</table>"
       return output
@@ -175,5 +175,58 @@ module PackagesHelper
       end
     end
     return match
+  end
+end
+
+
+
+
+
+
+
+# Parser for documentation
+
+def paranthesis(text_par,tag)
+  opening = 1
+  nested = 0
+  my = text_par.split("\n").join(" ")
+  my = my.gsub(/.*#{tag}{/x,"")
+    
+  my.split("").each do |c|
+    if c.eql? "{" then
+      opening = opening + 1
+      nested = nested + 1
+    elsif c.eql? "}"
+      opening = opening - 1
+    end
+    if opening == 0 then break end
+  end
+  return nested
+end
+
+def get_content(text, tag)
+  nested_inside = paranthesis(text, tag)
+  regexp = ".*?\{.*?\}" * nested_inside
+  regexp = "#{tag}{(#{regexp}.*?)}"
+  text.match(/\\#{regexp}/)
+  return $1
+end
+
+def parse_Rd_files(package)
+  Dir["app/tmp/documentation_build/#{package}/man/*.Rd"].each do |function|
+    function.match(/\/((\w|\.)+?).Rd/)
+    func = $1.to_s
+    path = "#{package}\/man\/#{func}.Rd"
+    source = Rtastic::Application.assets.find_asset(path).body.split(" ").join(" ")
+  
+    parts = ["arguments","author","concept","description","details","docType","encoding", "format" ,"keyword","name","note","references","section","seealso","source","title","value","examples","alias", "Rdversion", "usage","synopsis"]
+
+    documentation = Hash.new
+    documentation.default = ""
+    parts.each do |p|
+      documentation[p] = get_content(source, p).to_s
+    end
+    documentation["package"] = package
+    Documentation.new(documentation).save
   end
 end
