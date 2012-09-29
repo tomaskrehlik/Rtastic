@@ -42,14 +42,15 @@ h1 {
   font-size: 3em;
   letter-spacing: -2px;
   margin-bottom: 30px;
-  text-align: center;
+  text-align: left;   /* changed by Lubos */
 }
 
 h2 {
   font-size: 1.7em;
   letter-spacing: -1px;
-  margin-bottom: 30px;
-  text-align: center;
+  margin-top: 20px;   /* added by Lubos */
+  margin-bottom: 20px;  /* changed by Lubos */
+  text-align: left;   /* changed by Lubos */
   font-weight: normal;
   color: $grayLight;
 }
@@ -90,6 +91,40 @@ p {
     text-decoration: none;
   }
 }
+
+/* container - Lubos */
+.container {}
+
+.row {
+
+}
+
+.span8 { /*div usage*/
+  #padding: 20px;
+  #background-color: teal;
+}
+  .Usage {}
+  .Arguments {}
+  .Description{}
+  .Details {}
+  .Value{}
+
+  .Format{}
+  
+  .References{
+    h2 {
+
+    }
+    p {
+      font-size:0.9em;
+    }
+  }
+
+.span4 {/*div autors etc*/
+  #background-color: navy;
+}
+
+/* end of changes - Lubos */
 
 /* footer */
 
