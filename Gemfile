@@ -10,8 +10,12 @@ gem 'bootstrap-sass', '2.0.4'
 
 group :development, :test do
   gem 'rspec-rails', '2.10.0'
-  
+  gem 'annotate', '2.5.0'
 end
+
+#start / Lubos
+
+#end xx added by Lubos
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -29,6 +33,7 @@ gem 'jquery-rails'
 
 group :test do
   gem 'capybara', '1.1.2'
+  gem 'factory_girl_rails', '4.1.0'
 end
 
 group :development, :test, :production do
@@ -36,7 +41,7 @@ group :development, :test, :production do
 end
 
 # To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

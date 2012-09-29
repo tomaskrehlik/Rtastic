@@ -1,4 +1,10 @@
 Rtastic::Application.routes.draw do
+  #get "users/new"
+  resources :users
+  
+  match '/signup',  to: 'users#new'
+
+#original = tomas
   match "/paintgraph", to: 'graph#paintgraph'
   match "/settingsgraph", to: 'graph#settingsgraph'
   match "/overview", to: 'packages#overview'
@@ -7,14 +13,15 @@ Rtastic::Application.routes.draw do
   match "/log", to: 'packages#log'
   match "/init", to: 'packages#init'
   match "/update", to: 'packages#update'
-  match "/docs/:name", to: 'packages#documentation', :constraints => { :name => /[0-z\.]+/ }
-  match "/docs/:name/:function", to: 'packages#documentation', function: nil, :requirements => { :function => /[0-z\.]+/ }
+  match "/docs/:name", to: 'packages#documentation'
+  match "/docs/:name/:function", to: 'packages#documentation'
+  match "/docsbuild/:name", to: 'packages#builddocs', :constraints => { :name => /[0-z\.]+/ }
 #  match "/docs/:name/:function", to: 'packages#documentation'
 
   match "/search", to: 'general#search'
   # The priority is based upon order of creation:
   # first created -> highest priority.
-
+    
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action

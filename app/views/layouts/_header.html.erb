@@ -6,29 +6,31 @@
       <nav>
         <ul class="nav pull-right">
           <form action="/search/" class="navbar-search pull-left">
-            <input type="text" class="search-query" name="q" placeholder="Search">
+            </i><input type="text" class="search-query" name="q" placeholder="Search">
           </form>
           <!--<li><%= link_to "Sign in", '#' %></li>-->
           <!--<div class="btn-group pull/right">
               <a class="btn btn-primary" href="#"><i class="icon-user icon-white"></i> User</a>
               <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#"><i class="icon-pencil"></i> Edit</a></li>
-                <li><a href="#"><i class="icon-trash"></i> Delete</a></li>
-                <li><a href="#"><i class="icon-ban-circle"></i> Ban</a></li>
-                <li class="divider"></li>
-                <li><a href="#"><i class="i"></i> Make admin</a></li>
+                <li><a href="#">User's name</a></li>
+              <li><a href="#"><i class="icon-off"></i> Log out</a></li>
+              <li><a href="#"><i class="icon-pencil"></i> Sign up</a></li>
+              <li><a href="#"><i class="icon-trash"></i> Log in</a></li>
               </ul>
             </div>
           </li> -->
           <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">User <b class="caret"></b></a>
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user icon-white"></i> User <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="#">User's name</a></li>
-              <li><a href="#"><i class="icon-ban-circle"></i> Log out</a></li>
-              <li>-</li>
-              <li><a href="#"><i class="icon-pencil"></i> Sign up</a></li>
-              <li><a href="#"><i class="icon-trash"></i> Log in</a></li>
+              <!--<li><a href="#">User's name</a></li>-->
+              <% if @user %>
+                <li><%= link_to @user.name, @user %></li>
+              <% end %>
+              <li><a href="#"><i class="icon-off"></i> Log out</a></li>
+              <!--<li><%= link_to "<i class=\"icon-pencil\"></i> Sign up", '/signup' %></li>-->
+              <li><%= link_to raw('<i class="icon-pencil"></i> Sign up'), signup_path %></li>
+              <li><a href="#"><i class="icon-lock"></i> Log in</a></li>
             </ul>
           </li>
         </ul>
