@@ -24,7 +24,9 @@
             <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user icon-white"></i> User <b class="caret"></b></a>
             <ul class="dropdown-menu">
               <!--<li><a href="#">User's name</a></li>-->
-              <li><%= link_to @user.name, @user %></li>
+              <% if @user %>
+                <li><%= link_to @user.name, @user %></li>
+              <% end %>
               <li><a href="#"><i class="icon-off"></i> Log out</a></li>
               <!--<li><%= link_to "<i class=\"icon-pencil\"></i> Sign up", '/signup' %></li>-->
               <li><%= link_to raw('<i class="icon-pencil"></i> Sign up'), signup_path %></li>
