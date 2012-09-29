@@ -45,7 +45,7 @@ module PackagesHelper
   def show()
       output = "<table class=\"table table-hover table-condensed\"><tr><th>ID</th><th>Package name</th><th>Version</th><th>Depends on</th><th>Generate documentation</th></tr>"
       Package.all.each do |i|
-        output << "<tr class = center><td>" + i.id.to_s + "</td><td>" + i.name + "</td><td>" + i.version + "</td><td>" + i.depends.to_s + "</td><td>" + button_to("Generate docs", "/docsbuild/#{i.name}", method: "get") + "</td></tr>"
+        output << "<tr class = center><td>" + i.id.to_s + "</td><td>" + i.name + "</td><td>" + i.version + "</td><td>" + i.depends.to_s + "</td><td>" + button_to("Generate docs", "/docsbuild/#{i.name}", method: "get", class: "btn btn-mini " + get_documentation_state(i.name) ) + "</td></tr>"
       end
       output << "</table>"
       return output
@@ -213,11 +213,16 @@ def get_content(text, tag)
 end
 
 def parse_Rd_files(package)
-  Dir["app/assets/packdoc/#{package}/man/*.Rd"].each do |function|
-    function.match(/\/((\w|\.)+?).Rd/)
+  download_source(package)
+
+  Dir["tmp/packdoc/#{package}/man/*.Rd"].each do |function|
+    function.match(/\/((\w|\.|\-)+?).Rd/)
     func = $1.to_s
     path = "#{package}\/man\/#{func}.Rd"
-    source = Rtastic::Application.assets.find_asset(path).body.split(" ").join(" ")
+
+    file = File.open("#{Rails.root}/tmp/packdoc/#{path}", "rb")
+    source = file.read.split.join(" ")
+    #source = Rtastic::Application.assets.find_asset(path).body.split(" ").join(" ")
   
     parts = ["arguments","author","concept","description","details","docType","encoding", "format" ,"keyword","name","note","references","section","seealso","source","title","value","examples","alias", "Rdversion", "usage","synopsis"]
 
@@ -230,14 +235,25 @@ def parse_Rd_files(package)
     Documentation.new(documentation).save
   end
 
+  system("rm -r #{Rails.root}/tmp/packdoc/#{package}")
+end
 
-  def download_source(package)
-    require 'open-uri'
+def download_source(package)
+  require 'open-uri'
+  pack = Package.find_by_name(package)
+  package = pack.archive_name
+  uri = "http://cran.at.r-project.org/src/contrib/" + package
+  open("#{Rails.root}/tmp/packdoc/#{package}", 'wb') do |file|
+    file << open(uri).read
+  end
+  system("tar -xf #{Rails.root}/tmp/packdoc/#{package} -C #{Rails.root}/tmp/packdoc")
+  system("rm #{Rails.root}/tmp/packdoc/#{package}")
+end
 
-    uri = "http://cran.at.r-project.org/src/contrib/" + package
-    open(package, 'wb') do |file|
-      file << open(uri).read
-    end
-    
+def get_documentation_state(package)
+  if Documentation.find_by_package(package).nil? then
+    return "btn-danger"
+  else 
+    return "btn-success"
   end
 end
