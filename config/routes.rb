@@ -15,7 +15,7 @@ Rtastic::Application.routes.draw do
   match "/update", to: 'packages#update'
   match "/docs/:name", to: 'packages#documentation'
   match "/docs/:name/:function", to: 'packages#documentation'
-  match "/docs/:name/build", to: 'packages#builddocs'
+  match "/docsbuild/:name", to: 'packages#builddocs'
 #  match "/docs/:name/:function", to: 'packages#documentation'
 
   match "/search", to: 'general#search'

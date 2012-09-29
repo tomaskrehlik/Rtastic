@@ -11,19 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120929153624) do
+ActiveRecord::Schema.define(:version => 20120929154226) do
 
   create_table "documentations", :force => true do |t|
-    t.string   "package"
-    t.string   "name"
+    t.text     "package"
+    t.text     "name"
     t.text     "arguments"
     t.text     "author"
     t.text     "concept"
     t.text     "description"
     t.text     "details"
     t.text     "docType"
-    t.string   "encoding"
-    t.string   "format"
+    t.text     "encoding"
+    t.text     "format"
     t.text     "keyword"
     t.text     "note"
     t.text     "references"
@@ -34,8 +34,8 @@ ActiveRecord::Schema.define(:version => 20120929153624) do
     t.text     "value"
     t.text     "examples"
     t.text     "usage"
-    t.string   "alias"
-    t.string   "Rdversion"
+    t.text     "alias"
+    t.text     "Rdversion"
     t.text     "synopsis"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false

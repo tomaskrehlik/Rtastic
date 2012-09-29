@@ -30,7 +30,7 @@ class PackagesController < ApplicationController
   end
 
   def builddocs
-    layout false
+    parse_Rd_files(params[:name].to_s)
     redirect_to action: "overview"
   end
 end

@@ -45,7 +45,7 @@ module PackagesHelper
   def show()
       output = "<table class=\"table table-hover table-condensed\"><tr><th>ID</th><th>Package name</th><th>Version</th><th>Depends on</th><th>Generate documentation</th></tr>"
       Package.all.each do |i|
-        output << "<tr class = center><td>" + i.id.to_s + "</td><td>" + i.name + "</td><td>" + i.version + "</td><td>" + i.depends.to_s + "</td><td>" + button_to("Generate docs", action: "builddocs") + "</td></tr>"
+        output << "<tr class = center><td>" + i.id.to_s + "</td><td>" + i.name + "</td><td>" + i.version + "</td><td>" + i.depends.to_s + "</td><td>" + button_to("Generate docs", "/docsbuild/#{i.name}", method: "get") + "</td></tr>"
       end
       output << "</table>"
       return output
@@ -213,7 +213,7 @@ def get_content(text, tag)
 end
 
 def parse_Rd_files(package)
-  Dir["app/tmp/documentation_build/#{package}/man/*.Rd"].each do |function|
+  Dir["app/assets/packdoc/#{package}/man/*.Rd"].each do |function|
     function.match(/\/((\w|\.)+?).Rd/)
     func = $1.to_s
     path = "#{package}\/man\/#{func}.Rd"
@@ -228,5 +228,16 @@ def parse_Rd_files(package)
     end
     documentation["package"] = package
     Documentation.new(documentation).save
+  end
+
+
+  def download_source(package)
+    require 'open-uri'
+
+    uri = "http://cran.at.r-project.org/src/contrib/" + package
+    open(package, 'wb') do |file|
+      file << open(uri).read
+    end
+    
   end
 end
