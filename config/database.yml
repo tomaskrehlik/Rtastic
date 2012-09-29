@@ -7,10 +7,12 @@ development:
   <<: *common
   database: Rtastic_development
 
-test:
+test: &test
   <<: *common
   database: Rtastic_test
 
 production:
   <<: *common
   database: Rtastic_production
+cucumber:
+  <<: *test
