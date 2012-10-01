@@ -217,6 +217,30 @@ def get_content(text, tag)
   return $1
 end
 
+def create_links(text)
+  while !(text.match(/\\link\[.*?\]\{.*?\}/) == nil) do
+    text.gsub!(/\\link\[(.*?)\]\{(.*?)\}/, '<a href="aldskfj">\2</a>')
+  end
+  while !(text.match(/\\link\{.*?\}/) == nil) do
+    text.gsub!(/\\link\{(.*?)\}/, '<a href="aldskfj">\1</a>')
+  end
+  return text
+end
+
+def code_fields(text)
+  while !(text.match(/\\code\{.*?\}/) == nil) do
+    text.gsub!(/\\code\{(.*?)\}/, '<code>\1</code>')
+  end
+  return text
+end
+
+def items(text)
+  while !(text.match(/\\item\{(.*?)\}\{(.*?)\}/) == nil) do
+    text.gsub!(/\\item\{(.*?)\}\{(.*?)\}/, '<li><b>\1</b> - \2</li>')
+  end
+  return text
+end
+
 def parse_Rd_files(package)
   download_source(package)
 
@@ -235,7 +259,11 @@ def parse_Rd_files(package)
     documentation = Hash.new
     documentation.default = ""
     parts.each do |p|
-      documentation[p] = get_content(source, p).to_s
+      output = get_content(source, p).to_s
+      output = create_links(output)
+      output = code_fields(output)
+      output = items(output)
+      documentation[p] = output
     end
     documentation["package"] = package
     Documentation.new(documentation).save

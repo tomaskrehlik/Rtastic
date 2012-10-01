@@ -6,15 +6,15 @@
   </div>
   <div class=\"arguments\">
     <h2>Arguments</h2>
-    <%= @documentation.arguments %>
+    <%= @documentation.arguments.html_safe %>
   </div>
   <div class=\"description\">
     <h2>Description</h2>
-    <%= @documentation.description %>
+    <%= @documentation.description.html_safe %>
   </div>
   <div class=\"details\">
     <h2>Details</h2>
-    <%= @documentation.details %>
+    <%= @documentation.details.html_safe %>
   </div>
   <pre>
     <%= @documentation.examples %>
