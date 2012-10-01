@@ -1,5 +1,10 @@
 <% provide(:title, "Package database") %>
-<%= show.html_safe %>
+<%= show(@start.to_i,(@start.to_i+30)).html_safe %>
+<div class="pagination pagination-centered">
+  <ul>
+    <%= pagination(@start.to_i,30).html_safe %>
+  </ul>
+</div>
 <script>
 $(document).ready(function() {
   $('.build_docs').removeClass("disabled");

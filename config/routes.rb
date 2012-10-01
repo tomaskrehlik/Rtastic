@@ -16,9 +16,9 @@ Rtastic::Application.routes.draw do
   match "/log", to: 'packages#log'
   match "/init", to: 'packages#init'
   match "/update", to: 'packages#update'
-  match "/docs/:name", to: 'packages#documentation'
-  match "/docs/:name/:function", to: 'packages#documentation', :constraints => { :name => /[0-z\.]+/ }
-  match "/docsbuild/:name", to: 'packages#builddocs', :constraints => { :name => /[0-z\.]+/ }
+  match "/docs/:name", to: 'packages#documentation', :constraints => { :name => /[0-z\.-]+/ }
+  match "/docs/:name/:function", to: 'packages#documentation', :constraints => { :name => /[0-z\.-]+/ , :function => /[0-z\.-]+/}
+  match "/docsbuild/:name", to: 'packages#builddocs', :constraints => { :name => /[0-z\.-]+/ }
 #  match "/docs/:name/:function", to: 'packages#documentation'
 
   match "/search", to: 'general#search'

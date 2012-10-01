@@ -1,6 +1,46 @@
 <% provide(:title, "#{@package.name}: Documentation") %>
+<% if !@documentation.nil? then %>
+    <div class=\"usage\">
+    <h2>Usage</h2>
+    <pre><%= @documentation.usage %></pre>
+  </div>
+  <div class=\"arguments\">
+    <h2>Arguments</h2>
+    <%= @documentation.arguments %>
+  </div>
+  <div class=\"description\">
+    <h2>Description</h2>
+    <%= @documentation.description %>
+  </div>
+  <div class=\"details\">
+    <h2>Details</h2>
+    <%= @documentation.details %>
+  </div>
+  <pre>
+    <%= @documentation.examples %>
+  </pre>
 
-<%= @documentation.name %>
-<p>
-<%= @documentation.description %>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<% else %>
+  <ul>
+  <% functions = Documentation.where(package: @package.name).select("name") %>
+  <% functions.each do |l| %>
+    <%= ("<li class=\"function\"><a href=\"#{l.name}\">#{l.name}<\/a><\/li>").html_safe %>
+  <% end %>
+  </ul>
+<% end %>

@@ -42,9 +42,9 @@ module PackagesHelper
     Package.new(name: "splines", version: "1", depends: "", info_harvested: TRUE).save
   end
   # Printing method to html.
-  def show()
+  def show(start, fin)
       output = "<table class=\"table table-hover table-condensed\"><tr><th>ID</th><th>Package name</th><th>Version</th><th>Depends on</th><th>Generate documentation</th></tr>"
-      Package.all.each do |i|
+      Package.find((start..fin).to_a).each do |i|
         output << "<tr class = center><td>" + i.id.to_s + "</td><td>" + i.name + "</td><td>" + i.version + "</td><td>" + i.depends.to_s + "</td><td>" + button_to("Generate docs", "/docsbuild/#{i.name}", method: "get", class: "btn btn-mini " + get_documentation_state(i.name) ) + "</td></tr>"
       end
       output << "</table>"
@@ -155,6 +155,7 @@ module PackagesHelper
 
   # Dependencies are in form of field separated by commas, this parses it
   def parseRawDepends(depends)
+    return "" if depends === nil
     array = depends.split(", ")
     array.each do |l|
       l = l.split(" ")
@@ -191,23 +192,27 @@ def paranthesis(text_par,tag)
   nested = 0
   my = text_par.split("\n").join(" ")
   my = my.gsub(/.*#{tag}{/x,"")
+
+  return "" if (my === text_par)
+  regexp = ".*?"
     
   my.split("").each do |c|
     if c.eql? "{" then
       opening = opening + 1
       nested = nested + 1
+      regexp << "\{.*?"
     elsif c.eql? "}"
       opening = opening - 1
+      regexp << "\}.*?" if !(opening===0)
     end
     if opening == 0 then break end
   end
-  return nested
+  return regexp
 end
 
 def get_content(text, tag)
-  nested_inside = paranthesis(text, tag)
-  regexp = ".*?\{.*?\}" * nested_inside
-  regexp = "#{tag}{(#{regexp}.*?)}"
+  regexp = paranthesis(text, tag)
+  regexp = "#{tag}{(#{regexp})}"
   text.match(/\\#{regexp}/)
   return $1
 end
@@ -222,9 +227,10 @@ def parse_Rd_files(package)
 
     file = File.open("#{Rails.root}/tmp/packdoc/#{path}", "rb")
     source = file.read.split.join(" ")
-    #source = Rtastic::Application.assets.find_asset(path).body.split(" ").join(" ")
   
-    parts = ["arguments","author","concept","description","details","docType","encoding", "format" ,"keyword","name","note","references","section","seealso","source","title","value","examples","alias", "Rdversion", "usage","synopsis"]
+    parts = ["arguments","author","concept","description","details","docType","encoding", "format" ,"keyword",
+             "name","note","references","section","seealso","source","title","value","examples","alias",
+             "Rdversion", "usage","synopsis"]
 
     documentation = Hash.new
     documentation.default = ""
@@ -256,4 +262,37 @@ def get_documentation_state(package)
   else 
     return "btn-success"
   end
+end
+
+def pagination(where_am_i, how_big_view)
+  output = ""
+  number = Package.count()
+  # There is 5 of the pagination links, now I determine, which should be disabled
+
+  my_page = (where_am_i/how_big_view).floor
+  max_page = (number/how_big_view).floor + 1
+  distance = [(my_page - 0).abs, (my_page - max_page).abs].min
+  disabled = distance
+  if disabled>3 then disabled = 3 end
+  
+  min_show = my_page - 2
+  max_show = my_page + 2
+  while ((min_show<1)||(max_show>max_page)) do
+    if (2*my_page>max_page) then
+      min_show -= 1
+      max_show -= 1
+    else
+      min_show += 1
+      max_show += 1
+    end
+  end
+  for i in (min_show..max_show) do
+    if ((i-min_show + 1)===disabled) then
+      dis = "active"
+    else
+      dis = "disabled"
+    end
+    output << "<li class=\"#{dis}\"><a href=\"?start=#{i*how_big_view}\">#{i}<\/a><\/li>"
+  end
+  return output
 end

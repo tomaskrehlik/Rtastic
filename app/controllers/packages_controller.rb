@@ -1,5 +1,10 @@
 class PackagesController < ApplicationController
   def overview
+    if params[:start].nil? then
+      @start = 1
+    else
+      @start = params[:start]
+    end
   end
 
   def actions
@@ -22,6 +27,7 @@ class PackagesController < ApplicationController
     if params[:function].nil? then
       @package = Package.find_by_name(params[:name].to_s)
       @function = "index"
+      
     else
       @package = Package.find_by_name(params[:name].to_s)
       @function = params[:function]
