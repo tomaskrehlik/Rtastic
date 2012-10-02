@@ -52,7 +52,7 @@ module PackagesHelper
   end
 
   # Method that downloads package from central depository and outputs unpackaged version.
-  def downloadPackage(package)
+  def downloadPackiage(package)
     require 'zlib' 
     require 'open-uri'
 
@@ -63,30 +63,6 @@ module PackagesHelper
     return result
   end
   
-  # Slow method for getting descriptions. Probably wont have to ever be used. Parses the output
-  # of downloadPackage method.
-  def getDescription(package)
-    output = []
-    keywords = ["Package", "Title", "Type", "Version", "Author", "Description", "Suggests", "Imports", "Depends",
-       "Maintainer", "Extends", "Packaged", "Repository", "URL", "Date/Publication", "License", "LazyData", "LazyLoad", "Collate"].join("|")
-    text = downloadPackage(package).split.join(" ")
-    
-    text.match(/(Package:\s#{package.name}.*Date\/Publication:\s\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2})/)
-    description = $1  
-    ar = description.to_s.split(" ")
-    prev = 0
-    for i in 1..ar.length
-      if ar[i] =~ /\A(#{keywords}):\z/ then
-        output << ar[prev..(i-1)].join(" ")
-        prev = i
-      end
-    end
-    output << ar[prev..ar.length].join(" ")
-    output
-  end
-  
-  # Fast method for getting descriptions. Parses already parsed sources from www pages of the
-  # depositories.
   def getDescriptionHtml(package)
     require 'open-uri'
 
@@ -109,7 +85,7 @@ module PackagesHelper
   
   # Parses output of getDescription(Html) and updates info to the database.
   def updatePackageInfo(package, html)
-    if html then description = getDescriptionHtml(package) else description = getDescription(package) end
+    description = getDescriptionHtml(package)
     description.each do |desc|
       if desc.match(/Depends: (.*)\z/) then package.update_attributes(depends: $1.to_s) end
       if desc.match(/Imports: (.*)\z/) then package.update_attributes(imports: $1.to_s) end
@@ -171,15 +147,14 @@ module PackagesHelper
     end
     match = []
     names.each do |i|
-      if i.match(/(#{q})/) then
+      if i.match(/(#{q})/i) then
         match << i
       end
     end
     return match
   end
+
 end
-
-
 
 
 
@@ -187,35 +162,35 @@ end
 
 # Parser for documentation
 
-def paranthesis(text_par,tag)
-  opening = 1
-  nested = 0
-  my = text_par.split("\n").join(" ")
-  my = my.gsub(/.*#{tag}{/x,"")
+  def paranthesis(text_par,tag)
+    opening = 1
+    nested = 0
+    my = text_par.split("\n").join(" ")
+    my = my.gsub(/.*#{tag}{/x,"")
 
-  return "" if (my === text_par)
-  regexp = ".*?"
+    return "" if (my === text_par)
+    regexp = ".*?"
     
-  my.split("").each do |c|
-    if c.eql? "{" then
-      opening = opening + 1
-      nested = nested + 1
-      regexp << "\{.*?"
-    elsif c.eql? "}"
-      opening = opening - 1
-      regexp << "\}.*?" if !(opening===0)
+    my.split("").each do |c|
+      if c.eql? "{" then
+        opening = opening + 1
+        nested = nested + 1
+        regexp << "\{.*?"
+      elsif c.eql? "}"
+        opening = opening - 1
+        regexp << "\}.*?" if !(opening===0)
+      end
+      if opening == 0 then break end
     end
-    if opening == 0 then break end
+    return regexp
   end
-  return regexp
-end
 
-def get_content(text, tag)
-  regexp = paranthesis(text, tag)
-  regexp = "#{tag}{(#{regexp})}"
-  text.match(/\\#{regexp}/)
-  return $1
-end
+  def get_content(text, tag)
+    regexp = paranthesis(text, tag)
+    regexp = "#{tag}{(#{regexp})}"
+    text.match(/\\#{regexp}/)
+    return $1
+  end
 
 def create_links(text)
   while !(text.match(/\\link\[.*?\]\{.*?\}/) == nil) do
@@ -268,8 +243,33 @@ def parse_Rd_files(package)
     documentation["package"] = package
     Documentation.new(documentation).save
   end
+  
+  parse_description_file(package)
 
   system("rm -r #{Rails.root}/tmp/packdoc/#{package}")
+end
+
+def parse_description_file(package)
+  file = File.open("#{Rails.root}/tmp/packdoc/#{package}/DESCRIPTION", "rb")
+  source = file.read.split
+  source.each do |line|
+    line.gsub!(/(^\w*?:)/,';;\1')
+  end
+  source = source.join(" ")
+  source.gsub!(/\s{3,}/, " ")
+  source = source.split(";;")
+  package_in_database = Package.find_by_name(package)
+  package_description = Hash.new
+  source.each do |line|
+    line.match(/^(.*?): (.*)\Z/)
+    package_description[$1] = $2
+  end
+  package_in_database.update_attributes(maintainers: package_description["Maintainer"])
+  package_in_database.update_attributes(depends: package_description["Depends"])
+  package_in_database.update_attributes(imports: package_description["Imports"])
+  package_in_database.update_attributes(suggests: package_description["Suggests"])
+  package_in_database.update_attributes(description: package_description["Description"])
+  package_in_database.update_attributes(authors: package_description["Author"])
 end
 
 def download_source(package)
