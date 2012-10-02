@@ -8,18 +8,6 @@
           <form action="/search/" class="navbar-search pull-left">
             </i><input type="text" class="search-query" name="q" placeholder="Search">
           </form>
-          <!--<li><%= link_to "Sign in", '#' %></li>-->
-          <!--<div class="btn-group pull/right">
-              <a class="btn btn-primary" href="#"><i class="icon-user icon-white"></i> User</a>
-              <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">User's name</a></li>
-              <li><a href="#"><i class="icon-off"></i> Log out</a></li>
-              <li><a href="#"><i class="icon-pencil"></i> Sign up</a></li>
-              <li><a href="#"><i class="icon-trash"></i> Log in</a></li>
-              </ul>
-            </div>
-          </li> -->
           <li class="dropdown">
             <% if signed_in? %>  <!--  current_user signed_in? -->
             <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user icon-white"></i> <%= current_user.name %> <b class="caret"></b></a>
