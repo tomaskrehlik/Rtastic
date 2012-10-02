@@ -26,7 +26,7 @@
               <ul class="dropdown-menu">
               <!--<li><a href="#">User's name</a></li>-->
                 <li><%= link_to "Profile", current_user %></li>
-                <li><%= link_to "Edit account", '#' %></li>
+                <li><%= link_to "Settings", edit_user_path(current_user) %></li>
                 <li class="divider"></li>      
                 <li><%= link_to raw('<i class="icon-off"></i> Sign out'), signout_path, method: "delete" %></li>
               <% else %>

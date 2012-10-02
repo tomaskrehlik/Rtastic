@@ -1,17 +1,20 @@
 <div class="navbar navbar-fixed-bottom">
   <div class="navbar-inner">
-    <a class="brand" href="#">Admin actions</a>
-    <ul class="nav">
-      <li class="divider-vertical"></li>
-      <li><%= link_to "Initialize", init_path %></li>
-      <li class="divider-vertical"></li>
-      <li><%= link_to "Packages",  overview_path %></li>
-      <li><%= link_to "Log", log_path %></li>
-      <li><%= link_to "Update", update_path %></li>
-      <li class="divider-vertical"></li>
-      <li><%= link_to "Graph", paintgraph_path %></li>
-      <li class="divider-vertical"></li>
-      <li><%= link_to "Users", '#' %>
-    </ul>
+    <div class="container">
+      <a class="brand" href="#">Admin actions</a>
+      <ul class="nav">      
+        <li></li>
+        <li class="divider-vertical"></li>
+        <li><%= link_to "Initialize", init_path %></li>
+        <li class="divider-vertical"></li>
+        <li><%= link_to "Packages",  overview_path %></li>
+        <li><%= link_to "Log", log_path %></li>
+        <li><%= link_to "Update", update_path %></li>
+        <li class="divider-vertical"></li>
+        <li><%= link_to "Graph", paintgraph_path %></li>
+        <li class="divider-vertical"></li>
+        <li><%= link_to "Users", users_path %></li>
+      </ul>
+    </div>
   </div>
 </div>
