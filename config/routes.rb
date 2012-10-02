@@ -3,6 +3,12 @@ Rtastic::Application.routes.draw do
   # Root set up
   root to: 'general#home'
   match "/search", to: 'general#search'
+  match "/about", to: 'general#about'
+  match "/donate", to: 'general#donate'
+  match "/development", to: 'general#development_plans'
+  
+  resources :feedbacks, only: [:create]
+  match "/feedback", to: 'general#feedback'
 
   # Users resources and routes
   resources :users
