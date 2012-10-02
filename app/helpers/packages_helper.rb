@@ -132,11 +132,10 @@ module PackagesHelper
   # Dependencies are in form of field separated by commas, this parses it
   def parseRawDepends(depends)
     return "" if depends === nil
+    output = ""
     array = depends.split(", ")
-    array.each do |l|
-      l = l.split(" ")
-    end
-    return array.to_s
+    output = array.join(", ")
+    return output
   end
 
   # Searches the packages database for matching occurances and return array of names of packages that match

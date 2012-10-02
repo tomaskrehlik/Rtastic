@@ -40,9 +40,9 @@
 
 <% else %>
   <ul>
-  <% functions = Documentation.where(package: @package.name).select("name") %>
+  <% functions = Documentation.where(package: @package.name) %>
   <% functions.each do |l| %>
-    <%= ("<li class=\"function\"><a href=\"#{l.name}\">#{l.name}<\/a><\/li>").html_safe %>
+    <%= ("<li class=\"function\"><a href=\"#{l.name}\">#{l.name}<\/a> - #{l.description}<\/li>").html_safe %>
   <% end %>
   </ul>
 <% end %>
