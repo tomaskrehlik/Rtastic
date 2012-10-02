@@ -1,0 +1,7 @@
+<% provide(:title, "Feedback") %>
+
+<%= form_for @feedback do |f| %>
+  <%= f.label :message, 'Your text' %>
+  <%= f.text_field :message %>
+  <%= f.submit "Send" %>
+<% end %>
